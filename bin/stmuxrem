@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec flock -x -n /tmp/single-tmux-remote.lock -c "urxvt -e ssh localhost"

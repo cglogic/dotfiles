@@ -1,0 +1,49 @@
+source ~/.mutt/jellybeans.ansi
+set mailcap_path = "~/.mutt/mailcap"
+auto_view text/html
+alternative_order text/html text/plain
+set reverse_name
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+ignore headers *
+unignore headers from to subject date cc
+hdr_order from to cc subject date
+set rfc2047_parameters
+set beep_new
+set mime_forward=yes
+
+set signature = "~/.mutt/signature"
+
+set mbox_type = Maildir
+set copy = yes
+set move = no
+set include = yes
+set timeout = 15
+set mail_check = 90
+set abort_nosubject = no
+set sort = threads
+set sort_aux = reverse-last-date-received
+set mark_old = no
+#et editor = 'vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^"'
+set mime_forward = ask-yes
+#set nobeep
+set print_cmd = "lpr"
+set pager_stop
+set delete = yes
+set attribution = "On %[!%d/%m/%y %T %Z], %n wrote:"
+set forward_format = "Fwd: %s"
+set user_agent
+set editor = vim
+set charset = "UTF-8"
+set send_charset = "UTF-8"
+
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+set imap_idle
+set imap_check_subscribed
+unset imap_passive
+unset imap_peek
+
+source ~/.mutt/account

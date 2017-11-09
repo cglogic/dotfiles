@@ -1,0 +1,10 @@
+#!/bin/sh
+
+INTERNAL="LVDS-0"
+EXTERNAL="HDMI-0"
+
+if (xrandr | grep "$EXTERNAL disconnected"); then
+	xrandr --output $EXTERNAL --off --output $INTERNAL --auto
+else
+	xrandr --output $INTERNAL --off --output $EXTERNAL --auto
+fi

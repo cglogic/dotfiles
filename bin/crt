@@ -1,0 +1,4 @@
+#!/bin/sh
+
+setenv TERM xterm-256color
+cool-retro-term

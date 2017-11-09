@@ -1,0 +1,30 @@
+! Colors for terminal
+
+*.foreground:	#c0c0c0
+*.background:	#000000
+*.cursorColor:	#e0e0e0
+
+*.color0:	#000000
+*.color1:	#b92222
+*.color2:	#47aa06
+*.color3:	#ce882f
+*.color4:	#1f46a1
+*.color5:	#85478f
+*.color6:	#3e918b
+*.color7:	#c0c0c0
+
+*.color8:	#505050
+*.color9:	#e93232
+*.color10:	#72ea26
+*.color11:	#eeb32f
+*.color12:	#4f71e9
+*.color13:	#b557bf
+*.color14:	#3ec1bb
+*.color15:	#f6f6f6
+
+!*.color16:	#dc9656
+!*.color17:	#a16946
+!*.color18:	#282828
+!*.color19:	#383838
+!*.color20:	#b8b8b8
+!*.color21:	#e8e8e8

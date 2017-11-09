@@ -1,0 +1,9 @@
+#!/bin/sh
+
+flock -x -n /tmp/single-chromium.lock -c 'chrome --user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"'
+
+if [ $? -eq 0 ]; then
+	# kill chrome remnants
+	sleep 5
+	pkill -U `whoami` chrome
+fi

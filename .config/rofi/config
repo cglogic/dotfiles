@@ -1,0 +1,17 @@
+rofi.font: Hack 16px
+
+rofi.scroll-method: false
+rofi.hide-scrollbar: true
+
+! Enable the extended coloring options
+rofi.color-enabled: true
+
+!                  bg       border   separator
+rofi.color-window: #393939, #268bd2, #268bd2
+
+!                  bg       fg       bg-alt   hl-bg    hl-fg
+rofi.color-normal: #393939, #ffffff, #292929, #268bd2, #ffffff
+rofi.color-active: #393939, #46abf2, #393939, #268bd2, #ffffff
+rofi.color-urgent: #393939, #f3843d, #393939, #268bd2, #ffffff
+
+rofi.separator-style: solid

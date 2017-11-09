@@ -1,0 +1,66 @@
+Menu
+	rofi -show run
+#	rofi -show run -width 100 -location 1 -lines 5 -bw -5 -yoffset 0
+
+super + Tab
+	bspc node focused -f next
+
+super + shift + Tab
+	bspc node focused -f prev
+
+super + {j,k}
+	bspc node @/ -R {90,-90}
+
+super + c
+	bspc node focused --close
+
+super + x
+	bspc node focused --kill
+
+super + q
+	bspc quit
+
+super + {s,f}
+	bspc desktop -l {tiled,monocle}
+
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+super + {1-9}
+	bspc desktop -f ^{1-9}
+
+super + Escape
+	pkill -USR1 -x sxhkd
+
+super + Return
+	urxvt -e tcsh
+
+super + l
+	i3lock -c 000000 -f
+
+super + grave
+	dmenu_run -i -fn 'Hack:pixelsize=16'
+
+super + w
+	~/bin/stmux
+
+super + t
+	~/bin/ttime
+
+super + r
+	~/bin/stmuxrem
+
+super + b
+	~/bin/svimb
+
+super + v
+	~/bin/smonitor
+
+super + p
+	printscreen
+
+super + h
+	~/bin/swall
+
+super + z
+	~/bin/crt

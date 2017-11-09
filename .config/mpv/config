@@ -1,0 +1,7 @@
+vo=opengl
+#hwdec=auto
+framedrop=vo
+stop-screensaver=yes
+audio-file-auto=fuzzy
+sub-visibility=no
+volume-max=300

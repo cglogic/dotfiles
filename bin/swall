@@ -1,0 +1,21 @@
+#!/bin/sh
+
+TIME=0
+WALL="$HOME/wallpapers"
+
+if [ $1 ]; then
+	TIME=$1
+fi
+
+if [ $2 ]; then
+	WALL=$2
+fi
+
+while [ true ]; do
+	ls $WALL | grep -E '*.png|*.jpg|*.jpeg|*.gif' | sort --random-sort | head -n 1 | xargs -E EOL -I % feh --no-fehbg --bg-fill $WALL/%
+	if [ $TIME -eq 0 ]; then
+		break
+	else
+		sleep $TIME
+	fi
+done

@@ -1,0 +1,40 @@
+URxvt*termName: rxvt-unicode-256color
+URxvt*internalBorder: 0
+URxvt*externalBorder: 0
+URxvt*scrollBar: false
+!URxvt*borderLess: true
+URxvt*depth: 32
+!URxvt*background: rgba:0000/0000/0000/c800
+URxvt*buffered: true
+URxvt*font: xft:Hack:pixelsize=16,xft:M+ 2m:pixelsize=16
+URxvt*boldFont: xft:Hack:pixelsize=16,xft:M+ 2m:pixelsize=16
+URxvt*lineSpace: 0
+URxvt*letterSpace: 0
+URxvt*saveLines: 0
+URxvt*secondaryScreen: true
+URxvt*secondaryScroll: false
+URxvt*jumpScroll: true
+URxvt*skipScroll: true
+URxvt*scrollWithBuffer: false
+URxvt*scrollTtyKeypress: true
+URxvt*scrollTtyOutput: false
+URxvt*loginShell: true
+URxvt*perl-ext:
+URxvt*perl-ext-common:
+
+! Fake transparency
+!URxvt*transparent: true
+!URxvt*shading: 20
+
+Xft*dpi: 96
+Xft*antialias: true
+Xft*hinting: true
+Xft*hintstyle: hintslight
+
+XTerm*renderFont: true
+XTerm*faceName: DroidSansMonoForPowerline
+XTerm*faceSize: 12
+
+#include ".xcolors"
+
+Xcursor.theme: OpenZone_Ice

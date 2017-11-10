@@ -1,4 +1,5 @@
-rofi.font: Hack 16px
+rofi.dpi: 0
+rofi.font: Hack 9
 
 rofi.scroll-method: false
 rofi.hide-scrollbar: true

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec flock -x -n /tmp/single-ttime.lock -c "urxvt -e tty-clock -Ssr"

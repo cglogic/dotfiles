@@ -2,10 +2,12 @@ let g:ycm_server_python_interpreter = '/usr/local/bin/python2.7'
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Add or remove your plugins here:
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'tpope/vim-fugitive'
+"Plug 'airblade/vim-gitgutter'
 
 Plug 'Valloric/YouCompleteMe'
 "Plug 'Shougo/deoplete.nvim'
@@ -13,9 +15,6 @@ Plug 'Valloric/YouCompleteMe'
 "Plug 'Shougo/neoinclude.vim'
 "Plug 'Shougo/deol.nvim'
 "Plug 'w0rp/ale'
-
-Plug 'tpope/vim-fugitive'
-"Plug 'airblade/vim-gitgutter'
 
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'matze/vim-move'
@@ -36,6 +35,8 @@ set nobackup             " keep a backup file (restore to previous version)
 set noundofile           " keep an undo file (undo changes after closing)
 set ruler              " show the cursor position all the time
 set showcmd            " display incomplete commands
+set nowildmenu
+set laststatus=2
 
 set shell=/bin/sh
 
@@ -57,8 +58,6 @@ inoremap <C-U> <C-G>u<C-U>
 
 colorscheme jellybeans
 set number
-set laststatus=2 " Make it appear without splitting
-set nowildmenu
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'jellybeans'
@@ -81,7 +80,13 @@ let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#hunks#non_zero_only = 0
 let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 
+let g:airline#extensions#branch#enabled = 1
+"let g:airline#extensions#branch#empty_message = ''
+"let g:airline#extensions#branch#format = 2
+
 let g:airline#extensions#ycm#enabled = 1
+"let g:airline#extensions#ycm#error_symbol = 'E:'
+"let g:airline#extensions#ycm#warning_symbol = 'W:'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -93,21 +98,11 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.linenr = 'Ξ'
 let g:airline_symbols.notexists = ' ●'
+"let g:airline_symbols.maxlinenr = 'Ξ'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
-"let g:airline_symbols.maxlinenr = 'Ξ'
-
-" deoplete
-set pumheight=10
-set completeopt-=preview
-
-"let g:deoplete#sources#clang#libclang_path = '/usr/local/llvm50/lib/libclang.so.5'
-"let g:deoplete#sources#clang#clang_header = '/usr/local/llvm50/lib/clang'
-"let g:deoplete#sources#clang#sort_algo = 'alphabetical'
-"let g:deoplete#enable_at_startup = 1
 
 let g:ycm_filetype_whitelist = {
     \ 'c' : 1,
@@ -121,19 +116,27 @@ autocmd FileType cpp    let g:ycm_global_ycm_extra_conf = '~/.ycm/ycm_cpp_conf.p
 
 let g:ycm_extra_conf_globlist = ['~/projects/*', '!~/*']
 
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+set pumheight=10
+set completeopt-=preview
 
 let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 1
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 0 "default 0
 let g:ycm_open_loclist_on_ycm_diags = 0 "default 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_auto_trigger = 0
-let g:ycm_error_symbol = '>'
-let g:ycm_warning_symbol = '>'
+
+let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
+let g:ycm_server_log_level = 'info' "default info
+
+"let g:deoplete#sources#clang#libclang_path = '/usr/local/llvm50/lib/libclang.so.5'
+"let g:deoplete#sources#clang#clang_header = '/usr/local/llvm50/lib/clang'
+"let g:deoplete#sources#clang#sort_algo = 'alphabetical'
+"let g:deoplete#enable_at_startup = 1
 
 let g:clang_format#code_style = 'llvm'
 let g:clang_format#command = 'clang-format50'
@@ -146,11 +149,6 @@ let g:cpp_concepts_highlight = 0
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~30%' }
-
-" In Neovim, you can set up fzf window using a Vim command
-"let g:fzf_layout = { 'window': 'enew' }
-"let g:fzf_layout = { 'window': '-tabnew' }
-"let g:fzf_layout = { 'window': '10split enew' }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =

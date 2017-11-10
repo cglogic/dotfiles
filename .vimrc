@@ -15,6 +15,7 @@ Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-fugitive'
 "Plug 'airblade/vim-gitgutter'
 "Plug 'edkolev/tmuxline.vim'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -42,6 +43,7 @@ set shell=/bin/sh
 set mouse-=a
 set noundofile
 set hidden
+set nowildmenu
 
 set fileencodings=utf-8
 set termencoding=utf-8
@@ -51,6 +53,10 @@ set background=dark
 
 "set t_Co=256
 "set t_Co=16
+"if &term=="rxvt-unicode-256color"
+"    set t_Co=256
+"endif
+
 "let base16colorspace=256
 "colorscheme base16-default-dark
 
@@ -113,7 +119,7 @@ let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#hunks#non_zero_only = 0
 let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 
-"let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 "let g:airline#extensions#branch#empty_message = ''
 "let g:airline#extensions#branch#format = 2
 
@@ -147,14 +153,14 @@ endif
 "let g:airline_symbols.maxlinenr = ''
 
 " powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
 "let g:airline_left_sep = ''
 "let g:airline_left_alt_sep = ''
 "let g:airline_right_sep = ''
 "let g:airline_right_alt_sep = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 "let g:airline_symbols.branch = ''
 "let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = 'Ξ'
@@ -163,12 +169,6 @@ let g:airline_symbols.notexists = ' ●'
 "let g:gitgutter_realtime = 0
 "let g:gitgutter_eager = 0
 "let g:gitgutter_grep_command = 'ag --nocolor'
-
-" GitGutter styling to use · instead of +/-
-"let g:gitgutter_sign_added = '∙'
-"let g:gitgutter_sign_modified = '∙'
-"let g:gitgutter_sign_removed = '∙'
-"let g:gitgutter_sign_modified_removed = '∙'
 
 "let g:signify_vcs_list = [ 'git', 'svn' ]
 "let g:signify_update_on_bufenter = 1
@@ -186,34 +186,38 @@ autocmd FileType cpp    let g:ycm_global_ycm_extra_conf = '~/.ycm/ycm_cpp_conf.p
 
 let g:ycm_extra_conf_globlist = ['~/projects/*', '!~/*']
 
+set pumheight=10
+set completeopt-=preview
+
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
-set completeopt-=preview
-set pumheight=10
-
 let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 1
+let g:ycm_show_diagnostics_ui = 0
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 0 "default 0
 let g:ycm_open_loclist_on_ycm_diags = 0 "default 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_auto_trigger = 0
+
+let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
+let g:ycm_server_log_level = 'info' "default info
+
 let g:ycm_error_symbol = '>'
 let g:ycm_warning_symbol = '>'
-
-let g:move_key_modifier = 'C'
-
-let g:clang_format#code_style = 'llvm'
-let g:clang_format#command = 'clang-format50'
 
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 0
 let g:cpp_concepts_highlight = 0
 
-"let g:color_coded_enable = 1
+"let g:color_coded_enabled = 0
+
+let g:move_key_modifier = 'C'
+
+let g:clang_format#code_style = 'llvm'
+let g:clang_format#command = 'clang-format50'
 
 "let g:clighter_autostart = 1
 "let g:clighter_libclang_file = '/home/gor/lib/libclang.so.4'
@@ -224,11 +228,6 @@ let g:fzf_prefer_tmux = 1
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~30%' }
-
-" In Neovim, you can set up fzf window using a Vim command
-" let g:fzf_layout = { 'window': 'enew' }
-" let g:fzf_layout = { 'window': '-tabnew' }
-" let g:fzf_layout = { 'window': '10split enew' }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =

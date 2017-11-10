@@ -1,3 +1,3 @@
 #!/bin/sh
 
-flock -x -n /tmp/single-tmux.lock -c "urxvt -e tmux -f ~/.tmux_local.conf -2 -L local new-session -A -s local"
+exec flock -x -n /tmp/single-tmux.lock -c "urxvt -e tmux -f ~/.tmux_local.conf -2 -L local new-session -A -s local"

@@ -1,6 +1,8 @@
 Menu
 	rofi -show run
-#	rofi -show run -width 100 -location 1 -lines 5 -bw -5 -yoffset 0
+
+Print
+	rofi -show window
 
 super + Tab
 	bspc node focused -f next
@@ -24,7 +26,7 @@ super + {s,f}
 	bspc desktop -l {tiled,monocle}
 
 super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+	bspc desktop -f {prev,next}
 
 super + {1-9}
 	bspc desktop -f ^{1-9}
@@ -39,7 +41,7 @@ super + l
 	i3lock -c 000000 -f
 
 super + grave
-	dmenu_run -i -fn 'Hack:pixelsize=16'
+	~/bin/dmenurun
 
 super + w
 	~/bin/stmux
@@ -53,8 +55,14 @@ super + r
 super + b
 	~/bin/svimb
 
+super + g
+	~/bin/schrome
+
 super + v
 	~/bin/smonitor
+
+super + d
+	~/bin/stouchpad
 
 super + p
 	printscreen

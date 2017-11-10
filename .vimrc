@@ -18,8 +18,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-"Plug 'Shougo/vimproc.vim'
-"Plug 'Shougo/unite.vim'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
@@ -49,7 +47,7 @@ set fileencodings=utf-8
 set termencoding=utf-8
 set fileformat=unix
 
-"set background=dark
+set background=dark
 
 "set t_Co=256
 "set t_Co=16
@@ -171,30 +169,6 @@ let g:airline_symbols.notexists = ' ●'
 "let g:gitgutter_sign_modified = '∙'
 "let g:gitgutter_sign_removed = '∙'
 "let g:gitgutter_sign_modified_removed = '∙'
-
-" Автоматический insert mode
-"let g:unite_enable_start_insert = 1
-
-" Отображаем Unite в нижней части экрана
-"let g:unite_split_rule = "botright"
-
-" Отключаем замену статус строки
-"let g:unite_force_overwrite_statusline = 0
-
-" Размер окна Unite
-"let g:unite_winheight = 10
-
-" Красивые стрелочки
-"let g:unite_candidate_icon = "·"
-
-" Use ;-key no execute unite
-"nmap ; :Unite file buffer<CR>
-
-"let g:unite_source_grep_command = 'ag'
-"let g:unite_source_grep_default_opts =
-"    \ '-i --vimgrep --hidden --ignore ' .
-"    \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-"let g:unite_source_grep_recursive_opt = ''
 
 "let g:signify_vcs_list = [ 'git', 'svn' ]
 "let g:signify_update_on_bufenter = 1

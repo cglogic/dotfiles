@@ -28,6 +28,7 @@ alias feh		feh -x -B black -N -.
 alias mupdf		mupdf-gl
 alias sxiv		sxiv -abfr -s d
 alias dot		git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME
+alias dotls		git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME ls-tree -r master --name-only
 
 # These are normally set through /etc/login.conf.  You may override them here
 # if wanted.

@@ -6,8 +6,8 @@ URxvt*scrollBar: false
 URxvt*depth: 32
 !URxvt*background: rgba:0000/0000/0000/c800
 URxvt*buffered: true
-URxvt*font: xft:Hack:antialias=true:autohinting=true:pixelsize=22,xft:M+ 2m:antialias=true:autohinting=true:pixelsize=22
-URxvt*boldFont: xft:Hack:antialias=true:autohinting=true:pixelsize=22,xft:M+ 2m:antialias=true:autohinting=true:pixelsize=22
+URxvt*font: xft:Hack:antialias=true:autohinting=true:size=9,xft:M+ 2m:antialias=true:autohinting=true:size=9
+URxvt*boldFont: xft:Hack:antialias=true:autohinting=true:size=9,xft:M+ 2m:antialias=true:autohinting=true:size=9
 URxvt*lineSpace: 0
 URxvt*letterSpace: 0
 URxvt*saveLines: 0

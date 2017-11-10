@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec dmenu_run -i -fn 'Hack:pixelsize=22'
+exec dmenu_run -i -fn 'Hack:size=9'

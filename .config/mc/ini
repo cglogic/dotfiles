@@ -1,5 +1,5 @@
 [Midnight-Commander]
-verbose=false
+verbose=true
 pause_after_run=1
 shell_patterns=true
 auto_save_setup=true
@@ -97,7 +97,7 @@ menubar_visible=1
 free_space=1
 horizontal_split=0
 vertical_equal=1
-left_panel_size=87
+left_panel_size=73
 horizontal_equal=1
 top_panel_size=1
 
@@ -123,7 +123,7 @@ rxvt=
 
 xterm=
 
-xterm-256color=
+rxvt-256color=
 
 rxvt-unicode-256color=
 

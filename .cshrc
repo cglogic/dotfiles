@@ -12,22 +12,19 @@ alias la	ls -aF
 alias lf	ls -FA
 alias ll	ls -lAFh
 
+#alias grep	grep --color=auto
 alias df	df -h
 alias dfc	dfc -d
 
-#alias gdb		gdb80
-#alias gcc		gcc7
-#alias ld		ld.lld
-#alias clang		clang50
-#alias clang++		clang++50
-#alias clang-cpp		clang-cpp50
-#alias lldb		lldb50
-#alias python		python3
-#alias mpv		mpv --fs
-alias feh		feh -x -B black -N -.
-alias mupdf		mupdf-gl
-alias sxiv		sxiv -abfr -s d
-alias dot		git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME
+alias gdb	gdb80
+
+alias mpvrt	mpv --no-cache --demuxer-readahead-secs 0
+alias feh	feh -x -B black -N -.
+alias mupdf	mupdf-gl
+alias sxiv	sxiv -abrf -s d
+
+alias dot	git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME
+alias dotls	dot ls-tree -r master --name-only
 
 # These are normally set through /etc/login.conf.  You may override them here
 # if wanted.
@@ -46,12 +43,15 @@ setenv	CLICOLOR
 setenv	LESS		-S
 setenv	GREP_OPTIONS	--color=auto
 
-setenv	GIT_PAGER		cat
 setenv	DISPLAY			:0
 setenv	SXHKD_SHELL		/bin/sh
+setenv	GIT_PAGER		cat
 setenv	MPD_HOST		/var/mpd/socket
 setenv	LD_LIBRARY_PATH		/usr/local/llvm50/lib
 setenv	LYNX_CFG		$HOME/.lynx.cfg
+#setenv	PYTHONPATH		$HOME/lib/python
+
+#setenv	FZF_DEFAULT_COMMAND	"find . -path '*/\.*' -prune -o -type f -print -o -type l -print | sed s/^..//"
 setenv	FZF_DEFAULT_COMMAND	'ag --nocolor -l -g ""'
 setenv	FZF_DEFAULT_OPTS	'--exact'
 

@@ -17,10 +17,16 @@ xsetroot -cursor_name left_ptr
 #unclutter -idle 3 -root &
 unclutter --fork --timeout 5
 
+#
+#intel_backlight 70%
+
 # use xrandr to disable monitors that should not be used. For example,
 # use only the DVI monitor of a VGA/DVI pair:
 # /usr/local/bin/xrandr --output VGA-0 --off
-/usr/local/bin/xrandr-settings
+~/bin/smonitor
+
+# disable touchpad
+~/bin/stouchpad
 
 # run xterm with no border, white text on a black background, maximized,
 # with large fonts.
@@ -29,12 +35,13 @@ unclutter --fork --timeout 5
 
 # Wallpaper
 feh --no-fehbg --bg-center ~/images/free_wall_g_2.png &
+#swall &
 
-# Compositor
+# Compositor --vsync opengl-swc --backend xr_glx_hybrid
+#compton --config /dev/null --vsync opengl-swc --backend xr_glx_hybrid --paint-on-overlay --glx-no-stencil --glx-no-rebind-pixmap --glx-swap-method buffer-age --xrender-sync-fence -b
 compton --config /dev/null --vsync none --backend xrender -b
-#compton --config /dev/null --backend glx --vsync none --paint-on-overlay --xrender-sync --xrender-sync-fence -b
 
-# Disable usb devices
+# Disable USB devices
 ~/bin/usboff
 
 # Create cache dir

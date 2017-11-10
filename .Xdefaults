@@ -6,8 +6,8 @@ URxvt*scrollBar: false
 URxvt*depth: 32
 !URxvt*background: rgba:0000/0000/0000/c800
 URxvt*buffered: true
-URxvt*font: xft:Hack:pixelsize=16,xft:M+ 2m:pixelsize=16
-URxvt*boldFont: xft:Hack:pixelsize=16,xft:M+ 2m:pixelsize=16
+URxvt*font: xft:Hack:antialias=true:autohinting=true:pixelsize=22,xft:M+ 2m:antialias=true:autohinting=true:pixelsize=22
+URxvt*boldFont: xft:Hack:antialias=true:autohinting=true:pixelsize=22,xft:M+ 2m:antialias=true:autohinting=true:pixelsize=22
 URxvt*lineSpace: 0
 URxvt*letterSpace: 0
 URxvt*saveLines: 0
@@ -21,20 +21,23 @@ URxvt*scrollTtyOutput: false
 URxvt*loginShell: true
 URxvt*perl-ext:
 URxvt*perl-ext-common:
+!URxvt*intensityStyles: false
 
-! Fake transparency
-!URxvt*transparent: true
-!URxvt*shading: 20
+! Fake transparency (copies the wallpaper to the background of the terminal)
+!urxvt*transparent: true
+!urxvt*shading: 30
 
-Xft*dpi: 96
+!Xft*dpi: 96
 Xft*antialias: true
+!Xft*rgba: rgb
 Xft*hinting: true
+Xft*lcdfilter: lcddefault
 Xft*hintstyle: hintslight
 
 XTerm*renderFont: true
-XTerm*faceName: DroidSansMonoForPowerline
-XTerm*faceSize: 12
+XTerm*faceName: Hack
+XTerm*faceSize: 14
 
 #include ".xcolors"
 
-Xcursor.theme: OpenZone_Ice
+Xcursor*theme: OpenZone_Ice

@@ -48,7 +48,7 @@ set monofontsize=12
 set minimumfontsize=10
 
 # Default Full-Content zoom level in percent. Default is 100.
-set default-zoom=100
+set default-zoom=120
 
 # Shortcuts allow the opening of an URI built up from a named template with
 # additional parameters.
@@ -80,28 +80,28 @@ set stylesheet=on
 set statusbar=false
 set status-color-bg=#191919
 set status-color-fg=#ffcc66
-set status-font=Hack 16px
+set status-font=Hack 22px
 set status-ssl-color-bg=#191919
 set status-ssl-color-fg=#99cc99
-set status-ssl-font=Hack 16px
+set status-ssl-font=Hack 22px
 set status-sslinvalid-color-bg=#191919
 set status-sslinvalid-color-fg=#f2777a
-set status-sslinvalid-font=Hack 16px
+set status-sslinvalid-font=Hack 22px
 
 # Input bar
 set input-bg-normal=#191919
 set input-fg-normal=#d3d0c8
-set input-font-normal=Hack 16px
+set input-font-normal=Hack 22px
 set input-bg-error=#191919
 set input-fg-error=#f2777a
-set input-font-error=Hack 16px
+set input-font-error=Hack 22px
 
 # Completion
 set completion-bg-normal=#d3d0c8
 set completion-fg-normal=#191919
 set completion-bg-active=#515151
 set completion-fg-active=#d3d0c8
-set completion-font=Hack 16px
+set completion-font=Hack 22px
 
 # Webkit
 #set useragent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"

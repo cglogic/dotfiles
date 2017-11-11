@@ -20,9 +20,6 @@ unclutter --fork --timeout 5
 #
 #intel_backlight 70%
 
-#
-setenv FONTSIZE 12
-
 # use xrandr to disable monitors that should not be used. For example,
 # use only the DVI monitor of a VGA/DVI pair:
 # /usr/local/bin/xrandr --output VGA-0 --off

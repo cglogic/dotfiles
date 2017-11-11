@@ -76,7 +76,11 @@ if ($?prompt) then
 
 	# An interactive shell -- set some stuff up
 	#set prompt = "%N@%m:%~ %# "
-	set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[37m%} "
+	if ( $TERM =~ "*-256color" ) then
+		set prompt = "%{\033[38;5;076m%}%N%{\033[38;5;251m%}@%{\033[38;5;081m%}%m%{\033[38;5;251m%}:%{\033[38;5;208m%}%~ %{\033[38;5;128m%}%#%{\033[0m%} "
+	else
+		set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[37m%} "
+	endif
 	set promptchars = "%#"
 
 	set filec
@@ -114,5 +118,4 @@ if ($?prompt) then
 		bindkey "\e[5~" up-history		# PageUp
 		bindkey "\e[6~" down-history		# PageDown
 	endif
-
 endif

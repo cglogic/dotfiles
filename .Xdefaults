@@ -7,7 +7,9 @@ URxvt*depth: 32
 !URxvt*background: rgba:0000/0000/0000/c800
 URxvt*buffered: true
 URxvt*font: xft:Hack:antialias=true:autohinting=true:size=9,xft:M+ 2m:antialias=true:autohinting=true:size=9
-URxvt*boldFont: xft:Hack:antialias=true:autohinting=true:size=9,xft:M+ 2m:antialias=true:autohinting=true:size=9
+URxvt*boldFont:
+URxvt*italicFont:
+URxvt*boldItalicFont:
 URxvt*lineSpace: 0
 URxvt*letterSpace: 0
 URxvt*saveLines: 0
@@ -36,7 +38,38 @@ Xft*hintstyle: hintslight
 
 XTerm*renderFont: true
 XTerm*faceName: Hack
-XTerm*faceSize: 14
+XTerm*faceSize: 9
+
+#include ".xfonts"
+
+*.foreground:   #c0c0c0
+*.background:   #000000
+*.cursorColor:  #e0e0e0
+
+*.color0:       #000000
+*.color1:       #a93232
+*.color2:       #729a26
+*.color3:       #ce833f
+*.color4:       #4f71a1
+*.color5:       #75577f
+*.color6:       #4e918b
+*.color7:       #c0c0c0
+
+*.color8:       #505050
+*.color9:       #c95252
+*.color10:      #92ba46
+*.color11:      #eea36f
+*.color12:      #6f91c1
+*.color13:      #95779f
+*.color14:      #6eb1ab
+*.color15:      #e0e0e0
+
+!*.color16:      #dc9656
+!*.color17:      #a16946
+!*.color18:      #282828
+!*.color19:      #383838
+!*.color20:      #b8b8b8
+!*.color21:      #e8e8e8
 
 #include ".xcolors"
 

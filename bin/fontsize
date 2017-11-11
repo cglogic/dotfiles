@@ -1,0 +1,14 @@
+#!/bin/sh
+
+DPI_W=`xdpyinfo | grep dots | sed 's/x/ /g' | awk '{ print $2 }'`
+DPI_H=`xdpyinfo | grep dots | sed 's/x/ /g' | awk '{ print $3 }'`
+
+DPI=$(( ( $DPI_W + $DPI_H ) / 2))
+
+if [ $DPI -ge 150 ]; then
+	echo '9'
+fi
+
+if [ $DPI -le 100 ]; then
+	echo '12'
+fi

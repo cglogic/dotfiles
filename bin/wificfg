@@ -1,0 +1,22 @@
+#!/bin/sh
+
+IFACE=`sysctl net.wlan.devices | awk '{ print $2 }'`
+
+case "$1" in
+"up")
+	ifconfig wlan0 create wlandev $IFACE
+	ifconfig wlan0 up
+	wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant.conf
+	dhclient wlan0
+	;;
+"down")
+	ifconfig wlan0 down
+	ifconfig wlan0 destroy
+	;;
+"status")
+	ifconfig wlan0
+	;;
+*)
+	echo "Usage: wificfg up|down|status"
+	;;
+esac

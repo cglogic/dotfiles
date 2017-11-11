@@ -1,12 +1,14 @@
 #!/bin/sh
 
-TPID=`xinput list | grep '↳ Mouse' | gsed 's/.*id\=\([0-9]\+\).*/\1/g'`
+SYNAPT=`sysctl hw.psm.synaptics_support | awk '{ print $2 }'`
 
-STATUS=`xinput list-props $TPID | grep 'Device Enabled' | gsed -e 's/.*\:[ \t]\+//g'`
+if [ $SYNAPT == 1 ]; then
+	TPID=`xinput list | grep '↳ Mouse' | gsed 's/.*id\=\([0-9]\+\).*/\1/g'`
+	STATUS=`xinput list-props $TPID | grep 'Device Enabled' | gsed -e 's/.*\:[ \t]\+//g'`
 
-if [ $STATUS == 0 ]
-then
-	xinput enable $TPID
-else
-	xinput disable $TPID
+	if [ $STATUS == 0 ]; then
+		xinput enable $TPID
+	else
+		xinput disable $TPID
+	fi
 fi

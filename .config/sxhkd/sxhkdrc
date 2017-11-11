@@ -49,9 +49,6 @@ super + w
 super + t
 	~/bin/ttime
 
-super + r
-	~/bin/stmuxrem
-
 super + b
 	~/bin/svimb
 

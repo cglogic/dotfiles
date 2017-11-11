@@ -62,7 +62,7 @@ setenv	LD	/usr/local/llvm50/bin/ld.lld
 
 if ($?prompt) then
 	if (($?SSH_CLIENT || $?SSH_TTY) && $TERM != "screen" && $TERM != "screen-256color" && ! $?TMUX) then
-		exec tmux -f ~/.tmux_remote.conf -2 -L remote new-session -A -s remote;
+		exec tmux -2 new-session -A -s ssh;
 	endif
 
 	#if ($TERM != "rxvt" && $TERM != "rxvt-256color" && $TERM != "screen" && $TERM != "screen-256color" && ! $?TMUX) then

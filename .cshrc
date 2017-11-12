@@ -16,7 +16,7 @@ alias ll	ls -lAFh
 alias df	df -h
 alias dfc	dfc -d
 
-alias gdb	gdb80
+alias gdb	gdb801
 
 alias mpvrt	mpv --no-cache --demuxer-readahead-secs 0
 alias feh	feh -x -B black -N -.
@@ -77,9 +77,9 @@ if ($?prompt) then
 	# An interactive shell -- set some stuff up
 	#set prompt = "%N@%m:%~ %# "
 	if ( $TERM =~ "*-256color" ) then
-		set prompt = "%{\033[38;5;076m%}%N%{\033[38;5;251m%}@%{\033[38;5;081m%}%m%{\033[38;5;251m%}:%{\033[38;5;208m%}%~ %{\033[38;5;128m%}%#%{\033[0m%} "
+		set prompt = "%{\033[38;5;076m%}%N%{\033[38;5;251m%}@%{\033[38;5;080m%}%m%{\033[38;5;251m%}:%{\033[38;5;172m%}%~ %{\033[38;5;128m%}%#%{\033[0m%} "
 	else
-		set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[37m%} "
+		set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
 	endif
 	set promptchars = "%#"
 

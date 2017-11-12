@@ -11,7 +11,7 @@ gtk-xft-hintstyle = "hintslight"
 
 style "user-font"
 {
-	font_name = "Clear Sans 9"
+	font_name = "Clear Sans 12"
 }
 widget_class "*" style "user-font"
-gtk-font-name = "Clear Sans 9"
+gtk-font-name = "Clear Sans 12"

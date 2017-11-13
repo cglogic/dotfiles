@@ -1,8 +1,8 @@
 Menu
-	rofi -show run
+	~/bin/srofi -show run
 
 Print
-	rofi -show window
+	~/bin/srofi -show window
 
 super + Tab
 	bspc node focused -f next

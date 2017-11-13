@@ -1,0 +1,6 @@
+#!/bin/sh
+
+FSIZE=`~/bin/fontsize`
+exec dmenu_run -i -fn "Hack:size=$FSIZE"
+
+#exec dmenu_run -i -fn "Hack"

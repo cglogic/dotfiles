@@ -62,7 +62,7 @@ setenv	LD	/usr/local/llvm50/bin/ld.lld
 
 if ($?prompt) then
 	if (($?SSH_CLIENT || $?SSH_TTY) && $TERM != "screen" && $TERM != "screen-256color" && ! $?TMUX) then
-		exec tmux -2 new-session -A -s ssh;
+		exec tmux -2 new-session -A -s remote;
 	endif
 
 	#if ($TERM != "rxvt" && $TERM != "rxvt-256color" && $TERM != "screen" && $TERM != "screen-256color" && ! $?TMUX) then
@@ -76,11 +76,12 @@ if ($?prompt) then
 
 	# An interactive shell -- set some stuff up
 	#set prompt = "%N@%m:%~ %# "
-	if ( $TERM =~ "*-256color" ) then
-		set prompt = "%{\033[38;5;076m%}%N%{\033[38;5;251m%}@%{\033[38;5;080m%}%m%{\033[38;5;251m%}:%{\033[38;5;172m%}%~ %{\033[38;5;128m%}%#%{\033[0m%} "
-	else
-		set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
-	endif
+	#if ( $TERM =~ "*-256color" ) then
+		#set prompt = "%{\033[38;5;034m%}%N%{\033[38;5;251m%}@%{\033[38;5;037m%}%m%{\033[38;5;251m%}:%{\033[38;5;172m%}%~ %{\033[38;5;127m%}%#%{\033[0m%} "
+	#else
+		#set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
+	#endif
+	set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
 	set promptchars = "%#"
 
 	set filec

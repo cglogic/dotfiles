@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec flock -x -n /tmp/single-tmux.lock -c "urxvt -e tmux -2 new-session -A -s x11"
+exec flock -x -n /tmp/single-tmux.lock -c "urxvt -e tmux -2 new-session -A -s local"

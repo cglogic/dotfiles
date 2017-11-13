@@ -52,7 +52,7 @@ set fileformat=unix
 set background=dark
 
 let g:jellybeans_overrides = {
-	\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+	\    'background': { 'ctermbg': '0', '256ctermbg': '0' },
 \}
 
 "let base16colorspace=256

@@ -57,7 +57,7 @@ inoremap <C-U> <C-G>u<C-U>
 "filetype plugin indent on
 
 let g:jellybeans_overrides = {
-	\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+	\    'background': { 'ctermbg': '0', '256ctermbg': '0' },
 \}
 
 colorscheme jellybeans

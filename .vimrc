@@ -51,11 +51,9 @@ set fileformat=unix
 
 set background=dark
 
-"set t_Co=256
-"set t_Co=16
-"if &term=="rxvt-unicode-256color"
-"    set t_Co=256
-"endif
+let g:jellybeans_overrides = {
+	\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+\}
 
 "let base16colorspace=256
 "colorscheme base16-default-dark

@@ -56,6 +56,10 @@ inoremap <C-U> <C-G>u<C-U>
 " Also load indent files, to automatically do language-dependent indenting.
 "filetype plugin indent on
 
+let g:jellybeans_overrides = {
+	\    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+\}
+
 colorscheme jellybeans
 set number
 

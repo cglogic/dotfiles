@@ -41,7 +41,7 @@ super + l
 	i3lock -c 000000 -f
 
 super + grave
-	~/bin/dmenurun
+	~/bin/sdmenu
 
 super + w
 	~/bin/stmux

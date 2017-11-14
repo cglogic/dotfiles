@@ -1,7 +1,7 @@
-Menu
+super + r
 	~/bin/srofi -show run
 
-Print
+super + w
 	~/bin/srofi -show window
 
 super + Tab
@@ -43,11 +43,8 @@ super + l
 super + grave
 	~/bin/sdmenu
 
-super + w
-	~/bin/stmux
-
 super + t
-	~/bin/ttime
+	~/bin/stmux
 
 super + b
 	~/bin/svimb

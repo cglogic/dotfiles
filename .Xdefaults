@@ -43,7 +43,7 @@ XTerm*faceSize: 9
 #include ".xfonts"
 
 *.foreground:   #d0d0d0
-*.background:   #101010
+*.background:   #040404
 *.cursorColor:  #d0d0d0
 
 *.color0:       #101010

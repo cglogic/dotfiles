@@ -47,3 +47,9 @@ unset imap_passive
 unset imap_peek
 
 source ~/.mutt/account
+
+set spoolfile = +INBOX
+mailboxes = +INBOX
+set record = +Sent
+set postponed = +Drafts
+set trash = +Trash

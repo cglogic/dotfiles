@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec tshark -nr "$1" -T fields -e mp2t

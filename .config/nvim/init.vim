@@ -1,5 +1,3 @@
-let g:ycm_server_python_interpreter = '/usr/local/bin/python2.7'
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'nanotech/jellybeans.vim'

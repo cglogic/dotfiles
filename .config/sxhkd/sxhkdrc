@@ -64,5 +64,8 @@ super + p
 super + h
 	~/bin/swall
 
+super + e
+	~/bin/stelegram
+
 super + z
 	~/bin/crt

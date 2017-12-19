@@ -11,6 +11,8 @@ alias j		jobs -l
 alias la	ls -aF
 alias lf	ls -FA
 alias ll	ls -lAFh
+alias c		xclip -i
+alias v		xclip -o
 
 #alias grep	grep --color=auto
 alias df	df -h

@@ -13,8 +13,6 @@ set rfc2047_parameters
 set beep_new
 set mime_forward=yes
 
-set signature = "~/.mutt/signature"
-
 set mbox_type = Maildir
 set copy = yes
 set move = no
@@ -46,10 +44,7 @@ set imap_check_subscribed
 unset imap_passive
 unset imap_peek
 
-source ~/.mutt/account
+source ~/.mutt/account.c
 
-set spoolfile = +INBOX
-mailboxes = +INBOX
-set record = +Sent
-set postponed = +Drafts
-set trash = +Trash
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.c<enter><change-folder>!<enter>'
+macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/account.k<enter><change-folder>!<enter>'

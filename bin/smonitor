@@ -12,8 +12,10 @@ if (xrandr | grep "eDP1"); then
 	EXTERNAL="DP1"
 fi
 
-if (xrandr | grep "$EXTERNAL disconnected"); then
+if (xrandr | grep "$EXTERNAL disconnected" > /dev/null); then
 	xrandr --output $EXTERNAL --off --output $INTERNAL --auto
+	#xrandr --dpi 160
 else
 	xrandr --output $INTERNAL --off --output $EXTERNAL --auto
+	#xrandr --dpi 96
 fi

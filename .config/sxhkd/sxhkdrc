@@ -43,7 +43,7 @@ super + l
 super + grave
 	~/bin/sdmenu
 
-super + t
+super + BackSpace
 	~/bin/stmux
 
 super + b
@@ -64,7 +64,7 @@ super + p
 super + h
 	~/bin/swall
 
-super + e
+super + t
 	~/bin/stelegram
 
 super + z

@@ -28,6 +28,7 @@ Plug 'Valloric/YouCompleteMe'
 "Plug 'rdnetto/YCM-Generator'
 
 Plug 'neomake/neomake'
+"Plug 'wincent/terminus'
 
 call plug#end()
 filetype plugin indent on

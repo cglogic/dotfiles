@@ -1,6 +1,12 @@
 set nocompatible
 filetype off
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/bundle')
 
 Plug 'nanotech/jellybeans.vim'
@@ -185,6 +191,7 @@ autocmd FileType cpp    let g:ycm_global_ycm_extra_conf = '~/.ycm/ycm_cpp_conf.p
 
 let g:ycm_extra_conf_globlist = ['~/projects/*', '!~/*']
 
+set pumwidth=20
 set pumheight=10
 set completeopt-=preview
 

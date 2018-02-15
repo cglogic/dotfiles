@@ -3,7 +3,7 @@
 VER=`pkg info chromium | grep Version | awk '{ print $3 }' | awk '{ split($1, a, "_"); print a[1] }'`
 #UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$VER Safari/537.36"
 
-flock -x -n /tmp/single-chromium.lock -c "chrome --site-per-process --user-agent=\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$VER Safari/537.36\""
+flock -x -n /tmp/single-chromium.lock -c "chrome --site-per-process --disk-cache-dir=/dev/null --user-agent=\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$VER Safari/537.36\""
 
 if [ $? -eq 0 ]; then
 	# kill chrome remnants

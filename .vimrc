@@ -281,6 +281,7 @@ nnoremap [t :tabp<cr>
 "nnoremap <S-tab> <c-w>W
 
 nnoremap ;f :Files<cr>
+nnoremap ;g :GFiles<cr>
 nnoremap ;b :Buffers<cr>
 nnoremap ;a :Ag<cr>
 nnoremap ;l :Lines<cr>

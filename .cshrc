@@ -45,6 +45,9 @@ setenv	CLICOLOR
 setenv	LESS		-S
 setenv	GREP_OPTIONS	--color=auto
 
+setenv	MANCOLOR	yes
+setenv	MANWIDTH	tty
+
 setenv	DISPLAY			:0
 setenv	SXHKD_SHELL		/bin/sh
 setenv	GIT_PAGER		cat

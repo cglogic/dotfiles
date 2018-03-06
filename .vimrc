@@ -191,7 +191,6 @@ autocmd FileType cpp    let g:ycm_global_ycm_extra_conf = '~/.ycm/ycm_cpp_conf.p
 
 let g:ycm_extra_conf_globlist = ['~/projects/*', '!~/*']
 
-set pumwidth=20
 set pumheight=10
 set completeopt-=preview
 

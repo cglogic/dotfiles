@@ -52,7 +52,7 @@ setenv	DISPLAY			:0
 setenv	SXHKD_SHELL		/bin/sh
 setenv	GIT_PAGER		cat
 setenv	MPD_HOST		/var/mpd/socket
-setenv	LD_LIBRARY_PATH		/usr/local/llvm50/lib
+setenv	LD_LIBRARY_PATH		/usr/local/llvm60/lib
 setenv	LYNX_CFG		$HOME/.lynx.cfg
 #setenv	PYTHONPATH		$HOME/lib/python
 
@@ -60,10 +60,10 @@ setenv	LYNX_CFG		$HOME/.lynx.cfg
 setenv	FZF_DEFAULT_COMMAND	'ag --nocolor -l -g ""'
 setenv	FZF_DEFAULT_OPTS	'--exact'
 
-setenv	CC	/usr/local/llvm50/bin/clang
-setenv	CXX	/usr/local/llvm50/bin/clang++
-setenv	CPP	/usr/local/llvm50/bin/clang-cpp
-setenv	LD	/usr/local/llvm50/bin/ld.lld
+setenv	CC	/usr/local/llvm60/bin/clang
+setenv	CXX	/usr/local/llvm60/bin/clang++
+setenv	CPP	/usr/local/llvm60/bin/clang-cpp
+setenv	LD	/usr/local/llvm60/bin/ld.lld
 
 if ($?prompt) then
 	if (($?SSH_CLIENT || $?SSH_TTY) && $TERM != "screen" && $TERM != "screen-256color" && ! $?TMUX) then

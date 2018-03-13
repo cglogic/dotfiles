@@ -17,6 +17,7 @@ alias v		xclip -o
 #alias grep	grep --color=auto
 alias df	df -h
 alias dfc	dfc -d
+alias ps	ps -ww
 
 alias gdb	gdb801
 

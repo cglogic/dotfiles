@@ -28,6 +28,9 @@ unclutter --fork --timeout 5
 # disable touchpad
 ~/bin/stouchpad
 
+#
+~/bin/bmon &
+
 # run xterm with no border, white text on a black background, maximized,
 # with large fonts.
 # xterm -borderwidth 0 -fg white -bg black -maximized -fn 10x20 &
@@ -35,7 +38,7 @@ unclutter --fork --timeout 5
 
 # Wallpaper
 feh --no-fehbg --bg-center ~/images/free_wall_g_2.png &
-#swall &
+#~/bin/swall &
 
 # Compositor --vsync opengl-swc --backend xr_glx_hybrid
 #compton --config /dev/null --vsync opengl-swc --backend xr_glx_hybrid --paint-on-overlay --glx-no-stencil --glx-no-rebind-pixmap --glx-swap-method buffer-age --xrender-sync-fence -b

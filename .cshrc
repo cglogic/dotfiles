@@ -19,7 +19,7 @@ alias df	df -h
 alias dfc	dfc -d
 alias ps	ps -ww
 
-alias gdb	gdb801
+alias gdb	gdb81
 
 alias mpvrt	mpv --no-cache --demuxer-readahead-secs 0
 alias feh	feh -x -B black -N -.

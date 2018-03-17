@@ -5,10 +5,10 @@ super + w
 	~/bin/srofi -show window
 
 super + Tab
-	bspc node focused -f next
+	bspc node focused -f next.local
 
 super + shift + Tab
-	bspc node focused -f prev
+	bspc node focused -f prev.local
 
 super + {j,k}
 	bspc node @/ -R {90,-90}

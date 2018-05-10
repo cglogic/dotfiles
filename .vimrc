@@ -51,6 +51,7 @@ set mouse-=a
 set noundofile
 set hidden
 set nowildmenu
+set dy=lastline
 
 set fileencodings=utf-8
 set termencoding=utf-8

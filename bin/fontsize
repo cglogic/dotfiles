@@ -16,5 +16,5 @@ if [ $DPI -ge 150 ]; then
 fi
 
 if [ $DPI -le 100 ]; then
-	echo '12'
+	echo '14'
 fi

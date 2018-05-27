@@ -1,0 +1,20 @@
+set-option global makecmd 'make -j4'
+set-option global grepcmd 'ag --column'
+set-option global clang_options -std=c++14
+set-option global ui_options ncurses_status_on_top=true
+
+colorscheme tomorrow-night
+
+add-highlighter global number_lines -hlcursor -separator ' '
+add-highlighter global show_matching
+#add-highlighter global show_whitespaces
+add-highlighter global dynregex '%reg{/}' 0:+u
+
+hook global WinSetOption filetype=(c|cpp) %{
+	clang-enable-autocomplete
+	clang-enable-diagnostics
+	alias window lint clang-parse
+	alias window lint-next-error clang-diagnostics-next
+}
+
+#%sh{kak-lsp --kakoune}

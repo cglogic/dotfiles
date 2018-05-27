@@ -31,6 +31,9 @@ unclutter --fork --timeout 5
 #
 ~/bin/bmon &
 
+#
+~/bin/skak-lsp &
+
 # run xterm with no border, white text on a black background, maximized,
 # with large fonts.
 # xterm -borderwidth 0 -fg white -bg black -maximized -fn 10x20 &

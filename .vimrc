@@ -65,9 +65,10 @@ let g:jellybeans_overrides = {
 
 "let base16colorspace=256
 "colorscheme base16-default-dark
+"Tomorrow-Night jellybeans
 
 if (&t_Co == 256 || &t_Co == 88)
-    colorscheme jellybeans
+    colorscheme Tomorrow-Night
 else
     colorscheme base16-default-dark
 endif

@@ -10,11 +10,11 @@ add-highlighter global show_matching
 #add-highlighter global show_whitespaces
 add-highlighter global dynregex '%reg{/}' 0:+u
 
-hook global WinSetOption filetype=(c|cpp) %{
-	clang-enable-autocomplete
-	clang-enable-diagnostics
-	alias window lint clang-parse
-	alias window lint-next-error clang-diagnostics-next
-}
+#hook global WinSetOption filetype=(c|cpp) %{
+#	clang-enable-autocomplete
+#	clang-enable-diagnostics
+#	alias window lint clang-parse
+#	alias window lint-next-error clang-diagnostics-next
+#}
 
-#%sh{kak-lsp --kakoune}
+%sh{kak-lsp --kakoune}

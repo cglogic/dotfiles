@@ -59,16 +59,16 @@ set fileformat=unix
 
 set background=dark
 
-let g:jellybeans_overrides = {
-	\    'background': { 'ctermbg': '0', '256ctermbg': '0' },
-\}
+"let g:jellybeans_overrides = {
+"	\    'background': { 'ctermbg': '0', '256ctermbg': '0' },
+"\}
 
 "let base16colorspace=256
 "colorscheme base16-default-dark
 "Tomorrow-Night jellybeans
 
 if (&t_Co == 256 || &t_Co == 88)
-    colorscheme Tomorrow-Night
+    colorscheme jellybeans
 else
     colorscheme base16-default-dark
 endif

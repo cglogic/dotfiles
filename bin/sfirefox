@@ -1,0 +1,3 @@
+#!/bin/sh
+
+flock -x -n /tmp/single-firefox.lock -c "firefox"

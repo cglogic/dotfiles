@@ -47,7 +47,7 @@ super + BackSpace
 	~/bin/stmux
 
 super + b
-	~/bin/svimb
+	~/bin/sfirefox
 
 super + g
 	~/bin/schrome

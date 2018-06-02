@@ -2,7 +2,7 @@ set-option global makecmd 'make -j4'
 set-option global grepcmd 'ag --column'
 set-option global clang_options -std=c++14
 set-option global ui_options ncurses_status_on_top=true:ncurses_assistant=none:ncurses_change_colors=true
-set-option global autoinfo normal|command|onkey
+#set-option global autoinfo normal|command|onkey
 
 colorscheme tomorrow-night
 

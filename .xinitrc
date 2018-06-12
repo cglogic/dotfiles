@@ -12,6 +12,9 @@ xset r rate 250 55
 # set default cursor
 xsetroot -cursor_name left_ptr
 
+# Disable DPMS and prevent screen from blanking
+#xset s off -dpms
+
 # disable mouse
 #xinput set-prop 8 "Device Enabled" 0
 #unclutter -idle 3 -root &

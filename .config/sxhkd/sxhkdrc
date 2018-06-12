@@ -69,3 +69,18 @@ super + t
 
 super + z
 	~/bin/crt
+
+super + ,
+	xset dpms force off
+
+super + .
+	xset dpms force on
+
+F10
+	xset +dpms
+
+F11
+	xset -dpms
+
+@F12
+	xset dpms force off

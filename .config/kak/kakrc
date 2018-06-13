@@ -1,7 +1,7 @@
 set-option global makecmd 'make -j4'
 set-option global grepcmd 'ag --column'
 set-option global clang_options -std=c++14
-set-option global ui_options ncurses_status_on_top=true:ncurses_assistant=none:ncurses_change_colors=true
+set-option global ui_options ncurses_status_on_top=true:ncurses_assistant=none:ncurses_change_colors=true:ncurses_enable_mouse=false
 #set-option global autoinfo normal|command|onkey
 
 colorscheme tomorrow-night
@@ -10,6 +10,12 @@ add-highlighter global number_lines -hlcursor -separator ' '
 add-highlighter global show_matching
 #add-highlighter global show_whitespaces
 add-highlighter global dynregex '%reg{/}' 0:+u
+
+# yank and paste to/from external clipboard
+#map global user y '<a-|>xsel -b --input<ret>:echo -color Information "Yanked to clipboard"<ret>'
+#map global user p '<a-!>xsel -b -o<ret>:echo -color Information "Pasted from clipboard"<ret>'
+
+set-option global completers ''
 
 hook global WinSetOption filetype=(c|cpp) %{
 	clang-enable-autocomplete

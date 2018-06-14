@@ -11,11 +11,12 @@ add-highlighter global show_matching
 #add-highlighter global show_whitespaces
 add-highlighter global dynregex '%reg{/}' 0:+u
 
-# yank and paste to/from external clipboard
-#map global user y '<a-|>xsel -b --input<ret>:echo -color Information "Yanked to clipboard"<ret>'
-#map global user p '<a-!>xsel -b -o<ret>:echo -color Information "Pasted from clipboard"<ret>'
+#set-option global completers ''
+#hook global InsertBegin .* %{ echo -debug InsertBegin }
+#hook global InsertEnd .* %{ echo -debug InsertEnd }
 
-set-option global completers ''
+hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
+hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
 
 hook global WinSetOption filetype=(c|cpp) %{
 	clang-enable-autocomplete

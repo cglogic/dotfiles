@@ -76,13 +76,13 @@ super + ,
 super + .
 	xset dpms force on
 
-F10
+super + F10
 	xset +dpms
 
-F11
+super + F11
 	xset -dpms
 
-@F12
+super + @F12
 	xset dpms force off
 
 

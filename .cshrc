@@ -20,6 +20,7 @@ alias dfc	dfc -d
 alias ps	ps -ww
 
 alias gdb	gdb81
+alias fsl	fossil
 
 alias mpvrt	mpv --no-cache --demuxer-readahead-secs 0
 alias feh	feh -x -B black -N -.
@@ -37,7 +38,7 @@ set path = (/sbin /bin /usr/sbin /usr/bin /usr/local/sbin /usr/local/bin $HOME/b
 # A righteous umask
 umask 77
 
-setenv	EDITOR		vim
+setenv	EDITOR		kak
 setenv	PAGER		less
 setenv	BLOCKSIZE       K
 setenv	LSCOLORS 	ExGxFxdxCxDxDxBxBxExEx

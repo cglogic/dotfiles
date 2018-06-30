@@ -77,85 +77,10 @@ super + .
 	xset dpms force on
 
 super + F10
-	xset +dpms
+	xset s on +dpms
 
 super + F11
-	xset -dpms
+	xset s off -dpms
 
 super + @F12
 	xset dpms force off
-
-
-
-alt + r
-	~/bin/srofi -show run
-
-alt + w
-	~/bin/srofi -show window
-
-alt + Tab
-	bspc node focused -f next.local
-
-alt + shift + Tab
-	bspc node focused -f prev.local
-
-alt + {j,k}
-	bspc node @/ -R {90,-90}
-
-alt + c
-	bspc node focused --close
-
-alt + x
-	bspc node focused --kill
-
-alt + q
-	bspc quit
-
-alt + {s,f}
-	bspc desktop -l {tiled,monocle}
-
-alt + bracket{left,right}
-	bspc desktop -f {prev,next}
-
-alt + {1-9}
-	bspc desktop -f ^{1-9}
-
-alt + Escape
-	pkill -USR1 -x sxhkd
-
-alt + Return
-	urxvt -e tcsh
-
-alt + l
-	i3lock -c 000000 -f
-
-alt + grave
-	~/bin/sdmenu
-
-alt + BackSpace
-	~/bin/stmux
-
-alt + b
-	~/bin/sfirefox
-
-alt + g
-	~/bin/schrome
-
-alt + v
-	~/bin/smonitor
-
-alt + d
-	~/bin/stouchpad
-
-alt + p
-	printscreen
-
-alt + h
-	~/bin/swall
-
-alt + t
-	~/bin/stelegram
-
-alt + z
-	~/bin/crt
-

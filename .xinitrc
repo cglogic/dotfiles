@@ -39,6 +39,7 @@ unclutter --fork --timeout 5
 
 #
 mkdir /tmp/cache
+ln -s /dev/null ~/.cache/chromium
 
 # run xterm with no border, white text on a black background, maximized,
 # with large fonts.

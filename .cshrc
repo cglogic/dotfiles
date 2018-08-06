@@ -18,6 +18,7 @@ alias v		xclip -o
 alias df	df -h
 alias dfc	dfc -d
 alias ps	ps -ww
+alias pstree	pstree -g 2
 
 alias gdb	gdb81
 alias fsl	fossil

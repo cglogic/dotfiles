@@ -64,10 +64,11 @@ setenv	LYNX_CFG		$HOME/.lynx.cfg
 setenv	FZF_DEFAULT_COMMAND	'ag --nocolor -l -g ""'
 setenv	FZF_DEFAULT_OPTS	'--exact'
 
-setenv	CC	/usr/local/llvm60/bin/clang
-setenv	CXX	/usr/local/llvm60/bin/clang++
-setenv	CPP	/usr/local/llvm60/bin/clang-cpp
-setenv	LD	/usr/local/llvm60/bin/ld.lld
+setenv	CV	60
+setenv	CC	/usr/local/llvm$CV/bin/clang
+setenv	CXX	/usr/local/llvm$CV/bin/clang++
+setenv	CPP	/usr/local/llvm$CV/bin/clang-cpp
+setenv	LD	/usr/local/llvm$CV/bin/ld.lld
 
 if ($?prompt) then
 	if (($?SSH_CLIENT || $?SSH_TTY) && $TERM != "screen" && $TERM != "screen-256color" && ! $?TMUX) then

@@ -1,24 +1,24 @@
-set-option global makecmd 'make -j4'
+set-option global makecmd 'make'
 set-option global grepcmd 'ag --column'
-set-option global clang_options -std=c++14
-set-option global ui_options ncurses_status_on_top=true:ncurses_assistant=none:ncurses_change_colors=true:ncurses_enable_mouse=false
+set-option global clang_options '-std=c++14'
+set-option global ui_options 'ncurses_status_on_top=true' 'ncurses_assistant=none' 'ncurses_change_colors=true' 'ncurses_enable_mouse=false'
 #set-option global autoinfo normal|command|onkey
 
 set-option global indentwidth 0
 
 colorscheme tomorrow-night
 
-add-highlighter global number_lines -hlcursor -separator ' '
-add-highlighter global show_matching
-#add-highlighter global show_whitespaces
-add-highlighter global dynregex '%reg{/}' 0:+u
+add-highlighter global/ number-lines -hlcursor -separator ' '
+add-highlighter global/ show-matching
+#add-highlighter global/ show-whitespaces
+add-highlighter global/ dynregex '%reg{/}' 0:+u
 
-#set-option global completers ''
-#hook global InsertBegin .* %{ echo -debug InsertBegin }
-#hook global InsertEnd .* %{ echo -debug InsertEnd }
+set-option global auto_complete prompt
+hook global InsertBegin .* %{ map window insert <a-space> <c-o> }
+hook global InsertEnd .* %{ unmap window insert <a-space> <c-o> }
 
 hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
-hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
+hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p>; execute-keys <c-o> }
 
 hook global WinSetOption filetype=(c|cpp) %{
 	alias window lint clang-parse

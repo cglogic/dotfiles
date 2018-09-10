@@ -27,4 +27,6 @@ hook global WinSetOption filetype=(c|cpp) %{
 	alias window lint-next-error clang-diagnostics-next
 }
 
-#%sh{kak-lsp --kakoune}
+map global normal '#' :comment-line<ret>
+
+#eval %sh{kak-lsp --kakoune -s $kak_session}

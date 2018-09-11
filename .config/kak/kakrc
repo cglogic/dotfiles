@@ -21,35 +21,23 @@ hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p>; execute-keys <c-o> }
 
 hook global WinSetOption filetype=(c|cpp) %{
+	clang-enable-autocomplete
+	clang-enable-diagnostics
 	alias window lint clang-parse
 	alias window lint-next-error clang-diagnostics-next
 }
 
 map global normal '#' :comment-line<ret>
 
-map global normal = ':prompt math: %{exec "a%val{text}<lt>esc>|bc<lt>ret>"}<ret>'
+# map global normal = ':prompt math: %{exec "a%val{text}<lt>esc>|bc<lt>ret>"}<ret>'
 
-%sh{
-	copy="xclip -i"; paste="xclip -o" ;;
+# %sh{
+# 	copy="xclip -i"; paste="xclip -o" ;;
 
-	printf "map global user -docstring 'paste (after) from clipboard' p '!%s<ret>'\n" "$paste"
-	printf "map global user -docstring 'paste (before) from clipboard' P '<a-!>%s<ret>'\n" "$paste"
-	printf "map global user -docstring 'yank to clipboard' y '<a-|>%s<ret>:echo -markup %%{{Information}copied selection to X11 clipboard}<ret>'\n" "$copy"
-	printf "map global user -docstring 'replace from clipboard' R '|%s<ret>'\n" "$paste"
-}
+# 	printf "map global user -docstring 'paste (after) from clipboard' p '!%s<ret>'\n" "$paste"
+# 	printf "map global user -docstring 'paste (before) from clipboard' P '<a-!>%s<ret>'\n" "$paste"
+# 	printf "map global user -docstring 'yank to clipboard' y '<a-|>%s<ret>:echo -markup %%{{Information}copied selection to X11 clipboard}<ret>'\n" "$copy"
+# 	printf "map global user -docstring 'replace from clipboard' R '|%s<ret>'\n" "$paste"
+# }
 
-define-command completion-enable %{
-	#set-option global completers filename:word=all
-	clang-enable-autocomplete
-	clang-enable-diagnostics
-}
-
-define-command completion-disable %{
-	#set-option global completers ''
-	clang-disable-autocomplete
-	clang-disable-diagnostics
-}
-
-map global insert <c-space> ':completion-enable<ret>'
-
-#%sh{kak-lsp --kakoune}
+#eval %sh{kak-lsp --kakoune -s $kak_session}

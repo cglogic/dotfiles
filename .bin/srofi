@@ -1,4 +1,4 @@
 #!/bin/sh
 
-FSIZE=`~/bin/fontsize`
+FSIZE=`~/.bin/fontsize`
 exec rofi -font "Hack $FSIZE" $@

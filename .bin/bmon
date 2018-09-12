@@ -3,7 +3,7 @@
 TIME=10
 PCNT=100
 
-FSIZE=`~/bin/fontsize`
+FSIZE=`~/.bin/fontsize`
 
 while [ true ]; do
 	sleep $TIME

@@ -26,13 +26,13 @@ unclutter --fork --timeout 5
 # use xrandr to disable monitors that should not be used. For example,
 # use only the DVI monitor of a VGA/DVI pair:
 # /usr/local/bin/xrandr --output VGA-0 --off
-~/bin/smonitor
+~/.bin/smonitor
 
 # disable touchpad
-~/bin/stouchpad
+~/.bin/stouchpad
 
 #
-~/bin/bmon &
+~/.bin/bmon &
 
 #
 #~/bin/skak-lsp &

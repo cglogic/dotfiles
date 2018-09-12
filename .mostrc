@@ -1,0 +1,14 @@
+% Color settings
+
+color normal lightgray black
+color status yellow black
+color underline brightgreen black
+color overstrike brightred black
+
+% Keybindings
+
+unsetkey "j"
+unsetkey "k"
+
+setkey "up"	"k"
+setkey "down"	"j"

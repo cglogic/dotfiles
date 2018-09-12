@@ -1,0 +1,165 @@
+.TH std::transform 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::transform \- std::transform
+
+.SH Synopsis
+   Defined in header <algorithm>
+   template< class InputIt, class OutputIt, class UnaryOperation >
+
+   OutputIt transform( InputIt first1, InputIt last1, OutputIt        \fB(1)\fP
+   d_first,
+
+   UnaryOperation unary_op );
+   template< class ExecutionPolicy, class ForwardIt1, class
+   ForwardIt2, class UnaryOperation >
+
+   ForwardIt2 transform( ExecutionPolicy&& policy, ForwardIt1 first1, \fB(2)\fP \fI(since C++17)\fP
+   ForwardIt1 last1,
+
+   ForwardIt2 d_first, UnaryOperation unary_op );
+   template< class InputIt1, class InputIt2, class OutputIt, class
+   BinaryOperation >
+
+   OutputIt transform( InputIt1 first1, InputIt1 last1, InputIt2      \fB(3)\fP
+   first2,
+
+   OutputIt d_first, BinaryOperation binary_op );
+   template< class ExecutionPolicy, class ForwardIt1, class
+   ForwardIt2, class ForwardIt3, class BinaryOperation >
+
+   ForwardIt3 transform( ExecutionPolicy&& policy, ForwardIt1 first1, \fB(4)\fP \fI(since C++17)\fP
+   ForwardIt1 last1,
+
+   ForwardIt2 first2, ForwardIt3 d_first, BinaryOperation binary_op
+   );
+
+   std::transform applies the given function to a range and stores the result in
+   another range, beginning at d_first.
+
+   1) The unary operation unary_op is applied to the range defined by [first1, last1).
+   3) The binary operation binary_op is applied to pairs of elements from two ranges:
+   one defined by [first1, last1) and the other beginning at first2.
+   2,4) Same as (1,3), but executed according to policy. This overload only
+   participates in overload resolution if
+   std::is_execution_policy_v<std::decay_t<ExecutionPolicy>> is true
+
+   unary_op and binary_op must not have side effects.                     \fI(until C++11)\fP
+   unary_op and binary_op must not invalidate any iterators, including    \fI(since C++11)\fP
+   the end iterators, or modify any elements of the ranges involved.
+
+.SH Parameters
+
+   first1, last1 - the first range of elements to transform
+   first2        - the beginning of the second range of elements to transform
+   d_first       - the beginning of the destination range, may be equal to first1 or
+                   first2
+   policy        - the execution policy to use. See execution policy for details.
+                   unary operation function object that will be applied.
+
+                   The signature of the function should be equivalent to the following:
+
+                   Ret fun(const Type &a);
+   unary_op      -
+                   The signature does not need to have const &.
+                   The type Type must be such that an object of type InputIt can be
+                   dereferenced and then implicitly converted to Type. The type Ret
+                   must be such that an object of type OutputIt can be dereferenced and
+                   assigned a value of type Ret. 
+                   binary operation function object that will be applied.
+
+                   The signature of the function should be equivalent to the following:
+
+                   Ret fun(const Type1 &a, const Type2 &b);
+   binary_op     -
+                   The signature does not need to have const &.
+                   The types Type1 and Type2 must be such that objects of types
+                   InputIt1 and InputIt2 can be dereferenced and then implicitly
+                   converted to Type1 and Type2 respectively. The type Ret must be such
+                   that an object of type OutputIt can be dereferenced and assigned a
+                   value of type Ret. 
+.SH Type requirements
+   -
+   InputIt, InputIt1, InputIt2 must meet the requirements of InputIterator.
+   -
+   OutputIt must meet the requirements of OutputIterator.
+   -
+   ForwardIt1, ForwardIt2, ForwardIt3 must meet the requirements of ForwardIterator.
+
+.SH Return value
+
+   Output iterator to the element past the last element transformed.
+
+.SH Complexity
+
+   1-2) Exactly std::distance(first1, last1) applications of unary_op
+   3-4) Exactly std::distance(first1, last1) applications of binary_op
+
+.SH Exceptions
+
+   The overloads with a template parameter named ExecutionPolicy report errors as
+   follows:
+
+     * If execution of a function invoked as part of the algorithm throws an exception
+       and ExecutionPolicy is one of the three standard policies, std::terminate is
+       called. For any other ExecutionPolicy, the behavior is implementation-defined.
+     * If the algorithm fails to allocate memory, std::bad_alloc is thrown.
+
+.SH Possible implementation
+
+.SH First version
+   template<class InputIt, class OutputIt, class UnaryOperation>
+   OutputIt transform(InputIt first1, InputIt last1, OutputIt d_first,
+                      UnaryOperation unary_op)
+   {
+       while (first1 != last1) {
+           *d_first++ = unary_op(*first1++);
+       }
+       return d_first;
+   }
+.SH Second version
+   template<class InputIt1, class InputIt2,
+            class OutputIt, class BinaryOperation>
+   OutputIt transform(InputIt1 first1, InputIt1 last1, InputIt2 first2,
+                      OutputIt d_first, BinaryOperation binary_op)
+   {
+       while (first1 != last1) {
+           *d_first++ = binary_op(*first1++, *first2++);
+       }
+       return d_first;
+   }
+
+.SH Notes
+
+   std::transform does not guarantee in-order application of unary_op or binary_op. To
+   apply a function to a sequence in-order or to apply a function that modifies the
+   elements of a sequence, use std::for_each
+
+.SH Example
+
+   The following code uses transform to convert a string to uppercase using the toupper
+   function:
+
+   
+// Run this code
+
+ #include <string>
+ #include <cctype>
+ #include <algorithm>
+ #include <iostream>
+
+ int main()
+ {
+     std::string s("hello");
+     std::transform(s.begin(), s.end(), s.begin(),
+                    [](unsigned char c) { return std::toupper(c); });
+     std::cout << s;
+ }
+
+.SH Output:
+
+ HELLO
+
+.SH See also
+
+   for_each applies a function to a range of elements
+            \fI(function template)\fP

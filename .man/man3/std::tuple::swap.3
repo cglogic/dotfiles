@@ -1,0 +1,74 @@
+.TH std::tuple::swap 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::tuple::swap \- std::tuple::swap
+
+.SH Synopsis
+   Defined in header <tuple>
+   void swap( tuple& other );  \fI(since C++11)\fP
+
+   Calls swap (which might be std::swap, or might be found via ADL) for each element in
+   *this and its corresponding element in other.
+
+.SH Parameters
+
+   other - tuple of values to swap
+
+.SH Return value
+
+   \fI(none)\fP
+
+.SH Exceptions
+
+   noexcept specification:
+   noexcept(
+
+   noexcept(swap(std::declval<T0&>>(), std::declval<T0&>())) &&
+   noexcept(swap(std::declval<T1&>>(), std::declval<T1&>())) && \fI(until C++17)\fP
+   noexcept(swap(std::declval<T2&>>(), std::declval<T2&>())) &&
+   ...
+
+   )
+   noexcept specification:
+   noexcept(
+
+   std::is_nothrow_swappable<T0>::value &&
+   std::is_nothrow_swappable<T1>::value &&                      \fI(since C++17)\fP
+   std::is_nothrow_swappable<T2>::value &&
+   ...
+
+   )
+
+.SH Example
+
+   
+// Run this code
+
+ #include <iostream>
+ #include <tuple>
+ #include <string>
+
+ int main()
+ {
+     std::tuple<int, std::string, float> p1, p2;
+     p1 = std::make_tuple(10, "test", 3.14);
+     p2.swap(p1);
+     std::cout << "("  << std::get<0>(p2)
+               << ", " << std::get<1>(p2)
+               << ", " << std::get<2>(p2) << ")\\n";
+ }
+
+.SH Output:
+
+ (10, test, 3.14)
+
+.SH See also
+
+
+.SH Category:
+
+     * conditionally noexcept
+
+   Hidden categories:
+
+     * Pages with unreviewed conditional noexcept template
+     * Pages with unreviewed noexcept template

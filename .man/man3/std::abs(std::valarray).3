@@ -1,0 +1,83 @@
+.TH std::abs(std::valarray) 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::abs(std::valarray) \- std::abs(std::valarray)
+
+.SH Synopsis
+   Defined in header <valarray>
+   template< class T >
+   valarray<T> abs( const valarray<T>& va );
+
+   Computes absolute value of each element in the value array.
+
+.SH Parameters
+
+   va - value array to apply the operation to
+
+.SH Return value
+
+   Value array containing absolute values of the values in va.
+
+.SH Notes
+
+   Unqualified function (abs) is used to perform the computation. If such function is
+   not available, std::abs is used due to argument dependent lookup.
+
+   The function can be implemented with the return type different from std::valarray.
+   In this case, the replacement type has the following properties:
+
+              * All const member functions of std::valarray are provided.
+              * std::valarray, std::slice_array, std::gslice_array, std::mask_array and
+                std::indirect_array can be constructed from the replacement type.
+              * All functions accepting an argument of type const std::valarray&
+                except begin() and end()
+                \fI(since C++14)\fP should also accept the replacement type.
+              * All functions accepting two arguments of type const std::valarray&
+                should accept every combination of const std::valarray& and the
+                replacement type.
+              * The return type does not add more than two levels of template nesting
+                over the most deeply-nested argument type.
+
+.SH Possible implementation
+
+   template< class T >
+   valarray<T> abs( const valarray<T>& va )
+   {
+       valarray<T> other = va;
+       for (T &i : other) {
+           i = abs(i);
+       }
+       return other; // proxy object may be returned
+   }
+
+.SH Example
+
+   
+// Run this code
+
+ #include <valarray>
+ #include <iostream>
+
+ int main()
+ {
+     std::valarray<int> v{1, -2, 3, -4, 5, -6, 7, -8};
+     std::valarray<int> v2 = std::abs(v);
+     for(auto n : v2) {
+         std::cout << n << ' ';
+     }
+     std::cout << '\\n';
+ }
+
+.SH Output:
+
+ 1 2 3 4 5 6 7 8
+
+.SH See also
+
+   abs(int)
+   labs              computes absolute value of an integral value (|x|)
+   llabs             \fI(function)\fP
+   \fI(C++11)\fP
+   abs(float)        absolute value of a floating point value (|x|)
+   fabs              \fI(function)\fP
+   abs(std::complex) returns the magnitude of a complex number
+                     \fI(function template)\fP

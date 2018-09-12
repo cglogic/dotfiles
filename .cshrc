@@ -49,6 +49,8 @@ setenv	CLICOLOR
 setenv	LESS		-S
 setenv	GREP_OPTIONS	--color=auto
 
+setenv	MANPAGER	most
+setenv	MANPATH		:$HOME/.man
 setenv	MANCOLOR	yes
 setenv	MANWIDTH	tty
 
@@ -56,7 +58,6 @@ setenv	DISPLAY			:0
 setenv	SXHKD_SHELL		/bin/sh
 setenv	GIT_PAGER		cat
 setenv	MPD_HOST		/var/mpd/socket
-setenv	LD_LIBRARY_PATH		/usr/local/llvm60/lib
 setenv	LYNX_CFG		$HOME/.lynx.cfg
 #setenv	PYTHONPATH		$HOME/lib/python
 
@@ -69,6 +70,8 @@ setenv	CC	/usr/local/llvm$CV/bin/clang
 setenv	CXX	/usr/local/llvm$CV/bin/clang++
 setenv	CPP	/usr/local/llvm$CV/bin/clang-cpp
 setenv	LD	/usr/local/llvm$CV/bin/ld.lld
+
+setenv	LD_LIBRARY_PATH		/usr/local/llvm$CV/lib
 
 if ($?prompt) then
 	if (($?SSH_CLIENT || $?SSH_TTY) && $TERM != "screen" && $TERM != "screen-256color" && ! $?TMUX) then

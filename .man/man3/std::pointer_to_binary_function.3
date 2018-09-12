@@ -1,0 +1,56 @@
+.TH std::pointer_to_binary_function 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::pointer_to_binary_function \- std::pointer_to_binary_function
+
+.SH Synopsis
+   template<
+
+   class Arg1,
+   class Arg2,                                                 \fI(until C++17)\fP
+   class Result                                                (deprecated since C++11)
+
+   > class pointer_to_binary_function : public
+   std::binary_function<Arg1, Arg2, Result>;
+
+   std::pointer_to_binary_function is a function object that acts as a wrapper around a
+   binary function.
+
+.SH Member functions
+
+                 constructs a new pointer_to_binary_function object with the supplied
+   constructor   function
+                 \fI(public member function)\fP
+   operator()    calls the stored function
+                 \fI(public member function)\fP
+
+std::pointer_to_binary_function::pointer_to_binary_function
+
+   explicit pointer_to_binary_function( Result (*f)(Arg1,Arg2) );
+
+   Constructs a pointer_to_binary_function function object with the stored function f.
+
+.SH Parameters
+
+   f - pointer to a function to store
+
+std::pointer_to_binary_function::operator()
+
+   Result operator()( Arg1 x1, Arg2 x2 ) const;
+
+   Calls the stored function.
+
+.SH Parameters
+
+   x1, x2 - arguments to pass to the function
+
+.SH Return value
+
+   The value returned by the called function.
+
+.SH See also
+
+   pointer_to_unary_function adaptor-compatible wrapper for a pointer to unary function
+   \fI(until C++17)\fP             \fI(class template)\fP
+   ptr_fun                   creates an adaptor-compatible function object wrapper from
+   \fI(until C++17)\fP             a pointer to function
+                             \fI(function template)\fP

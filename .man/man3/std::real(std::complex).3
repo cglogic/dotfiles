@@ -1,0 +1,37 @@
+.TH std::real(std::complex) 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::real(std::complex) \- std::real(std::complex)
+
+.SH Synopsis
+   Defined in header <complex>
+   template< class T >                      \fB(1)\fP \fI(until C++14)\fP
+   T real( const complex<T>& z );
+   template< class T >                      \fB(1)\fP \fI(since C++14)\fP
+   constexpr T real( const complex<T>& z );
+   long double real( long double z );       \fB(2)\fP \fI(since C++11)\fP
+   template< class DoubleOrInteger >        \fB(3)\fP \fI(since C++11)\fP
+   double real( DoubleOrInteger z );
+   float real( float z );                   \fB(4)\fP \fI(since C++11)\fP
+
+   Returns the real component of the complex number z, i.e. z.real().
+
+   Additional overloads are provided for float, double, long double, and all integer
+   types, which are treated as complex numbers with zero imaginary component.
+   \fI(since C++11)\fP
+
+.SH Parameters
+
+   z - complex value
+
+.SH Return value
+
+   the real component of z
+
+.SH See also
+
+   real accesses the real part of the complex number
+        \fI(public member function)\fP
+   imag returns the imaginary component
+        \fI(function template)\fP
+   C documentation for
+   creal

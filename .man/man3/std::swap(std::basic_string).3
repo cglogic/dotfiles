@@ -1,0 +1,45 @@
+.TH std::swap(std::basic_string) 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::swap(std::basic_string) \- std::swap(std::basic_string)
+
+.SH Synopsis
+   template< class CharT, class Traits, class Alloc >
+
+   void swap( std::basic_string<CharT, Traits, Alloc> &lhs,               \fI(until C++17)\fP
+
+   std::basic_string<CharT, Traits, Alloc> &rhs );
+   template< class CharT, class Traits, class Alloc >
+
+   void swap( std::basic_string<CharT, Traits, Alloc> &lhs,               \fI(since C++17)\fP
+
+   std::basic_string<CharT, Traits, Alloc> &rhs ) noexcept(/* see below
+   */);
+
+   Specializes the std::swap algorithm for std::basic_string. Swaps the contents of lhs
+   and rhs. Equivalent to lhs.swap(rhs).
+
+.SH Parameters
+
+   lhs, rhs - strings whose contents to swap
+
+.SH Return value
+
+   \fI(none)\fP
+
+.SH Complexity
+
+   Constant.
+
+.SH Exceptions
+                                     \fI(since C++17)\fP
+   noexcept specification:
+   noexcept(noexcept(lhs.swap(rhs)))
+
+.SH See also
+
+   swap swaps the contents
+        \fI(public member function)\fP
+
+.SH Category:
+
+     * conditionally noexcept

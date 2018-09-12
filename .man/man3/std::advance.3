@@ -1,0 +1,72 @@
+.TH std::advance 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::advance \- std::advance
+
+.SH Synopsis
+   Defined in header <iterator>
+   template< class InputIt, class Distance >           \fI(until C++17)\fP
+   void advance( InputIt& it, Distance n );
+   template< class InputIt, class Distance >           \fI(since C++17)\fP
+   constexpr void advance( InputIt& it, Distance n );
+
+   Increments given iterator it by n elements.
+
+   If n is negative, the iterator is decremented. In this case, InputIt must meet the
+   requirements of BidirectionalIterator, otherwise the behavior is undefined.
+
+.SH Parameters
+
+   it    -   iterator to be advanced
+   n     -   number of elements it should be advanced
+.SH Type requirements
+   -
+   InputIt must meet the requirements of InputIterator.
+
+.SH Return value
+
+   \fI(none)\fP
+
+.SH Complexity
+
+   Linear.
+
+   However, if InputIt additionally meets the requirements of RandomAccessIterator,
+   complexity is constant.
+
+.SH Notes
+
+   The behavior is undefined if the specified sequence of increments or decrements
+   would require that a non-incrementable iterator (such as the past-the-end iterator)
+   is incremented, or that a non-decrementable iterator (such as the front iterator or
+   the singular iterator) is decremented.
+
+.SH Example
+
+   
+// Run this code
+
+ #include <iostream>
+ #include <iterator>
+ #include <vector>
+
+ int main()
+ {
+     std::vector<int> v{ 3, 1, 4 };
+
+     auto vi = v.begin();
+
+     std::advance(vi, 2);
+
+     std::cout << *vi << '\\n';
+ }
+
+.SH Output:
+
+ 4
+
+.SH See also
+
+   next     increment an iterator
+   \fI(C++11)\fP  \fI(function)\fP
+   distance returns the distance between two iterators
+            \fI(function)\fP

@@ -24,4 +24,4 @@ bspc config presel_border_color none
 #bspc rule -a mpv state=floating center=on desktop='^3'
 
 sxhkd &
-~/bin/stmux
+~/.bin/stmux

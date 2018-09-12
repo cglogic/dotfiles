@@ -1,0 +1,90 @@
+.TH std::decay 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::decay \- std::decay
+
+.SH Synopsis
+   Defined in header <type_traits>
+   template< class T >              \fI(since C++11)\fP
+   struct decay;
+
+   Applies lvalue-to-rvalue, array-to-pointer, and function-to-pointer implicit
+   conversions to the type T, removes cv-qualifiers, and defines the resulting type as
+   the member typedef type. Formally:
+
+     * If T names the type "array of U" or "reference to array of U", the member
+       typedef type is U*.
+
+     * Otherwise, if T is a function type F or a reference thereto, the member typedef
+       type is std::add_pointer<F>::type.
+
+     * Otherwise, the member typedef type is
+       std::remove_cv<std::remove_reference<T>::type>::type.
+
+   These conversions model the type conversion applied to all function arguments when
+   passed by value.
+
+.SH Member types
+
+   Name Definition
+   type the result of applying the decay type conversions to T
+
+.SH Helper types
+
+   template< class T >                       \fI(since C++14)\fP
+   using decay_t = typename decay<T>::type;
+
+.SH Possible implementation
+
+   template< class T >
+   struct decay {
+   private:
+       typedef typename std::remove_reference<T>::type U;
+   public:
+       typedef typename std::conditional<
+           std::is_array<U>::value,
+           typename std::remove_extent<U>::type*,
+           typename std::conditional<
+               std::is_function<U>::value,
+               typename std::add_pointer<U>::type,
+               typename std::remove_cv<U>::type
+           >::type
+       >::type type;
+   };
+
+.SH Example
+
+   
+// Run this code
+
+ #include <iostream>
+ #include <type_traits>
+
+ template <typename T, typename U>
+ struct decay_equiv :
+     std::is_same<typename std::decay<T>::type, U>::type
+ {};
+
+ int main()
+ {
+     std::cout << std::boolalpha
+               << decay_equiv<int, int>::value << '\\n'
+               << decay_equiv<int&, int>::value << '\\n'
+               << decay_equiv<int&&, int>::value << '\\n'
+               << decay_equiv<const int&, int>::value << '\\n'
+               << decay_equiv<int[2], int*>::value << '\\n'
+               << decay_equiv<int(int), int(*)(int)>::value << '\\n';
+ }
+
+.SH Output:
+
+ true
+ true
+ true
+ true
+ true
+ true
+
+.SH See also
+
+   implicit conversion array-to-pointer, function-to-pointer, lvalue-to-rvalue
+                       conversions

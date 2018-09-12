@@ -1,0 +1,69 @@
+.TH std::modulus 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::modulus \- std::modulus
+
+.SH Synopsis
+   Defined in header <functional>
+   template< class T >             \fI(until C++14)\fP
+   struct modulus;
+   template< class T = void >      \fI(since C++14)\fP
+   struct modulus;
+
+   Function object for computing remainders of divisions. Implements operator% for type
+   T.
+
+.SH Specializations
+
+   The standard library provides a specialization of std::modulus when T
+   is not specified, which leaves the parameter types and return type to
+   be deduced.
+                                                                          \fI(since C++14)\fP
+                 function object implementing x % y deducing argument and
+   modulus<void> return types
+                 \fI(class template specialization)\fP
+
+.SH Member types
+
+   Type                                      Definition
+   result_type(deprecated in C++17)          T
+   first_argument_type(deprecated in C++17)  T
+   second_argument_type(deprecated in C++17) T
+
+.SH Member functions
+
+              returns the remainder from the division of the first argument by the
+   operator() second argument
+              \fI(public member function)\fP
+
+std::modulus::operator()
+
+   T operator()( const T& lhs, const T& rhs ) const;            \fI(until C++14)\fP
+   constexpr T operator()( const T& lhs, const T& rhs ) const;  \fI(since C++14)\fP
+
+   Returns the remainder of the division of lhs by rhs.
+
+.SH Parameters
+
+   lhs, rhs - values to divide one by another
+
+.SH Return value
+
+   The result of lhs % rhs.
+
+.SH Exceptions
+
+   \fI(none)\fP
+
+.SH Possible implementation
+
+   constexpr T operator()(const T &lhs, const T &rhs) const
+   {
+       return lhs % rhs;
+   }
+
+.SH See also
+
+   fmod      remainder of the floating point division operation
+             \fI(function)\fP
+   remainder signed remainder of the division operation
+   \fI(C++11)\fP   \fI(function)\fP

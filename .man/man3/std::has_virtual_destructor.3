@@ -1,0 +1,78 @@
+.TH std::has_virtual_destructor 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::has_virtual_destructor \- std::has_virtual_destructor
+
+.SH Synopsis
+   Defined in header <type_traits>
+   template< class T >              \fI(since C++11)\fP
+   struct has_virtual_destructor;
+
+   If T is a type with a virtual destructor, provides the member constant value equal
+   true. For any other type, value is false.
+
+   If T is a non-union class type, T shall be a complete type; otherwise, the behavior
+   is undefined.
+
+  Helper variable template
+
+   template< class T >
+   inline constexpr bool has_virtual_destructor_v =                       \fI(since C++17)\fP
+   has_virtual_destructor<T>::value;
+
+Inherited from std::integral_constant
+
+.SH Member constants
+
+   value    true if T has a virtual destructor , false otherwise
+   \fB[static]\fP \fI(public static member constant)\fP
+
+.SH Member functions
+
+   operator bool converts the object to bool, returns value
+                 \fI(public member function)\fP
+   operator()    returns value
+   \fI(C++14)\fP       \fI(public member function)\fP
+
+.SH Member types
+
+   Type       Definition
+   value_type bool
+   type       std::integral_constant<bool, value>
+
+.SH Notes
+
+   If a class has a public virtual destructor, it can be derived from, and the derived
+   object can be safely deleted through a pointer to the base object (GotW #18)
+
+.SH Example
+
+   
+// Run this code
+
+ #include <iostream>
+ #include <type_traits>
+ #include <string>
+ #include <stdexcept>
+
+ int main()
+ {
+     std::cout << std::boolalpha
+               << "std::string has a virtual destructor? "
+               << std::has_virtual_destructor<std::string>::value << '\\n'
+               << "std::runtime_error has a virtual destructor? "
+               << std::has_virtual_destructor<std::runtime_error>::value << '\\n';
+ }
+
+.SH Output:
+
+ std::string has a virtual destructor? false
+ std::runtime_error has a virtual destructor? true
+
+.SH See also
+
+   is_destructible
+   is_trivially_destructible
+   is_nothrow_destructible   checks if a type has a non-deleted destructor
+   \fI(C++11)\fP                   \fI(class template)\fP
+   \fI(C++11)\fP
+   \fI(C++11)\fP

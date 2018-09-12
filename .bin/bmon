@@ -1,0 +1,35 @@
+#!/bin/sh
+
+TIME=10
+PCNT=100
+
+FSIZE=`~/.bin/fontsize`
+
+while [ true ]; do
+	sleep $TIME
+
+	if (!xset q > /dev/null); then
+		exit 1
+	fi
+
+	STATE=`acpiconf -i 0 | grep 'State' | awk '{ print $2 }'`
+	CAP=`acpiconf -i 0 | grep 'Remaining capacity' | awk '{ print $3 }' | awk '{ split($1, a, "%"); print a[1] }'`
+
+	if [ $STATE = 'discharging' ]; then
+		if [ $CAP -le 10 ]; then
+			shutdown -p now
+			exit 0
+		fi
+
+		if [ $CAP -le 30 ]; then
+			if [ $CAP -ne $PCNT ]; then
+				PCNT=$CAP
+				rofi  -font "Hack $FSIZE" -e "The battery charge is $CAP%"
+			fi
+		else
+			PCNT=100
+		fi
+	else
+		PCNT=100
+	fi
+done

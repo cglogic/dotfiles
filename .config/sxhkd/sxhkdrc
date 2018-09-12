@@ -1,8 +1,8 @@
 super + r
-	~/bin/srofi -show run
+	~/.bin/srofi -show run
 
 super + w
-	~/bin/srofi -show window
+	~/.bin/srofi -show window
 
 super + Tab
 	bspc node focused -f next.local
@@ -41,34 +41,34 @@ super + l
 	i3lock -c 000000 -f
 
 super + grave
-	~/bin/sdmenu
+	~/.bin/sdmenu
 
 super + BackSpace
-	~/bin/stmux
+	~/.bin/stmux
 
 super + b
-	~/bin/sfirefox
+	~/.bin/sfirefox
 
 super + g
-	~/bin/schrome
+	~/.bin/schrome
 
 super + v
-	~/bin/smonitor
+	~/.bin/smonitor
 
 super + d
-	~/bin/stouchpad
+	~/.bin/stouchpad
 
 super + p
 	printscreen
 
 super + h
-	~/bin/swall
+	~/.bin/swall
 
 super + t
-	~/bin/stelegram
+	~/.bin/stelegram
 
 super + z
-	~/bin/crt
+	~/.bin/crt
 
 super + ,
 	xset dpms force off

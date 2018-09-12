@@ -1,0 +1,225 @@
+.TH std::mismatch 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::mismatch \- std::mismatch
+
+.SH Synopsis
+   Defined in header <algorithm>
+   template< class InputIt1, class InputIt2 >
+
+   std::pair<InputIt1,InputIt2>                                       \fB(1)\fP
+   mismatch( InputIt1 first1, InputIt1 last1,
+
+   InputIt2 first2 );
+   template< class ExecutionPolicy, class ForwardIt1, class
+   ForwardIt2 >
+
+   std::pair<ForwardIt1,ForwardIt2>                                   \fB(2)\fP \fI(since C++17)\fP
+   mismatch( ExecutionPolicy&& policy, ForwardIt1 first1, ForwardIt1
+   last1,
+
+   ForwardIt2 first2 );
+   template< class InputIt1, class InputIt2, class BinaryPredicate >
+
+   std::pair<InputIt1,InputIt2>
+   mismatch( InputIt1 first1, InputIt1 last1,                         \fB(3)\fP
+   InputIt2 first2,
+
+   BinaryPredicate p );
+   template< class ExecutionPolicy, class ForwardIt1, class
+   ForwardIt2, class BinaryPredicate >
+
+   std::pair<ForwardIt1,ForwardIt2>
+   mismatch( ExecutionPolicy&& policy, ForwardIt1 first1, ForwardIt1  \fB(4)\fP \fI(since C++17)\fP
+   last1,
+   ForwardIt2 first2,
+
+   BinaryPredicate p );
+   template< class InputIt1, class InputIt2 >
+
+   std::pair<InputIt1,InputIt2>                                       \fB(5)\fP \fI(since C++14)\fP
+   mismatch( InputIt1 first1, InputIt1 last1,
+
+   InputIt2 first2, InputIt2 last2 );
+   template< class ExecutionPolicy, class ForwardIt1, class
+   ForwardIt2 >
+
+   std::pair<ForwardIt1,ForwardIt2>                                   \fB(6)\fP \fI(since C++17)\fP
+   mismatch( ExecutionPolicy&& policy, ForwardIt1 first1, ForwardIt1
+   last1,
+
+   ForwardIt2 first2, ForwardIt2 last2 );
+   template< class InputIt1, class InputIt2, class BinaryPredicate >
+
+   std::pair<InputIt1,InputIt2>
+   mismatch( InputIt1 first1, InputIt1 last1,                         \fB(7)\fP \fI(since C++14)\fP
+   InputIt2 first2, InputIt2 last2,
+
+   BinaryPredicate p );
+   template< class ExecutionPolicy, class ForwardIt1, class
+   ForwardIt2, class BinaryPredicate >
+
+   std::pair<ForwardIt1,ForwardIt2>
+   mismatch( ExecutionPolicy&& policy, ForwardIt1 first1, ForwardIt1  \fB(8)\fP \fI(since C++17)\fP
+   last1,
+   ForwardIt2 first2, ForwardIt2 last2,
+
+   BinaryPredicate p );
+
+   Returns the first mismatching pair of elements from two ranges: one defined by
+   [first1, last1) and another defined by [first2,last2). If last2 is not provided
+   (overloads (1-4)), it denotes first2 + (last1 - first1).
+
+   1,5) Elements are compared using operator==.
+   3,7) Elements are compared using the given binary predicate p.
+   2,4,6,8) Same as (1,3,5,7), but executed according to policy. This overload only
+   participates in overload resolution if
+   std::is_execution_policy_v<std::decay_t<ExecutionPolicy>> is true
+
+.SH Parameters
+
+   first1, last1 - the first range of the elements
+   first2, last2 - the second range of the elements
+   policy        - the execution policy to use. See execution policy for details.
+                   binary predicate which returns true if the elements should be
+                   treated as equal.
+
+                   The signature of the predicate function should be equivalent to the
+                   following:
+
+                   bool pred(const Type1 &a, const Type2 &b);
+   p             -
+                   The signature does not need to have const &, but the function must
+                   not modify the objects passed to it.
+                   The types Type1 and Type2 must be such that objects of types
+                   InputIt1 and InputIt2 can be dereferenced and then implicitly
+                   converted to Type1 and Type2 respectively.
+
+                   
+.SH Type requirements
+   -
+   InputIt1 must meet the requirements of InputIterator.
+   -
+   InputIt2 must meet the requirements of InputIterator.
+   -
+   ForwardIt1 must meet the requirements of ForwardIterator.
+   -
+   ForwardIt2 must meet the requirements of ForwardIterator.
+   -
+   BinaryPredicate must meet the requirements of BinaryPredicate.
+
+.SH Return value
+
+   std::pair with iterators to the first two non-equivalent elements.
+
+   If no mismatches are found when the comparison reaches last1, the pair
+   holds last1 and the corresponding iterator from the second range. The  \fI(until C++14)\fP
+   behavior is undefined if the second range is shorter than the first
+   range.
+   If no mismatches are found when the comparison reaches last1 or last2,
+   whichever happens first, the pair holds the end iterator and the       \fI(since C++14)\fP
+   corresponding iterator from the other range.
+
+.SH Complexity
+
+   1-4) At most last1 - first1 applications of operator== or the predicate p
+   5-8) At most min(last1 - first1, last2 - first2) applications of operator== or the
+   predicate p.
+
+.SH Exceptions
+
+   The overloads with a template parameter named ExecutionPolicy report errors as
+   follows:
+
+     * If execution of a function invoked as part of the algorithm throws an exception
+       and ExecutionPolicy is one of the three standard policies, std::terminate is
+       called. For any other ExecutionPolicy, the behavior is implementation-defined.
+     * If the algorithm fails to allocate memory, std::bad_alloc is thrown.
+
+.SH Possible implementation
+
+.SH First version
+template<class InputIt1, class InputIt2>
+std::pair<InputIt1, InputIt2>
+    mismatch(InputIt1 first1, InputIt1 last1, InputIt2 first2)
+{
+    while (first1 != last1 && *first1 == *first2) {
+        ++first1, ++first2;
+    }
+    return std::make_pair(first1, first2);
+}
+.SH Second version
+template<class InputIt1, class InputIt2, class BinaryPredicate>
+std::pair<InputIt1, InputIt2>
+    mismatch(InputIt1 first1, InputIt1 last1, InputIt2 first2, BinaryPredicate p)
+{
+    while (first1 != last1 && p(*first1, *first2)) {
+        ++first1, ++first2;
+    }
+    return std::make_pair(first1, first2);
+}
+                                          Third version
+template<class InputIt1, class InputIt2>
+std::pair<InputIt1, InputIt2>
+    mismatch(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2)
+{
+    while (first1 != last1 && first2 != last2 && *first1 == *first2) {
+        ++first1, ++first2;
+    }
+    return std::make_pair(first1, first2);
+}
+                                         Fourth version
+template<class InputIt1, class InputIt2, class BinaryPredicate>
+std::pair<InputIt1, InputIt2>
+    mismatch(InputIt1 first1, InputIt1 last1, InputIt2 first2, InputIt2 last2, BinaryPredicate p)
+{
+    while (first1 != last1 && first2 != last2 && p(*first1, *first2)) {
+        ++first1, ++first2;
+    }
+    return std::make_pair(first1, first2);
+}
+
+.SH Example
+
+   This program determines the longest substring that is simultaneously found at the
+   very beginning of the given string and at the very end of it, in reverse order
+   (possibly overlapping)
+
+   
+// Run this code
+
+ #include <iostream>
+ #include <string>
+ #include <algorithm>
+
+ std::string mirror_ends(const std::string& in)
+ {
+     return std::string(in.begin(),
+                        std::mismatch(in.begin(), in.end(), in.rbegin()).first);
+ }
+
+ int main()
+ {
+     std::cout << mirror_ends("abXYZba") << '\\n'
+               << mirror_ends("abca") << '\\n'
+               << mirror_ends("aba") << '\\n';
+ }
+
+.SH Output:
+
+ ab
+ a
+ aba
+
+.SH See also
+
+   equal                   determines if two sets of elements are the same
+                           \fI(function template)\fP
+   find
+   find_if                 finds the first element satisfying specific criteria
+   find_if_not             \fI(function template)\fP
+   \fI(C++11)\fP
+                           returns true if one range is lexicographically less than
+   lexicographical_compare another
+                           \fI(function template)\fP
+   search                  searches for a range of elements
+                           \fI(function template)\fP

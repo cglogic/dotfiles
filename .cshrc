@@ -45,6 +45,8 @@ setenv	BLOCKSIZE       K
 setenv	LSCOLORS 	ExGxFxdxCxDxDxBxBxExEx
 setenv	CLICOLOR
 
+setenv	MANPATH		:$HOME/.man
+
 #setenv	TOP		-CHP
 setenv	LESS		-S
 setenv	GREP_OPTIONS	--color=auto

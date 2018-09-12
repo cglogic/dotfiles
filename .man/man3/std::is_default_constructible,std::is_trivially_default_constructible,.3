@@ -1,0 +1,130 @@
+.TH std::is_default_constructible,std::is_trivially_default_constructible, 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::is_default_constructible,std::is_trivially_default_constructible, \- std::is_default_constructible,std::is_trivially_default_constructible,
+
+.SH Synopsis
+
+   Defined in header <type_traits>
+   template< class T >                        \fB(1)\fP \fI(since C++11)\fP
+   struct is_default_constructible;
+   template< class T >                        \fB(2)\fP \fI(since C++11)\fP
+   struct is_trivially_default_constructible;
+   template< class T >                        \fB(3)\fP \fI(since C++11)\fP
+   struct is_nothrow_default_constructible;
+
+   1) If std::is_constructible<T>::value is true, provides the member constant value
+   equal to true, otherwise value is false.
+
+   2) If std::is_trivially_constructible<T>::value is true, provides the member
+   constant value equal to true, otherwise value is false.
+
+   3) If std::is_nothrow_constructible<T>::value is true, provides the member constant
+   value equal to true, otherwise value is false.
+
+   T shall be a complete type, (possibly cv-qualified) void, or an array of unknown
+   bound. Otherwise, the behavior is undefined.
+
+  Helper variable templates
+
+   template< class T >
+   inline constexpr bool is_default_constructible_v =                     \fI(since C++17)\fP
+   is_default_constructible<T>::value;
+   template< class T >
+   inline constexpr bool is_trivially_default_constructible_v =           \fI(since C++17)\fP
+   is_trivially_default_constructible<T>::value;
+   template< class T >
+   inline constexpr bool is_nothrow_default_constructible_v =             \fI(since C++17)\fP
+   is_nothrow_default_constructible<T>::value;
+
+Inherited from std::integral_constant
+
+.SH Member constants
+
+   value    true if T is default-constructible , false otherwise
+   \fB[static]\fP \fI(public static member constant)\fP
+
+.SH Member functions
+
+   operator bool converts the object to bool, returns value
+                 \fI(public member function)\fP
+   operator()    returns value
+   \fI(C++14)\fP       \fI(public member function)\fP
+
+.SH Member types
+
+   Type       Definition
+   value_type bool
+   type       std::integral_constant<bool, value>
+
+.SH Possible implementation
+
+   template< class T>
+   struct is_default_constructible : std::is_constructible<T> {};
+
+   template< class T>
+   struct is_trivially_default_constructible : std::is_trivially_constructible<T> {};
+
+   template< class T>
+   struct is_nothrow_default_constructible : std::is_nothrow_constructible<T> {};
+
+.SH Notes
+
+   In many implementations, is_nothrow_default_constructible also checks if the
+   destructor throws because it is effectively noexcept(T()). Same applies to
+   is_trivially_default_constructible, which, in these implementations, also requires
+   that the destructor is trivial: GCC bug 51452 LWG issue 2116.
+
+.SH Example
+
+   
+// Run this code
+
+ #include <iostream>
+ #include <type_traits>
+
+ struct Ex1 {
+     std::string str; // member has a non-trivial default ctor
+ };
+ struct Ex2 {
+     int n;
+     Ex2() = default; // trivial and non-throwing
+ };
+
+ int main() {
+     std::cout << std::boolalpha << "Ex1 is default-constructible? "
+               << std::is_default_constructible<Ex1>::value << '\\n'
+               << "Ex1 is trivially default-constructible? "
+               << std::is_trivially_default_constructible<Ex1>::value << '\\n'
+               << "Ex2 is trivially default-constructible? "
+               << std::is_trivially_default_constructible<Ex2>::value << '\\n'
+               << "Ex2 is nothrow default-constructible? "
+               << std::is_nothrow_default_constructible<Ex2>::value << '\\n';
+ }
+
+.SH Output:
+
+ Ex1 is default-constructible? true
+ Ex1 is trivially default-constructible? false
+ Ex2 is trivially default-constructible? true
+ Ex2 is nothrow default-constructible? true
+
+.SH See also
+
+   is_constructible
+   is_trivially_constructible      checks if a type has a constructor for specific
+   is_nothrow_constructible        arguments
+   \fI(C++11)\fP                         \fI(class template)\fP
+   \fI(C++11)\fP
+   \fI(C++11)\fP
+   is_copy_constructible
+   is_trivially_copy_constructible
+   is_nothrow_copy_constructible   checks if a type has a copy constructor
+   \fI(C++11)\fP                         \fI(class template)\fP
+   \fI(C++11)\fP
+   \fI(C++11)\fP
+   is_move_constructible
+   is_trivially_move_constructible checks if a type can be constructed from an rvalue
+   is_nothrow_move_constructible   reference
+   \fI(C++11)\fP                         \fI(class template)\fP
+   \fI(C++11)\fP
+   \fI(C++11)\fP

@@ -1,0 +1,37 @@
+.TH std::swap(std::pair) 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::swap(std::pair) \- std::swap(std::pair)
+
+.SH Synopsis
+   Defined in header <utility>
+   template< class T1, class T2 >                    \fI(since C++11)\fP
+   void swap( pair<T1,T2>& lhs, pair<T1,T2>& rhs );
+
+   Swaps the contents of lhs and rhs. Equivalent to lhs.swap(rhs).
+
+.SH Parameters
+
+   lhs, rhs - pairs whose contents to swap
+
+.SH Return value
+
+   \fI(none)\fP
+
+.SH Exceptions
+
+   noexcept specification:
+   noexcept(noexcept(lhs.swap(rhs)))
+
+.SH See also
+
+   swap swaps the values of two objects
+        \fI(function template)\fP
+
+.SH Category:
+
+     * conditionally noexcept
+
+   Hidden categories:
+
+     * Pages with unreviewed conditional noexcept template
+     * Pages with unreviewed noexcept template

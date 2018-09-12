@@ -1,0 +1,116 @@
+.TH std::get(std::tuple) 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::get(std::tuple) \- std::get(std::tuple)
+
+.SH Synopsis
+   template< std::size_t I, class... Types >
+                                                                (since
+   typename std::tuple_element<I, tuple<Types...>               C++11)
+   >::type&                                                     (until
+                                                                C++14)
+   get( tuple<Types...>& t );
+   template< std::size_t I, class... Types >
+                                                                (since
+   constexpr std::tuple_element_t<I, tuple<Types...> >&         C++14)
+
+   get( tuple<Types...>& t );
+   template< std::size_t I, class... Types >
+                                                                        (since
+   typename std::tuple_element<I, tuple<Types...>                       C++11)
+   >::type&&                                                            (until
+                                                                        C++14)
+   get( tuple<Types...>&& t );
+   template< std::size_t I, class... Types >
+
+   constexpr std::tuple_element_t<I, tuple<Types...>                    (since
+   >&&                                                                  C++14)
+
+   get( tuple<Types...>&& t );
+   template< std::size_t I, class... Types >
+                                                        \fB(1)\fP                     (since
+   typename std::tuple_element<I, tuple<Types...>                               C++11)
+   >::type const&                                                               (until
+                                                                                C++14)
+   get( const tuple<Types...>& t );
+   template< std::size_t I, class... Types >                \fB(2)\fP
+
+   constexpr std::tuple_element_t<I, tuple<Types...>                            (since
+   >const&                                                                      C++14)
+
+   get( const tuple<Types...>& t );
+   template< std::size_t I, class... Types >                    \fB(3)\fP
+
+   constexpr std::tuple_element_t<I, tuple<Types...>                    \fB(4)\fP     (since
+   >const&&                                                                     C++17)
+
+   get( const tuple<Types...>&& t );
+   template< class T, class... Types >                                  \fB(5)\fP     (since
+   constexpr T& get(tuple<Types...>& t);                                        C++14)
+   template< class T, class... Types >                                  \fB(6)\fP     (since
+   constexpr T&& get(tuple<Types...>&& t);                                      C++14)
+   template< class T, class... Types >                                  \fB(7)\fP     (since
+   constexpr const T& get(const tuple<Types...>& t);                            C++14)
+   template< class T, class... Types >                                  \fB(8)\fP     (since
+   constexpr const T&& get(const tuple<Types...>&& t);                          C++17)
+
+   1-4) Extracts the Ith element from the tuple. I is an integer value in [0,
+   sizeof...(Types)).
+   5-8) Extracts the element of the tuple t whose type is T. Fails to compile if the
+   tuple has more than one element of that type.
+
+.SH Parameters
+
+   t - tuple whose contents to extract
+
+.SH Return value
+
+   A reference to the selected element of t.
+
+.SH Exceptions
+
+   noexcept specification:
+   noexcept
+
+.SH Example
+
+   
+// Run this code
+
+ #include <iostream>
+ #include <string>
+ #include <tuple>
+
+ int main()
+ {
+     auto t = std::make_tuple(1, "Foo", 3.14);
+     // index-based access
+     std::cout << "(" << std::get<0>(t) << ", " << std::get<1>(t)
+               << ", " << std::get<2>(t) << ")\\n";
+     // type-based access
+     std::cout << "(" << std::get<int>(t) << ", " << std::get<const char*>(t)
+               << ", " << std::get<double>(t) << ")\\n";
+ }
+
+.SH Output:
+
+ (1, Foo, 3.14)
+ (1, Foo, 3.14)
+
+.SH See also
+
+   std::get(std::array)   accesses an element of an array
+                          \fI(function template)\fP
+   std::get(std::pair)    accesses an element of a pair
+   \fI(C++11)\fP                \fI(function template)\fP
+   std::get(std::variant) reads the value of the variant given the index or the type
+   \fI(C++17)\fP                (if the type is unique), throws on error
+                          \fI(function template)\fP
+
+.SH Category:
+
+     * unconditionally noexcept
+
+   Hidden categories:
+
+     * Pages with unreviewed unconditional noexcept template
+     * Pages with unreviewed noexcept template

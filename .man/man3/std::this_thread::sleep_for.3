@@ -1,0 +1,58 @@
+.TH std::this_thread::sleep_for 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::this_thread::sleep_for \- std::this_thread::sleep_for
+
+.SH Synopsis
+   Defined in header <thread>
+   template< class Rep, class Period >
+   void sleep_for( const std::chrono::duration<Rep, Period>&              \fI(since C++11)\fP
+   sleep_duration );
+
+   Blocks the execution of the current thread for at least the specified
+   sleep_duration.
+
+   A steady clock is used to measure the duration. This function may block for longer
+   than sleep_duration due to scheduling or resource contention delays.
+
+.SH Parameters
+
+   sleep_duration - time duration to sleep
+
+.SH Return value
+
+   \fI(none)\fP
+
+.SH Exceptions
+
+   Any exception thrown by clock, time_point, or duration during the execution (clocks,
+   time points, and durations provided by the standard library never throw)
+
+.SH Example
+
+   
+// Run this code
+
+ #include <iostream>
+ #include <chrono>
+ #include <thread>
+
+ int main()
+ {
+     using namespace std::chrono_literals;
+     std::cout << "Hello waiter" << std::endl;
+     auto start = std::chrono::high_resolution_clock::now();
+     std::this_thread::sleep_for(2s);
+     auto end = std::chrono::high_resolution_clock::now();
+     std::chrono::duration<double, std::milli> elapsed = end-start;
+     std::cout << "Waited " << elapsed.count() << " ms\\n";
+ }
+
+.SH Possible output:
+
+ Hello waiter
+ Waited 2000.12 ms
+
+.SH See also
+
+   sleep_until stops the execution of the current thread until a specified time point
+   \fI(C++11)\fP     \fI(function)\fP

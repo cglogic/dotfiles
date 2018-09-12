@@ -1,0 +1,85 @@
+.TH std::reverse 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::reverse \- std::reverse
+
+.SH Synopsis
+   Defined in header <algorithm>
+   template< class BidirIt >                                          \fB(1)\fP
+   void reverse( BidirIt first, BidirIt last );
+   template< class ExecutionPolicy, class BidirIt >
+   void reverse( ExecutionPolicy&& policy, BidirIt first, BidirIt     \fB(2)\fP \fI(since C++17)\fP
+   last );
+
+   1) Reverses the order of the elements in the range [first, last)
+   Behaves as if applying std::iter_swap to every pair of iterators first+i, (last-i) -
+   1 for each non-negative i < (last-first)/2
+   2) Same as \fB(1)\fP, but executed according to policy. This overload does not participate
+   in overload resolution unless
+   std::is_execution_policy_v<std::decay_t<ExecutionPolicy>> is true
+
+.SH Parameters
+
+   first, last  -  the range of elements to reverse
+   policy       -  the execution policy to use. See execution policy for details.
+.SH Type requirements
+   -
+   BidirIt must meet the requirements of ValueSwappable and BidirectionalIterator.
+
+.SH Return value
+
+   \fI(none)\fP
+
+.SH Exceptions
+
+   The overload with a template parameter named ExecutionPolicy reports errors as
+   follows:
+
+     * If execution of a function invoked as part of the algorithm throws an exception
+       and ExecutionPolicy is one of the three standard policies, std::terminate is
+       called. For any other ExecutionPolicy, the behavior is implementation-defined.
+     * If the algorithm fails to allocate memory, std::bad_alloc is thrown.
+
+.SH Possible implementation
+
+   template<class BidirIt>
+   void reverse(BidirIt first, BidirIt last)
+   {
+       while ((first != last) && (first != --last)) {
+           std::iter_swap(first++, last);
+       }
+   }
+
+.SH Example
+
+   
+// Run this code
+
+ #include <vector>
+ #include <iostream>
+ #include <iterator>
+ #include <algorithm>
+
+ int main()
+ {
+     std::vector<int> v({1,2,3});
+     std::reverse(std::begin(v), std::end(v));
+     std::cout << v[0] << v[1] << v[2] << '\\n';
+
+     int a[] = {4, 5, 6, 7};
+     std::reverse(std::begin(a), std::end(a));
+     std::cout << a[0] << a[1] << a[2] << a[3] << '\\n';
+ }
+
+.SH Output:
+
+ 321
+ 7654
+
+.SH Complexity
+
+   linear in the distance between first and last
+
+.SH See also
+
+   reverse_copy creates a copy of a range that is reversed
+                \fI(function template)\fP

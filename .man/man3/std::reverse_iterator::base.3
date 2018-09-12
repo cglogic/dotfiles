@@ -1,0 +1,58 @@
+.TH std::reverse_iterator::base 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::reverse_iterator::base \- std::reverse_iterator::base
+
+.SH Synopsis
+   Iterator base() const;            \fI(until C++17)\fP
+   constexpr Iterator base() const;  \fI(since C++17)\fP
+
+   Returns the underlying base iterator. That is std::reverse_iterator(it).base() ==
+   it.
+
+   The base iterator refers to the element that is next (from the
+   std::reverse_iterator::iterator_type perspective) to the element the
+   reverse_iterator is currently pointing to. That is &*(rit.base() - 1) == &*rit.
+
+.SH Parameters
+
+   \fI(none)\fP
+
+.SH Return value
+
+   The underlying iterator.
+
+.SH Exceptions
+
+   \fI(none)\fP
+
+.SH Example
+
+   
+// Run this code
+
+ #include <iostream>
+ #include <iterator>
+ #include <vector>
+
+ int main()
+ {
+     std::vector<int> v = { 0, 1, 2, 3, 4, 5 };
+
+     using RevIt = std::reverse_iterator<std::vector<int>::iterator>;
+     RevIt r_end(v.begin());
+     RevIt r_begin(v.end());
+
+     for (auto it = r_end.base(); it != r_begin.base(); ++it) {
+         std::cout << *it << " ";
+     }
+     std::cout << "\\n";
+ }
+
+.SH Output:
+
+ 0 1 2 3 4 5
+
+.SH See also
+
+   operator*  accesses the pointed-to element
+   operator-> \fI(public member function)\fP

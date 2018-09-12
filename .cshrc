@@ -45,14 +45,14 @@ setenv	BLOCKSIZE       K
 setenv	LSCOLORS 	ExGxFxdxCxDxDxBxBxExEx
 setenv	CLICOLOR
 
-setenv	MANPATH		:$HOME/.man
-
 #setenv	TOP		-CHP
 setenv	LESS		-S
 setenv	GREP_OPTIONS	--color=auto
 
+setenv	MANPATH		:$HOME/.man
 setenv	MANCOLOR	yes
 setenv	MANWIDTH	tty
+setenv	MANPAGER	most
 
 setenv	DISPLAY			:0
 setenv	SXHKD_SHELL		/bin/sh

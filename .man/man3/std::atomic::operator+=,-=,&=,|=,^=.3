@@ -1,0 +1,94 @@
+.TH std::atomic::operator+=,-=,&=,|=,^= 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::atomic::operator+=,-=,&=,|=,^= \- std::atomic::operator+=,-=,&=,|=,^=
+
+.SH Synopsis
+T operator+=(
+T arg );
+T operator+=(
+T arg )
+volatile;
+T* operator+=(
+std::ptrdiff_t
+arg );
+T* operator+=(
+std::ptrdiff_t
+arg )
+volatile;
+T operator-=(
+T arg );
+T operator-=(
+T arg )
+volatile;
+T* operator-=(     \fI(since C++11)\fP
+std::ptrdiff_t     (member only of
+arg );         \fB(1)\fP atomic<Integral>     \fI(since C++11)\fP
+T* operator-=(     template             (member only of
+std::ptrdiff_t     specialization)  \fB(1)\fP atomic<T*>
+arg )                                   template
+volatile;                               specialization)     \fI(since C++11)\fP
+T operator&=(                                               (member only of
+T arg );                                                \fB(2)\fP atomic<Integral>     \fI(since C++11)\fP
+T operator&=(                                               template             (member only of
+T arg )                                                     specialization)  \fB(2)\fP atomic<T*>
+volatile;                                                                        template
+T operator|=(                                                                    specialization)     \fI(since C++11)\fP
+T arg );                                                                                             (member only of
+T operator|=(                                                                                    \fB(3)\fP atomic<Integral>     \fI(since C++11)\fP
+T arg )                                                                                              template             (member only of
+volatile;                                                                                            specialization)  \fB(4)\fP atomic<Integral>
+T operator^=(                                                                                                             template             \fI(since C++11)\fP
+T arg );                                                                                                                  specialization)      (member only of
+T operator^=(                                                                                                                              \fB(5)\fP atomic<Integral>
+T arg )                                                                                                                                        template
+volatile;                                                                                                                                      specialization)
+
+   Atomically replaces the current value with the result of computation involving the
+   previous value and arg. The operation is read-modify-write operation.
+
+   1) Performs atomic addition. Equivalent to fetch_add(arg) + arg.
+   2) Performs atomic subtraction. Equivalent to fetch_sub(arg) - arg.
+   3) Performs atomic bitwise and. Equivalent to fetch_and(arg) & arg.
+   4) Performs atomic bitwise or. Equivalent to fetch_or(arg) | arg.
+   5) Performs atomic bitwise exclusive or. Equivalent to fetch_xor(arg) ^ arg.
+
+   For signed Integral types, arithmetic is defined to use two’s complement
+   representation. There are no undefined results. For T* types, the result may be an
+   undefined address, but the operations otherwise have no undefined behavior.
+
+.SH Parameters
+
+   arg - the argument for the arithmetic operation
+
+.SH Return value
+
+   The resulting value (that is, the result of applying the corresponding binary
+   operator to the value immediately preceding the effects of the corresponding member
+   function in the modification order of *this)
+
+.SH Exceptions
+
+   noexcept specification:
+   noexcept
+
+.SH Notes
+
+   Unlike most compound assignment operators, the compound assignment operators for
+   atomic types do not return a reference to their left-hand arguments. They return a
+   copy of the stored value instead.
+
+.SH See also
+
+   operator++
+   operator++(int) increments or decrements the atomic value by one
+   operator--      \fI(public member function)\fP
+   operator--(int)
+
+.SH Category:
+
+     * unconditionally noexcept
+
+   Hidden categories:
+
+     * Pages with unreviewed unconditional noexcept template
+     * Pages with unreviewed noexcept template

@@ -1,0 +1,49 @@
+.TH std::set_unexpected 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::set_unexpected \- std::set_unexpected
+
+.SH Synopsis
+   Defined in header <exception>
+   std::unexpected_handler set_unexpected(                     \fI(until C++17)\fP
+   std::unexpected_handler f );                                (deprecated since C++11)
+
+   Makes f the new global std::unexpected_handler and returns the previously installed
+   std::unexpected_handler.
+
+   This function is thread-safe. Every call to std::set_unexpected
+   synchronizes-with (see std::memory_order) the subsequent calls to      \fI(since C++11)\fP
+   std::set_unexpected and std::get_unexpected
+
+.SH Parameters
+
+   f - pointer to function of type std::unexpected_handler, or null pointer
+
+.SH Return value
+
+   The previously-installed unexpected handler, or a null pointer value if none was
+   installed.
+
+.SH Exceptions
+
+   \fI(none)\fP                  \fI(until C++11)\fP
+   noexcept specification: \fI(since C++11)\fP
+   noexcept
+
+.SH See also
+
+   unexpected           function called when dynamic exception specification is
+   \fI(until C++17)\fP        violated
+                        \fI(function)\fP
+   get_unexpected       obtains the current unexpected_handler
+   \fI(C++11)\fP\fI(until C++17)\fP \fI(function)\fP
+   unexpected_handler   the type of the function called by std::unexpected
+   \fI(until C++17)\fP        \fI(typedef)\fP
+
+.SH Category:
+
+     * unconditionally noexcept
+
+   Hidden categories:
+
+     * Pages with unreviewed unconditional noexcept template
+     * Pages with unreviewed noexcept template

@@ -1,0 +1,48 @@
+.TH std::array::swap 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::array::swap \- std::array::swap
+
+.SH Synopsis
+   void swap( array& other );  \fI(since C++11)\fP
+
+   Exchanges the contents of the container with those of other. Does not cause
+   iterators and references to associate with the other container.
+
+.SH Parameters
+
+   other - container to exchange the contents with
+
+.SH Return value
+
+   \fI(none)\fP
+
+.SH Exceptions
+
+   noexcept specification:                                     \fI(until C++17)\fP
+   noexcept(noexcept(std::swap(declval<T&>(), declval<T&>())))
+   noexcept specification:                                     \fI(since C++17)\fP
+   noexcept(std::is_nothrow_swappable<T>::value)
+
+   For zero-sized arrays,
+   noexcept specification:
+   noexcept
+
+.SH Complexity
+
+   Linear in size of the container.
+
+.SH See also
+
+   std::swap(std::array) specializes the std::swap algorithm
+   \fI(C++11)\fP               \fI(function template)\fP
+
+   Categories:
+
+     * conditionally noexcept
+     * unconditionally noexcept
+
+   Hidden categories:
+
+     * Pages with unreviewed conditional noexcept template
+     * Pages with unreviewed noexcept template
+     * Pages with unreviewed unconditional noexcept template

@@ -1,0 +1,25 @@
+.TH std::time_t 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::time_t \- std::time_t
+
+.SH Synopsis
+   Defined in header <ctime>
+   typedef /* unspecified */ time_t;
+
+   Arithmetic type capable of representing times.
+
+   Although not defined, this is almost always an integral value holding the number of
+   seconds (not counting leap seconds) since 00:00, Jan 1 1970 UTC, corresponding to
+   POSIX time.
+
+.SH See also
+
+   time      returns the current time of the system as time since epoch
+             \fI(function)\fP
+   localtime converts time since epoch to calendar time expressed as local time
+             \fI(function)\fP
+             converts time since epoch to calendar time expressed as Universal
+   gmtime    Coordinated Time
+             \fI(function)\fP
+   C documentation for
+   time_t

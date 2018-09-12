@@ -1,0 +1,96 @@
+.TH std::strtok 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::strtok \- std::strtok
+
+.SH Synopsis
+   Defined in header <cstring>
+   char* strtok( char* str, const char* delim );
+
+   Finds the next token in a null-terminated byte string pointed to by str. The
+   separator characters are identified by null-terminated byte string pointed to by
+   delim.
+
+   This function is designed to be called multiples times to obtain successive tokens
+   from the same string.
+
+     * If str != NULL, the call is treated as the first call to strtok for this
+       particular string. The function searches for the first character which is not
+       contained in delim.
+
+              * If no such character was found, there are no tokens in str at all, and
+                the function returns a null pointer.
+              * If such character was found, is it the beginning of the token. The
+                function then searches from that point on for the first character that
+                is contained in delim.
+
+                           * If no such character was found, str has only one token,
+                             and the future calls to strtok will return a null pointer
+                           * If such character was found, it is replaced by the null
+                             character '\\0' and the pointer to the following character
+                             is stored in a static location for subsequent invocations.
+
+              * The function then returns the pointer to the beginning of the token
+
+     * If str == NULL, the call is treated as a subsequent calls to strtok: the
+       function continues from where it left in previous invocation. The behavior is
+       the same as if the previously stored pointer is passed as str.
+
+.SH Parameters
+
+   str   - pointer to the null-terminated byte string to tokenize
+   delim - pointer to the null-terminated byte string identifying delimiters
+
+.SH Return value
+
+   Pointer to the beginning of the next token or NULL if there are no more tokens.
+
+.SH Notes
+
+   This function is destructive: it writes the '\\0' characters in the elements of the
+   string str. In particular, a string literal cannot be used as the first argument of
+   strtok.
+
+   Each call to this function modifies a static variable: is not thread safe.
+
+   Unlike most other tokenizers, the delimiters in strtok can be different for each
+   subsequent token, and can even depend on the contents of the previous tokens.
+
+.SH Example
+
+   
+// Run this code
+
+ #include <cstring>
+ #include <iostream>
+
+ int main()
+ {
+     char input[100] = "A bird came down the walk";
+     char *token = std::strtok(input, " ");
+     while (token != NULL) {
+         std::cout << token << '\\n';
+         token = std::strtok(NULL, " ");
+     }
+ }
+
+.SH Output:
+
+ A
+ bird
+ came
+ down
+ the
+ walk
+
+.SH See also
+
+   strpbrk finds the first location of any character from a set of separators
+           \fI(function)\fP
+           returns the length of the maximum initial segment that consists
+   strcspn of only the characters not found in another byte string
+           \fI(function)\fP
+           returns the length of the maximum initial segment that consists
+   strspn  of only the characters found in another byte string
+           \fI(function)\fP
+   C documentation for
+   strtok

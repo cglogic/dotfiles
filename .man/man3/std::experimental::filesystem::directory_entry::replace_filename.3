@@ -1,0 +1,32 @@
+.TH std::experimental::filesystem::directory_entry::replace_filename 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::experimental::filesystem::directory_entry::replace_filename \- std::experimental::filesystem::directory_entry::replace_filename
+
+.SH Synopsis
+   void replace_filename( const path& p );  (filesystem TS)
+
+   Changes the filename of the directory entry.
+
+   Effectively sets path to path().parent_path() / p.
+
+   This function does not commit any changes to the filesystem.
+
+.SH Parameters
+
+   p - the path to append to the parent path of the currently stored path
+
+.SH Return value
+
+   \fI(none)\fP
+
+.SH Exceptions
+
+    This section is incomplete
+
+.SH See also
+
+    This section is incomplete
+
+.SH Category:
+
+     * Todo without reason

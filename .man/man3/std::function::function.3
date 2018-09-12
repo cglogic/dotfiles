@@ -1,0 +1,91 @@
+.TH std::function::function 3 "2018.03.28" "http://cppreference.com" "C++ Standard Libary"
+.SH NAME
+std::function::function \- std::function::function
+
+.SH Synopsis
+   function();                                                \fB(1)\fP  \fI(since C++11)\fP
+   function( std::nullptr_t );                                \fB(2)\fP  \fI(since C++11)\fP
+   function( const function& other );                         \fB(3)\fP  \fI(since C++11)\fP
+   function( function&& other );                              \fB(4)\fP  \fI(since C++11)\fP
+   template< class F >                                        \fB(5)\fP  \fI(since C++11)\fP
+   function( F f );
+   template< class Alloc >                                    \fB(6)\fP  \fI(since C++11)\fP
+   function( std::allocator_arg_t, const Alloc& alloc );           \fI(until C++17)\fP
+   template< class Alloc >
+                                                                   \fI(since C++11)\fP
+   function( std::allocator_arg_t, const Alloc& alloc,        \fB(7)\fP  \fI(until C++17)\fP
+
+   std::nullptr_t );
+   template< class Alloc >
+                                                                   \fI(since C++11)\fP
+   function( std::allocator_arg_t, const Alloc& alloc,        \fB(8)\fP  \fI(until C++17)\fP
+
+   const function& other );
+   template< class Alloc >
+                                                                   \fI(since C++11)\fP
+   function( std::allocator_arg_t, const Alloc& alloc,        \fB(9)\fP  \fI(until C++17)\fP
+
+   function&& other );
+   template< class F, class Alloc >                           \fB(10)\fP \fI(since C++11)\fP
+   function( std::allocator_arg_t, const Alloc& alloc, F f );      \fI(until C++17)\fP
+
+   Constructs a std::function from a variety of sources.
+
+   1-2) Creates an empty function.
+   3-4) Copies \fB(3)\fP or moves \fB(4)\fP the target of other to the target of *this. If other is
+   empty, *this will be empty after the call too. For \fB(4)\fP, other is in a valid but
+   unspecified state after the call.
+   5) Initializes the target with a copy of f. If f is a null pointer to function or
+   null pointer to member, *this will be empty after the call.
+   This constructor does not participate in overload resolution unless f is Callable
+   for argument types Args... and return type R.
+   \fI(since C++14)\fP
+   6-10) Same as (1-5) except that alloc is used to allocate memory for any internal
+   data structures that the function might use.
+
+   When the target is a function pointer or a std::reference_wrapper, small object
+   optimization is guaranteed, that is, these targets are always directly stored inside
+   the std::function object, no dynamic allocation takes place. Other large objects may
+   be constructed in dynamic allocated storage and accessed by the std::function object
+   through a pointer.
+
+.SH Parameters
+
+   other    -   the function object used to initialize *this
+   f        -   a callable used to initialize *this
+   alloc    -   an Allocator used for internal memory allocation
+.SH Type requirements
+   -
+   F must meet the requirements of Callable and CopyConstructible.
+   -
+   Alloc must meet the requirements of Allocator.
+
+.SH Exceptions
+
+   1-2)
+   noexcept specification:
+   noexcept
+   3,4,8,9) does not throw if other's target is a function pointer or a
+   std::reference_wrapper, otherwise may throw std::bad_alloc or any exception thrown
+   by the constructor used to copy or move the stored callable object.
+   5,10) does not throw if f is a function pointer or a std::reference_wrapper,
+   otherwise may throw std::bad_alloc or any exception thrown by the copy constructor
+   of the stored callable object.
+   6-7)
+   noexcept specification:
+   noexcept
+
+.SH Example
+
+    This section is incomplete
+    Reason: no example
+
+   Categories:
+
+     * unconditionally noexcept
+     * Todo no example
+
+   Hidden categories:
+
+     * Pages with unreviewed unconditional noexcept template
+     * Pages with unreviewed noexcept template

@@ -20,7 +20,7 @@ alias dfc	dfc -d
 alias ps	ps -ww
 alias pstree	pstree -g 2
 
-alias gdb	gdb81
+alias gdb	gdb811
 alias fsl	fossil
 
 alias mpvrt	mpv --no-cache --demuxer-readahead-secs 0
@@ -65,7 +65,7 @@ setenv	LYNX_CFG		$HOME/.lynx.cfg
 setenv	FZF_DEFAULT_COMMAND	'ag --nocolor -l -g ""'
 setenv	FZF_DEFAULT_OPTS	'--exact'
 
-setenv	CV	60
+setenv	CV	70
 setenv	CC	/usr/local/llvm$CV/bin/clang
 setenv	CXX	/usr/local/llvm$CV/bin/clang++
 setenv	CPP	/usr/local/llvm$CV/bin/clang-cpp

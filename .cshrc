@@ -20,7 +20,7 @@ alias dfc	dfc -d
 alias ps	ps -ww
 alias pstree	pstree -g 2
 
-alias gdb	gdb811
+alias gdb	gdb82
 alias fsl	fossil
 
 alias mpvrt	mpv --no-cache --demuxer-readahead-secs 0

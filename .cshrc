@@ -99,7 +99,8 @@ if ($?prompt) then
 
 	set filec
 	set history = 1000
-	set savehist = (1000 merge)
+	set histdup = erase
+	set savehist = (${history} merge lock)
 	set autolist = ambiguous
 	set histfile = ~/.history
 	# Use history to aid expansion
@@ -112,6 +113,9 @@ if ($?prompt) then
 	set matchbeep = nomatch
 	#set correct = cmd
 	set color
+
+#	alias precmd 'history -S'
+#	alias postcmd 'history -M'
 
 	if ( $?tcsh ) then
 		bindkey "^W" backward-delete-word

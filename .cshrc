@@ -100,7 +100,7 @@ if ($?prompt) then
 	set filec
 	set history = 1000
 	set histdup = erase
-	set savehist = (${history} merge lock)
+	set savehist = (${history} merge)
 	set autolist = ambiguous
 	set histfile = ~/.history
 	# Use history to aid expansion

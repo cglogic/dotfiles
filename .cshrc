@@ -27,7 +27,7 @@ alias mpvrt	mpv --no-cache --demuxer-readahead-secs 0
 alias feh	feh -x -B black -N -.
 alias mupdf	mupdf-gl
 alias sxiv	sxiv -abrf -s d
-alias alarm	at -f ~/bin/alarm.sh
+alias alarm	doas at -f ~/.bin/alarm.sh
 
 alias f		'ag --nocolor -l -g "" | fzy'
 alias e		'ag --nocolor -l -g "" | fzy | xargs kak'

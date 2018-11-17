@@ -98,7 +98,8 @@ if ($?prompt) then
 		#set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
 	#endif
 	set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
-	set promptchars = "%#"
+	#set promptchars = "%#"
+	set promptchars = "❯❯"
 
 	set filec
 	set history = 1000

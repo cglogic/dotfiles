@@ -19,6 +19,7 @@ alias df	df -h
 alias dfc	dfc -d
 alias ps	ps -ww
 alias pstree	pstree -g 2
+alias tree	tree -N
 
 alias gdb	gdb82
 alias fsl	fossil

@@ -1,6 +1,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'nanotech/jellybeans.vim'
+Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -58,7 +59,7 @@ inoremap <C-U> <C-G>u<C-U>
 "	\    'background': { 'ctermbg': '0', '256ctermbg': '0' },
 "\}
 
-colorscheme jellybeans
+colorscheme Tomorrow-Night
 set number
 
 let g:airline_powerline_fonts = 1

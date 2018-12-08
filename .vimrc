@@ -68,7 +68,7 @@ set background=dark
 "Tomorrow-Night jellybeans
 
 if (&t_Co == 256 || &t_Co == 88)
-    colorscheme jellybeans
+    colorscheme Tomorrow-Night
 else
     colorscheme base16-default-dark
 endif
@@ -102,7 +102,7 @@ set number
 
 set laststatus=2 " Make it appear without splitting
 let g:airline_powerline_fonts = 1
-"let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'jellybeans'
 let g:airline_skip_empty_sections = 1
 let g:airline_exclude_preview = 1
 

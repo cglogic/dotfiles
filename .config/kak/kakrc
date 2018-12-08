@@ -20,21 +20,13 @@ hook global InsertEnd .* %{ unmap window insert <a-space> <c-o> }
 hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p>; execute-keys <c-o> }
 
-hook global WinSetOption filetype=(c|cpp) %{
-	clang-enable-autocomplete
-	clang-enable-diagnostics
-	alias window lint clang-parse
-	alias window lint-next-error clang-diagnostics-next
-}
+# hook global WinSetOption filetype=(c|cpp) %{
+# 	clang-enable-autocomplete
+# 	clang-enable-diagnostics
+# 	alias window lint clang-parse
+# 	alias window lint-next-error clang-diagnostics-next
+# }
 
 map global normal '#' :comment-line<ret>
-
-hook global WinSetOption filetype=(c|cpp) %{
-	# Custom C/Cpp types highlighting
-	add-highlighter window/ regex \b(v|u|vu)\w+(8|16|32|64)(_t)?\b 0:type
-	add-highlighter window/ regex \b(v|u|vu)?(_|__)?(s|u)(8|16|32|64)(_t)?\b 0:type
-	add-highlighter window/ regex \b(v|u|vu)(_|__)?(int|short|char|long)(_t)?\b 0:type
-	add-highlighter window/ regex \b\w+_t\b 0:type
-}
 
 #eval %sh{kak-lsp --kakoune -s $kak_session}

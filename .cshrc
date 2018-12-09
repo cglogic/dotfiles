@@ -23,6 +23,7 @@ alias tree	tree -N
 
 alias gdb	gdb82
 alias fsl	fossil
+alias svn	svnlite
 
 alias mpvrt	mpv --no-cache --demuxer-readahead-secs 0
 alias feh	feh -x -B black -N -.

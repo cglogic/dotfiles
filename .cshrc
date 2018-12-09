@@ -59,7 +59,7 @@ setenv	MANPATH		:$HOME/.man
 setenv	MANCOLOR	yes
 setenv	MANWIDTH	tty
 
-setenv	DISPLAY			:0
+#setenv	DISPLAY			:0
 setenv	SXHKD_SHELL		/bin/sh
 setenv	GIT_PAGER		cat
 setenv	MPD_HOST		/var/mpd/socket
@@ -100,8 +100,11 @@ if ($?prompt) then
 		#set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
 	#endif
 	set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
-	#set promptchars = "%#"
-	set promptchars = "❯❯"
+	if ($?DISPLAY) then
+		set promptchars = "❯❯"
+	else
+		set promptchars = "%#"
+	endif
 
 	set filec
 	set history = 1000

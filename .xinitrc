@@ -35,9 +35,6 @@ unclutter --fork --timeout 5
 ~/.bin/bmon &
 
 #
-#~/bin/skak-lsp &
-
-#
 mkdir /tmp/cache
 ln -s /dev/null ~/.cache/chromium
 
@@ -54,5 +51,4 @@ feh --no-fehbg --bg-center ~/images/free_wall_g_2.png &
 #compton --config /dev/null --vsync opengl-swc --backend xr_glx_hybrid --paint-on-overlay --glx-no-stencil --glx-no-rebind-pixmap --glx-swap-method buffer-age --xrender-sync-fence -b
 compton --config /dev/null --vsync none --backend xrender -b
 
-#exec spectrwm
 exec bspwm

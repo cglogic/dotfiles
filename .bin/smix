@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mixer | xargs -0 notify-send

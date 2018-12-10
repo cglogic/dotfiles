@@ -64,6 +64,9 @@ super + p
 super + i
 	~/.bin/sdate
 
+super + o
+	~/.bin/smix
+
 super + h
 	~/.bin/swall
 

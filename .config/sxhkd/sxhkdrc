@@ -31,6 +31,9 @@ super + bracket{left,right}
 super + {1-9}
 	bspc desktop -f ^{1-9}
 
+super + shift + {1-9}
+	id=$(bspc query -N -n); bspc node -d ^{1-9}; bspc node -f ${id}
+
 super + Escape
 	pkill -USR1 -x sxhkd
 
@@ -47,7 +50,7 @@ super + BackSpace
 	~/.bin/stmux
 
 super + b
-	~/.bin/sfirefox
+	~/.bin/sbat
 
 super + g
 	~/.bin/schrome

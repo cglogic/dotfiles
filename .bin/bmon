@@ -24,7 +24,8 @@ while [ true ]; do
 		if [ $CAP -le 30 ]; then
 			if [ $CAP -ne $PCNT ]; then
 				PCNT=$CAP
-				rofi  -font "Hack $FSIZE" -e "The battery charge is $CAP%"
+				#rofi -font "Hack $FSIZE" -e "The battery charge is $CAP%"
+				notify-send -u critical "The battery charge is $CAP%"
 			fi
 		else
 			PCNT=100

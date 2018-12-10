@@ -1,0 +1,3 @@
+#!/bin/sh
+
+date | xargs -E EOL -I % notify-send %

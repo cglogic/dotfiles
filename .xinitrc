@@ -15,6 +15,8 @@ xsetroot -cursor_name left_ptr
 # Disable DPMS and prevent screen from blanking
 #xset s off -dpms
 
+dunst &
+
 # disable mouse
 #xinput set-prop 8 "Device Enabled" 0
 #unclutter -idle 3 -root &

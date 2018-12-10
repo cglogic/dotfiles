@@ -50,7 +50,7 @@ super + BackSpace
 	~/.bin/stmux
 
 super + b
-	~/.bin/sbat
+	acpiconf -i 0 | grep Remaining | xargs -0 notify-send -u low
 
 super + g
 	~/.bin/schrome
@@ -65,16 +65,19 @@ super + p
 	printscreen
 
 super + i
-	~/.bin/sdate
+	date | xargs -0 notify-send -u low
 
 super + o
-	~/.bin/smix
+	mixer | grep Mixer | xargs -0 notify-send -u low
+
+super + u
+	sysctl -a | grep temperature | xargs -0 notify-send -u low
 
 super + h
 	~/.bin/swall
 
 super + t
-	~/.bin/stelegram
+	flock -x -n /tmp/single-telegram.lock -c "telegram-desktop"
 
 super + z
 	~/.bin/crt

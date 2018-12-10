@@ -1,3 +1,0 @@
-#!/bin/sh
-
-mixer | grep Mixer | xargs -0 notify-send -u low

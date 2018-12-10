@@ -15,6 +15,8 @@ xsetroot -cursor_name left_ptr
 # Disable DPMS and prevent screen from blanking
 #xset s off -dpms
 
+export QT_QPA_PLATFORMTHEME="qt5ct"
+
 dunst &
 
 # disable mouse

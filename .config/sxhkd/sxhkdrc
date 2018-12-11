@@ -71,7 +71,7 @@ super + o
 	mixer | grep Mixer | xargs -0 notify-send -u low
 
 super + u
-	sysctl -a | grep temperature | xargs -0 notify-send -u low
+	sysctl dev.cpu | grep temperature | xargs -0 notify-send -u low
 
 super + h
 	~/.bin/swall

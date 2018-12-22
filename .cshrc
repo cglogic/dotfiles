@@ -31,8 +31,8 @@ alias mupdf	mupdf-gl
 alias sxiv	sxiv -abrf -s d
 alias alarm	doas at -f ~/.bin/alarm.sh
 
-alias f		'ag --nocolor -l -g "" | fzy'
-alias e		'ag --nocolor -l -g "" | fzy | xargs kak'
+alias f		'ag --nocolor -l -g "" | fzy -p "❯ "'
+alias e		'ag --nocolor -l -g "" | fzy -p "❯ " | xargs kak -e "delete-buffer *stdin*"'
 
 alias dot	git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME
 alias dotls	dot ls-tree -r master --name-only

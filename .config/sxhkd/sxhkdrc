@@ -64,8 +64,11 @@ super + d
 super + p
 	printscreen
 
-super + i
+super + a
 	date | xargs -0 notify-send -u low
+
+super + i
+	xclip -o | xargs -0 notify-send -u low
 
 super + o
 	mixer | grep Mixer | xargs -0 notify-send -u low

@@ -19,7 +19,7 @@ super + c
 super + x
 	bspc node focused --kill
 
-super + q
+super + Escape
 	bspc quit
 
 super + {s,f}
@@ -34,7 +34,7 @@ super + {1-9}
 super + shift + {1-9}
 	id=$(bspc query -N -n); bspc node -d ^{1-9}; bspc node -f ${id}
 
-super + Escape
+super + q
 	pkill -USR1 -x sxhkd
 
 super + Return

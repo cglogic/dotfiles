@@ -79,7 +79,7 @@ setenv	LD	/usr/local/llvm$CV/bin/ld.lld
 setenv	LD_LIBRARY_PATH		/usr/local/llvm$CV/lib
 
 if ($?prompt) then
-	if (($?SSH_CLIENT || $?SSH_TTY) && $TERM != "screen" && $TERM != "screen-256color" && ! $?TMUX) then
+	if (($?SSH_CLIENT || $?SSH_TTY || $?SSH_CONNECTION) && $TERM != "screen" && $TERM != "screen-256color" && ! $?TMUX) then
 		exec tmux -2 new-session -A -s remote;
 	endif
 
@@ -100,7 +100,7 @@ if ($?prompt) then
 		#set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
 	#endif
 	set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
-	if ($?DISPLAY) then
+	if ($?DISPLAY || $?SSH_CLIENT || $?SSH_TTY || $?SSH_CONNECTION) then
 		set promptchars = "❯❯"
 	else
 		set promptchars = "%#"

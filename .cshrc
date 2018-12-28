@@ -51,7 +51,7 @@ setenv	LSCOLORS 	ExGxFxdxCxDxDxBxBxExEx
 setenv	CLICOLOR
 
 #setenv	TOP		-CHP
-setenv	LESS		-S
+setenv	LESS		-SR
 setenv	GREP_OPTIONS	--color=auto
 
 setenv	MANPAGER	most

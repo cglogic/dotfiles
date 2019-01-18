@@ -32,7 +32,7 @@ set delete = yes
 set attribution = "On %[!%d/%m/%y %T %Z], %n wrote:"
 set forward_format = "Fwd: %s"
 set user_agent
-set editor = vim
+set editor = kak
 set charset = "UTF-8"
 set send_charset = "UTF-8"
 
@@ -44,7 +44,7 @@ set imap_check_subscribed
 unset imap_passive
 unset imap_peek
 
-source ~/.mutt/account.c
+source ~/.mutt/account.gmail
 
-macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.c<enter><change-folder>!<enter>'
-macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/account.k<enter><change-folder>!<enter>'
+# macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.c<enter><change-folder>!<enter>'
+# macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/account.k<enter><change-folder>!<enter>'

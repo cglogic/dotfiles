@@ -29,4 +29,22 @@ hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap wi
 
 map global normal '#' :comment-line<ret>
 
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+plug "andreyorst/fzf.kak" %{
+	map global normal ';' ': fzf-mode<ret>'
+	set-option global fzf_file_command 'ag'
+	set-option global fzf_preview false
+}
+
+# plug "andreyorst/powerline.kak" %{
+# 	hook -once global WinCreate .* %{
+# 		powerline-theme tomorrow-night
+# 		powerline-separator none
+# 		powerline-format line_column position git bufname filetype mode_info
+# 		powerline-toggle position off
+# 		powerline-toggle git off
+# 	}
+# }
+
 #eval %sh{kak-lsp --kakoune -s $kak_session}

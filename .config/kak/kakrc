@@ -13,7 +13,7 @@ add-highlighter global/ show-matching
 #add-highlighter global/ show-whitespaces
 add-highlighter global/ dynregex '%reg{/}' 0:+u
 
-set-option global auto_complete prompt
+set-option global autocomplete prompt
 hook global InsertBegin .* %{ map window insert <a-space> <c-o> }
 hook global InsertEnd .* %{ unmap window insert <a-space> <c-o> }
 

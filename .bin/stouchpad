@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TPID=`xinput list | grep '↳ Mouse' | gsed 's/.*id\=\([0-9]\+\).*/\1/g'`
+TPID=`xinput list | grep 'TouchPad' | gsed 's/.*id\=\([0-9]\+\).*/\1/g'`
 STATUS=`xinput list-props $TPID | grep 'Device Enabled' | gsed -e 's/.*\:[ \t]\+//g'`
 
 if [ $STATUS == 0 ]; then

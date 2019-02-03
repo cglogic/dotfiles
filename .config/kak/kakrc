@@ -31,9 +31,10 @@ map global normal '#' :comment-line<ret>
 
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
-plug "andreyorst/fzf.kak" %{
+plug "andreyorst/fzf.kak" "branch: fzy" %{
+	set-option global fzf_implementation 'fzy'
 	map global normal ';' ': fzf-mode<ret>'
-	set-option global fzf_file_command 'ag'
+	set-option global fzf_file_command 'ag --nocolor -l -g .'
 	set-option global fzf_preview false
 }
 

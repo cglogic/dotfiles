@@ -46,7 +46,7 @@ super + l
 super + grave
 	~/.bin/sdmenu
 
-super + BackSpace
+super + backslash
 	~/.bin/stmux
 
 super + b
@@ -72,6 +72,15 @@ super + i
 
 super + o
 	mixer | grep Mixer | xargs -0 notify-send -u low
+
+super + minus
+	mixer pcm -5 ; mixer pcm | xargs -0 notify-send -u low -t 1000
+
+super + equal
+	mixer pcm +5 ; mixer pcm | xargs -0 notify-send -u low -t 1000
+
+super + BackSpace
+	mixer pcm 0 ; mixer pcm | xargs -0 notify-send -u low -t 1000
 
 super + u
 	sysctl dev.cpu | grep temperature | xargs -0 notify-send -u low

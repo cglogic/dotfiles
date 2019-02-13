@@ -21,7 +21,7 @@ alias ps	ps -ww
 alias pstree	pstree -g 2
 alias tree	tree -N
 
-alias gdb	gdb82
+alias gdb	gdb821
 alias fsl	fossil
 alias svn	svnlite
 

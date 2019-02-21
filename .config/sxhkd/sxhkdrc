@@ -91,6 +91,9 @@ super + h
 super + t
 	flock -x -n /tmp/single-telegram.lock -c "telegram-desktop"
 
+super + m
+	urxvt -e cmatrix -C blue
+
 super + z
 	~/.bin/crt
 

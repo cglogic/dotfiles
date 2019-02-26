@@ -1,4 +1,19 @@
 #!/bin/sh
 
-FSIZE=`~/.bin/fontsize`
-exec dmenu_run -i -fn "Hack:size=$FSIZE"
+# cat ~/.dmenu_history | dmenu -i -fn "Hack:size=14" "$@" | ${SHELL:-"/bin/sh"} &
+
+HISTORY="$HOME/.dmenu_history"
+test -f "$HISTORY" || touch "$HISTORY"
+CMD=$(dmenu -i -fn "Hack:size=9" "$@" < "$HISTORY")
+test -n "$CMD"
+
+# test if CMD exist in $PATH
+if hash $(echo "$CMD" | cut -f1 -d ' ') >/dev/null 2>&1; then
+	# write input to history
+	if ! grep -q "$CMD" "$HISTORY"; then
+		echo "$CMD" >> "$HISTORY"
+		sort "$HISTORY" -o "$HISTORY" &
+	fi
+
+	exec $CMD
+fi

@@ -1,8 +1,8 @@
 super + r
-	~/.bin/srofi -show run
+	rofi -show run
 
 super + w
-	~/.bin/srofi -show window
+	rofi -show window
 
 super + Tab
 	bspc node focused -f next.local
@@ -50,7 +50,7 @@ super + backslash
 	~/.bin/stmux
 
 super + b
-	acpiconf -i 0 | grep Remaining | xargs -0 notify-send -u low
+	acpiconf -i 0 | grep Remaining | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo "Battery" | dzen2 -p 2
 
 super + g
 	~/.bin/schrome
@@ -65,25 +65,25 @@ super + p
 	printscreen
 
 super + a
-	date | xargs -0 notify-send -u low
+	date | dzen2 -p 2
 
 super + i
-	xclip -o | xargs -0 notify-send -u low
+	xclip -o | cut -f 1- -d ' ' | paste -s -d ' ' - | dzen2 -p 2
 
 super + o
-	mixer | grep Mixer | xargs -0 notify-send -u low
+	mixer -s | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 2
 
 super + minus
-	mixer pcm -5 ; mixer pcm | xargs -0 notify-send -u low -t 1000
+	mixer pcm -5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
 
 super + equal
-	mixer pcm +5 ; mixer pcm | xargs -0 notify-send -u low -t 1000
+	mixer pcm +5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
 
 super + BackSpace
-	mixer pcm 0 ; mixer pcm | xargs -0 notify-send -u low -t 1000
+	mixer pcm 0 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
 
 super + u
-	sysctl dev.cpu | grep temperature | xargs -0 notify-send -u low
+	sysctl dev.cpu | grep temperature | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo "CPU" | dzen2 -p 2
 
 super + h
 	~/.bin/swall

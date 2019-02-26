@@ -40,7 +40,11 @@ XTerm*renderFont: true
 XTerm*faceName: Hack
 XTerm*faceSize: 9
 
-#include ".xfonts"
+dzen2.font: Hack:size=9
+dzen2.foreground: #e0e0e0
+dzen2.background: #005577
+
+!#include ".xfonts"
 
 *.foreground:   #d0d0d0
 *.background:   #131313
@@ -71,6 +75,6 @@ XTerm*faceSize: 9
 !*.color20:      #b8b8b8
 !*.color21:      #e8e8e8
 
-#include ".xcolors"
+!#include ".xcolors"
 
 Xcursor*theme: OpenZone_Ice

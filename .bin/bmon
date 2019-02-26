@@ -3,8 +3,6 @@
 TIME=10
 PCNT=100
 
-FSIZE=`~/.bin/fontsize`
-
 while [ true ]; do
 	sleep $TIME
 
@@ -24,8 +22,7 @@ while [ true ]; do
 		if [ $CAP -le 30 ]; then
 			if [ $CAP -ne $PCNT ]; then
 				PCNT=$CAP
-				#rofi -font "Hack $FSIZE" -e "The battery charge is $CAP%"
-				notify-send -u critical "The battery charge is $CAP%"
+				echo "The battery charge is $CAP%" | dzen2 -bg darkred -p 10
 			fi
 		else
 			PCNT=100

@@ -50,7 +50,7 @@ super + backslash
 	~/.bin/stmux
 
 super + b
-	acpiconf -i 0 | grep Remaining | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo "Battery" | dzen2 -p 2
+	acpiconf -i 0 | grep Remaining | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo "Battery" | dzen2 -p 3
 
 super + g
 	~/.bin/schrome
@@ -65,13 +65,16 @@ super + p
 	printscreen
 
 super + a
-	date | dzen2 -p 2
+	date | dzen2 -p 3
+
+super + e
+	uptime | cut -f 1- -d ' ' | paste -s -d ' ' - | dzen2 -p 3
 
 super + i
-	xclip -o | cut -f 1- -d ' ' | paste -s -d ' ' - | dzen2 -p 2
+	xclip -o | cut -f 1- -d ' ' | paste -s -d ' ' - | dzen2 -p 3
 
 super + o
-	mixer -s | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 2
+	mixer -s | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 3
 
 super + minus
 	mixer pcm -5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
@@ -83,7 +86,7 @@ super + BackSpace
 	mixer pcm 0 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
 
 super + u
-	sysctl dev.cpu | grep temperature | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo "CPU" | dzen2 -p 2
+	sysctl dev.cpu | grep temperature | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo "CPU" | dzen2 -p 3
 
 super + h
 	~/.bin/swall

@@ -31,8 +31,14 @@ super + bracket{left,right}
 super + {1-9}
 	bspc desktop -f ^{1-9}
 
+super + 0
+	bspc desktop -f ^10
+
 super + shift + {1-9}
 	id=$(bspc query -N -n); bspc node -d ^{1-9}; bspc node -f ${id}
+
+super + shift + 0
+	id=$(bspc query -N -n); bspc node -d ^10; bspc node -f ${id}
 
 super + q
 	pkill -USR1 -x sxhkd
@@ -49,6 +55,9 @@ super + grave
 super + slash
 	~/.bin/dwswitch
 
+super + d
+	wmctrl -d | tr -s ' ' | cut -f 1,2,9 -d ' ' | dmenu -i -fn "Hack:size=9" | cut -f 1 -d ' ' | xargs wmctrl -s
+
 super + backslash
 	~/.bin/stmux
 
@@ -61,7 +70,7 @@ super + g
 super + v
 	~/.bin/smonitor
 
-super + d
+super + Print
 	~/.bin/stouchpad
 
 super + p
@@ -80,13 +89,13 @@ super + o
 	mixer -s | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 3
 
 super + minus
-	mixer pcm -5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
+	[ `mixer -S pcm | cut -f 3 -d ':'` -eq 0 ] && exit ; mixer pcm -5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
 
 super + equal
-	mixer pcm +5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
+	[ `mixer -S pcm | cut -f 3 -d ':'` -eq 100 ] && exit ; mixer pcm +5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
 
 super + BackSpace
-	mixer pcm 0 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
+	[ `mixer -S pcm | cut -f 3 -d ':'` -eq 0 ] && exit ; mixer pcm 0 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
 
 super + u
 	sysctl dev.cpu | grep temperature | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo "CPU" | dzen2 -p 3

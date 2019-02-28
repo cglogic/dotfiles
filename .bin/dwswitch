@@ -1,26 +1,10 @@
 #!/bin/sh
 
-height=$(wmctrl -l | wc -l)
+HGHT=$(wmctrl -l | wc -l)
 
-if [ -z "$height" ]; then
-	exit
-fi
+[ $HGHT -eq 0 ] && exit
+[ $HGHT -gt 10 ] && HGHT=10
 
-if [ $height -gt 10 ]; then
-	height=10
-fi
+WID=$(wmctrl -l | tr -s ' ' | cut -f 1,2,4- -d ' ' | dmenu -i -fn "Hack:size=9" -l $HGHT | cut -f 1 -d ' ')
 
-n=$height
-nd=0
-while [ "$n" -gt 0 ]; do
-	n=$(($n / 10))
-	nd=$(($nd + 1))
-done
-
-num=$(wmctrl -l | tr -s ' ' | cut -f 2,4- -d ' ' | nl -w $nd -n rn -s ' - ' | dmenu -i -fn "Hack:size=9" -l $height | cut -d '-' -f -1)
-
-if [ -z "$num" ]; then
-	exit
-fi
-
-wmctrl -l | sed -n "$num p" | cut -c -10 | xargs wmctrl -i -a
+[ -z "$WID" ] && exit ; wmctrl -i -a $WID

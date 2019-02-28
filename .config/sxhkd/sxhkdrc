@@ -46,6 +46,9 @@ super + l
 super + grave
 	~/.bin/sdmenu
 
+super + slash
+	~/.bin/dwswitch
+
 super + backslash
 	~/.bin/stmux
 

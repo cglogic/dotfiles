@@ -106,6 +106,8 @@ if ($?prompt) then
 		set promptchars = "%#"
 	endif
 
+	alias precmd 'printf "\033]0;${USER}@${HOST}:$cwd\007"'
+
 	set filec
 	set history = 1000
 	set histdup = erase

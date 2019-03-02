@@ -106,7 +106,9 @@ if ($?prompt) then
 		set promptchars = "%#"
 	endif
 
-	alias precmd 'printf "\033]0;${USER}@${HOST}:$cwd\007"'
+	if ("$tty" =~ "pts*") then
+		alias precmd 'printf "\033]0;${USER}@${HOST}:$cwd\007"'
+	endif
 
 	set filec
 	set history = 1000
@@ -124,6 +126,7 @@ if ($?prompt) then
 	set matchbeep = nomatch
 	#set correct = cmd
 	set color
+	set colorcat
 
 #	alias precmd 'history -S'
 #	alias postcmd 'history -M'

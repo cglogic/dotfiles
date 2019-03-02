@@ -59,7 +59,7 @@ super + d
 	wmctrl -d | tr -s ' ' | cut -f 1,2,9 -d ' ' | dmenu -i -fn "Hack:size=9" | cut -f 1 -d ' ' | xargs wmctrl -s
 
 super + backslash
-	~/.bin/stmux
+	flock -x -n /tmp/single-tmux.lock -c "urxvt -e tmux -2 new-session -A -s local"
 
 super + b
 	acpiconf -i 0 | grep Remaining | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo "Battery" | dzen2 -p 3

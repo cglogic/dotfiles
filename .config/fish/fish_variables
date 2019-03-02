@@ -41,6 +41,7 @@ SETUVAR _fish_abbr_mpvrt:mpv\x20\x2d\x2dno\x2dcache\x20\x2d\x2ddemuxer\x2dreadah
 SETUVAR _fish_abbr_mupdf:mupdf\x2dgl
 SETUVAR _fish_abbr_ps:ps\x20\x2dww
 SETUVAR _fish_abbr_pstree:pstree\x20\x2dg\x202
+SETUVAR _fish_abbr_rm:rm\x20\x2dI
 SETUVAR _fish_abbr_svn:svnlite
 SETUVAR _fish_abbr_sxiv:sxiv\x20\x2dabrf\x20\x2ds\x20d
 SETUVAR _fish_abbr_tree:tree\x20\x2dN

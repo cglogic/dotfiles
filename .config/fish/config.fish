@@ -1,5 +1,7 @@
 set fish_greeting
 
+set -gx PATH $PATH $HOME/.bin /usr/local/lib/qt5/bin
+
 set -gx EDITOR	kak
 set -gx PAGER	less
 

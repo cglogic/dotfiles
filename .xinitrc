@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# For fast run commands
+export SXHKD_SHELL="/bin/sh"
+
 # allow root user to run x11 programs
 xhost local:root
 

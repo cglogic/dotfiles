@@ -44,7 +44,7 @@ super + q
 	pkill -USR1 -x sxhkd
 
 super + Return
-	urxvt -e tcsh
+	urxvt
 
 super + l
 	i3lock -c 000000 -f

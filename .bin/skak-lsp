@@ -1,3 +1,0 @@
-#!/bin/sh
-
-flock -x -n /tmp/single-kak-lsp.lock -c "kak-lsp"

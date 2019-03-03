@@ -28,17 +28,11 @@ super + {s,f}
 super + bracket{left,right}
 	bspc desktop -f {prev,next}
 
-super + {1-9}
-	bspc desktop -f ^{1-9}
+super + {1-9,0}
+	bspc desktop -f ^{1-9,10}
 
-super + 0
-	bspc desktop -f ^10
-
-super + shift + {1-9}
-	id=$(bspc query -N -n); bspc node -d ^{1-9}; bspc node -f ${id}
-
-super + shift + 0
-	id=$(bspc query -N -n); bspc node -d ^10; bspc node -f ${id}
+super + shift + {1-9,0}
+	id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}
 
 super + q
 	pkill -USR1 -x sxhkd

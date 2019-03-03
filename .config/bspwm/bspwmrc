@@ -25,4 +25,4 @@ bspc config presel_border_color none
 #bspc rule -a mpv state=floating center=on desktop='^3'
 
 sxhkd &
-~/.bin/stmux
+flock -x -n /tmp/single-tmux.lock -c "urxvt -e tmux -2 new-session -A -s local"

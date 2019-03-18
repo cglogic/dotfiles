@@ -60,9 +60,9 @@ dzen2.background: #005577
 *.color7:       #c0c0c0
 
 *.color8:       #505050
-*.color9:       #c95252
+*.color9:       #d95252
 *.color10:      #92ba46
-*.color11:      #eea36f
+*.color11:      #eea35f
 *.color12:      #6f91c1
 *.color13:      #95779f
 *.color14:      #6eb1ab

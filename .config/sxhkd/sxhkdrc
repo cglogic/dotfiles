@@ -64,7 +64,7 @@ super + g
 super + v
 	~/.bin/smonitor
 
-super + Print
+Print
 	~/.bin/stouchpad
 
 super + p
@@ -104,7 +104,7 @@ super + m
 	urxvt -e cmatrix -C blue
 
 super + z
-	~/.bin/crt
+	~/.bin/sichrome
 
 super + ,
 	xset dpms force off

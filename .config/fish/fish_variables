@@ -30,8 +30,6 @@ SETUVAR _fish_abbr_alarm:doas\x20at\x20\x2df\x20\x7e/\x2ebin/alarm\x2esh
 SETUVAR _fish_abbr_c:xclip\x20\x2di
 SETUVAR _fish_abbr_df:df\x20\x2dh
 SETUVAR _fish_abbr_dfc:dfc\x20\x2dd
-SETUVAR _fish_abbr_dot:git\x20\x2d\x2dgit\x2ddir\x3d\x24HOME/\x2edotfiles/\x20\x2d\x2dwork\x2dtree\x3d\x24HOME
-SETUVAR _fish_abbr_dotls:dot\x20ls\x2dtree\x20\x2dr\x20master\x20\x2d\x2dname\x2donly
 SETUVAR _fish_abbr_e:ag\x20\x2d\x2dnocolor\x20\x2dl\x20\x2dg\x20\x22\x22\x20\x7c\x20fzy\x20\x2dp\x20\x22\u276f\x20\x22\x20\x7c\x20xargs\x20kak\x20\x2de\x20\x22delete\x2dbuffer\x20\x2astdin\x2a\x22
 SETUVAR _fish_abbr_f:ag\x20\x2d\x2dnocolor\x20\x2dl\x20\x2dg\x20\x22\x22\x20\x7c\x20fzy\x20\x2dp\x20\x22\u276f\x20\x22
 SETUVAR _fish_abbr_feh:feh\x20\x2dx\x20\x2dB\x20black\x20\x2dN\x20\x2d\x2e
@@ -40,6 +38,7 @@ SETUVAR _fish_abbr_gdb:gdb821
 SETUVAR _fish_abbr_mpvrt:mpv\x20\x2d\x2dno\x2dcache\x20\x2d\x2ddemuxer\x2dreadahead\x2dsecs\x200
 SETUVAR _fish_abbr_mupdf:mupdf\x2dgl
 SETUVAR _fish_abbr_ps:ps\x20\x2dww
+SETUVAR _fish_abbr_atop:atop\x20\x2daf\x201
 SETUVAR _fish_abbr_pstree:pstree\x20\x2dg\x202
 SETUVAR _fish_abbr_rm:rm\x20\x2dI
 SETUVAR _fish_abbr_svn:svnlite

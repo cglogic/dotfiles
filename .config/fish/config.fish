@@ -26,15 +26,22 @@ set -gx MPD_HOST	/var/mpd/socket
 set -gx LYNX_CFG	$HOME/.lynx.cfg
 #set -gx PYTHONPATH	$HOME/lib/python
 
+set -gx NNN_CONTEXT_COLORS '4231'
+set -gx NNN_RESTRICT_NAV_OPEN '1'
+set -gx NNN_USE_EDITOR '1'
+
 #set -gx FZF_DEFAULT_COMMAND	"find . -path '*/\.*' -prune -o -type f -print -o -type l -print | sed s/^..//"
 set -gx FZF_DEFAULT_COMMAND	'ag --nocolor -l -g ""'
 set -gx FZF_DEFAULT_OPTS	'--exact'
 
-set -gx CV	70
+set -gx CV	80
 set -gx CC	/usr/local/llvm$CV/bin/clang
 set -gx CXX	/usr/local/llvm$CV/bin/clang++
 set -gx CPP	/usr/local/llvm$CV/bin/clang-cpp
 set -gx LD	/usr/local/llvm$CV/bin/ld.lld
+set -gx AR	/usr/local/llvm$CV/bin/llvm-ar
+set -gx DB	/usr/local/llvm$CV/bin/lldb
+set -gx CF	/usr/local/llvm$CV/bin/clang-format
 
 set -gx LD_LIBRARY_PATH	/usr/local/llvm$CV/lib
 

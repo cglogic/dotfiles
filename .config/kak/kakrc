@@ -31,15 +31,14 @@ hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap wi
 map global normal '#' :comment-line<ret>
 
 hook global WinSetOption filetype=(c|cpp) %{
-	set-option window formatcmd '$CF'
+	set-option window formatcmd '$CF -style=file'
 }
 
-evaluate-commands %sh{
-	for filetype in c cpp; do
-		# printf "%s\n" "add-highlighter shared/$filetype/code/operator regex [\-\+=\*/%\^!~&\$@\.,:\;\(\)\{\}<>\[\]] 0:operator"
-		printf "%s\n" "add-highlighter shared/$filetype/code/operator regex (?!['\"])(?!\d\.)(?!\.\d)(\W) 0:operator"
-	done
-}
+# evaluate-commands %sh{
+# 	for filetype in c cpp; do
+# 		printf "%s\n" "add-highlighter shared/$filetype/code/operator regex (?!['\"])(?!\d\.)(?!\.\d)(\W) 0:operator"
+# 	done
+# }
 
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 

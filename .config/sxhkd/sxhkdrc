@@ -53,13 +53,13 @@ super + d
 	wmctrl -d | tr -s ' ' | cut -f 1,2,9 -d ' ' | dmenu -i -fn "Hack:size=9" | cut -f 1 -d ' ' | xargs wmctrl -s
 
 super + backslash
-	flock -x -n /tmp/single-tmux.lock -c "urxvt -e tmux -2 new-session -A -s local"
+	lockf -t 0 /tmp/single-tmux.lock urxvt -e tmux -2 new-session -A -s local
 
 super + b
-	acpiconf -i 0 | grep Remaining | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo "Battery" | dzen2 -p 3
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "acpiconf -i 0 | grep Remaining | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo 'Battery' | dzen2 -p 3"
 
 super + g
-	~/.bin/schrome
+	lockf -t 0 /tmp/single-chromium.lock ~/.bin/schrome
 
 super + v
 	~/.bin/smonitor
@@ -71,40 +71,40 @@ super + p
 	printscreen
 
 super + a
-	date | dzen2 -p 3
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "date | dzen2 -p 3"
 
 super + e
-	uptime | cut -f 1- -d ' ' | paste -s -d ' ' - | dzen2 -p 3
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "uptime | cut -f 1- -d ' ' | paste -s -d ' ' - | dzen2 -p 3"
 
 super + i
-	xclip -o | cut -f 1- -d ' ' | paste -s -d ' ' - | dzen2 -p 3
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "xclip -o | cut -f 1- -d ' ' | paste -s -d ' ' - | dzen2 -p 3"
 
 super + o
-	mixer -s | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 3
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "mixer -s | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 3"
 
 super + minus
-	[ `mixer -S pcm | cut -f 3 -d ':'` -eq 0 ] && exit ; mixer pcm -5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "[ `mixer -S pcm | cut -f 3 -d ':'` -eq 0 ] && exit ; mixer pcm -5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 1"
 
 super + equal
-	[ `mixer -S pcm | cut -f 3 -d ':'` -eq 100 ] && exit ; mixer pcm +5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "[ `mixer -S pcm | cut -f 3 -d ':'` -eq 100 ] && exit ; mixer pcm +5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 1"
 
 super + BackSpace
-	[ `mixer -S pcm | cut -f 3 -d ':'` -eq 0 ] && exit ; mixer pcm 0 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo "Mixer" | dzen2 -p 1
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "[ `mixer -S pcm | cut -f 3 -d ':'` -eq 0 ] && exit ; mixer pcm 0 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 1"
 
 super + u
-	sysctl dev.cpu | grep temperature | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo "CPU" | dzen2 -p 3
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "sysctl dev.cpu | grep temperature | cut -f 2 -d ' ' | paste -s -d ' ' - | xargs echo 'CPU' | dzen2 -p 3"
 
 super + h
 	~/.bin/swall
 
 super + t
-	flock -x -n /tmp/single-telegram.lock -c "telegram-desktop"
+	lockf -t 0 /tmp/single-telegram.lock telegram-desktop
 
 super + m
 	urxvt -e cmatrix -C blue
 
 super + z
-	~/.bin/sichrome
+	lockf -t 0 /tmp/single-chromium.lock ~/.bin/sichrome
 
 super + ,
 	xset dpms force off

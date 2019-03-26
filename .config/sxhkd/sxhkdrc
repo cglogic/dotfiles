@@ -83,10 +83,10 @@ super + o
 	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "mixer -s | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 3"
 
 super + minus
-	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "[ `mixer -S pcm | cut -f 3 -d ':'` -eq 0 ] && exit ; mixer pcm -5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 1"
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "[ `mixer -S pcm | cut -f 3 -d ':'` -eq 0 ] && exit ; mixer pcm -10 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 1"
 
 super + equal
-	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "[ `mixer -S pcm | cut -f 3 -d ':'` -eq 100 ] && exit ; mixer pcm +5 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 1"
+	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "[ `mixer -S pcm | cut -f 3 -d ':'` -eq 100 ] && exit ; mixer pcm +10 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 1"
 
 super + BackSpace
 	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "[ `mixer -S pcm | cut -f 3 -d ':'` -eq 0 ] && exit ; mixer pcm 0 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 1"

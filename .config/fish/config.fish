@@ -14,7 +14,18 @@ set -gx LESS	-SR
 
 set -gx GREP_OPTIONS	--color=auto
 
-set -gx MANPAGER	most
+set -gx MANPAGER less
+
+set -gx LESS_TERMCAP_mb (printf "\033[31m") # begin blinking
+set -gx LESS_TERMCAP_md (printf "\033[33m") # begin bold
+set -gx LESS_TERMCAP_me (printf "\033[0m")  # end mode
+set -gx LESS_TERMCAP_se (printf "\033[0m")  # end standout-mode
+set -gx LESS_TERMCAP_so (printf "\033[35m") # begin standout-mode - info box
+set -gx LESS_TERMCAP_ue (printf "\033[0m")  # end underline
+set -gx LESS_TERMCAP_us (printf "\033[32m") # begin underline
+
+set -gx LESS_TERMCAP_xx (printf "\033[0m") # For stop coloring output of env
+
 set -gx MANPATH		:$HOME/.man
 set -gx MANCOLOR	yes
 set -gx MANWIDTH	tty

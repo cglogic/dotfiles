@@ -21,12 +21,13 @@ hook global InsertEnd .* %{ unmap window insert <a-space> <c-o> }
 hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p>; execute-keys <c-o> }
 
-# hook global WinSetOption filetype=(c|cpp) %{
+hook global WinSetOption filetype=(c|cpp) %{
+	set-option global tabstop 4
 # 	clang-enable-autocomplete
 # 	clang-enable-diagnostics
 # 	alias window lint clang-parse
 # 	alias window lint-next-error clang-diagnostics-next
-# }
+}
 
 map global normal '#' :comment-line<ret>
 
@@ -34,10 +35,9 @@ hook global WinSetOption filetype=(c|cpp) %{
 	set-option window formatcmd '$CF -style=file'
 }
 
-# evaluate-commands %sh{
-# 	for filetype in c cpp; do
-# 		printf "%s\n" "add-highlighter shared/$filetype/code/operator regex (?!['\"])(?!\d\.)(?!\.\d)(\W) 0:operator"
-# 	done
+# hook global WinCreate .*\.(h|hh|hxx|hpp|c|cc|cxx|cpp) %{
+# hook global WinCreate .* %{
+	# add-highlighter window/operators regex (\W) 0:operator
 # }
 
 source "%val{config}/plugins/plug.kak/rc/plug.kak"

@@ -1,28 +1,5 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export BLOCKSIZE:K
-SETUVAR --export CC:/usr/local/llvm70/bin/clang
-SETUVAR --export CLICOLOR:\x1d
-SETUVAR --export CPP:/usr/local/llvm70/bin/clang\x2dcpp
-SETUVAR --export CV:70
-SETUVAR --export CXX:/usr/local/llvm70/bin/clang\x2b\x2b
-SETUVAR --export EDITOR:kak
-SETUVAR --export FZF_DEFAULT_COMMAND:ag\x20\x2d\x2dnocolor\x20\x2dl\x20\x2dg\x20\x22\x22
-SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dexact
-SETUVAR --export GIT_PAGER:cat
-SETUVAR --export GREP_OPTIONS:\x2d\x2dcolor\x3dauto
-SETUVAR --export LD:/usr/local/llvm70/bin/ld\x2elld
-SETUVAR --export --path LD_LIBRARY_PATH:/usr/local/llvm70/lib
-SETUVAR --export LESS:\x2dSR
-SETUVAR --export LSCOLORS:ExGxFxdxCxDxDxBxBxExEx
-SETUVAR --export LYNX_CFG:/home/gor/\x2elynx\x2ecfg
-SETUVAR --export MANCOLOR:yes
-SETUVAR --export MANPAGER:most
-SETUVAR --export --path MANPATH:\x1e/home/gor/\x2eman
-SETUVAR --export MANWIDTH:tty
-SETUVAR --export MPD_HOST:/var/mpd/socket
-SETUVAR --export PAGER:less
-SETUVAR --export SXHKD_SHELL:/bin/sh
 SETUVAR __fish_classic_git_prompt_initialized:\x1d
 SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d

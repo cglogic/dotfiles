@@ -50,7 +50,7 @@ super + slash
 	~/.bin/dwswitch
 
 super + d
-	wmctrl -d | tr -s ' ' | cut -f 1,2,9 -d ' ' | dmenu -i -fn "Hack:size=9" | cut -f 1 -d ' ' | xargs wmctrl -s
+	wmctrl -d | tr -s ' ' | cut -f 1,2,9 -d ' ' | dmenu -i -fn 'Hack:size=9' | cut -f 1 -d ' ' | xargs wmctrl -s
 
 super + backslash
 	lockf -t 0 /tmp/single-tmux.lock urxvt -e tmux -2 new-session -A -s local

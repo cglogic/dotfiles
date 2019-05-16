@@ -1,4 +1,5 @@
 set fish_greeting
+umask 77
 
 set -gx PATH /sbin /bin /usr/sbin /usr/bin /usr/local/sbin /usr/local/bin $HOME/.bin /usr/local/lib/qt5/bin
 
@@ -16,11 +17,11 @@ set -gx GREP_OPTIONS	--color=auto
 
 set -gx MANPAGER less
 
-set -gx LESS_TERMCAP_mb (printf "\033[31m") # begin blinking
+set -gx LESS_TERMCAP_mb (printf "\033[35m") # begin blinking
 set -gx LESS_TERMCAP_md (printf "\033[33m") # begin bold
 set -gx LESS_TERMCAP_me (printf "\033[0m")  # end mode
 set -gx LESS_TERMCAP_se (printf "\033[0m")  # end standout-mode
-set -gx LESS_TERMCAP_so (printf "\033[35m") # begin standout-mode - info box
+set -gx LESS_TERMCAP_so (printf "\033[31m") # begin standout-mode - info box
 set -gx LESS_TERMCAP_ue (printf "\033[0m")  # end underline
 set -gx LESS_TERMCAP_us (printf "\033[32m") # begin underline
 

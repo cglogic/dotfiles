@@ -9,9 +9,7 @@ setopt HIST_IGNORE_DUPS
 umask 77
 
 # Colors for completion
-ZLS_COLORS="no=00:fi=00:di=01;34:ln=01;36:\
-pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:\
-ex=01;32:lc=\e[:rm=m:tc=00:sp=00:ma=07:hi=00:du=00"
+ZLS_COLORS="no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:ex=01;32:lc=\e[:rm=m:tc=00:sp=00:ma=07:hi=00:du=00"
 
 zstyle ':completion:*' list-colors ${(s.:.)ZLS_COLORS}
 
@@ -106,7 +104,7 @@ export CT=/usr/local/llvm$CV/bin/clang-tidy
 export LD_LIBRARY_PATH=/usr/local/llvm$CV/lib
 
 # Autoloads
-autoload -Uz compinit && compinit
+autoload -U compinit && compinit
 autoload -U promptinit && promptinit
 autoload -U colors && colors
 
@@ -176,17 +174,16 @@ bindkey '^I' tcsh_autolist
 unsetopt always_last_prompt
 
 # Update x11 window title
-wht=`tty`
+if [[ `tty` =~ "pts*" ]]; then
 function precmd {
-	if [[ $wht =~ "pts*" ]]; then
-		print -Pn "\033]0;${USER}@${HOST}:%~\007"
-	fi
+	print -Pn "\033]0;${USER}@${HOST}:%~\007"
 }
+fi
 
 # Custom prompt if we connected via ssh
 if [[ -v SSH_CONNECTION ]]; then
 	PROMPT="%{$fg[red]%}$USER$reset_color@%{$fg[yellow]%}$HOST %{$fg[cyan]%}%1~$reset_color %{$fg[red]%}❯%{$fg[yellow]%}❯%{$fg[green]%}❯$reset_color "
-elif [[ $wht =~ "pts*" ]]; then
+elif [[ `tty` =~ "pts*" ]]; then
 	PROMPT="%{$fg[cyan]%}%1~$reset_color %{$fg[red]%}❯%{$fg[yellow]%}❯%{$fg[green]%}❯$reset_color "
 else
 	PROMPT="%{$fg[cyan]%}%1~$reset_color %{$fg[red]%}>%{$fg[yellow]%}>%{$fg[green]%}>$reset_color "

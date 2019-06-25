@@ -176,17 +176,17 @@ unsetopt always_last_prompt
 # Update x11 window title
 if [[ `tty` =~ "pts*" ]]; then
 function precmd {
-	print -Pn "\033]0;${USER}@${HOST}:%~\007"
+	print -Pn "\033]0;%n@%m:%~\007"
 }
 fi
 
 # Custom prompt if we connected via ssh
 if [[ -v SSH_CONNECTION ]]; then
-	PROMPT="%{$fg[red]%}$USER$reset_color@%{$fg[yellow]%}$HOST %{$fg[cyan]%}%1~$reset_color %{$fg[red]%}❯%{$fg[yellow]%}❯%{$fg[green]%}❯$reset_color "
+	PROMPT="%F{magenta}%n%f@%F{blue}%m%f %F{cyan}%1~%f %F{red}❯%F{yellow}❯%F{green}❯%f "
 elif [[ `tty` =~ "pts*" ]]; then
-	PROMPT="%{$fg[cyan]%}%1~$reset_color %{$fg[red]%}❯%{$fg[yellow]%}❯%{$fg[green]%}❯$reset_color "
+	PROMPT="%F{cyan}%1~%f %F{red}❯%F{yellow}❯%F{green}❯%f "
 else
-	PROMPT="%{$fg[cyan]%}%1~$reset_color %{$fg[red]%}>%{$fg[yellow]%}>%{$fg[green]%}>$reset_color "
+	PROMPT="%F{cyan}%1~%f %F{red}>%F{yellow}>%F{green}>%f "
 fi
 
 # Run tmux if we connected via ssh

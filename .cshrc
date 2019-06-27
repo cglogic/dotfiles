@@ -47,7 +47,7 @@ umask 77
 setenv	EDITOR		kak
 setenv	PAGER		less
 setenv	BLOCKSIZE       K
-setenv	LSCOLORS 	ExGxFxdxCxDxDxBxBxExEx
+setenv	LSCOLORS 	exgxfxdxcxdxdxbxbxexex
 setenv	CLICOLOR
 
 #setenv	TOP		-CHP

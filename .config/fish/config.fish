@@ -7,7 +7,7 @@ set -gx EDITOR	kak
 set -gx PAGER	less
 
 set -gx BLOCKSIZE	K
-set -gx LSCOLORS	ExGxFxdxCxDxDxBxBxExEx
+set -gx LSCOLORS	exgxfxdxcxdxdxbxbxexex
 set -gx CLICOLOR
 
 # set -gx TOP -CHP

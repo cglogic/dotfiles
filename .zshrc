@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -87,7 +89,6 @@ export NNN_CONTEXT_COLORS='4231'
 export NNN_RESTRICT_NAV_OPEN='1'
 export NNN_USE_EDITOR='1'
 
-#export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -prune -o -type f -print -o -type l -print | sed s/^..//"
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
@@ -103,14 +104,27 @@ export CT=/usr/local/llvm$CV/bin/clang-tidy
 
 export LD_LIBRARY_PATH=/usr/local/llvm$CV/lib
 
-# Autoloads
-autoload -U compinit && compinit
-autoload -U promptinit && promptinit
-autoload -U colors && colors
+# Perform compinit only once a day.
+autoload -Uz compinit
+setopt EXTENDEDGLOB
+if [[ -n $HOME/.zcompdump(#qN.mh+24) ]]; then
+	compinit
+	$(touch -m $HOME/.zcompdump)
+else
+	compinit -C
+fi
+unsetopt EXTENDEDGLOB
 
-# zstyle :compinstall filename '/home/gor/.zshrc'
+# Execute code in the background to not affect the current session
+{
+	# Compile zcompdump, if modified, to increase startup speed.
+	dump="$HOME/.zcompdump"
+	if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+		zcompile "$dump"
+	fi
+} &!
 
-# create a zkbd compatible hash;
+# Create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
 
@@ -174,7 +188,7 @@ bindkey '^I' tcsh_autolist
 unsetopt always_last_prompt
 
 # Update x11 window title
-if [[ `tty` =~ "pts*" ]]; then
+if [[ $(tty) =~ "pts*" ]]; then
 function precmd {
 	print -Pn "\033]0;%n@%m:%~\007"
 }
@@ -183,7 +197,7 @@ fi
 # Custom prompt if we connected via ssh
 if [[ -v SSH_CONNECTION ]]; then
 	PROMPT="%F{magenta}%n%f@%F{blue}%m%f %F{cyan}%1~%f %F{red}❯%F{yellow}❯%F{green}❯%f "
-elif [[ `tty` =~ "pts*" ]]; then
+elif [[ $(tty) =~ "pts*" ]]; then
 	PROMPT="%F{cyan}%1~%f %F{red}❯%F{yellow}❯%F{green}❯%f "
 else
 	PROMPT="%F{cyan}%1~%f %F{red}>%F{yellow}>%F{green}>%f "
@@ -193,3 +207,5 @@ fi
 if [[ (! -v TMUX) && (-v SSH_TTY) ]]; then
 	exec tmux -2 new-session -A -s remote
 fi
+
+# zprof

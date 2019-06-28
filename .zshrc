@@ -56,7 +56,7 @@ export PAGER=less
 
 export BLOCKSIZE=K
 export LSCOLORS=exgxfxdxcxdxdxbxbxexex
-export CLICOLOR
+export CLICOLOR=
 
 # export TOP=-CHP
 export LESS=-SR

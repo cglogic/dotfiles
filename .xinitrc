@@ -3,6 +3,9 @@
 # For fast run commands
 export SXHKD_SHELL="/bin/sh"
 
+# For mpc
+export MPD_HOST=/var/mpd/socket
+
 # allow root user to run x11 programs
 xhost local:root
 

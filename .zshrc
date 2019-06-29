@@ -5,8 +5,12 @@ HISTSIZE=1000
 SAVEHIST=1000
 bindkey -v
 
-setopt HIST_IGNORE_DUPS
-# setopt autocd autopushd
+setopt APPEND_HISTORY
+# setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+# setopt NUMERIC_GLOB_SORT
 
 umask 77
 
@@ -49,7 +53,21 @@ alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dotls='dot ls-tree -r master --name-only'
 
 # Environment variables
-export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/.bin:/usr/local/lib/qt5/bin
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+
+if [[ -d /usr/local/lib/qt5/bin ]]; then
+	PATH=$PATH:/usr/local/lib/qt5/bin
+fi
+
+if [[ -d $HOME/.bin ]]; then
+	PATH=$PATH:$HOME/.bin
+fi
+
+if [[ -d $HOME/depot_tools ]]; then
+	PATH=$PATH:$HOME/depot_tools
+fi
+
+export PATH=$PATH
 
 export EDITOR=kak
 export PAGER=less
@@ -196,11 +214,11 @@ fi
 
 # Custom prompt if we connected via ssh
 if [[ -v SSH_CONNECTION ]]; then
-	PROMPT="%F{magenta}%n%f@%F{blue}%m%f %F{cyan}%1~%f %F{red}❯%F{yellow}❯%F{green}❯%f "
+	PROMPT="%F{magenta}%n%f@%F{blue}%m%f %F{cyan}%1~%f %(?,%F{red}❯,%F{green}❯)%F{yellow}❯%(?,%F{green}❯,%F{red}❯)%f "
 elif [[ $(tty) =~ "pts*" ]]; then
-	PROMPT="%F{cyan}%1~%f %F{red}❯%F{yellow}❯%F{green}❯%f "
+	PROMPT="%F{cyan}%1~%f %(?,%F{red}❯,%F{green}❯)%F{yellow}❯%(?,%F{green}❯,%F{red}❯)%f "
 else
-	PROMPT="%F{cyan}%1~%f %F{red}>%F{yellow}>%F{green}>%f "
+	PROMPT="%F{cyan}%1~%f %(?,%F{red}>,%F{green}>)%F{yellow}>%(?,%F{green}>,%F{red}>)%f "
 fi
 
 # Run tmux if we connected via ssh

@@ -53,18 +53,18 @@ alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dotls='dot ls-tree -r master --name-only'
 
 # Environment variables
-PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
 if [[ -d /usr/local/lib/qt5/bin ]]; then
-	PATH=$PATH:/usr/local/lib/qt5/bin
+	PATH=/usr/local/lib/qt5/bin:$PATH
 fi
 
 if [[ -d $HOME/.bin ]]; then
-	PATH=$PATH:$HOME/.bin
+	PATH=$HOME/.bin:$PATH
 fi
 
 if [[ -d $HOME/depot_tools ]]; then
-	PATH=$PATH:$HOME/depot_tools
+	PATH=$HOME/depot_tools:$PATH
 fi
 
 export PATH=$PATH
@@ -206,7 +206,8 @@ bindkey '^I' tcsh_autolist
 unsetopt always_last_prompt
 
 # Update x11 window title
-if [[ $(tty) =~ "pts*" ]]; then
+# if [[ $(tty) =~ "pts*" ]]; then
+if [[ -v X11 || -v SSH_CONNECTION ]]; then
 function precmd {
 	print -Pn "\033]0;%n@%m:%~\007"
 }
@@ -215,7 +216,7 @@ fi
 # Custom prompt if we connected via ssh
 if [[ -v SSH_CONNECTION ]]; then
 	PROMPT="%F{magenta}%n%f@%F{blue}%m%f %F{cyan}%1~%f %(?,%F{red}❯,%F{green}❯)%F{yellow}❯%(?,%F{green}❯,%F{red}❯)%f "
-elif [[ $(tty) =~ "pts*" ]]; then
+elif [[ -v X11 ]]; then
 	PROMPT="%F{cyan}%1~%f %(?,%F{red}❯,%F{green}❯)%F{yellow}❯%(?,%F{green}❯,%F{red}❯)%f "
 else
 	PROMPT="%F{cyan}%1~%f %(?,%F{red}>,%F{green}>)%F{yellow}>%(?,%F{green}>,%F{red}>)%f "

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# To determine X11
+export X11=xorg
+
 # For fast run commands
 export SXHKD_SHELL="/bin/sh"
 

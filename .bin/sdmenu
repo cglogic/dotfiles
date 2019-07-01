@@ -3,14 +3,24 @@
 # cat ~/.dmenu_history | dmenu -i -fn "Hack:size=14" "$@" | ${SHELL:-"/bin/sh"} &
 
 HISTORY="$HOME/.dmenu_history"
+CACHE="$HOME/.dmenu_cache"
+
 test -f "$HISTORY" || touch "$HISTORY"
-CMD=$(dmenu -i -fn "Hack:size=9" "$@" < "$HISTORY")
-test -n "$CMD"
+
+IFS=:
+if stest -dqr -n "$CACHE" $PATH; then
+	stest -flx $PATH | sort -u | tee "$CACHE"
+fi
+
+CMD=$( (cat "$HISTORY" ; cat "$CACHE") | dmenu -i -fn "Hack:size=9" "$@" )
+
+# exit if null input
+test -z "$CMD" && exit 1
 
 # test if CMD exist in $PATH
 if hash $(echo "$CMD" | cut -f1 -d ' ') >/dev/null 2>&1; then
 	# write input to history
-	if ! grep -q "$CMD" "$HISTORY"; then
+	if (! grep -q "$CMD" "$HISTORY") && (! grep -q -x "$CMD" "$CACHE"); then
 		echo "$CMD" >> "$HISTORY"
 		sort "$HISTORY" -o "$HISTORY" &
 	fi

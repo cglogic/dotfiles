@@ -53,18 +53,18 @@ alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dotls='dot ls-tree -r master --name-only'
 
 # Environment variables
-PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
 if [[ -d /usr/local/lib/qt5/bin ]]; then
-	PATH=/usr/local/lib/qt5/bin:$PATH
+	PATH=$PATH:/usr/local/lib/qt5/bin
 fi
 
 if [[ -d $HOME/.bin ]]; then
-	PATH=$HOME/.bin:$PATH
+	PATH=$PATH:$HOME/.bin
 fi
 
 if [[ -d $HOME/depot_tools ]]; then
-	PATH=$HOME/depot_tools:$PATH
+	PATH=$PATH:$HOME/depot_tools
 fi
 
 export PATH=$PATH

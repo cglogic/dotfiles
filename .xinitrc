@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Reverse PATH
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+# Set PATH
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
 # To determine X11
 export X11=xorg

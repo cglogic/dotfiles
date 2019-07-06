@@ -22,9 +22,10 @@ zstyle ':completion:*' list-colors ${(s.:.)ZLS_COLORS}
 # Aliases
 # alias h='history 25'
 alias j='jobs -l'
-alias la='ls -aF'
-alias lf='ls -FA'
-alias ll='ls -lAFh'
+alias ls='ls -H'
+alias la='ls -aFH'
+alias lf='ls -FAH'
+alias ll='ls -lAFhH'
 alias c='xclip -i'
 alias v='xclip -o'
 

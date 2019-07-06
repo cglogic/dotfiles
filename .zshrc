@@ -19,13 +19,14 @@ ZLS_COLORS="no=00:fi=00:di=34:ln=36:pi=33:so=35:bd=33:cd=33:ex=32:lc=\e[:rm=m:tc
 
 zstyle ':completion:*' list-colors ${(s.:.)ZLS_COLORS}
 
+zle_highlight[(r)suffix:*]="suffix:fg=cyan"
+
 # Aliases
 # alias h='history 25'
 alias j='jobs -l'
-alias ls='ls -H'
-alias la='ls -aFH'
-alias lf='ls -FAH'
-alias ll='ls -lAFhH'
+alias la='ls -aF'
+alias lf='ls -FA'
+alias ll='ls -lAFh'
 alias c='xclip -i'
 alias v='xclip -o'
 

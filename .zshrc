@@ -11,6 +11,9 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 # setopt NUMERIC_GLOB_SORT
+setopt LIST_PACKED
+unsetopt LIST_TYPES
+unsetopt ALWAYS_LAST_PROMPT
 
 umask 77
 
@@ -18,6 +21,9 @@ umask 77
 ZLS_COLORS="no=00:fi=00:di=34:ln=36:pi=33:so=35:bd=33:cd=33:ex=32:lc=\e[:rm=m:tc=00:sp=00:ma=07:hi=00:du=00:ow=34:tw=34:su=31:sg=31"
 
 zstyle ':completion:*' list-colors ${(s.:.)ZLS_COLORS}
+zstyle ':completion:*' list-prompt ''
+zstyle ':completion:*' select-prompt ''
+zstyle ':completion:*' insert-tab false
 
 zle_highlight[(r)suffix:*]="suffix:fg=cyan"
 
@@ -27,7 +33,7 @@ alias j='jobs -l'
 alias la='ls -aF'
 alias lf='ls -FA'
 alias ll='ls -lAFh'
-alias c='xclip -i'
+alias c='xclip -i -f -selection primary | xclip -i -selection clipboard'
 alias v='xclip -o'
 
 #alias grep='grep --color=auto'
@@ -204,8 +210,6 @@ tcsh_autolist() {
 
 zle -N tcsh_autolist
 bindkey '^I' tcsh_autolist
-
-unsetopt always_last_prompt
 
 # Update x11 window title
 # if [[ $(tty) =~ "pts*" ]]; then

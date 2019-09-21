@@ -118,7 +118,7 @@ export NNN_USE_EDITOR='1'
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
-CV=80
+CV=90
 export CC=/usr/local/llvm$CV/bin/clang
 export CXX=/usr/local/llvm$CV/bin/clang++
 export CPP=/usr/local/llvm$CV/bin/clang-cpp

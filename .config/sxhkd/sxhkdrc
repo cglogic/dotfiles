@@ -7,6 +7,9 @@ super + w
 super + Tab
 	bspc node focused -f next.local
 
+super + space
+	bspc node focused -f next.local
+
 super + shift + Tab
 	bspc node focused -f prev.local
 

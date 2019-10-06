@@ -10,16 +10,22 @@ super + Tab
 super + space
 	bspc node focused -f next.local
 
+super + Next
+	bspc node focused -f next.local
+
 super + shift + Tab
+	bspc node focused -f prev.local
+
+super + Prior
 	bspc node focused -f prev.local
 
 super + {j,k}
 	bspc node @/ -R {90,-90}
 
-super + c
+super + BackSpace
 	bspc node focused --close
 
-super + x
+super + Delete
 	bspc node focused --kill
 
 super + Escape
@@ -47,6 +53,9 @@ super + l
 	i3lock -c 000000 -f
 
 super + grave
+	~/.bin/sdmenu
+
+super + Insert
 	~/.bin/sdmenu
 
 super + slash
@@ -94,7 +103,7 @@ super + minus
 super + equal
 	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "[ `mixer -S pcm | cut -f 3 -d ':'` -eq 100 ] && exit ; mixer pcm +10 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 1"
 
-super + BackSpace
+super + x
 	lockf -t 0 /tmp/single-dzen.lock /bin/sh -c "[ `mixer -S pcm | cut -f 3 -d ':'` -eq 0 ] && exit ; mixer pcm 0 ; mixer -s pcm | cut -f 1- -d ' ' | xargs echo 'Mixer' | dzen2 -p 1"
 
 super + u

@@ -49,21 +49,13 @@ hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 	done
 }}}
 
-# source "%val{config}/plugins/plug.kak/rc/plug.kak"
+map global normal '<space>' :bn<ret>
+map global normal '<del>' :db<ret>
+map global normal ';' :
+# map global normal '<ret>' :make<ret>
 
-# plug "andreyorst/fzf.kak" "branch: fzy" %{
-# 	set-option global fzf_implementation 'fzy'
-# 	map global normal ';' ': fzf-mode<ret>'
-# 	set-option global fzf_file_command 'ag --nocolor -l -g .'
-# 	set-option global fzf_preview false
-# }
-
-# plug "andreyorst/powerline.kak" %{
-# 	hook -once global WinCreate .* %{
-# 		powerline-theme tomorrow-night
-# 		powerline-separator none
-# 		powerline-format line_column position git bufname filetype mode_info
-# 		powerline-toggle position off
-# 		powerline-toggle git off
-# 	}
+# hook global BufCreate '^\*make\*$' %{
+# 	hook -once buffer NormalKey '<del>' %{ try %{
+# 		delete-buffer *make*
+# 	}}
 # }

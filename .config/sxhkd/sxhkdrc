@@ -77,7 +77,7 @@ super + F7
 	lockf -s -t 0 /tmp/single-monitors.lock /bin/sh -c '~/.bin/smonitor ; echo "Detect monitors!" | dzen2 -p 2'
 
 Print
-	lockf -t 0 /tmp/single-touchpad.lock /bin/sh -c '~/.bin/stouchpad ; echo "Touchpad switched!" | dzen2 -p 1'
+	lockf -t 0 /tmp/single-touchpad.lock /bin/sh -c '~/.bin/stouchpad ; sleep 1'
 
 XF86WakeUp
 	bspc node focused -f next.local

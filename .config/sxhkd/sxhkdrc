@@ -31,8 +31,8 @@ super + Delete
 super + Escape
 	bspc quit
 
-super + {minus,equal}
-	bspc desktop -l {tiled,monocle}
+# super + {minus,equal}
+	# bspc desktop -l {tiled,monocle}
 
 super + bracket{left,right}
 	bspc desktop -f {prev,next}
@@ -46,8 +46,8 @@ super + shift + {1-9,0}
 super + q
 	pkill -USR1 -x sxhkd
 
-super + Return
-	urxvt
+super + backslash
+	bspc desktop -l monocle ; test $? -ne 0 && bspc desktop -l tiled
 
 super + l
 	i3lock -c 000000 -f
@@ -56,7 +56,7 @@ super + grave
 	~/.bin/sdmenu
 
 super + Insert
-	~/.bin/sdmenu
+	urxvt
 
 super + slash
 	~/.bin/dwswitch
@@ -64,74 +64,74 @@ super + slash
 super + d
 	wmctrl -d | tr -s " " | cut -f 1,2,9 -d " " | dmenu -i -fn "Hack:size=9" | cut -f 1 -d " " | xargs wmctrl -s
 
-super + backslash
-	lockf -s -t 0 /tmp/single-tmux.lock urxvt -e tmux -2 new-session -A -s local ; test $? -ne 0 && echo "Already running or execution error!" | dzen2 -p 2
+super + Return
+	lockf -s -t 0 /tmp/single-tmux.lock urxvt -e tmux -2 new-session -A -s local ; test $? -ne 0 && wmctrl -a "tmux:`hostname`:local"
 
 super + b
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'acpiconf -i 0 | grep Remaining | cut -f 2 -d " " | paste -s -d " " - | xargs echo "Battery" | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-battery.lock /bin/sh -c 'acpiconf -i 0 | grep Remaining | cut -f 2 -d " " | paste -s -d " " - | xargs echo "Battery" | dzen2 -p 2'
 
 super + g
-	lockf -t 0 /tmp/single-chromium.lock ~/.bin/schrome ; test $? -ne 0 && echo "Already running or execution error!" | dzen2 -p 2
+	lockf -t 0 /tmp/single-chromium.lock ~/.bin/schrome ; test $? -ne 0 && wmctrl -a " - Chromium"
 
 super + F7
-	~/.bin/smonitor
+	lockf -s -t 0 /tmp/single-monitors.lock /bin/sh -c '~/.bin/smonitor ; echo "Detect monitors!" | dzen2 -p 2'
 
 Print
-	~/.bin/stouchpad
+	lockf -t 0 /tmp/single-touchpad.lock /bin/sh -c '~/.bin/stouchpad ; echo "Touchpad switched!" | dzen2 -p 1'
 
 XF86WakeUp
 	bspc node focused -f next.local
 
 super + p
-	printscreen ; echo 'Saved into ~/.screenshots' | dzen2 -p 2
+	lockf -s -t 0 /tmp/single-screenshot.lock /bin/sh -c 'printscreen ; echo "Saved into ~/.screenshots" | dzen2 -p 1'
 
 super + n
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'xdotool getactivewindow | xargs xdotool getwindowname | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-winname.lock /bin/sh -c 'xdotool getactivewindow | xargs xdotool getwindowname | dzen2 -p 2'
 
 super + a
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'date | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-date.lock /bin/sh -c 'date | dzen2 -p 2'
 
 super + e
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'uptime | cut -f 1- -d " " | paste -s -d " " - | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-uptime.lock /bin/sh -c 'uptime | cut -f 1- -d " " | paste -s -d " " - | dzen2 -p 2'
 
 super + i
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'xclip -o | cut -f 1- -d " " | paste -s -d " " - | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-xclip.lock /bin/sh -c 'xclip -o | cut -f 1- -d " " | paste -s -d " " - | dzen2 -p 2'
 
 super + F4
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'mixer -s | cut -f 1- -d " " | xargs echo "Mixer" | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-mixer.lock /bin/sh -c 'mixer -s | cut -f 1- -d " " | xargs echo "Mixer" | dzen2 -p 2'
 
 super + F2
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'test `mixer -S pcm | cut -f 3 -d ":"` -eq 0 && echo "Minimum" | dzen2 -p 1 && exit ; mixer -S pcm -10 ; mixer -S pcm | cut -f 3 -d ":" | xargs echo "Mixer" | dzen2 -p 1 &'
+	lockf -s -t 0 /tmp/single-voldec.lock /bin/sh -c 'test `mixer -S pcm | cut -f 3 -d ":"` -eq 0 && echo "Minimum" | dzen2 -p 1 && exit ; mixer -S pcm -10 ; mixer -S pcm | cut -f 3 -d ":" | xargs echo "Mixer" | dzen2 -p 1 &'
 
 super + F3
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'test `mixer -S pcm | cut -f 3 -d ":"` -eq 100 && echo "Maximum" | dzen2 -p 1 && exit ; mixer -S pcm +10 ; mixer -S pcm | cut -f 3 -d ":" | xargs echo "Mixer" | dzen2 -p 1 &'
+	lockf -s -t 0 /tmp/single-volinc.lock /bin/sh -c 'test `mixer -S pcm | cut -f 3 -d ":"` -eq 100 && echo "Maximum" | dzen2 -p 1 && exit ; mixer -S pcm +10 ; mixer -S pcm | cut -f 3 -d ":" | xargs echo "Mixer" | dzen2 -p 1 &'
 
 super + F1
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'test `mixer -S pcm | cut -f 3 -d ":"` -eq 0 && echo "Muted" | dzen2 -p 1 && exit ; mixer -S pcm 0 ; mixer -S pcm | cut -f 3 -d ":" | xargs echo "Mixer" | dzen2 -p 1 &'
+	lockf -s -t 0 /tmp/single-mute.lock /bin/sh -c 'test `mixer -S pcm | cut -f 3 -d ":"` -eq 0 && echo "Muted" | dzen2 -p 1 && exit ; mixer -S pcm 0 ; mixer -S pcm | cut -f 3 -d ":" | xargs echo "Mixer" | dzen2 -p 1 &'
 
 super + F5
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'BR=`sysctl -n hw.acpi.video.lcd0.brightness` ; test $BR -eq 0 && echo "Minimum" | dzen2 -p 1 && exit ; test $BR -lt 10 && BR=10 ; doas -n sysctl -n hw.acpi.video.lcd0.brightness=`expr $BR - 10` | cut -f 3 -d " " | xargs echo 'Brightness' | dzen2 -p 1 &'
+	lockf -s -t 0 /tmp/single-brigdec.lock /bin/sh -c 'BR=`sysctl -n hw.acpi.video.lcd0.brightness` ; test $BR -eq 0 && echo "Minimum" | dzen2 -p 1 && exit ; test $BR -lt 10 && BR=10 ; doas -n sysctl -n hw.acpi.video.lcd0.brightness=`expr $BR - 10` | cut -f 3 -d " " | xargs echo 'Brightness' | dzen2 -p 1 &'
 
 super + F6
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'BR=`sysctl -n hw.acpi.video.lcd0.brightness` ; test $BR -eq 100 && echo "Maximum" | dzen2 -p 1 && exit ; test $BR -gt 90 && BR=90 ; doas -n sysctl -n hw.acpi.video.lcd0.brightness=`expr $BR + 10` | cut -f 3 -d " " | xargs echo 'Brightness' | dzen2 -p 1 &'
+	lockf -s -t 0 /tmp/single-briginc.lock /bin/sh -c 'BR=`sysctl -n hw.acpi.video.lcd0.brightness` ; test $BR -eq 100 && echo "Maximum" | dzen2 -p 1 && exit ; test $BR -gt 90 && BR=90 ; doas -n sysctl -n hw.acpi.video.lcd0.brightness=`expr $BR + 10` | cut -f 3 -d " " | xargs echo 'Brightness' | dzen2 -p 1 &'
 
 super + F8
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'sysctl -n hw.acpi.video.lcd0.brightness | xargs echo "Brightness" | dzen2 -p 1'
+	lockf -s -t 0 /tmp/single-brightness.lock /bin/sh -c 'sysctl -n hw.acpi.video.lcd0.brightness | xargs echo "Brightness" | dzen2 -p 1'
 
 super + u
-	lockf -s -t 0 /tmp/single-dzen.lock /bin/sh -c 'sysctl dev.cpu | grep temperature | cut -f 2 -d " " | paste -s -d " " - | xargs echo "CPU" | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-temperature.lock /bin/sh -c 'sysctl dev.cpu | grep temperature | cut -f 2 -d " " | paste -s -d " " - | xargs echo "CPU" | dzen2 -p 2'
 
 super + h
-	~/.bin/swall ; test $? -ne 0 && echo "Wallpaper changed" | dzen2 -p 2
+	lockf -s -t 0 /tmp/single-wallpaper.lock /bin/sh -c '~/.bin/swall ; test $? -ne 0 && echo "Wallpaper changed" | dzen2 -p 2'
 
 super + t
-	lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop ; test $? -ne 0 && echo "Already running or execution error!" | dzen2 -p 2
+	lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop ; test $? -ne 0 && wmctrl -a "Telegram"
 
 super + m
 	urxvt -e cmatrix -C blue
 
 super + z
-	lockf -s -t 0 /tmp/single-chromium.lock ~/.bin/sichrome ; test $? -ne 0 && echo "Already running or execution error!" | dzen2 -p 2
+	lockf -s -t 0 /tmp/single-chromium.lock ~/.bin/sichrome ; test $? -ne 0 && wmctrl -a " - Chromium"
 
 super + ,
 	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 2

@@ -49,7 +49,6 @@ hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 	done
 }}}
 
-map global normal '<space>' :bn<ret>
 map global normal '<del>' :db<ret>
 map global normal ';' :
 # map global normal '<ret>' :make<ret>

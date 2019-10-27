@@ -31,10 +31,7 @@ super + Delete
 super + Escape
 	bspc quit
 
-# super + equal
-# super + minus
-
-super + {s,f}
+super + {minus,equal}
 	bspc desktop -l {tiled,monocle}
 
 super + bracket{left,right}

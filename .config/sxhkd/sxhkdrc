@@ -73,7 +73,7 @@ super + b
 super + g
 	lockf -t 0 /tmp/single-chromium.lock ~/.bin/schrome ; test $? -ne 0 && echo "Already running or execution error!" | dzen2 -p 2
 
-super + v
+super + F7
 	~/.bin/smonitor
 
 Print

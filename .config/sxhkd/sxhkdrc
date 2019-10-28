@@ -65,16 +65,16 @@ super + d
 	wmctrl -d | tr -s " " | cut -f 1,2,9 -d " " | dmenu -i -fn "Hack:size=$FSIZE" | cut -f 1 -d " " | xargs wmctrl -s
 
 super + Return
-	lockf -s -t 0 /tmp/single-tmux.lock urxvt -e tmux -2 new-session -A -s local ; test $? -ne 0 && wmctrl -a "tmux:`hostname`:local"
+	lockf -s -t 0 /tmp/single-tmux.lock urxvt -e tmux -2 new-session -A -s local ; test $? -ne 0 && /bin/sh -c 'wmctrl -a "tmux:`hostname`:local" ; test $? -ne 0 && echo "Something wrong!" | dzen2 -p 1'
 
 super + b
 	lockf -s -t 0 /tmp/single-battery.lock /bin/sh -c 'acpiconf -i 0 | grep Remaining | cut -f 2 -d " " | paste -s -d " " - | xargs echo "Battery" | dzen2 -p 2'
 
 super + g
-	lockf -t 0 /tmp/single-chromium.lock ~/.bin/schrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"
+	lockf -t 0 /tmp/single-chromium.lock ~/.bin/schrome ; test $? -ne 0 && /bin/sh -c 'wmctrl -x -a "Chromium-browser" ; test $? -ne 0 && echo "Something wrong!" | dzen2 -p 1'
 
 super + F7
-	lockf -s -t 0 /tmp/single-monitors.lock /bin/sh -c '~/.bin/smonitor ; echo "Detect monitors!" | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-monitors.lock /bin/sh -c '~/.bin/smonitor ; echo "Detect monitors!" | dzen2 -p 1'
 
 Print
 	lockf -t 0 /tmp/single-touchpad.lock /bin/sh -c '~/.bin/stouchpad ; sleep 1'
@@ -122,28 +122,28 @@ super + u
 	lockf -s -t 0 /tmp/single-temperature.lock /bin/sh -c 'sysctl dev.cpu | grep temperature | cut -f 2 -d " " | paste -s -d " " - | xargs echo "CPU" | dzen2 -p 2'
 
 super + h
-	lockf -s -t 0 /tmp/single-wallpaper.lock /bin/sh -c '~/.bin/swall ; test $? -ne 0 && echo "Wallpaper changed" | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-wallpaper.lock /bin/sh -c '~/.bin/swall && echo "Wallpaper changed" | dzen2 -p 1'
 
 super + t
-	lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop ; test $? -ne 0 && wmctrl -x -a "TelegramDesktop"
+	lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop ; test $? -ne 0 && /bin/sh -c 'wmctrl -x -a "TelegramDesktop" ; test $? -ne 0 && echo "Something wrong!" | dzen2 -p 1'
 
 super + m
 	urxvt -e cmatrix -C blue
 
 super + z
-	lockf -s -t 0 /tmp/single-chromium.lock ~/.bin/sichrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"
+	lockf -s -t 0 /tmp/single-chromium.lock ~/.bin/sichrome ; test $? -ne 0 && /bin/sh -c 'wmctrl -x -a "Chromium-browser" ; test $? -ne 0 && echo "Something wrong!" | dzen2 -p 1'
 
 super + ,
-	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 2
+	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
 
 super + .
-	xset dpms force on ; test $? -ne 0 && echo "DPMS" | dzen2 -p 2
+	xset dpms force on ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
 
 super + F10
-	xset s on +dpms ; test $? -ne 0 && echo "DPMS" | dzen2 -p 2
+	xset s on +dpms ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
 
 super + F11
-	xset s off -dpms ; test $? -ne 0 && echo "DPMS" | dzen2 -p 2
+	xset s off -dpms ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
 
 super + @F12
 	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 2

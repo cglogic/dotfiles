@@ -5,6 +5,7 @@ export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
 # To determine X11
 export X11=xorg
+export FSIZE=9
 
 # For fast run commands
 export SXHKD_SHELL="/bin/sh"
@@ -33,7 +34,7 @@ export QT_STYLE_OVERRIDE="Adwaita-Dark"
 # dunst &
 
 # Load xresouces
-xrdb ~/.Xdefaults
+xrdb -DFSIZE=$FSIZE ~/.Xdefaults
 
 # disable mouse
 #xinput set-prop 8 "Device Enabled" 0

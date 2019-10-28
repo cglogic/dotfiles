@@ -12,7 +12,7 @@ if stest -dqr -n "$CACHE" $PATH; then
 	stest -flx $PATH | sort -u | tee "$CACHE"
 fi
 
-CMD=$( (cat "$HISTORY" ; cat "$CACHE") | dmenu -i -fn "Hack:size=9" "$@" )
+CMD=$( (cat "$HISTORY" ; cat "$CACHE") | dmenu -i -fn "Hack:size=$FSIZE" "$@" )
 
 # exit if null input
 test -z "$CMD" && exit 1

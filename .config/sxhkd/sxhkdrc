@@ -70,10 +70,13 @@ super + Return
 super + b
 	lockf -s -t 0 /tmp/single-battery.lock /bin/sh -c 'acpiconf -i 0 | grep Remaining | cut -f 2 -d " " | paste -s -d " " - | xargs echo "Battery" | dzen2 -p 2'
 
+super + f
+	lockf -t 0 /tmp/single-firefox.lock firefox ; test $? -ne 0 && wmctrl -x -a "Firefox"
+
 super + g
 	lockf -t 0 /tmp/single-chromium.lock ~/.bin/schrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"
 
-super + F7
+super + F9
 	lockf -s -t 0 /tmp/single-monitors.lock /bin/sh -c '~/.bin/smonitor ; echo "Detect monitors!" | dzen2 -p 1'
 
 Print
@@ -114,6 +117,9 @@ super + F5
 
 super + F6
 	lockf -s -t 0 /tmp/single-briginc.lock /bin/sh -c 'BR=`sysctl -n hw.acpi.video.lcd0.brightness` ; test $BR -eq 100 && echo "Maximum" | dzen2 -p 1 && exit ; test $BR -gt 90 && BR=90 ; doas -n sysctl -n hw.acpi.video.lcd0.brightness=`expr $BR + 10` | cut -f 3 -d " " | xargs echo 'Brightness' | dzen2 -p 1 &'
+
+# super + F7
+# 	pkill webcamd
 
 super + F8
 	lockf -s -t 0 /tmp/single-brightness.lock /bin/sh -c 'sysctl -n hw.acpi.video.lcd0.brightness | xargs echo "Brightness" | dzen2 -p 1'

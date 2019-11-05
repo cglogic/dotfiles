@@ -75,7 +75,7 @@ if [[ -d $HOME/depot_tools ]]; then
 	PATH=$PATH:$HOME/depot_tools
 fi
 
-export PATH=$PATH
+export -U PATH=$PATH
 
 export EDITOR=kak
 export PAGER=less
@@ -89,8 +89,6 @@ export LESS=-SR
 
 export GREP_OPTIONS=--color=auto
 
-export MANPAGER=less
-
 export LESS_TERMCAP_xx=$'\033[0m'  # For stop coloring output of env
 export LESS_TERMCAP_mb=$'\033[35m' # begin blinking
 export LESS_TERMCAP_md=$'\033[33m' # begin bold
@@ -100,9 +98,13 @@ export LESS_TERMCAP_so=$'\033[31m' # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\033[0m'  # end underline
 export LESS_TERMCAP_us=$'\033[32m' # begin underline
 
-export MANPATH=:$HOME/.man
+export MANPAGER=less
 export MANCOLOR=yes
 export MANWIDTH=tty
+
+if [[ -d $HOME/.man ]]; then
+	export MANPATH=:$HOME/.man
+fi
 
 #export DISPLAY=:0
 export SXHKD_SHELL=/bin/sh

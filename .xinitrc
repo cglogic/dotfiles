@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# webcam power save
+CAM=`doas usbconfig list | grep "Camera" | cut -f 1 -d ":"`
+if [ -n $CAM ]; then
+	doas usbconfig $CAM suspend
+fi
+
 # Set PATH
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
@@ -68,9 +74,8 @@ ln -s /dev/null ~/.cache/chromium
 feh --no-fehbg --bg-center ~/images/free_wall_g_2.png &
 #~/bin/swall &
 
-# Compositor --vsync opengl-swc --backend xr_glx_hybrid
-# compton --config /dev/null --vsync opengl-swc --backend xr_glx_hybrid --paint-on-overlay --glx-no-stencil --glx-no-rebind-pixmap --glx-swap-method buffer-age --xrender-sync-fence -b
-# compton --config /dev/null --vsync none --backend xrender -b
+# Compositor
+# compton --config=/dev/null --vsync --backend=glx -b
 
 sxhkd &
 exec bspwm

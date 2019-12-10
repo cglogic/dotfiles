@@ -14,8 +14,8 @@ add-highlighter global/ dynregex '%reg{/}' 0:+u
 add-highlighter global/ wrap -word -indent
 
 set-option global autocomplete prompt
-hook global InsertBegin .* %{ map window insert <a-space> <c-o> }
-hook global InsertEnd .* %{ unmap window insert <a-space> <c-o> }
+hook global ModeChange push:insert:.* %{ map window insert <a-space> <c-o> }
+hook global ModeChange pop:insert:.* %{ unmap window insert <a-space> <c-o> }
 
 hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p>; execute-keys <c-o> }

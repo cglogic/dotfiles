@@ -28,7 +28,7 @@ zstyle ':completion:*' insert-tab false
 zle_highlight[(r)suffix:*]="suffix:fg=cyan"
 
 # Aliases
-# alias h='history 25'
+alias h='history'
 alias j='jobs -l'
 alias la='ls -aF'
 alias lf='ls -FA'
@@ -232,7 +232,7 @@ fi
 
 # Run tmux if we connected via ssh
 if [[ (! -v TMUX) && (-v SSH_TTY) ]]; then
-	exec tmux -2 new-session -A -s remote
+	exec tmux new-session -A -s remote
 fi
 
 # zprof

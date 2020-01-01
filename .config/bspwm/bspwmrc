@@ -24,4 +24,4 @@ bspc config presel_border_color none
 #bspc rule -a urxvt fullscreen=on center=on desktop='^2'
 #bspc rule -a mpv state=floating center=on desktop='^3'
 
-exec lockf -t 0 /tmp/single-tmux.lock urxvt -e tmux -2 new-session -A -s local
+exec lockf -t 0 /tmp/single-tmux.lock urxvt -e tmux new-session -A -s local

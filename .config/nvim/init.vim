@@ -34,7 +34,7 @@ set nobackup             " keep a backup file (restore to previous version)
 set noundofile           " keep an undo file (undo changes after closing)
 set ruler              " show the cursor position all the time
 set showcmd            " display incomplete commands
-set nowildmenu
+" set nowildmenu
 set laststatus=2
 
 set shell=/bin/sh
@@ -142,7 +142,7 @@ let g:ycm_server_log_level = 'info' "default info
 "let g:deoplete#enable_at_startup = 1
 
 let g:clang_format#code_style = 'llvm'
-let g:clang_format#command = 'clang-format50'
+let g:clang_format#command = 'clang-format90'
 
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
@@ -179,6 +179,8 @@ endfunction
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
+nnoremap ; :
+
 " ----------------------------------------------------------------------------
 " Quickfix
 " ----------------------------------------------------------------------------
@@ -205,19 +207,19 @@ nnoremap [t :tabp<cr>
 "nnoremap <tab>   <c-w>w
 "nnoremap <S-tab> <c-w>W
 
-nnoremap ;f :Files<cr>
-nnoremap ;g :GFiles<cr>
-nnoremap ;b :Buffers<cr>
-nnoremap ;a :Ag<cr>
-nnoremap ;l :Lines<cr>
-nnoremap ;t :Tags<cr>
-nnoremap ;w :Windows<cr>
-nnoremap ;m :Marks<cr>
-nnoremap ;h :History<cr>
-nnoremap ;c :Commits<cr>
-nnoremap ;n :Neomake!<cr>
-nnoremap ;d :bd<cr>
-nnoremap ;q :copen<cr>
+"nnoremap ;f :Files<cr>
+"nnoremap ;g :GFiles<cr>
+"nnoremap ;b :Buffers<cr>
+"nnoremap ;a :Ag<cr>
+"nnoremap ;l :Lines<cr>
+"nnoremap ;t :Tags<cr>
+"nnoremap ;w :Windows<cr>
+"nnoremap ;m :Marks<cr>
+"nnoremap ;h :History<cr>
+"nnoremap ;c :Commits<cr>
+"nnoremap ;n :Neomake!<cr>
+"nnoremap ;d :bd<cr>
+"nnoremap ;q :copen<cr>
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx

@@ -7,7 +7,7 @@ URxvt*depth: 32
 !URxvt*background: rgba:0000/0000/0000/c800
 URxvt*buffered: true
 !URxvt*font: xft:Hack:antialias=true:autohinting=true:size=9,xft:M+ 2m:antialias=true:autohinting=true:size=9
-URxvt*font: xft:Hack:size=FSIZE:antialias=true:autohinting=true
+URxvt*font: xft:FNAME:size=FSIZE:antialias=true:autohinting=true
 URxvt*boldFont:
 URxvt*italicFont:
 URxvt*boldItalicFont:
@@ -38,15 +38,15 @@ Xft*lcdfilter: lcddefault
 Xft*hintstyle: hintslight
 
 XTerm*renderFont: true
-XTerm*faceName: Hack
+XTerm*faceName: FNAME
 XTerm*faceSize: FSIZE
 
-dzen2.font: Hack:size=FSIZE
+dzen2.font: FNAME:size=FSIZE
 dzen2.foreground: #e0e0e0
 dzen2.background: #005577
 
 rofi.dpi: 0
-rofi.font: Hack FSIZE
+rofi.font: FNAME FSIZE
 rofi.scroll-method: false
 rofi.hide-scrollbar: true
 ! Enable the extended coloring options
@@ -58,8 +58,6 @@ rofi.color-normal: #292929, #e0e0e0, #191919, #268bd2, #ffffff
 rofi.color-active: #292929, #46abf2, #292929, #268bd2, #ffffff
 rofi.color-urgent: #292929, #f3843d, #292929, #268bd2, #ffffff
 rofi.separator-style: solid
-
-!#include ".xfonts"
 
 *.foreground:   #d0d0d0
 *.background:   #131313

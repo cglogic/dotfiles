@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Set screen backlight
+# intel_backlight 51
+
 # webcam power save
 CAM=`doas usbconfig list | grep "Camera" | cut -f 1 -d ":"`
 if [ -n $CAM ]; then
@@ -11,7 +14,10 @@ export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
 # To determine X11
 export X11=xorg
-export FSIZE=9
+# export FSIZE=9
+export FSIZE=11
+# export FNAME="Hack"
+export FNAME="JetBrains Mono"
 
 # For fast run commands
 export SXHKD_SHELL="/bin/sh"
@@ -40,7 +46,7 @@ export QT_STYLE_OVERRIDE="Adwaita-Dark"
 # dunst &
 
 # Load xresouces
-xrdb -DFSIZE=$FSIZE ~/.Xdefaults
+xrdb -DFNAME="$FNAME" -DFSIZE="$FSIZE" ~/.Xdefaults
 
 # disable mouse
 #xinput set-prop 8 "Device Enabled" 0

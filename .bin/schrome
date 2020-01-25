@@ -2,4 +2,4 @@
 
 VER=`pkg info chromium | grep Version | awk '{ print $3 }' | awk '{ split($1, a, "_"); print a[1] }'`
 
-exec chrome --enable-native-gpu-memory-buffers --enable-gpu-rasterization --force-dark-mode --site-per-process --disk-cache-size=0 --disk-cache-dir=/dev/null --user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$VER Safari/537.36" "$@"
+exec chrome --enable-gpu-rasterization --enable-native-gpu-memory-buffers --force-dark-mode --site-per-process --disk-cache-size=0 --disk-cache-dir=/dev/null --user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$VER Safari/537.36" "$@"

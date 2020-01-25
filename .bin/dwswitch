@@ -5,6 +5,6 @@ HGHT=$(wmctrl -l | wc -l)
 [ $HGHT -eq 0 ] && exit
 [ $HGHT -gt 10 ] && HGHT=10
 
-WID=$(wmctrl -l | tr -s ' ' | cut -f 1,2,4- -d ' ' | dmenu -i -fn "Hack:size=$FSIZE" -l $HGHT | cut -f 1 -d ' ')
+WID=$(wmctrl -l | tr -s ' ' | cut -f 1,2,4- -d ' ' | dmenu -i -fn "$FNAME:size=$FSIZE" -l $HGHT | cut -f 1 -d ' ')
 
 [ -z "$WID" ] && exit ; wmctrl -i -a $WID

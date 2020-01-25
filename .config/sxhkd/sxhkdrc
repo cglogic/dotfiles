@@ -62,7 +62,7 @@ super + slash
 	~/.bin/dwswitch
 
 super + d
-	wmctrl -d | tr -s " " | cut -f 1,2,9 -d " " | dmenu -i -fn "Hack:size=$FSIZE" | cut -f 1 -d " " | xargs wmctrl -s
+	wmctrl -d | tr -s " " | cut -f 1,2,9 -d " " | dmenu -i -fn "$FNAME:size=$FSIZE" | cut -f 1 -d " " | xargs wmctrl -s
 
 super + Return
 	lockf -s -t 0 /tmp/single-tmux.lock urxvt -e tmux new-session -A -s local ; test $? -ne 0 && wmctrl -a "tmux:`hostname`:local"

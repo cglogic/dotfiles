@@ -15,6 +15,7 @@ export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 # To determine X11
 export X11=xorg
 # export FSIZE=9
+# export FSIZE=17
 export FSIZE=11
 # export FNAME="Hack"
 export FNAME="JetBrains Mono"

@@ -53,6 +53,7 @@ alias mupdf='mupdf-gl'
 alias sxiv='sxiv -abrf -s d'
 alias alarm='doas at -f ~/.bin/alarm.sh'
 alias atop='atop -af 1'
+alias nnn='nnn -e'
 
 alias f='ag --nocolor -l -g "" | fzy -l 256 -p "❯ "'
 alias e='ag --nocolor -l -g "" | fzy -l 256 -p "❯ " | xargs kak -e "delete-buffer *stdin*"'
@@ -113,9 +114,8 @@ export MPD_HOST=/var/mpd/socket
 export LYNX_CFG=$HOME/.lynx.cfg
 #export PYTHONPATH=$HOME/lib/python
 
-export NNN_CONTEXT_COLORS='4231'
+export NNN_COLORS='4231'
 export NNN_RESTRICT_NAV_OPEN='1'
-export NNN_USE_EDITOR='1'
 
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'

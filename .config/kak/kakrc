@@ -40,6 +40,16 @@ hook global WinSetOption filetype=(c|cpp) %{
 	}
 }
 
+hook global WinSetOption filetype=(python) %{
+	set-option global indentwidth 4
+	set-option global tabstop 4
+
+	try %{
+		remove-highlighter buffer/operators
+		add-highlighter buffer/operators regex (\W) 0:operator
+	}
+}
+
 hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 	for filetype in c cpp; do
 		printf "%s\n" "add-highlighter shared/$filetype/code/types_1 regex \b(v|u|vu)\w+(8|16|32|64)(_t)?\b 0:type
@@ -49,7 +59,7 @@ hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 	done
 }}}
 
-map global normal '<del>' :db<ret>
+# map global normal '<del>' :db<ret>
 map global normal ';' :
 # map global normal '<ret>' :make<ret>
 

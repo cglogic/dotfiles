@@ -88,6 +88,4 @@ rofi.separator-style: solid
 !*.color20:      #b8b8b8
 !*.color21:      #e8e8e8
 
-!#include ".xcolors"
-
 Xcursor*theme: OpenZone_Ice

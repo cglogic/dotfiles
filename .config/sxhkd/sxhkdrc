@@ -139,6 +139,9 @@ super + m
 super + z
 	lockf -s -t 0 /tmp/single-chromium.lock ~/.bin/sichrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"
 
+super + v
+	~/.bin/ylight
+
 super + ,
 	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
 

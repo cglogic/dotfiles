@@ -78,8 +78,10 @@ ln -s /dev/null ~/.cache/chromium
 # urxvt
 
 # Wallpaper
-feh --no-fehbg --bg-center ~/images/free_wall_g_2.png &
-#~/bin/swall &
+# feh --no-fehbg --bg-center ~/images/free_wall_g_2.png &
+feh --no-fehbg --bg-center ~/wallpapers/bg-orig.png &
+# mpv --wid=0 --loop ~/wallpapers/bg-orig.mp4 &
+# ~/bin/swall &
 
 # Compositor
 # compton --config=/dev/null --vsync --backend=glx -b

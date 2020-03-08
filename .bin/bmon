@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TIME=10
+TIME=60
 PCNT=100
 
 while [ true ]; do

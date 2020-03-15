@@ -3,14 +3,16 @@ URxvt*internalBorder: 0
 URxvt*externalBorder: 0
 URxvt*scrollBar: false
 !URxvt*borderLess: true
-URxvt*depth: 32
+URxvt*depth: 24
 !URxvt*background: rgba:0000/0000/0000/c800
 URxvt*buffered: true
 !URxvt*font: xft:Hack:antialias=true:autohinting=true:size=9,xft:M+ 2m:antialias=true:autohinting=true:size=9
 URxvt*font: xft:FNAME:size=FSIZE:antialias=true:autohinting=true
+!URxvt*font: xft:FNAME:pixelsize=25:antialias=true:autohinting=true
 URxvt*boldFont:
 URxvt*italicFont:
 URxvt*boldItalicFont:
+URxvt*skipBuiltinGlyphs: true
 URxvt*lineSpace: 0
 URxvt*letterSpace: 0
 URxvt*saveLines: 0

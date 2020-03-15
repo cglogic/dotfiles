@@ -43,7 +43,7 @@ alias ps='ps -ww'
 alias pstree='pstree -g 2'
 alias tree='tree -N'
 
-alias gdb='gdb831'
+alias gdb='gdb91'
 alias fsl='fossil'
 alias svn='svnlite'
 

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Disable DRI3 on Mesa
+export LIBGL_DRI3_DISABLE=1
+
 # Set screen backlight
 # intel_backlight 51
 
@@ -15,8 +18,8 @@ export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 # To determine X11
 export X11=xorg
 # export FSIZE=9
-# export FSIZE=17
-export FSIZE=11
+# export FSIZE=11
+export FSIZE=17
 # export FNAME="Hack"
 export FNAME="JetBrains Mono"
 

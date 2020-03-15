@@ -67,6 +67,9 @@ super + d
 super + Return
 	lockf -s -t 0 /tmp/single-tmux.lock urxvt -e tmux new-session -A -s local ; test $? -ne 0 && wmctrl -a "tmux:`hostname`:local"
 
+super + s
+	~/projects/kitty/kitty/launcher/kitty tmux new-session -A -s local
+
 super + b
 	lockf -s -t 0 /tmp/single-battery.lock /bin/sh -c 'acpiconf -i 0 | grep Remaining | cut -f 2 -d " " | paste -s -d " " - | xargs echo "Battery" | dzen2 -p 2'
 

@@ -120,7 +120,7 @@ export NNN_RESTRICT_NAV_OPEN='1'
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
-CV=90
+CV=10
 export CC=/usr/local/llvm$CV/bin/clang
 export CXX=/usr/local/llvm$CV/bin/clang++
 export CPP=/usr/local/llvm$CV/bin/clang-cpp

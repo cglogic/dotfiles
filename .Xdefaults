@@ -66,7 +66,7 @@ rofi.separator-style: solid
 *.cursorColor:  #d0d0d0
 
 *.color0:       #131313
-*.color1:       #a93232
+*.color1:       #b94242
 *.color2:       #729a26
 *.color3:       #ce833f
 *.color4:       #4f71a1

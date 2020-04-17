@@ -50,7 +50,7 @@ super + backslash
 	bspc desktop -l monocle ; test $? -ne 0 && bspc desktop -l tiled
 
 super + l
-	i3lock -c 000000 -f
+	i3lock -i ~/wallpapers/bg-orig.png -f
 
 super + grave
 	~/.bin/sdmenu

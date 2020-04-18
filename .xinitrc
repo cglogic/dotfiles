@@ -65,6 +65,15 @@ unclutter --fork --timeout 5
 # /usr/local/bin/xrandr --output VGA-0 --off
 ~/.bin/smonitor
 
+export WALLPAPER_STATIC_PATH=~/wallpapers/bg-orig.png
+export WALLPAPER_ANIMATED_PATH=~/wallpapers/bg-orig.mp4
+
+# Wallpaper
+# feh --no-fehbg --bg-center ~/images/free_wall_g_2.png &
+feh --no-fehbg --bg-center $WALLPAPER_STATIC_PATH &
+# mpv --wid=0 --loop $WALLPAPER_ANIMATED_PATH &
+# ~/bin/swall &
+
 # disable touchpad
 ~/.bin/stouchpad
 
@@ -79,12 +88,6 @@ ln -s /dev/null ~/.cache/chromium
 # with large fonts.
 # xterm -borderwidth 0 -fg white -bg black -maximized -fn 10x20 &
 # urxvt
-
-# Wallpaper
-# feh --no-fehbg --bg-center ~/images/free_wall_g_2.png &
-feh --no-fehbg --bg-center ~/wallpapers/bg-orig.png &
-# mpv --wid=0 --loop ~/wallpapers/bg-orig.mp4 &
-# ~/bin/swall &
 
 # Compositor
 # compton --config=/dev/null --vsync --backend=glx -b

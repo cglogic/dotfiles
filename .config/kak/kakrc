@@ -7,7 +7,7 @@ set-option global indentwidth 0
 
 colorscheme tomorrow-night
 
-add-highlighter global/ number-lines -hlcursor -separator ' '
+add-highlighter global/ number-lines -hlcursor -separator '│'
 add-highlighter global/ show-matching
 # add-highlighter global/ show-whitespaces
 add-highlighter global/ dynregex '%reg{/}' 0:+u

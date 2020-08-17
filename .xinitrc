@@ -46,6 +46,7 @@ xsetroot -cursor_name left_ptr
 
 # export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_STYLE_OVERRIDE="Adwaita-Dark"
+export QT_QPA_PLATFORMTHEME="gtk3"
 
 # dunst &
 

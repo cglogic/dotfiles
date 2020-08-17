@@ -5,19 +5,19 @@ super + w
 	rofi -show window
 
 super + Tab
-	bspc node focused -f next.local
+	bspc node focused -f next.local.!hidden.window
 
 super + space
-	bspc node focused -f next.local
+	bspc node focused -f next.local.!hidden.window
 
 super + Next
-	bspc node focused -f next.local
+	bspc node focused -f next.local.!hidden.window
 
 super + shift + Tab
-	bspc node focused -f prev.local
+	bspc node focused -f prev.local.!hidden.window
 
 super + Prior
-	bspc node focused -f prev.local
+	bspc node focused -f prev.local.!hidden.window
 
 super + {j,k}
 	bspc node @/ -R {90,-90}
@@ -45,6 +45,15 @@ super + shift + {1-9,0}
 
 super + q
 	pkill -USR1 -x sxhkd
+
+super + {Left,Down,Up,Right}
+	n=10; \
+	{ d1=left;   d2=right;  dx=-$n; dy=0;   \
+	, d1=bottom; d2=top;    dx=0;   dy=$n;  \
+	, d1=top;    d2=bottom; dx=0;   dy=-$n; \
+	, d1=right;  d2=left;   dx=$n;  dy=0;   \
+	} \
+	bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
 
 super + backslash
 	bspc desktop -l monocle ; test $? -ne 0 && bspc desktop -l tiled
@@ -86,7 +95,7 @@ Print
 	lockf -t 0 /tmp/single-touchpad.lock /bin/sh -c '~/.bin/stouchpad ; sleep 1'
 
 XF86WakeUp
-	bspc node focused -f next.local
+	bspc node focused -f next.local.!hidden.window
 
 super + p
 	lockf -s -t 0 /tmp/single-screenshot.lock /bin/sh -c 'printscreen ; echo "Saved into ~/.screenshots" | dzen2 -p 1'

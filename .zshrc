@@ -36,7 +36,7 @@ alias ll='ls -lAFh'
 alias c='xclip -i -f -selection primary | xclip -i -selection clipboard'
 alias v='xclip -o'
 
-#alias grep='grep --color=auto'
+alias grep='grep --color=auto'
 alias df='df -h'
 alias dfc='dfc -d'
 alias ps='ps -ww'
@@ -88,7 +88,7 @@ export CLICOLOR=
 # export TOP=-CHP
 export LESS=-SR
 
-export GREP_OPTIONS=--color=auto
+# export GREP_OPTIONS=--color=auto
 
 export LESS_TERMCAP_xx=$'\033[0m'  # For stop coloring output of env
 export LESS_TERMCAP_mb=$'\033[35m' # begin blinking

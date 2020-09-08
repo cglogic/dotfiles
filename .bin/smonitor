@@ -1,15 +1,15 @@
 #!/bin/sh
 
 # Nvidia
-if (xrandr | grep "LVDS-0"); then
-	INTERNAL="LVDS-0"
-	EXTERNAL="HDMI-0"
-fi
+# if (xrandr | grep "LVDS-0"); then
+# 	INTERNAL="LVDS-0"
+# 	EXTERNAL="HDMI-0"
+# fi
 
 # Intel
-if (xrandr | grep "eDP1"); then
-	INTERNAL="eDP1"
-	EXTERNAL="DP1"
+if (xrandr | grep "eDP-1"); then
+	INTERNAL="eDP-1"
+	EXTERNAL="DP-1"
 fi
 
 if (xrandr | grep "$EXTERNAL disconnected" > /dev/null); then

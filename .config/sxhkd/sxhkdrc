@@ -154,11 +154,11 @@ super + z
 super + v
 	~/.bin/ylight
 
-super + ,
-	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
+# super + ,
+# 	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
 
-super + .
-	xset dpms force on ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
+# super + .
+# 	xset dpms force on ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
 
 super + F10
 	xset s on +dpms ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1

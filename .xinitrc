@@ -76,7 +76,7 @@ feh --no-fehbg --bg-center $WALLPAPER_STATIC_PATH &
 # ~/bin/swall &
 
 # disable touchpad
-~/.bin/stouchpad
+~/.bin/stouchpad &
 
 #
 ~/.bin/bmon &

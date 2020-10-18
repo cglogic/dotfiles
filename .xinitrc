@@ -82,8 +82,14 @@ feh --no-fehbg --bg-center $WALLPAPER_STATIC_PATH &
 ~/.bin/bmon &
 
 #
-mkdir /tmp/cache
-ln -s /dev/null ~/.cache/chromium
+
+if [ ! -d /tmp/cache ]; then
+	mkdir /tmp/cache
+fi
+
+if [ ! -d $HOME/.cache/chromium ]; then
+	ln -s /dev/null $HOME/.cache/chromium
+fi
 
 # run xterm with no border, white text on a black background, maximized,
 # with large fonts.

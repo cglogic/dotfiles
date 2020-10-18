@@ -6,7 +6,7 @@ PCNT=100
 while [ true ]; do
 	sleep $TIME
 
-	if ( !xset q > /dev/null ); then
+	if ( ! xset q > /dev/null ); then
 		exit 1
 	fi
 

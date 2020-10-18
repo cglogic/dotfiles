@@ -53,7 +53,7 @@ alias mupdf='mupdf-gl'
 alias sxiv='sxiv -abrf -s d'
 alias alarm='doas at -f ~/.bin/alarm.sh'
 alias atop='atop -af 1'
-alias nnn='nnn -e'
+alias nnn='nnn -edC'
 
 alias f='ag --nocolor -l -g "" | fzy -l 256 -p "❯ "'
 alias e='ag --nocolor -l -g "" | fzy -l 256 -p "❯ " | xargs kak -e "delete-buffer *stdin*"'
@@ -107,6 +107,13 @@ if [[ -d $HOME/.man ]]; then
 	export MANPATH=:$HOME/.man
 fi
 
+# export XDG_CONFIG_HOME=/$HOME/.config
+# export XDG_RUNTIME_DIR=/tmp/$USER-runtime-dir
+# if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
+# 	mkdir "$XDG_RUNTIME_DIR"
+# 	chmod 0700 "$XDG_RUNTIME_DIR"
+# fi
+
 #export DISPLAY=:0
 export SXHKD_SHELL=/bin/sh
 export GIT_PAGER=cat
@@ -120,7 +127,7 @@ export NNN_RESTRICT_NAV_OPEN='1'
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
-CV=10
+CV=11
 export CC=/usr/local/llvm$CV/bin/clang
 export CXX=/usr/local/llvm$CV/bin/clang++
 export CPP=/usr/local/llvm$CV/bin/clang-cpp

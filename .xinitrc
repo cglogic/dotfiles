@@ -3,23 +3,17 @@
 # Disable DRI3 on Mesa
 export LIBGL_DRI3_DISABLE=1
 
-# Set screen backlight
-# intel_backlight 51
-
-# webcam power save
-CAM=`doas usbconfig list | grep "Camera" | cut -f 1 -d ":"`
-if [ -n $CAM ]; then
-	doas usbconfig $CAM suspend
-fi
-
 # Set PATH
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+
+# Set default terminal
+export TERMINAL=xterm
 
 # To determine X11
 export X11=xorg
 # export FSIZE=9
 # export FSIZE=11
-export FSIZE=17
+export FSIZE=10
 # export FNAME="Hack"
 export FNAME="JetBrains Mono"
 
@@ -48,18 +42,31 @@ xsetroot -cursor_name left_ptr
 export QT_STYLE_OVERRIDE="Adwaita-Dark"
 export QT_QPA_PLATFORMTHEME="gtk3"
 
-# dunst &
-
 # Load xresouces
 xrdb -DFNAME="$FNAME" -DFSIZE="$FSIZE" ~/.Xdefaults
+
+# Set screen backlight
+# intel_backlight 51
+
+# Restart sndiod to fix clients connection
+doas service sndiod restart
+
+# webcam power save
+CAM=`doas usbconfig list | grep "Camera" | cut -f 1 -d ":"`
+if [ -n $CAM ]; then
+	doas usbconfig $CAM suspend
+fi
 
 # disable mouse
 #xinput set-prop 8 "Device Enabled" 0
 #unclutter -idle 3 -root &
 unclutter --fork --timeout 5
 
-#
-#intel_backlight 70%
+# Run xnotify
+# export XNOTIFY_FIFO="/tmp/xnotify-$DISPLAY.fifo"
+# rm -f $XNOTIFY_FIFO
+# mkfifo $XNOTIFY_FIFO
+# xnotify -o -s 2 <$XNOTIFY_FIFO 3<>$XNOTIFY_FIFO &
 
 # use xrandr to disable monitors that should not be used. For example,
 # use only the DVI monitor of a VGA/DVI pair:

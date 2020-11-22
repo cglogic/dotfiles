@@ -65,7 +65,7 @@ super + grave
 	~/.bin/sdmenu
 
 super + Insert
-	urxvt
+	$TERMINAL
 
 super + slash
 	~/.bin/dwswitch
@@ -74,7 +74,7 @@ super + d
 	wmctrl -d | tr -s " " | cut -f 1,2,9 -d " " | dmenu -i -fn "$FNAME:size=$FSIZE" | cut -f 1 -d " " | xargs wmctrl -s
 
 super + Return
-	lockf -s -t 0 /tmp/single-tmux.lock urxvt -e tmux new-session -A -s local ; test $? -ne 0 && wmctrl -a "tmux:`hostname`:local"
+	lockf -s -t 0 /tmp/single-tmux.lock $TERMINAL -e tmux new-session -A -s local ; test $? -ne 0 && wmctrl -a "tmux:`hostname`:local"
 
 super + s
 	~/projects/kitty/kitty/launcher/kitty tmux new-session -A -s local
@@ -146,7 +146,7 @@ super + t
 	lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop ; test $? -ne 0 && wmctrl -x -a "TelegramDesktop"
 
 super + m
-	urxvt -e cmatrix -C blue
+	$TERMINAL -e cmatrix -C blue
 
 super + z
 	lockf -s -t 0 /tmp/single-chromium.lock ~/.bin/sichrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"

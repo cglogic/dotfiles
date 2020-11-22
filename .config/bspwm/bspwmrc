@@ -25,4 +25,4 @@ bspc config focused_border_color \#2379C2
 
 bspc rule --add Chrome state=floating rectangle=1280x720+0+0
 
-exec lockf -t 0 /tmp/single-tmux.lock urxvt -e tmux new-session -A -s local
+exec lockf -t 0 /tmp/single-tmux.lock $TERMINAL -e tmux new-session -A -s local

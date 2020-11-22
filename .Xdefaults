@@ -39,13 +39,34 @@ Xft*hinting: true
 Xft*lcdfilter: lcddefault
 Xft*hintstyle: hintslight
 
+XTerm*termName: xterm-256color
+XTerm*locale: true
+XTerm*metaSendsEscape: true
+XTerm*saveLines: 0
+XTerm*scrollBar: false
 XTerm*renderFont: true
 XTerm*faceName: FNAME
 XTerm*faceSize: FSIZE
+XTerm*allowBoldFonts: false
+XTerm*buffered: true
+XTerm*bufferedFPS: 60
+# XTerm*fullscreen: true
+XTerm*foreground:   #d0d0d0
+XTerm*background:   #131313
 
 dzen2.font: FNAME:size=FSIZE
 dzen2.foreground: #e0e0e0
 dzen2.background: #005577
+
+xnotify.title.font: xft:FNAME:size=FSIZE:antialias=true:autohinting=true
+xnotify.body.font: xft:FNAME:size=FSIZE:antialias=true:autohinting=true
+xnotify.background: #131313
+xnotify.foreground: #e0e0e0
+xnotify.border: #268bd2
+xnotify.borderWidth: 2
+xnotify.leading: 2
+xnotify.padding: 2
+xnotify.alignment: center
 
 rofi.dpi: 0
 rofi.font: FNAME FSIZE

@@ -11,10 +11,7 @@ export TERMINAL=xterm
 
 # To determine X11
 export X11=xorg
-# export FSIZE=9
-# export FSIZE=11
 export FSIZE=10
-# export FNAME="Hack"
 export FNAME="JetBrains Mono"
 
 # For fast run commands
@@ -38,9 +35,7 @@ xsetroot -cursor_name left_ptr
 # Disable DPMS and prevent screen from blanking
 #xset s off -dpms
 
-# export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_STYLE_OVERRIDE="Adwaita-Dark"
-export QT_QPA_PLATFORMTHEME="gtk3"
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Load xresouces
 xrdb -DFNAME="$FNAME" -DFSIZE="$FSIZE" ~/.Xdefaults

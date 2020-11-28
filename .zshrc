@@ -107,15 +107,7 @@ export MANWIDTH=tty
 
 USER_MAN=$HOME/.local/man
 if [[ -d $USER_MAN ]]; then
-	if [[ -v MANPATH ]] && [[ "" != $MANPATH ]]; then
-		MANPATH=$MANPATH:$USER_MAN
-	else
-		MANPATH=$USER_MAN
-	fi
-fi
-
-if [[ -v MANPATH ]]; then
-	export -U MANPATH=$MANPATH
+	export MANPATH=$MANPATH:$USER_MAN
 fi
 
 # export XDG_CONFIG_HOME=/$HOME/.config

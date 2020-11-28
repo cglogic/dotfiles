@@ -64,17 +64,19 @@ alias dotls='dot ls-tree -r master --name-only'
 # Environment variables
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
-if [[ -d $HOME/.local/bin ]]; then
-	PATH=$PATH:$HOME/.local/bin
+USER_BIN=$HOME/.local/bin
+if [[ -d $USER_BIN ]]; then
+	if [[ -v PATH ]] && [[ "" != $PATH ]]; then
+		PATH=$PATH:$USER_BIN
+	else
+		PATH=$USER_BIN
+	fi
 fi
 
-if [[ -d /usr/local/lib/qt5/bin ]]; then
-	PATH=$PATH:/usr/local/lib/qt5/bin
+QT_BIN=/usr/local/lib/qt5/bin
+if [[ -d $QT_BIN ]]; then
+	PATH=$PATH:$QT_BIN
 fi
-
-# if [[ -d $HOME/depot_tools ]]; then
-# 	PATH=$PATH:$HOME/depot_tools
-# fi
 
 export -U PATH=$PATH
 
@@ -103,11 +105,12 @@ export MANPAGER=less
 export MANCOLOR=yes
 export MANWIDTH=tty
 
-if [[ -d $HOME/.local/man ]]; then
-	if [[ -v MANPATH ]]; then
-		MANPATH=$MANPATH:$HOME/.local/man
+USER_MAN=$HOME/.local/man
+if [[ -d $USER_MAN ]]; then
+	if [[ -v MANPATH ]] && [[ "" != $MANPATH ]]; then
+		MANPATH=$MANPATH:$USER_MAN
 	else
-		MANPATH=$HOME/.local/man
+		MANPATH=$USER_MAN
 	fi
 fi
 
@@ -135,29 +138,30 @@ export NNN_RESTRICT_NAV_OPEN='1'
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
-CV=11
-if [[ -d /usr/local/llvm$CV ]]; then
-	export CC=/usr/local/llvm$CV/bin/clang
-	export CXX=/usr/local/llvm$CV/bin/clang++
-	export CPP=/usr/local/llvm$CV/bin/clang-cpp
-	export LD=/usr/local/llvm$CV/bin/ld.lld
-	export AR=/usr/local/llvm$CV/bin/llvm-ar
-	export DB=/usr/local/llvm$CV/bin/lldb
-	export CF=/usr/local/llvm$CV/bin/clang-format
-	export CT=/usr/local/llvm$CV/bin/clang-tidy
+LLVM_PATH=/usr/local/llvm11
+if [[ -d $LLVM_PATH ]]; then
+	export CC=$LLVM_PATH/bin/clang
+	export CXX=$LLVM_PATH/bin/clang++
+	export CPP=$LLVM_PATH/bin/clang-cpp
+	export LD=$LLVM_PATH/bin/ld.lld
+	export AR=$LLVM_PATH/bin/llvm-ar
+	export DB=$LLVM_PATH/bin/lldb
+	export CF=$LLVM_PATH/bin/clang-format
+	export CT=$LLVM_PATH/bin/clang-tidy
 
-	if [[ -v LD_LIBRARY_PATH ]]; then
-		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/llvm$CV/lib
+	if [[ -v LD_LIBRARY_PATH ]] && [[ "" != $LD_LIBRARY_PATH ]]; then
+		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$LLVM_PATH/lib
 	else
-		LD_LIBRARY_PATH=/usr/local/llvm$CV/lib
+		LD_LIBRARY_PATH=$LLVM_PATH/lib
 	fi
 fi
 
-if [[ -d $HOME/.local/lib ]]; then
-	if [[ -v LD_LIBRARY_PATH ]]; then
-		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.local/lib
+USER_LIB=$HOME/.local/lib
+if [[ -d $USER_LIB ]]; then
+	if [[ -v LD_LIBRARY_PATH ]] && [[ "" != $LD_LIBRARY_PATH ]]; then
+		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$USER_LIB
 	else
-		LD_LIBRARY_PATH=$HOME/.local/lib
+		LD_LIBRARY_PATH=$USER_LIB
 	fi
 fi
 

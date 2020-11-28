@@ -39,7 +39,7 @@ alias dotls	dot ls-tree -r master --name-only
 
 # These are normally set through /etc/login.conf.  You may override them here
 # if wanted.
-set path = (/sbin /bin /usr/sbin /usr/bin /usr/local/sbin /usr/local/bin $HOME/.bin /usr/local/lib/qt5/bin)
+set path = (/sbin /bin /usr/sbin /usr/bin /usr/local/sbin /usr/local/bin $HOME/.local/bin /usr/local/lib/qt5/bin)
 # setenv	BLOCKSIZE	K
 # A righteous umask
 umask 77
@@ -55,7 +55,7 @@ setenv	LESS		-SR
 setenv	GREP_OPTIONS	--color=auto
 
 setenv	MANPAGER	most
-setenv	MANPATH		:$HOME/.man
+setenv	MANPATH		$HOME/.local/man
 setenv	MANCOLOR	yes
 setenv	MANWIDTH	tty
 
@@ -70,13 +70,13 @@ setenv	LYNX_CFG		$HOME/.lynx.cfg
 setenv	FZF_DEFAULT_COMMAND	'ag --nocolor -l -g ""'
 setenv	FZF_DEFAULT_OPTS	'--exact'
 
-setenv	CV	70
-setenv	CC	/usr/local/llvm$CV/bin/clang
-setenv	CXX	/usr/local/llvm$CV/bin/clang++
-setenv	CPP	/usr/local/llvm$CV/bin/clang-cpp
-setenv	LD	/usr/local/llvm$CV/bin/ld.lld
+# setenv	CV	70
+# setenv	CC	/usr/local/llvm$CV/bin/clang
+# setenv	CXX	/usr/local/llvm$CV/bin/clang++
+# setenv	CPP	/usr/local/llvm$CV/bin/clang-cpp
+# setenv	LD	/usr/local/llvm$CV/bin/ld.lld
 
-setenv	LD_LIBRARY_PATH		/usr/local/llvm$CV/lib
+# setenv	LD_LIBRARY_PATH		/usr/local/llvm$CV/lib
 
 if ($?prompt) then
 	if (($?SSH_CLIENT || $?SSH_TTY || $?SSH_CONNECTION) && $TERM != "screen" && $TERM != "screen-256color" && ! $?TMUX) then

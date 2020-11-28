@@ -64,17 +64,17 @@ alias dotls='dot ls-tree -r master --name-only'
 # Environment variables
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
+if [[ -d $HOME/.local/bin ]]; then
+	PATH=$PATH:$HOME/.local/bin
+fi
+
 if [[ -d /usr/local/lib/qt5/bin ]]; then
 	PATH=$PATH:/usr/local/lib/qt5/bin
 fi
 
-if [[ -d $HOME/.bin ]]; then
-	PATH=$PATH:$HOME/.bin
-fi
-
-if [[ -d $HOME/depot_tools ]]; then
-	PATH=$PATH:$HOME/depot_tools
-fi
+# if [[ -d $HOME/depot_tools ]]; then
+# 	PATH=$PATH:$HOME/depot_tools
+# fi
 
 export -U PATH=$PATH
 
@@ -103,8 +103,16 @@ export MANPAGER=less
 export MANCOLOR=yes
 export MANWIDTH=tty
 
-if [[ -d $HOME/.man ]]; then
-	export MANPATH=:$HOME/.man
+if [[ -d $HOME/.local/man ]]; then
+	if [[ -v MANPATH ]]; then
+		MANPATH=$MANPATH:$HOME/.local/man
+	else
+		MANPATH=$HOME/.local/man
+	fi
+fi
+
+if [[ -v MANPATH ]]; then
+	export -U MANPATH=$MANPATH
 fi
 
 # export XDG_CONFIG_HOME=/$HOME/.config
@@ -128,16 +136,34 @@ export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
 CV=11
-export CC=/usr/local/llvm$CV/bin/clang
-export CXX=/usr/local/llvm$CV/bin/clang++
-export CPP=/usr/local/llvm$CV/bin/clang-cpp
-export LD=/usr/local/llvm$CV/bin/ld.lld
-export AR=/usr/local/llvm$CV/bin/llvm-ar
-export DB=/usr/local/llvm$CV/bin/lldb
-export CF=/usr/local/llvm$CV/bin/clang-format
-export CT=/usr/local/llvm$CV/bin/clang-tidy
+if [[ -d /usr/local/llvm$CV ]]; then
+	export CC=/usr/local/llvm$CV/bin/clang
+	export CXX=/usr/local/llvm$CV/bin/clang++
+	export CPP=/usr/local/llvm$CV/bin/clang-cpp
+	export LD=/usr/local/llvm$CV/bin/ld.lld
+	export AR=/usr/local/llvm$CV/bin/llvm-ar
+	export DB=/usr/local/llvm$CV/bin/lldb
+	export CF=/usr/local/llvm$CV/bin/clang-format
+	export CT=/usr/local/llvm$CV/bin/clang-tidy
 
-export LD_LIBRARY_PATH=/usr/local/llvm$CV/lib
+	if [[ -v LD_LIBRARY_PATH ]]; then
+		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/llvm$CV/lib
+	else
+		LD_LIBRARY_PATH=/usr/local/llvm$CV/lib
+	fi
+fi
+
+if [[ -d $HOME/.local/lib ]]; then
+	if [[ -v LD_LIBRARY_PATH ]]; then
+		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/.local/lib
+	else
+		LD_LIBRARY_PATH=$HOME/.local/lib
+	fi
+fi
+
+if [[ -v LD_LIBRARY_PATH ]]; then
+	export -U LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+fi
 
 # Perform compinit only once a day.
 autoload -Uz compinit

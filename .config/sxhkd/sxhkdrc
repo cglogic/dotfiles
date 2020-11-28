@@ -62,13 +62,13 @@ super + l
 	i3lock -i $WALLPAPER_STATIC_PATH -f
 
 super + grave
-	~/.bin/sdmenu
+	sdmenu
 
 super + Insert
 	$TERMINAL
 
 super + slash
-	~/.bin/dwswitch
+	dwswitch
 
 super + d
 	wmctrl -d | tr -s " " | cut -f 1,2,9 -d " " | dmenu -i -fn "$FNAME:size=$FSIZE" | cut -f 1 -d " " | xargs wmctrl -s
@@ -86,13 +86,13 @@ super + f
 	lockf -t 0 /tmp/single-firefox.lock firefox ; test $? -ne 0 && wmctrl -x -a "Firefox"
 
 super + g
-	lockf -t 0 /tmp/single-chromium.lock ~/.bin/schrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"
+	lockf -t 0 /tmp/single-chromium.lock schrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"
 
 super + F9
-	lockf -s -t 0 /tmp/single-monitors.lock /bin/sh -c '~/.bin/smonitor ; echo "Detect monitors!" | dzen2 -p 1'
+	lockf -s -t 0 /tmp/single-monitors.lock /bin/sh -c 'smonitor ; echo "Detect monitors!" | dzen2 -p 1'
 
 Print
-	lockf -t 0 /tmp/single-touchpad.lock /bin/sh -c '~/.bin/stouchpad ; sleep 1'
+	lockf -t 0 /tmp/single-touchpad.lock /bin/sh -c 'stouchpad ; sleep 1'
 
 XF86WakeUp
 	bspc node focused -f next.local.!hidden.window
@@ -140,7 +140,7 @@ super + u
 	lockf -s -t 0 /tmp/single-temperature.lock /bin/sh -c 'sysctl dev.cpu | grep temperature | cut -f 2 -d " " | paste -s -d " " - | xargs echo "CPU" | dzen2 -p 2'
 
 super + h
-	lockf -s -t 0 /tmp/single-wallpaper.lock /bin/sh -c '~/.bin/swall && echo "Wallpaper changed" | dzen2 -p 1'
+	lockf -s -t 0 /tmp/single-wallpaper.lock /bin/sh -c 'swall && echo "Wallpaper changed" | dzen2 -p 1'
 
 super + t
 	lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop ; test $? -ne 0 && wmctrl -x -a "TelegramDesktop"
@@ -149,10 +149,10 @@ super + m
 	$TERMINAL -e cmatrix -C blue
 
 super + z
-	lockf -s -t 0 /tmp/single-chromium.lock ~/.bin/sichrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"
+	lockf -s -t 0 /tmp/single-chromium.lock sichrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"
 
 super + v
-	~/.bin/ylight
+	ylight
 
 # super + ,
 # 	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1

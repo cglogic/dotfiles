@@ -4,7 +4,7 @@
 export LIBGL_DRI3_DISABLE=1
 
 # Set PATH
-export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/.local/bin
 
 # Set default terminal
 export TERMINAL=xterm
@@ -71,7 +71,7 @@ unclutter --fork --timeout 5
 # use xrandr to disable monitors that should not be used. For example,
 # use only the DVI monitor of a VGA/DVI pair:
 # /usr/local/bin/xrandr --output VGA-0 --off
-~/.bin/smonitor
+smonitor
 
 export WALLPAPER_STATIC_PATH=~/wallpapers/bg-orig.png
 export WALLPAPER_ANIMATED_PATH=~/wallpapers/bg-orig.mp4
@@ -83,10 +83,10 @@ feh --no-fehbg --bg-center $WALLPAPER_STATIC_PATH &
 # ~/bin/swall &
 
 # disable touchpad
-~/.bin/stouchpad &
+stouchpad &
 
 #
-~/.bin/bmon &
+bmon &
 
 #
 

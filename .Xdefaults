@@ -1,5 +1,5 @@
 URxvt*termName: rxvt-unicode-256color
-URxvt*internalBorder: 0
+URxvt*internalBorder: 3
 URxvt*externalBorder: 0
 URxvt*scrollBar: false
 !URxvt*borderLess: true
@@ -45,14 +45,16 @@ XTerm*metaSendsEscape: true
 XTerm*saveLines: 0
 XTerm*scrollBar: false
 XTerm*renderFont: true
+!XTerm*faceName: FNAME:size=FSIZE:antialias=true:autohinting=true
 XTerm*faceName: FNAME
 XTerm*faceSize: FSIZE
 XTerm*allowBoldFonts: false
-XTerm*buffered: true
-XTerm*bufferedFPS: 60
-# XTerm*fullscreen: true
-XTerm*foreground:   #d0d0d0
-XTerm*background:   #131313
+XTerm*internalBorder: 3
+XTerm*selectToClipboard: true
+!XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+!XTerm*on3Clicks: regex [[:alpha:]]+://([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+!XTerm*buffered: true
+!XTerm*bufferedFPS: 60
 
 dzen2.font: FNAME:size=FSIZE
 dzen2.foreground: #e0e0e0

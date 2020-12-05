@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Disable DRI3 on Mesa
-export LIBGL_DRI3_DISABLE=1
+# export LIBGL_DRI3_DISABLE=1
 
 # Set PATH
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/.local/bin
@@ -99,7 +99,7 @@ fi
 # urxvt
 
 # Compositor
-# compton --config=/dev/null --vsync --backend=glx -b
+picom --config=/dev/null --experimental-backends --backend=xrender --use-damage --vsync=opengl --vsync-use-glfinish -b
 
 sxhkd &
 exec bspwm

@@ -43,7 +43,7 @@ alias ps='ps -ww'
 alias pstree='pstree -g 2'
 alias tree='tree -N'
 
-alias gdb='gdb91'
+alias gdb='gdb101'
 alias fsl='fossil'
 alias svn='svnlite'
 
@@ -110,12 +110,12 @@ if [[ -d $USER_MAN ]]; then
 	export MANPATH=$MANPATH:$USER_MAN
 fi
 
-# export XDG_CONFIG_HOME=/$HOME/.config
-# export XDG_RUNTIME_DIR=/tmp/$USER-runtime-dir
-# if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
-# 	mkdir "$XDG_RUNTIME_DIR"
-# 	chmod 0700 "$XDG_RUNTIME_DIR"
-# fi
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_RUNTIME_DIR=/tmp/$USER-runtime-dir
+if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
+	mkdir "$XDG_RUNTIME_DIR"
+	chmod 0700 "$XDG_RUNTIME_DIR"
+fi
 
 #export DISPLAY=:0
 export SXHKD_SHELL=/bin/sh

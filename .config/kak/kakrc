@@ -11,7 +11,7 @@ add-highlighter global/ number-lines -hlcursor -separator '│'
 add-highlighter global/ show-matching
 # add-highlighter global/ show-whitespaces
 add-highlighter global/ dynregex '%reg{/}' 0:+u
-add-highlighter global/ wrap -word -indent
+# add-highlighter global/ wrap -word -indent
 
 set-option global autocomplete prompt
 hook global ModeChange push:insert:.* %{ map window insert <a-space> <c-o> }

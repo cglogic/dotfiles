@@ -43,7 +43,7 @@ alias ps='ps -ww'
 alias pstree='pstree -g 2'
 alias tree='tree -N'
 
-alias gdb='gdb101'
+alias gdb='/usr/local/bin/gdb'
 alias fsl='fossil'
 alias svn='svnlite'
 
@@ -71,11 +71,6 @@ if [[ -d $USER_BIN ]]; then
 	else
 		PATH=$USER_BIN
 	fi
-fi
-
-QT_BIN=/usr/local/lib/qt5/bin
-if [[ -d $QT_BIN ]]; then
-	PATH=$PATH:$QT_BIN
 fi
 
 export -U PATH=$PATH
@@ -130,21 +125,33 @@ export NNN_RESTRICT_NAV_OPEN='1'
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
-LLVM_PATH=/usr/local/llvm11
-if [[ -d $LLVM_PATH ]]; then
-	export CC=$LLVM_PATH/bin/clang
-	export CXX=$LLVM_PATH/bin/clang++
-	export CPP=$LLVM_PATH/bin/clang-cpp
-	export LD=$LLVM_PATH/bin/ld.lld
-	export AR=$LLVM_PATH/bin/llvm-ar
-	export DB=$LLVM_PATH/bin/lldb
-	export CF=$LLVM_PATH/bin/clang-format
-	export CT=$LLVM_PATH/bin/clang-tidy
+export DEV_STACK=llvm
 
-	if [[ -v LD_LIBRARY_PATH ]] && [[ "" != $LD_LIBRARY_PATH ]]; then
-		LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$LLVM_PATH/lib
-	else
-		LD_LIBRARY_PATH=$LLVM_PATH/lib
+if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
+	LLVM_VER=11
+	LLVM_PATH=/usr/local/llvm$LLVM_VER/bin
+	if [[ -d $LLVM_PATH ]]; then
+		export CC=$LLVM_PATH/clang
+		export CXX=$LLVM_PATH/clang++
+		export CPP=$LLVM_PATH/clang-cpp
+		export LD=$LLVM_PATH/ld.lld
+		export AR=$LLVM_PATH/llvm-ar
+		export DB=$LLVM_PATH/lldb
+		export CF=$LLVM_PATH/clang-format
+		export CT=$LLVM_PATH/clang-tidy
+	fi
+elif [[ -v DEV_STACK ]] && [[ $DEV_STACK = gnu ]]; then
+	GCC_VER=10
+	BIN_PATH=/usr/local/bin
+	if [[ -d /usr/local/lib/gcc$GCC_VER ]]; then
+		export CC=$BIN_PATH/gcc$GCC_VER
+		export CXX=$BIN_PATH/g++$GCC_VER
+		export CPP=$BIN_PATH/cpp$GCC_VER
+		export CPP=$BIN_PATH/cpp$GCC_VER
+		export LD=$BIN_PATH/ld.gold
+		export AS=$BIN_PATH/as
+		export AR=$BIN_PATH/ar
+		export DB=$BIN_PATH/gdb
 	fi
 fi
 

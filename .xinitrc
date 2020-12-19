@@ -99,7 +99,7 @@ fi
 # urxvt
 
 # Compositor
-picom --config=/dev/null --experimental-backends --backend=xrender --use-damage --vsync=opengl --vsync-use-glfinish -b
+picom --config=/dev/null --experimental-backends --backend=xrender --use-damage --vsync=opengl -b
 
 sxhkd &
 exec bspwm

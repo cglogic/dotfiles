@@ -8,7 +8,7 @@ URxvt*depth: 24
 URxvt*buffered: true
 !URxvt*font: xft:Hack:antialias=true:autohinting=true:size=9,xft:M+ 2m:antialias=true:autohinting=true:size=9
 URxvt*font: xft:FNAME:size=FSIZE:antialias=true:autohinting=true
-!URxvt*font: xft:FNAME:pixelsize=25:antialias=true:autohinting=true
+!URxvt*font: xft:FNAME:pixelsize=12:antialias=true:autohinting=true
 URxvt*boldFont:
 URxvt*italicFont:
 URxvt*boldItalicFont:

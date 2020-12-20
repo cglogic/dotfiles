@@ -125,7 +125,7 @@ export NNN_RESTRICT_NAV_OPEN='1'
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
-export DEV_STACK=llvm
+export DEV_STACK=gnu
 
 if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
 	LLVM_VER=11

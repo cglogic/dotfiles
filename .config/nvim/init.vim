@@ -2,13 +2,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 "Plug 'airblade/vim-gitgutter'
 
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 "Plug 'Shougo/deoplete.nvim'
 "Plug 'zchee/deoplete-clang'
 "Plug 'Shougo/neoinclude.vim'
@@ -107,39 +107,8 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-let g:ycm_filetype_whitelist = {
-    \ 'c' : 1,
-    \ 'cpp' : 1,
-    \ 'py' : 1,
-    \}
-
-autocmd FileType c      let g:ycm_global_ycm_extra_conf = '~/.ycm/ycm_c_conf.py'
-autocmd FileType cpp    let g:ycm_global_ycm_extra_conf = '~/.ycm/ycm_cpp_conf.py'
-"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-
-let g:ycm_extra_conf_globlist = ['~/projects/*', '!~/*']
-
 set pumheight=10
 set completeopt-=preview
-
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_always_populate_location_list = 0 "default 0
-let g:ycm_open_loclist_on_ycm_diags = 0 "default 1
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_auto_trigger = 0
-
-let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
-let g:ycm_server_log_level = 'info' "default info
-
-"let g:deoplete#sources#clang#libclang_path = '/usr/local/llvm50/lib/libclang.so.5'
-"let g:deoplete#sources#clang#clang_header = '/usr/local/llvm50/lib/clang'
-"let g:deoplete#sources#clang#sort_algo = 'alphabetical'
-"let g:deoplete#enable_at_startup = 1
 
 let g:clang_format#code_style = 'llvm'
 let g:clang_format#command = 'clang-format90'

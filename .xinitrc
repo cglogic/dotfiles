@@ -86,8 +86,12 @@ bmon &
 #
 
 if [ ! -d /tmp/cache ]; then
-	mkdir /tmp/cache
+	mkdir -p /tmp/cache
 fi
+
+# if [ ! -d /tmp/cache/chromium ]; then
+# 	mkdir -p /tmp/cache/chromium
+# fi
 
 if [ ! -d $HOME/.cache/chromium ]; then
 	ln -s /dev/null $HOME/.cache/chromium

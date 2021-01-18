@@ -2,6 +2,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
+"Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+"Plug 'hoob3rt/lualine.nvim'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 
@@ -62,6 +64,10 @@ inoremap <C-U> <C-G>u<C-U>
 colorscheme Tomorrow-Night
 set number
 
+"local lualine = require('lualine')
+"lualine.status()
+"lualine.theme = 'gruvbox'
+
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'jellybeans'
 let g:airline_skip_empty_sections = 1
@@ -111,7 +117,7 @@ set pumheight=10
 set completeopt-=preview
 
 let g:clang_format#code_style = 'llvm'
-let g:clang_format#command = 'clang-format90'
+let g:clang_format#command = 'clang-format11'
 
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
@@ -213,3 +219,15 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_ | diffthis
                  \ | wincmd p | diffthis
 endif
+
+"""
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+au BufWinEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
+au BufWinLeave * call clearmatches()
+
+" Remove all trailing whitespaces
+nnoremap <silent> <leader>rs :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>

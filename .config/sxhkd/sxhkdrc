@@ -125,16 +125,16 @@ super + F1
 	lockf -s -t 0 /tmp/single-mute.lock /bin/sh -c 'test `mixer -S pcm | cut -f 3 -d ":"` -eq 0 && echo "Muted" | dzen2 -p 1 && exit ; mixer -S pcm 0 ; mixer -S pcm | cut -f 3 -d ":" | xargs echo "Mixer" | dzen2 -p 1 &'
 
 super + F5
-	lockf -s -t 0 /tmp/single-brigdec.lock /bin/sh -c 'intel_backlight ; test $? -eq 1 && echo "Minimum" | dzen2 -p 1 && exit ; intel_backlight decr ; echo $? | xargs echo 'Brightness' | dzen2 -p 1 &'
+	lockf -s -t 0 /tmp/single-brigdec.lock /bin/sh -c 'test `backlight -q` -eq 0 && echo "Minimum" | dzen2 -p 1 && exit ; backlight decr; backlight -q | xargs echo 'Brightness' | dzen2 -p 1 &'
 
 super + F6
-	lockf -s -t 0 /tmp/single-briginc.lock /bin/sh -c 'intel_backlight ; test $? -eq 100 && echo "Maximum" | dzen2 -p 1 && exit ; intel_backlight incr ; echo $? | xargs echo 'Brightness' | dzen2 -p 1 &'
+	lockf -s -t 0 /tmp/single-briginc.lock /bin/sh -c 'test `backlight -q` -eq 100 && echo "Maximum" | dzen2 -p 1 && exit ; backlight incr; backlight -q | xargs echo 'Brightness' | dzen2 -p 1 &'
 
 # super + F7
 # 	pkill webcamd
 
 super + F8
-	lockf -s -t 0 /tmp/single-brightness.lock /bin/sh -c 'intel_backlight ; echo $? | xargs echo "Brightness" | dzen2 -p 1'
+	lockf -s -t 0 /tmp/single-brightness.lock /bin/sh -c 'backlight -q | xargs echo "Brightness" | dzen2 -p 1'
 
 super + u
 	lockf -s -t 0 /tmp/single-temperature.lock /bin/sh -c 'sysctl dev.cpu | grep temperature | cut -f 2 -d " " | paste -s -d " " - | xargs echo "CPU" | dzen2 -p 2'

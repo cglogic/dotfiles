@@ -4,8 +4,8 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
 "Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 "Plug 'hoob3rt/lualine.nvim'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 "Plug 'tpope/vim-fugitive'
 "Plug 'airblade/vim-gitgutter'
@@ -61,7 +61,8 @@ inoremap <C-U> <C-G>u<C-U>
 "	\    'background': { 'ctermbg': '0', '256ctermbg': '0' },
 "\}
 
-colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night
+colorscheme jellybeans
 set number
 
 "local lualine = require('lualine')

@@ -43,7 +43,7 @@ alias ps='ps -ww'
 alias pstree='pstree -g 2'
 alias tree='tree -N'
 
-alias gdb='/usr/local/bin/gdb'
+# alias gdb='/usr/local/bin/gdb'
 alias fsl='fossil'
 alias svn='svnlite'
 
@@ -125,7 +125,7 @@ export NNN_RESTRICT_NAV_OPEN='1'
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
-export DEV_STACK=llvm
+# export DEV_STACK=llvm
 
 if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
 	LLVM_VER=11

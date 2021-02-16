@@ -1,9 +1,9 @@
-set-option global makecmd 'make'
-set-option global grepcmd 'ag --column'
 set-option global ui_options 'ncurses_status_on_top=true' 'ncurses_assistant=none' 'ncurses_change_colors=false' 'ncurses_enable_mouse=false' 'ncurses_set_title=true'
 # set-option global autoinfo normal|command|onkey
-
+set-option global makecmd 'make'
+set-option global grepcmd 'ag --column'
 set-option global indentwidth 0
+set-option global autocomplete prompt
 
 colorscheme tomorrow-night
 
@@ -14,7 +14,6 @@ add-highlighter global/ dynregex '%reg{/}' 0:+u
 # add-highlighter global/ wrap -word -indent
 add-highlighter global/trailing-whitespace regex '\h+$' 0:Error
 
-set-option global autocomplete prompt
 hook global ModeChange push:insert:.* %{ map window insert <a-space> <c-o> }
 hook global ModeChange pop:insert:.* %{ unmap window insert <a-space> <c-o> }
 

@@ -17,8 +17,13 @@ unsetopt ALWAYS_LAST_PROMPT
 
 umask 77
 
+# 256colors2.pl
+
 # Colors for completion
 ZLS_COLORS="no=00:fi=00:di=34:ln=36:pi=33:so=35:bd=33:cd=33:ex=32:lc=\e[:rm=m:tc=00:sp=00:ma=07:hi=00:du=00:ow=34:tw=34:su=31:sg=31"
+
+# foot
+# export TERMCAP="${TERM}:bw:hs:ds=\E]2;\E\\:fs=\E\\:kb=\177:ts=\E]2;:vb=\E]555\E\\:tc=${TERM}:"
 
 zstyle ':completion:*' list-colors ${(s.:.)ZLS_COLORS}
 zstyle ':completion:*' list-prompt ''
@@ -249,19 +254,19 @@ tcsh_autolist() {
 zle -N tcsh_autolist
 bindkey '^I' tcsh_autolist
 
-# Update x11 window title
+# Update window title
 # if [[ $(tty) =~ "pts*" ]]; then
-if [[ -v X11 || -v SSH_CONNECTION ]]; then
+if [[ -v WAYLAND_DISPLAY || -v DISPLAY || -v SSH_CONNECTION ]]; then
 function precmd {
 	print -Pn "\033]0;%n@%m:%~\007"
 }
 fi
 
-# Custom prompt if we connected via ssh
-if [[ -v SSH_CONNECTION ]]; then
-	PROMPT="%F{magenta}%n%f@%F{blue}%m%f %F{cyan}%1~%f %(?,%F{red}❯,%F{green}❯)%F{yellow}❯%(?,%F{green}❯,%F{red}❯)%f "
-elif [[ -v X11 ]]; then
+# Custom prompt
+if [[ -v WAYLAND_DISPLAY || -v DISPLAY ]]; then
 	PROMPT="%F{cyan}%1~%f %(?,%F{red}❯,%F{green}❯)%F{yellow}❯%(?,%F{green}❯,%F{red}❯)%f "
+elif [[ -v SSH_CONNECTION ]]; then
+	PROMPT="%F{magenta}%n%f@%F{blue}%m%f %F{cyan}%1~%f %(?,%F{red}❯,%F{green}❯)%F{yellow}❯%(?,%F{green}❯,%F{red}❯)%f "
 else
 	PROMPT="%F{cyan}%1~%f %(?,%F{red}>,%F{green}>)%F{yellow}>%(?,%F{green}>,%F{red}>)%f "
 fi

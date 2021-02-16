@@ -10,7 +10,6 @@ export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/.
 export TERMINAL=xterm
 
 # To determine X11
-export X11=xorg
 export FSIZE=10
 export FNAME="JetBrains Mono"
 

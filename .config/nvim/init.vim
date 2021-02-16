@@ -61,8 +61,8 @@ inoremap <C-U> <C-G>u<C-U>
 "	\    'background': { 'ctermbg': '0', '256ctermbg': '0' },
 "\}
 
-"colorscheme Tomorrow-Night
-colorscheme jellybeans
+colorscheme Tomorrow-Night
+"colorscheme jellybeans
 set number
 
 "local lualine = require('lualine')

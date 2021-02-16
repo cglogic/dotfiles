@@ -26,7 +26,7 @@ xhost local:root
 setxkbmap -option terminate:ctrl_alt_bksp
 
 # set a fast key repeat
-xset r rate 250 55
+xset r rate 250 50
 
 # set default cursor
 xsetroot -cursor_name left_ptr

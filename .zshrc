@@ -257,9 +257,15 @@ bindkey '^I' tcsh_autolist
 # Update window title
 # if [[ $(tty) =~ "pts*" ]]; then
 if [[ -v WAYLAND_DISPLAY || -v DISPLAY || -v SSH_CONNECTION ]]; then
-function precmd {
-	print -Pn "\033]0;%n@%m:%~\007"
-}
+	function preexec {
+		title="\033]0;%n@%m:%~\007"
+	}
+	function precmd {
+		if [[ -v title ]]; then
+			print -Pn $title
+			unset title
+		fi
+	}
 fi
 
 # Custom prompt

@@ -94,9 +94,6 @@ super + F9
 Print
 	lockf -t 0 /tmp/single-touchpad.lock /bin/sh -c 'stouchpad ; sleep 1'
 
-XF86WakeUp
-	bspc node focused -f next.local.!hidden.window
-
 super + p
 	lockf -s -t 0 /tmp/single-screenshot.lock /bin/sh -c 'printscreen ; echo "Saved into ~/.screenshots" | dzen2 -p 1'
 
@@ -168,3 +165,9 @@ super + F11
 
 super + @F12
 	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 2
+
+XF86WakeUp
+	bspc node focused -f next.local.!hidden.window
+
+Menu
+	bspc node focused -f next.local.!hidden.window

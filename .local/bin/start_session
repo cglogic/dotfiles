@@ -1,0 +1,15 @@
+#!/bin/sh
+
+touch $1
+
+read -p "Choose (s)way or (x)org: " SESSION_TYPE
+
+if [ "$SESSION_TYPE" == "s" ]; then
+	sway
+elif [ "$SESSION_TYPE" == "x" ]; then
+	startx
+else
+	zsh
+fi
+
+rm $1

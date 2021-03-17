@@ -281,8 +281,11 @@ else
 fi
 
 # Run tmux if we connected via ssh
+SESSION_TYPE=/tmp/session_type
 if [[ (! -v TMUX) && (-v SSH_TTY) ]]; then
 	exec tmux new-session -A -s remote
+elif [[ ! -f $SESSION_TYPE ]]; then
+	exec start_session $SESSION_TYPE
 fi
 
 # zprof

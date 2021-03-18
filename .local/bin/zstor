@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ "$1" == "mount" ]; then
+	doas zfs load-key zdata/storage
+	doas zfs mount zdata/storage
+elif [ "$1" == "unmount" ]; then
+	doas zfs unmount zdata/storage
+	doas zfs unload-key zdata/storage
+else
+	echo "Wrong argument, try mount|unmount"
+fi

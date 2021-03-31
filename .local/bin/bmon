@@ -14,7 +14,7 @@ while [ true ]; do
 	CAP=`acpiconf -i 0 | grep 'Remaining capacity' | awk '{ print $3 }' | awk '{ split($1, a, "%"); print a[1] }'`
 
 	if [ $STATE = 'discharging' ]; then
-		if [ $CAP -le 10 ]; then
+		if [ $CAP -le 20 ]; then
 			shutdown -p now
 			exit 0
 		fi

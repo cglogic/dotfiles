@@ -59,7 +59,7 @@ super + backslash
 	bspc desktop -l monocle ; test $? -ne 0 && bspc desktop -l tiled
 
 super + l
-	i3lock -i $WALLPAPER_STATIC_PATH -f
+	printscreen /tmp/screenshot.png ; convert /tmp/screenshot.png -blur 0x15 /tmp/screenshotblur.png ; i3lock -c 131313 -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png /tmp/screenshotblur.png
 
 super + grave
 	sdmenu

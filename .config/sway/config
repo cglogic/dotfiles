@@ -7,7 +7,7 @@
 ### Variables
 #
 set $fname JetBrains Mono
-set $fsize 16
+set $fsize 14
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -20,7 +20,11 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
+# set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
+set $menu bemenu-run --fn="$fname 15" | xargs swaymsg exec --
+output eDP-1 disable
+
+workspace_layout tabbed
 
 ###
 # hide_edge_borders both
@@ -29,12 +33,12 @@ set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
 # default_floating_border pixel 2
 
 smart_borders on
-gaps inner 16
+gaps inner 0
 gaps outer 0
 default_border pixel 1
 default_floating_border pixel 1
 titlebar_border_thickness 1
-titlebar_padding 20 8
+titlebar_padding 8 2
 
 set $black #1C1B19
 set $bright_black #918175
@@ -182,7 +186,8 @@ input * {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Escape exec swaymsg exit
 #
 # Moving around:
 #

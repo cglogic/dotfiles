@@ -6,6 +6,8 @@ Plug 'chriskempson/vim-tomorrow-theme'
 "Plug 'hoob3rt/lualine.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
+Plug 'Valloric/vim-operator-highlight'
 
 "Plug 'tpope/vim-fugitive'
 "Plug 'airblade/vim-gitgutter'
@@ -16,6 +18,7 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'Shougo/neoinclude.vim'
 "Plug 'Shougo/deol.nvim'
 "Plug 'w0rp/ale'
+"Plug 'hrsh7th/nvim-compe'
 
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'matze/vim-move'
@@ -64,10 +67,13 @@ inoremap <C-U> <C-G>u<C-U>
 colorscheme Tomorrow-Night
 "colorscheme jellybeans
 set number
+set tabstop=4
 
 "local lualine = require('lualine')
 "lualine.status()
 "lualine.theme = 'gruvbox'
+
+let g:ophigh_color = 13
 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'jellybeans'

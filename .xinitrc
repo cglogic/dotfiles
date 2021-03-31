@@ -72,7 +72,7 @@ export WALLPAPER_ANIMATED_PATH=~/wallpapers/bg-orig.mp4
 
 # Wallpaper
 # feh --no-fehbg --bg-center ~/images/free_wall_g_2.png &
-feh --no-fehbg --bg-center $WALLPAPER_STATIC_PATH &
+feh --no-fehbg --bg-fill $WALLPAPER_STATIC_PATH &
 # mpv --wid=0 --loop $WALLPAPER_ANIMATED_PATH &
 # ~/bin/swall &
 

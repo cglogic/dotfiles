@@ -3,4 +3,13 @@
 # VER=`pkg info chromium | grep Version | awk '{ print $3 }' | awk '{ split($1, a, "_"); print a[1] }'`
 # --user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/$VER Safari/537.36"
 #
-exec chrome --ignore-gpu-blocklist --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode --force-dark-mode --site-per-process --disk-cache-size=0 --disk-cache-dir=/dev/null "$@"
+
+OPTIONS=''
+if [ -n $WAYLAND_DISPLAY ]; then
+	OPTIONS='--enable-features=UseOzonePlatform'
+	# OPTIONS='--ignore-gpu-blocklist --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
+elif [ -n $DISPLAY ]; then
+	OPTIONS='--ignore-gpu-blocklist --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
+fi
+
+exec chrome $OPTIONS --force-dark-mode --site-per-process --disk-cache-size=0 --disk-cache-dir=/dev/null "$@"

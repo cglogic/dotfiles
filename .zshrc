@@ -54,6 +54,7 @@ alias tree='tree -N'
 # alias gdb='/usr/local/bin/gdb'
 alias fsl='fossil'
 alias svn='svnlite'
+alias tmr='tmux -2 new-session -A -s local'
 
 alias mpvrt='mpv --no-cache --demuxer-readahead-secs 0'
 alias feh='feh -x -B black -N -.'

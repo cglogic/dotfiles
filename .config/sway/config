@@ -7,7 +7,7 @@
 ### Variables
 #
 set $fname JetBrains Mono
-set $fsize 14
+set $fsize 15
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -21,7 +21,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-set $menu bemenu-run --fn="$fname 15" | xargs swaymsg exec --
+set $menu bemenu-run --fn="$fname $fsize" --prompt="❯❯❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
 output eDP-1 disable
 
 workspace_layout tabbed
@@ -81,12 +81,12 @@ set $hard_black #121212
 # client.unfocused          #323440 #161616 #a89984 #323440 #323440
 # client.focused_inactive   #323440 #1b1c22 #458588 #323440 #323440
 # client.urgent             #ff5555 #ff5555 #ff5555 #ff5555 #ff5555
-client.focused          $bright_black $xgray3     $yellow       $yellow   $bright_black
-client.focused_inactive $xgray3       $xgray3     $bright_black $xgray3   $xgray3
-client.unfocused        $xgray1       $xgray1     $bright_black $xgray1   $xgray1
-client.urgent           $red          $xgray1     $red          $red      $red
-client.placeholder      $xgray3       $hard_black $bright_black $xgray3   $xgray3
-client.background       $black
+# client.focused          $bright_black $xgray3     $yellow       $yellow   $bright_black
+# client.focused_inactive $xgray3       $xgray3     $bright_black $xgray3   $xgray3
+# client.unfocused        $xgray1       $xgray1     $bright_black $xgray1   $xgray1
+# client.urgent           $red          $xgray1     $red          $red      $red
+# client.placeholder      $xgray3       $hard_black $bright_black $xgray3   $xgray3
+# client.background       $black
 
 ###
 font "$fname $fsize"
@@ -107,6 +107,7 @@ output * bg ~/wallpapers/bg-orig.png fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+# output * adaptive_sync on
 
 ### Idle configuration
 #
@@ -159,12 +160,20 @@ input * {
 #
 # Basics:
 #
+	#
+	bindsym $mod+backslash exec ls ~/.local/bin | bemenu --fn="$fname $fsize" --prompt="❯❯❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+
+	#
+	bindsym $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
 
     # Disable touchpad
     bindsym Print exec swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled
 
     # Chromium
     bindsym $mod+g exec ~/.local/bin/schrome
+
+    # Telegram
+    bindsym $mod+t exec telegram-desktop
 
     # Start a terminal
     bindsym $mod+Return exec $term
@@ -191,6 +200,8 @@ input * {
 #
 # Moving around:
 #
+    bindsym $mod+Tab focus right
+
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -313,11 +324,16 @@ bar {
     status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
     colors {
-        statusline #ffffff
+    #     statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+    #     inactive_workspace #32323200 #32323200 #5c5c5c
     }
     font "$fname $fsize"
 }
+
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+exec mako
+
+exec ~/.local/bin/bmon
 
 include /usr/local/etc/sway/config.d/*

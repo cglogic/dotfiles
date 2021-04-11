@@ -15,6 +15,7 @@ while [ true ]; do
 
 	if [ $STATE = 'discharging' ]; then
 		if [ $CAP -le 20 ]; then
+			logger "Low battery, shutting down the system"
 			shutdown -p now
 			exit 0
 		fi
@@ -22,7 +23,11 @@ while [ true ]; do
 		if [ $CAP -le 30 ]; then
 			if [ $CAP -ne $PCNT ]; then
 				PCNT=$CAP
-				echo "The battery charge is $CAP%" | dzen2 -bg darkred -p 10
+				if [[ -v WAYLAND_DISPLAY ]]; then
+					notify-send -t 10000 -- "Low battery" "The battery charge is $CAP%"
+				elif [[ -v DISPLAY ]]; then
+					echo "The battery charge is $CAP%" | dzen2 -bg darkred -p 10
+				fi
 			fi
 		else
 			PCNT=100

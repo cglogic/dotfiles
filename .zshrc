@@ -22,7 +22,7 @@ ZLS_COLORS="no=00:fi=00:di=34:ln=36:pi=33:so=35:bd=33:cd=33:ex=32:lc=\e[:rm=m:tc
 
 if [[ -v WAYLAND_DISPLAY ]]; then
 	# colors for foot
-	colors.pl
+	~/.local/bin/colors.pl
 
 	# termcap for foot
 	export TERMCAP="${TERM}:bw:hs:ds=\E]2;\E\\:fs=\E\\:kb=\177:ts=\E]2;:vb=\E]555\E\\:tc=${TERM}:"
@@ -114,14 +114,6 @@ if [[ -d $USER_MAN ]]; then
 	export MANPATH=$MANPATH:$USER_MAN
 fi
 
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_RUNTIME_DIR=/tmp/$USER-runtime-dir
-if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
-	mkdir "$XDG_RUNTIME_DIR"
-	chmod 0700 "$XDG_RUNTIME_DIR"
-fi
-
-#export DISPLAY=:0
 export SXHKD_SHELL=/bin/sh
 export GIT_PAGER=cat
 export MPD_HOST=/var/mpd/socket
@@ -279,14 +271,6 @@ elif [[ -v SSH_CONNECTION ]]; then
 	PROMPT="%F{magenta}%n%f@%F{blue}%m%f %F{cyan}%1~%f %(?,%F{red}❯,%F{green}❯)%F{yellow}❯%(?,%F{green}❯,%F{red}❯)%f "
 else
 	PROMPT="%F{cyan}%1~%f %(?,%F{red}>,%F{green}>)%F{yellow}>%(?,%F{green}>,%F{red}>)%f "
-fi
-
-# Run tmux if we connected via ssh
-SESSION_TYPE=/tmp/session_type
-if [[ (! -v TMUX) && (-v SSH_TTY) ]]; then
-	exec tmux new-session -A -s remote
-elif [[ ! -f $SESSION_TYPE ]]; then
-	exec start_session $SESSION_TYPE
 fi
 
 # zprof

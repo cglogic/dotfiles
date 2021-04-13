@@ -7,7 +7,7 @@
 ### Variables
 #
 set $fname JetBrains Mono
-set $fsize 15
+set $fsize 18
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -22,7 +22,7 @@ set $term foot
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
 set $menu bemenu-run --fn="$fname $fsize" --prompt="❯❯❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
-output eDP-1 disable
+# output eDP-1 disable
 
 workspace_layout tabbed
 
@@ -164,7 +164,7 @@ input * {
 	bindsym $mod+backslash exec ls ~/.local/bin | bemenu --fn="$fname $fsize" --prompt="❯❯❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
 
 	#
-	bindsym $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
+	bindsym $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
 
     # Disable touchpad
     bindsym Print exec swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled

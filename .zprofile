@@ -1,10 +1,3 @@
-# SESSION_TYPE=/tmp/session_type
-# if [[ (! -v TMUX) && (-v SSH_TTY) ]]; then
-# 	exec tmux new-session -A -s remote
-# elif [[ ! -f $SESSION_TYPE ]]; then
-# 	exec start_session $SESSION_TYPE
-# fi
-
 if [[ $SSH_TTY ]]; then
 	if [[ ! $TMUX ]]; then
 		exec tmux new-session -A -s remote

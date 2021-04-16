@@ -12,4 +12,4 @@ elif [ -n $DISPLAY ]; then
 	OPTIONS='--ignore-gpu-blocklist --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 fi
 
-exec chrome $OPTIONS --force-dark-mode --site-per-process --disk-cache-size=0 --disk-cache-dir=/dev/null "$@"
+exec chrome $OPTIONS --force-dark-mode --site-per-process --disk-cache-size=0 --disk-cache-dir=/dev/null --disable-features="WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" --js-flags="--noexpose-wasm" "$@"

@@ -5,10 +5,10 @@
 #
 
 OPTIONS=''
-if [ -n $WAYLAND_DISPLAY ]; then
+if [ -n "$WAYLAND_DISPLAY" ]; then
 	OPTIONS='--enable-features=UseOzonePlatform'
 	# OPTIONS='--ignore-gpu-blocklist --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
-elif [ -n $DISPLAY ]; then
+elif [ -n "$DISPLAY" ]; then
 	OPTIONS='--ignore-gpu-blocklist --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 fi
 

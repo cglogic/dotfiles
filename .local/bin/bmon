@@ -23,10 +23,12 @@ while [ true ]; do
 		if [ $CAP -le 30 ]; then
 			if [ $CAP -ne $PCNT ]; then
 				PCNT=$CAP
-				if [[ -v WAYLAND_DISPLAY ]]; then
+				if [[ -n "$WAYLAND_DISPLAY" ]]; then
 					notify-send -t 10000 -- "Low battery" "The battery charge is $CAP%"
-				elif [[ -v DISPLAY ]]; then
+				elif [[ -n "$DISPLAY" ]]; then
 					echo "The battery charge is $CAP%" | dzen2 -bg darkred -p 10
+				else
+					echo "The battery charge is $CAP%"
 				fi
 			fi
 		else

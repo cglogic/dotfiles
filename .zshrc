@@ -131,8 +131,7 @@ if [[ -d $USER_MAN ]]; then
 	export MANPATH=$MANPATH:$USER_MAN
 fi
 
-export SXHKD_SHELL=/bin/sh
-export GIT_PAGER=cat
+# export GIT_PAGER=cat
 export MPD_HOST=/var/mpd/socket
 export LYNX_CFG=$HOME/.lynx.cfg
 #export PYTHONPATH=$HOME/lib/python

@@ -1,4 +1,4 @@
-source ~/.mutt/jellybeans.ansi
+source `case "$TERM" in *-256color) echo "~/.mutt/jellybeans_256.ansi" ;; *) echo "~/.mutt/jellybeans_16.ansi" ;; esac`
 set mailcap_path = "~/.mutt/mailcap"
 auto_view text/html
 alternative_order text/plain text/html
@@ -12,6 +12,7 @@ hdr_order from to cc subject date
 set rfc2047_parameters
 set beep_new
 set mime_forward=yes
+set shell=/bin/sh
 
 set mbox_type = Maildir
 set copy = yes

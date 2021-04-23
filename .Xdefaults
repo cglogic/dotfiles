@@ -92,9 +92,9 @@ rofi.separator-style: solid
 
 *.color0:       #131313
 *.color1:       #b94242
-*.color2:       #82aa36
+*.color2:       #729a26
 *.color3:       #de934f
-*.color4:       #5f81b1
+*.color4:       #4f71a1
 *.color5:       #85678f
 *.color6:       #5ea19b
 *.color7:       #c0c0c0

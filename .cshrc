@@ -100,7 +100,9 @@ if ($?prompt) then
 		#set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
 	#endif
 	set prompt = "%{\033[32m%}%N%{\033[37m%}@%{\033[36m%}%m%{\033[37m%}:%{\033[33m%}%~ %{\033[35m%}%#%{\033[0m%} "
-	if ($?DISPLAY || $?SSH_CLIENT || $?SSH_TTY || $?SSH_CONNECTION || "$tty" =~ "pts*") then
+	# if ( $?WAYLAND_DISPLAY || $?DISPLAY || $?SSH_CLIENT || $?SSH_TTY || $?SSH_CONNECTION || "$tty" =~ "pts*" ) then
+	# if ( $?WAYLAND_DISPLAY || $?DISPLAY || $?SSH_CLIENT || $?SSH_TTY || $?SSH_CONNECTION ) then
+	if ( "$TERM" =~ "*-256color" ) then
 		set promptchars = "❯❯"
 		alias precmd 'printf "\033]0;${USER}@${HOST}:$cwd\007"'
 	else

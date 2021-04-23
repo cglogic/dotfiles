@@ -6,7 +6,8 @@ set-option global indentwidth 0
 set-option global tabstop 4
 set-option global autocomplete prompt
 
-colorscheme tomorrow-night
+# colorscheme tomorrow-night
+colorscheme %sh{ case "$TERM" in *-256color) echo "tomorrow-night" ;; *) echo "default" ;; esac }
 
 add-highlighter global/ number-lines -hlcursor -separator '│'
 add-highlighter global/ show-matching

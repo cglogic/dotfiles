@@ -584,7 +584,7 @@ color1 = 8
 color2 = 3
 #
 #progressbar_color = black:b
-progressbar_color = 9
+progressbar_color = 9:b
 #
 #progressbar_elapsed_color = green:b
 progressbar_elapsed_color = 3
@@ -599,7 +599,7 @@ statusbar_time_color = 8
 player_state_color = 8
 #
 #alternative_ui_separator_color = black:b
-alternative_ui_separator_color = 9
+alternative_ui_separator_color = 9:b
 #
 #window_border_color = green
 window_border_color = 3

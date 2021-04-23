@@ -71,7 +71,10 @@ alias tree='tree -N'
 # alias gdb='/usr/local/bin/gdb'
 alias fsl='fossil'
 alias svn='svnlite'
-alias tmr='tmux -2 new-session -A -s local'
+alias tmg='tmux -2 -L gui new-session -A -s gui'
+alias tms='tmux -2 -L ssh new-session -A -s ssh'
+alias tmp='tmux -2 -L pty new-session -A -s pty'
+# alias tmr='if [[ ! $TMUX ]]; then tmux -2 new-session -A -s $( if [[ $WAYLAND_DISPLAY || $DISPLAY ]]; then echo gui; else echo pty; fi ); fi'
 
 alias mpvrt='mpv --no-cache --demuxer-readahead-secs 0'
 alias feh='feh -x -B black -N -.'
@@ -80,6 +83,8 @@ alias sxiv='sxiv -abrf -s d'
 alias alarm='doas at -f ~/.bin/alarm.sh'
 alias atop='atop -af 1'
 alias nnn='nnn -edC'
+alias imv='imv -r'
+# alias tmux='if [[ ! $TMUX ]]; then tmux -2; fi'
 
 alias f='ag --nocolor -l -g "" | fzy -l 256 -p "❯ "'
 alias e='ag --nocolor -l -g "" | fzy -l 256 -p "❯ " | xargs kak -e "delete-buffer *stdin*"'
@@ -142,10 +147,10 @@ export NNN_RESTRICT_NAV_OPEN='1'
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
-# export DEV_STACK=llvm
+export DEV_STACK=llvm
 
 if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
-	LLVM_VER=11
+	LLVM_VER=12
 	LLVM_PATH=/usr/local/llvm$LLVM_VER/bin
 	if [[ -d $LLVM_PATH ]]; then
 		export CC=$LLVM_PATH/clang

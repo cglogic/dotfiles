@@ -7,25 +7,25 @@
 # pleasing shades
 
 # colors 16-231 are a 6x6x6 color cube
-for ($red = 0; $red < 6; $red++) {
-    for ($green = 0; $green < 6; $green++) {
-	for ($blue = 0; $blue < 6; $blue++) {
-	    printf("\x1b]4;%d;rgb:%2.2x/%2.2x/%2.2x\x1b\\",
-		   16 + ($red * 36) + ($green * 6) + $blue,
-		   ($red ? ($red * 40 + 55) : 0),
-		   ($green ? ($green * 40 + 55) : 0),
-		   ($blue ? ($blue * 40 + 55) : 0));
-	}
-    }
-}
+# for ($red = 0; $red < 6; $red++) {
+#     for ($green = 0; $green < 6; $green++) {
+# 	for ($blue = 0; $blue < 6; $blue++) {
+# 	    printf("\x1b]4;%d;rgb:%2.2x/%2.2x/%2.2x\x1b\\",
+# 		   16 + ($red * 36) + ($green * 6) + $blue,
+# 		   ($red ? ($red * 40 + 55) : 0),
+# 		   ($green ? ($green * 40 + 55) : 0),
+# 		   ($blue ? ($blue * 40 + 55) : 0));
+# 	}
+#     }
+# }
 
 # colors 232-255 are a grayscale ramp, intentionally leaving out
 # black and white
-for ($gray = 0; $gray < 24; $gray++) {
-    $level = ($gray * 10) + 8;
-    printf("\x1b]4;%d;rgb:%2.2x/%2.2x/%2.2x\x1b\\",
-	   232 + $gray, $level, $level, $level);
-}
+# for ($gray = 0; $gray < 24; $gray++) {
+#     $level = ($gray * 10) + 8;
+#     printf("\x1b]4;%d;rgb:%2.2x/%2.2x/%2.2x\x1b\\",
+# 	   232 + $gray, $level, $level, $level);
+# }
 
 
 # display the colors

@@ -160,11 +160,12 @@ input * {
 #
 # Basics:
 #
-	#
-	bindsym $mod+backslash exec ls ~/.local/bin | bemenu --fn="$fname $fsize" --prompt="❯❯❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+    #
+    bindsym $mod+backslash exec ls ~/.local/bin | bemenu --fn="$fname $fsize" --prompt="❯❯❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+    # bindsym $mod+backslash exec $term zsh -c 'tmux -2 -L gui new-session -A -s gui'
 
-	#
-	bindsym $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
+    #
+    bindsym $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
 
     # Disable touchpad
     bindsym Print exec swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled
@@ -331,9 +332,12 @@ bar {
     font "$fname $fsize"
 }
 
-exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
-exec mako
+# exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+# exec dbus-launch --sh-syntax --exit-with-session sway
+# exec mako
 
 exec ~/.local/bin/bmon
+
+exec doas service sndiod restart
 
 include /usr/local/etc/sway/config.d/*

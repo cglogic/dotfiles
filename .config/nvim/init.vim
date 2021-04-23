@@ -68,15 +68,16 @@ colorscheme Tomorrow-Night
 "colorscheme jellybeans
 set number
 set tabstop=4
+set guicursor=
 
 "local lualine = require('lualine')
 "lualine.status()
 "lualine.theme = 'gruvbox'
 
-let g:ophigh_color = 13
+let g:ophigh_color = 15
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'jellybeans'
+"let g:airline_theme = 'jellybeans'
 let g:airline_skip_empty_sections = 1
 let g:airline_exclude_preview = 1
 

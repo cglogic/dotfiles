@@ -1,12 +1,15 @@
+# Start new session
 if [[ $SSH_TTY ]]; then
 	if [[ ! $TMUX ]]; then
-		exec tmux new-session -A -s remote
+		exec tmux -2 -L ssh new-session -A -s ssh
 	fi
 elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
-	read "?Choose (t)mux, (s)way, (x)org, (z)sh: " SESSION_TYPE
+	read "?Choose (s)way, (x)org, (t)mux, (z)sh: " SESSION_TYPE
 
 	if [[ "$SESSION_TYPE" == "t" ]]; then
-		exec tmux new-session -A -s local
+		if [[ ! $TMUX ]]; then
+			exec tmux -2 -L pty new-session -A -s pty
+		fi
 	elif [[ "$SESSION_TYPE" == "s" ]]; then
 		export XDG_CONFIG_HOME=$HOME/.config
 		export XDG_RUNTIME_DIR=/tmp/$USER-runtime-dir

@@ -1,11 +1,13 @@
 # Start new session
 if [[ $SSH_TTY ]]; then
 	if [[ ! $TMUX ]]; then
-		exec tmux -2 -L ssh new-session -A -s ssh
+		read "?Choose (t)mux, (z)sh: " SESSION_TYPE
+		if [[ "$SESSION_TYPE" == "t" ]]; then
+			exec tmux -2 -L ssh new-session -A -s ssh
+		fi
 	fi
 elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 	read "?Choose (s)way, (x)org, (t)mux, (z)sh: " SESSION_TYPE
-
 	if [[ "$SESSION_TYPE" == "t" ]]; then
 		if [[ ! $TMUX ]]; then
 			exec tmux -2 -L pty new-session -A -s pty

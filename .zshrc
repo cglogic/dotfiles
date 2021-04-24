@@ -67,6 +67,7 @@ alias dfc='dfc -d'
 alias ps='ps -ww'
 alias pstree='pstree -g 2'
 alias tree='tree -N'
+alias cbonsai='cbonsai -l -i'
 
 # alias gdb='/usr/local/bin/gdb'
 alias fsl='fossil'

@@ -19,6 +19,7 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 			mkdir "$XDG_RUNTIME_DIR"
 			chmod 0700 "$XDG_RUNTIME_DIR"
 		fi
+		export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.sock
 		exec sway
 	elif [[ "$SESSION_TYPE" == "x" ]]; then
 		exec startx

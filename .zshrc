@@ -69,7 +69,6 @@ alias pstree='pstree -g 2'
 alias tree='tree -N'
 alias cbonsai='cbonsai -l -i'
 
-# alias gdb='/usr/local/bin/gdb'
 alias fsl='fossil'
 alias svn='svnlite'
 alias tmg='tmux -2 -L gui new-session -A -s gui'

@@ -6,7 +6,7 @@ Plug 'chriskempson/vim-tomorrow-theme'
 "Plug 'hoob3rt/lualine.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
+"Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
 Plug 'Valloric/vim-operator-highlight'
 
 "Plug 'tpope/vim-fugitive'
@@ -20,21 +20,22 @@ Plug 'Valloric/vim-operator-highlight'
 "Plug 'w0rp/ale'
 "Plug 'hrsh7th/nvim-compe'
 
-Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'matze/vim-move'
 Plug 'rhysd/vim-clang-format'
 
 "Plug 'Shougo/denite.nvim'
-Plug 'junegunn/fzf', { 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'do': './install --bin' }
+"Plug 'junegunn/fzf.vim'
 
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
 
 call plug#end()
 
 filetype plugin indent on
 syntax enable
 
+set nowrap
 set nobackup             " keep a backup file (restore to previous version)
 set noundofile           " keep an undo file (undo changes after closing)
 set ruler              " show the cursor position all the time
@@ -52,7 +53,7 @@ noremap Q gq
 inoremap <C-U> <C-G>u<C-U>
 
 " Switch syntax highlighting on
-"syntax on
+syntax on
 
 " Enable file type detection.
 " Use the default filetype settings, so that mail gets 'textwidth' set to 72,
@@ -68,13 +69,13 @@ colorscheme Tomorrow-Night
 "colorscheme jellybeans
 set number
 set tabstop=4
-set guicursor=
+"set guicursor=
 
 "local lualine = require('lualine')
 "lualine.status()
 "lualine.theme = 'gruvbox'
 
-let g:ophigh_color = 15
+let g:ophigh_color = 14
 
 let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'jellybeans'
@@ -125,10 +126,10 @@ set pumheight=10
 set completeopt-=preview
 
 let g:clang_format#code_style = 'llvm'
-let g:clang_format#command = 'clang-format11'
+let g:clang_format#command = 'clang-format12'
 
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
+let g:cpp_class_scope_highlight = 0
+let g:cpp_member_variable_highlight = 0
 let g:cpp_experimental_simple_template_highlight = 0
 let g:cpp_concepts_highlight = 0
 

@@ -25,7 +25,7 @@ hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap wi
 map global normal '#' :comment-line<ret>
 
 hook global WinSetOption filetype=(c|cpp) %{
-	set-option global clang_options '-std=c++17'
+	set-option global clang_options '-std=c++20'
 	set-option global tabstop 4
 	set-option window formatcmd '$CF -style=file'
 # 	clang-enable-autocomplete

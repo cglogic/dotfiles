@@ -13,7 +13,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'chriskempson/vim-tomorrow-theme'
 
-Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'octol/vim-cpp-enhanced-highlight'
 
 Plug 'matze/vim-move'
 Plug 'rhysd/vim-clang-format'
@@ -28,7 +28,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 "Plug 'jeaye/color_coded'
 "Plug 'bbchung/clighter8'
 "Plug 'rdnetto/YCM-Generator'
@@ -73,6 +73,7 @@ else
     colorscheme base16-default-dark
 endif
 
+set nowrap
 set autoindent
 set copyindent
 "set smartindent

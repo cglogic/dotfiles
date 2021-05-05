@@ -6,6 +6,7 @@
 
 OPTIONS=''
 if [ -n "$WAYLAND_DISPLAY" ]; then
+	# OPTIONS='--enable-features=UseOzonePlatform --ignore-gpu-blocklist --enable-zero-copy'
 	OPTIONS='--enable-features=UseOzonePlatform --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy'
 	# OPTIONS='--ignore-gpu-blocklist --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 elif [ -n "$DISPLAY" ]; then

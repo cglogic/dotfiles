@@ -9,7 +9,8 @@
 set $fname JetBrains Mono
 set $fsize 16
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+# set $mod Mod4
+set $mod Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -152,8 +153,9 @@ input type:keyboard {
 
 input * {
     xkb_layout "us,ru"
+    xkb_options "grp:caps_toggle"
     # xkb_options "grp:win_space_toggle"
-    xkb_options "grp:alt_shift_toggle"
+    # xkb_options "grp:alt_shift_toggle"
 }
 
 ### Key bindings
@@ -184,6 +186,10 @@ input * {
 
     # Start your launcher
     bindsym $mod+grave exec $menu
+
+    # Make the current focus fullscreen
+    bindsym Super_L fullscreen
+    bindsym Super_R fullscreen
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -338,6 +344,6 @@ bar {
 
 exec ~/.local/bin/bmon
 
-exec doas service sndiod restart
+# exec doas service sndiod start
 
 include /usr/local/etc/sway/config.d/*

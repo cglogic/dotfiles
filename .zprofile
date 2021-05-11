@@ -21,7 +21,8 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 	elif [[ "$SESSION_TYPE" == "s" ]]; then
 		mkdir /tmp/cache
 		export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.sock
-		exec sway
+		exec dbus-launch --sh-syntax --exit-with-session sway
+		# exec sway
 	elif [[ "$SESSION_TYPE" == "x" ]]; then
 		mkdir /tmp/cache
 		exec startx

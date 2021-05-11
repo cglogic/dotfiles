@@ -9,8 +9,8 @@
 set $fname JetBrains Mono
 set $fsize 16
 # Logo key. Use Mod1 for Alt.
-# set $mod Mod4
-set $mod Mod1
+set $mod Mod4
+# set $mod Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -38,7 +38,7 @@ gaps outer 0
 default_border pixel 1
 default_floating_border pixel 1
 titlebar_border_thickness 1
-titlebar_padding 8 2
+titlebar_padding 5 1
 
 # set $black #1C1B19
 # set $bright_black #918175
@@ -188,8 +188,8 @@ input * {
     bindsym $mod+grave exec $menu
 
     # Make the current focus fullscreen
-    bindsym Super_L fullscreen
-    bindsym Super_R fullscreen
+    # bindsym Super_L fullscreen
+    # bindsym Super_R fullscreen
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -325,6 +325,8 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position bottom
+    status_edge_padding 5
+    status_padding 1
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
@@ -340,10 +342,8 @@ bar {
 
 # exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
 # exec dbus-launch --sh-syntax --exit-with-session sway
-# exec mako
+exec mako
 
 exec ~/.local/bin/bmon
-
-# exec doas service sndiod start
 
 include /usr/local/etc/sway/config.d/*

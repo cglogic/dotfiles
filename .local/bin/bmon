@@ -36,7 +36,7 @@ while [ true ]; do
 			if [ $CAP -ne $PCNT ]; then
 				PCNT=$CAP
 				if [ "$SESSION_TYPE" = "wayland" ]; then
-					notify-send -t 5000 -- "Low battery" "The battery charge is $CAP%"
+					notify-send -t 10000 -- "Low battery" "The battery charge is $CAP%"
 				elif [ "$SESSION_TYPE" = "x11" ]; then
 					echo "The battery charge is $CAP%" | dzen2 -bg darkred -p 10
 				else

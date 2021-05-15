@@ -10,7 +10,7 @@ if [ -n "$WAYLAND_DISPLAY" ]; then
 	OPTIONS='--enable-features=UseOzonePlatform --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy'
 	# OPTIONS='--ignore-gpu-blocklist --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 elif [ -n "$DISPLAY" ]; then
-	OPTIONS='--ignore-gpu-blocklist --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
+	OPTIONS='--enable-features=VaapiVideoDecoder --use-gl=desktop --ignore-gpu-blocklist --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 fi
 
 exec chrome $OPTIONS --force-dark-mode --site-per-process --disk-cache-size=0 --disk-cache-dir=/dev/null --disable-features="WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" --js-flags="--noexpose-wasm" "$@"

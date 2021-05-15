@@ -7,7 +7,7 @@
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/.local/bin
 
 # Set default terminal
-export TERMINAL=xterm
+export TERMINAL=kitty
 
 # To determine X11
 export FSIZE=10
@@ -99,7 +99,6 @@ fi
 # run xterm with no border, white text on a black background, maximized,
 # with large fonts.
 # xterm -borderwidth 0 -fg white -bg black -maximized -fn 10x20 &
-# urxvt
 
 # Compositor
 picom --config=/dev/null --experimental-backends --backend=xrender --use-damage --vsync=opengl -b

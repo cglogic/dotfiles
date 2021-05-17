@@ -82,20 +82,6 @@ stouchpad &
 #
 bmon &
 
-#
-
-if [ ! -d /tmp/cache ]; then
-	mkdir -p /tmp/cache
-fi
-
-# if [ ! -d /tmp/cache/chromium ]; then
-# 	mkdir -p /tmp/cache/chromium
-# fi
-
-if [ ! -d $HOME/.cache/chromium ]; then
-	ln -s /dev/null $HOME/.cache/chromium
-fi
-
 # run xterm with no border, white text on a black background, maximized,
 # with large fonts.
 # xterm -borderwidth 0 -fg white -bg black -maximized -fn 10x20 &

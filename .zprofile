@@ -5,6 +5,12 @@ if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
 	mkdir "$XDG_RUNTIME_DIR"
 	chmod 0700 "$XDG_RUNTIME_DIR"
 fi
+if [[ ! -a /tmp/cache ]]; then
+	mkdir -p /tmp/cache
+fi
+if [[ ! -a $HOME/.cache/chromium ]]; then
+	ln -s /dev/null $HOME/.cache/chromium
+fi
 if [[ $SSH_TTY ]]; then
 	if [[ ! $TMUX ]]; then
 		read "?Choose (t)mux, (z)sh: " SESSION_TYPE
@@ -19,12 +25,10 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 			exec tmux -2 -L pty new-session -A -s pty
 		fi
 	elif [[ "$SESSION_TYPE" == "s" ]]; then
-		mkdir /tmp/cache
 		export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.sock
-		exec dbus-launch --sh-syntax --exit-with-session sway
 		# exec sway
+		exec dbus-launch --sh-syntax --exit-with-session sway
 	elif [[ "$SESSION_TYPE" == "x" ]]; then
-		mkdir /tmp/cache
 		exec startx
 	fi
 fi

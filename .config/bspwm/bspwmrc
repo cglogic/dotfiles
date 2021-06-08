@@ -27,4 +27,4 @@ bspc rule --add Chrome state=floating rectangle=1280x720+0+0
 # bspc rule --add '*:chrome:Open File' state=floating rectangle=1280x720+0+0
 # bspc rule --add '*:telegram-desktop:Choose files' state=floating rectangle=1280x720+0+0
 
-exec lockf -t 0 /tmp/single-tmux.lock $TERMINAL -e tmux -2 -L x11 new-session -A -s x11
+# exec lockf -t 0 /tmp/single-tmux.lock $TERMINAL -e tmux -2 -L x11 new-session -A -s x11

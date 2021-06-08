@@ -7,7 +7,7 @@ Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
-Plug 'Valloric/vim-operator-highlight'
+"Plug 'Valloric/vim-operator-highlight'
 
 "Plug 'tpope/vim-fugitive'
 "Plug 'airblade/vim-gitgutter'
@@ -75,7 +75,7 @@ set tabstop=4
 "lualine.status()
 "lualine.theme = 'gruvbox'
 
-let g:ophigh_color = 14
+"let g:ophigh_color = 14
 
 let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'jellybeans'

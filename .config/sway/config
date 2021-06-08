@@ -22,7 +22,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-set $menu bemenu-run --fn="$fname $fsize" --prompt="❯❯❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+set $menu bemenu-run --fn="$fname $fsize" --prompt="❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
 
 workspace_layout tabbed
 
@@ -153,9 +153,9 @@ input type:keyboard {
 
 input * {
     xkb_layout "us,ru"
-    xkb_options "grp:caps_toggle"
+    # xkb_options "grp:caps_toggle"
     # xkb_options "grp:win_space_toggle"
-    # xkb_options "grp:alt_shift_toggle"
+    xkb_options "grp:alt_shift_toggle"
 }
 
 ### Key bindings
@@ -163,7 +163,7 @@ input * {
 # Basics:
 #
     #
-    bindsym $mod+backslash exec ls ~/.local/bin | bemenu --fn="$fname $fsize" --prompt="❯❯❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+    bindsym $mod+backslash exec ls ~/.local/bin | bemenu --fn="$fname $fsize" --prompt="❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
     # bindsym $mod+backslash exec $term zsh -c 'tmux -2 -L gui new-session -A -s gui'
 
     #
@@ -273,6 +273,7 @@ input * {
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
+    bindsym XF86WakeUp fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle

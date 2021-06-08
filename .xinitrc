@@ -1,5 +1,18 @@
 #!/bin/sh
 
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_RUNTIME_DIR=/tmp/$USER-runtime-dir
+if [ ! -d "$XDG_RUNTIME_DIR" ]; then
+	mkdir "$XDG_RUNTIME_DIR"
+	chmod 0700 "$XDG_RUNTIME_DIR"
+fi
+# if [ ! -d /tmp/cache ]; then
+# 	mkdir -p /tmp/cache
+# fi
+if [ ! -d $HOME/.cache/chromium ]; then
+	ln -s /dev/null $HOME/.cache/chromium
+fi
+
 # Disable DRI3 on Mesa
 # export LIBGL_DRI3_DISABLE=1
 
@@ -86,8 +99,8 @@ bmon &
 # with large fonts.
 # xterm -borderwidth 0 -fg white -bg black -maximized -fn 10x20 &
 
-# Compositor
-picom --config=/dev/null --experimental-backends --backend=xrender --use-damage --vsync=opengl -b
+# Compositor --use-damage
+picom --config=/dev/null -CG --experimental-backends --backend=xrender --vsync -b
 
 sxhkd &
 exec bspwm

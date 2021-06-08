@@ -1,8 +1,8 @@
-super + r
-	rofi -show run
+# super + r
+# 	rofi -show run
 
-super + w
-	rofi -show window
+# super + w
+# 	rofi -show window
 
 super + Tab
 	bspc node focused -f next.local.!hidden.window
@@ -59,34 +59,47 @@ super + backslash
 	bspc desktop -l monocle ; test $? -ne 0 && bspc desktop -l tiled
 
 super + l
-	printscreen /tmp/screenshot.png ; convert /tmp/screenshot.png -blur 0x15 /tmp/screenshotblur.png ; i3lock -c 131313 -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png /tmp/screenshotblur.png
+    printscreen /tmp/screenshot.png ; \
+	convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; \
+	rm /tmp/screenshot.png ; \
+	i3lock -c 131313 -i /tmp/screenshotblur.png -f ; \
+	rm /tmp/screenshotblur.png
 
 super + grave
-	sdmenu
+	rofi -show run
+	# sdmenu
 
-super + Insert
-	$TERMINAL
+# super + Insert
+# 	$TERMINAL
 
 super + slash
-	dwswitch
+	rofi -show window
+	# dwswitch
 
-super + d
-	wmctrl -d | tr -s " " | cut -f 1,2,9 -d " " | dmenu -i -fn "$FNAME:size=$FSIZE" | cut -f 1 -d " " | xargs wmctrl -s
+# super + d
+# 	wmctrl -d | tr -s " " | cut -f 1,2,9 -d " " | \
+# 	dmenu -i -fn "$FNAME:size=$FSIZE" | cut -f 1 -d " " | xargs wmctrl -s
 
 super + Return
-	lockf -s -t 0 /tmp/single-tmux.lock $TERMINAL -e tmux -2 -L x11 new-session -A -s x11 ; test $? -ne 0 && wmctrl -a "tmux:`hostname`:x11"
+	$TERMINAL
+	# lockf -s -t 0 /tmp/single-tmux.lock $TERMINAL -e tmux -2 -L x11 new-session -A -s x11 ; \
+	# test $? -ne 0 && wmctrl -a "tmux:`hostname`:x11"
 
 # super + s
 # 	~/projects/kitty/kitty/launcher/kitty tmux new-session -A -s local
 
 super + b
-	lockf -s -t 0 /tmp/single-battery.lock /bin/sh -c 'acpiconf -i 0 | grep Remaining | cut -f 2 -d " " | paste -s -d " " - | xargs echo "Battery" | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-battery.lock /bin/sh -c 'acpiconf -i 0 | \
+	grep Remaining | cut -f 2 -d " " | paste -s -d " " - | \
+	xargs echo "Battery" | dzen2 -p 2'
 
 super + f
-	lockf -t 0 /tmp/single-firefox.lock firefox ; test $? -ne 0 && wmctrl -x -a "Firefox"
+	lockf -t 0 /tmp/single-firefox.lock firefox ; \
+	test $? -ne 0 && wmctrl -x -a "Firefox"
 
 super + g
-	lockf -t 0 /tmp/single-chromium.lock schrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"
+	lockf -t 0 /tmp/single-chromium.lock schrome ; \
+	test $? -ne 0 && wmctrl -x -a "Chromium-browser"
 
 super + F9
 	lockf -s -t 0 /tmp/single-monitors.lock /bin/sh -c 'smonitor ; echo "Detect monitors!" | dzen2 -p 1'
@@ -157,17 +170,17 @@ super + v
 # super + .
 # 	xset dpms force on ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
 
-super + F10
-	xset s on +dpms ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
+# super + F10
+# 	xset s on +dpms ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
 
-super + F11
-	xset s off -dpms ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
+# super + F11
+# 	xset s off -dpms ; test $? -ne 0 && echo "DPMS" | dzen2 -p 1
 
-super + @F12
-	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 2
+# super + @F12
+# 	xset dpms force off ; test $? -ne 0 && echo "DPMS" | dzen2 -p 2
 
 XF86WakeUp
 	bspc node focused -f next.local.!hidden.window
 
-Menu
-	bspc node focused -f next.local.!hidden.window
+# Menu
+# 	bspc node focused -f next.local.!hidden.window

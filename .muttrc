@@ -1,5 +1,5 @@
 set shell=/bin/sh
-source `case "$TERM" in *-256color) echo "~/.mutt/jellybeans_256.ansi" ;; *) echo "~/.mutt/jellybeans_16.ansi" ;; esac`
+source `case "$TERM" in *-256color) echo "~/.mutt/jellybeans_256.ansi" ;; *foot) echo "~/.mutt/jellybeans_256.ansi" ;; *kitty) echo "~/.mutt/jellybeans_256.ansi" ;; *) echo "~/.mutt/jellybeans_16.ansi" ;; esac`
 set mailcap_path = "~/.mutt/mailcap"
 auto_view text/html
 alternative_order text/plain text/html

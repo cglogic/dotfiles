@@ -56,48 +56,6 @@ zstyle ':completion:*' insert-tab false
 
 zle_highlight[(r)suffix:*]="suffix:fg=cyan"
 
-# Aliases
-alias h='history'
-alias j='jobs -l'
-alias la='ls -aF'
-alias lf='ls -FA'
-alias ll='ls -lAFh'
-alias c='xclip -i -f -selection primary | xclip -i -selection clipboard'
-alias v='xclip -o'
-
-alias grep='grep --color=auto'
-alias df='df -h'
-alias dfc='dfc -d'
-alias ps='ps -ww'
-alias pstree='pstree -g 2'
-alias tree='tree -N'
-alias cbonsai='cbonsai -l -i'
-alias cmatrix='cmatrix -u 6 -C blue'
-
-alias fsl='fossil'
-alias svn='svnlite'
-alias tmx='tmux -2 -L x11 new-session -A -s x11'
-alias tmg='tmux -2 -L gui new-session -A -s gui'
-alias tms='tmux -2 -L ssh new-session -A -s ssh'
-alias tmp='tmux -2 -L pty new-session -A -s pty'
-# alias tmr='if [[ ! $TMUX ]]; then tmux -2 new-session -A -s $( if [[ $WAYLAND_DISPLAY || $DISPLAY ]]; then echo gui; else echo pty; fi ); fi'
-
-alias mpvrt='mpv --no-cache --demuxer-readahead-secs 0'
-alias feh='feh -x -B black -N -.'
-alias mupdf='mupdf-gl'
-alias sxiv='sxiv -abrf -s d'
-alias alarm='doas at -f ~/.bin/alarm.sh'
-alias atop='atop -af 1'
-alias nnn='nnn -edC'
-alias imv='imv -r'
-# alias tmux='if [[ ! $TMUX ]]; then tmux -2; fi'
-
-alias f='ag --nocolor -l -g "" | fzy -l 256 -p "❯ "'
-alias e='ag --nocolor -l -g "" | fzy -l 256 -p "❯ " | xargs kak -e "delete-buffer *stdin*"'
-
-alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dotls='dot ls-tree -r master --name-only'
-
 # Environment variables
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
@@ -195,6 +153,43 @@ fi
 if [[ -v LD_LIBRARY_PATH ]]; then
 	export -U LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 fi
+
+# Aliases
+alias h='history'
+alias j='jobs -l'
+alias la='ls -aF'
+alias lf='ls -FA'
+alias ll='ls -lAFh'
+alias c='xclip -i -f -selection primary | xclip -i -selection clipboard'
+alias v='xclip -o'
+alias f='ag --nocolor -l -g "" | fzy -l 256 -p "❯ "'
+alias e='ag --nocolor -l -g "" | fzy -l 256 -p "❯ " | xargs $EDITOR -e "delete-buffer *stdin*"'
+alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotls='dot ls-tree -r master --name-only'
+alias fsl='fossil'
+alias tmx='tmux -2 -L x11 new-session -A -s x11'
+alias tmg='tmux -2 -L gui new-session -A -s gui'
+alias tms='tmux -2 -L ssh new-session -A -s ssh'
+alias tmp='tmux -2 -L pty new-session -A -s pty'
+# alias tmr='if [[ ! $TMUX ]]; then tmux -2 new-session -A -s $( if [[ $WAYLAND_DISPLAY || $DISPLAY ]]; then echo gui; else echo pty; fi ); fi'
+
+alias grep='grep --color=auto'
+alias df='df -h'
+alias dfc='dfc -d'
+alias ps='ps -ww'
+alias pstree='pstree -g 2'
+alias tree='tree -N'
+alias cbonsai='cbonsai -l -i'
+alias cmatrix='cmatrix -u 6 -C blue'
+alias mpvrt='mpv --no-cache --demuxer-readahead-secs 0'
+alias feh='feh -x -B black -N -.'
+alias mupdf='mupdf-gl'
+alias sxiv='sxiv -abrf -s d'
+alias alarm='doas at -f ~/.bin/alarm.sh'
+alias atop='atop -af 1'
+alias nnn='nnn -edC'
+alias imv='imv -r'
+# alias tmux='if [[ ! $TMUX ]]; then tmux -2; fi'
 
 # Perform compinit only once a day.
 autoload -Uz compinit

@@ -1,8 +1,8 @@
-# super + r
-# 	rofi -show run
+super + r
+	rofi -show run
 
-# super + w
-# 	rofi -show window
+super + w
+	rofi -show window
 
 super + Tab
 	bspc node focused -f next.local.!hidden.window
@@ -66,19 +66,17 @@ super + l
 	rm /tmp/screenshotblur.png
 
 super + grave
-	rofi -show run
-	# sdmenu
+	sdmenu
 
 # super + Insert
 # 	$TERMINAL
 
 super + slash
-	rofi -show window
-	# dwswitch
+	dwswitch
 
-# super + d
-# 	wmctrl -d | tr -s " " | cut -f 1,2,9 -d " " | \
-# 	dmenu -i -fn "$FNAME:size=$FSIZE" | cut -f 1 -d " " | xargs wmctrl -s
+super + d
+	wmctrl -d | tr -s " " | cut -f 1,2,9 -d " " | \
+	dmenu -i -fn "$FNAME:size=$FSIZE" | cut -f 1 -d " " | xargs wmctrl -s
 
 super + Return
 	$TERMINAL

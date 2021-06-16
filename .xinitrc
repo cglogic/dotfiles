@@ -9,7 +9,7 @@ fi
 # if [ ! -d /tmp/cache ]; then
 # 	mkdir -p /tmp/cache
 # fi
-if [ ! -d $HOME/.cache/chromium ]; then
+if [ ! -L $HOME/.cache/chromium ]; then
 	ln -s /dev/null $HOME/.cache/chromium
 fi
 
@@ -56,7 +56,7 @@ xrdb -DFNAME="$FNAME" -DFSIZE="$FSIZE" ~/.Xdefaults
 # intel_backlight 51
 
 # Restart sndiod to fix clients connection
-doas service sndiod restart
+# doas service sndiod restart
 
 # webcam power save
 CAM=`doas usbconfig list | grep "Camera" | cut -f 1 -d ":"`

@@ -32,11 +32,11 @@ workspace_layout tabbed
 # default_border none
 # default_floating_border pixel 2
 
-smart_borders on
 gaps inner 0
 gaps outer 0
-default_border pixel 1
-default_floating_border pixel 1
+smart_borders on
+default_border pixel 2
+default_floating_border pixel 2
 titlebar_border_thickness 1
 titlebar_padding 5 1
 
@@ -331,7 +331,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    status_command while date +'%Y-%m-%d %H:%M:%S'; do sleep 1; done
 
     colors {
     #     statusline #ffffff

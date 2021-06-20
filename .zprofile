@@ -1,4 +1,5 @@
 # Start new session
+# export LANG=en_US.UTF-8
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_RUNTIME_DIR=/tmp/$USER-runtime-dir
 if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
@@ -31,6 +32,7 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 		exec sway
 		# exec dbus-launch --sh-syntax --exit-with-session sway
 	elif [[ "$SESSION_TYPE" == "x" ]]; then
+		# export MESA_LOADER_DRIVER_OVERRIDE=crocus
 		exec &> /tmp/xorg.log
 		exec startx
 	fi

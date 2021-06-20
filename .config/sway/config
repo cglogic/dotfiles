@@ -22,7 +22,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-set $menu bemenu-run --fn="$fname $fsize" --prompt="❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+set $menu bemenu-run --fn="$fname $fsize" --prompt="❯" -n --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
 
 workspace_layout tabbed
 
@@ -149,9 +149,6 @@ input type:touchpad {
 input type:keyboard {
     repeat_delay 250
     repeat_rate 50
-}
-
-input * {
     xkb_layout "us,ru"
     # xkb_options "grp:caps_toggle"
     # xkb_options "grp:win_space_toggle"
@@ -190,6 +187,8 @@ input * {
     # Make the current focus fullscreen
     # bindsym Super_L fullscreen
     # bindsym Super_R fullscreen
+
+    bindsym XF86WakeUp workspace next
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -273,7 +272,6 @@ input * {
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
-    bindsym XF86WakeUp fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle

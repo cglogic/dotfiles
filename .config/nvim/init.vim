@@ -1,5 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'jeffkreeftmeijer/vim-dim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
 "Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
@@ -65,7 +66,12 @@ syntax on
 "	\    'background': { 'ctermbg': '0', '256ctermbg': '0' },
 "\}
 
-colorscheme Tomorrow-Night
+if (&t_Co == 256 || &t_Co == 88)
+    colorscheme Tomorrow-Night
+else
+    colorscheme dim
+endif
+
 "colorscheme jellybeans
 set number
 set tabstop=4

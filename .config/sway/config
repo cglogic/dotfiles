@@ -22,19 +22,14 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-set $menu bemenu-run --fn="$fname $fsize" --prompt="❯" -n --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+set $menu bemenu-run --fn="$fname $fsize" --prompt="❯" -b -n --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
 
 workspace_layout tabbed
-
-###
-# hide_edge_borders both
-# hide_edge_borders smart
-# default_border none
-# default_floating_border pixel 2
 
 gaps inner 0
 gaps outer 0
 smart_borders on
+hide_edge_borders --i3 smart
 default_border pixel 2
 default_floating_border pixel 2
 titlebar_border_thickness 1
@@ -140,7 +135,7 @@ exec swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "outp
 # Read `man 5 sway-input` for more information about this section.
 
 input type:touchpad {
-    # dwt enabled
+    dwt disabled
     tap enabled
     # natural_scroll enabled
     middle_emulation enabled
@@ -160,7 +155,7 @@ input type:keyboard {
 # Basics:
 #
     #
-    bindsym $mod+backslash exec ls ~/.local/bin | bemenu --fn="$fname $fsize" --prompt="❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+    bindsym $mod+backslash exec ls ~/.local/bin | bemenu -b -n --fn="$fname $fsize" --prompt="❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
     # bindsym $mod+backslash exec $term zsh -c 'tmux -2 -L gui new-session -A -s gui'
 
     #
@@ -189,6 +184,8 @@ input type:keyboard {
     # bindsym Super_R fullscreen
 
     bindsym XF86WakeUp workspace next
+    # bindsym $mod+Tab focus right
+    bindsym $mod+Tab workspace next
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -206,8 +203,6 @@ input type:keyboard {
 #
 # Moving around:
 #
-    bindsym $mod+Tab focus right
-
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -323,9 +318,13 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position bottom
-    status_edge_padding 5
-    status_padding 1
+    font "$fname $fsize"
+    mode hide
+    position top
+    height 30
+    gaps 0
+    status_edge_padding 0
+    status_padding 0
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
@@ -336,12 +335,11 @@ bar {
         background #323232
     #     inactive_workspace #32323200 #32323200 #5c5c5c
     }
-    font "$fname $fsize"
 }
 
 # exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
 # exec dbus-launch --sh-syntax --exit-with-session sway
-exec mako
+# exec mako
 
 exec ~/.local/bin/bmon
 

@@ -200,6 +200,15 @@ input type:keyboard {
     # Exit sway (logs you out of your Wayland session)
     # bindsym $mod+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
     bindsym $mod+Escape exec swaymsg exit
+
+    bindsym $mod+F1 exec mixer -S pcm 0
+    bindsym $mod+F2 exec mixer -S pcm -10
+    bindsym $mod+F3 exec mixer -S pcm +10
+    # bindsym $mod+F4 exec
+    bindsym $mod+F5 exec backlight decr
+    bindsym $mod+F6 exec backlight incr
+    # bindsym $mod+F7 exec
+    # bindsym $mod+F8 exec
 #
 # Moving around:
 #

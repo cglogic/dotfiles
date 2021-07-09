@@ -27,12 +27,12 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 		fi
 	elif [[ "$SESSION_TYPE" == "s" ]]; then
 		export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.sock
-		# export MESA_LOADER_DRIVER_OVERRIDE=crocus
+		export MESA_LOADER_DRIVER_OVERRIDE=crocus
 		exec &> /tmp/sway.log
 		exec sway
 		# exec dbus-launch --sh-syntax --exit-with-session sway
 	elif [[ "$SESSION_TYPE" == "x" ]]; then
-		# export MESA_LOADER_DRIVER_OVERRIDE=crocus
+		export MESA_LOADER_DRIVER_OVERRIDE=crocus
 		exec &> /tmp/xorg.log
 		exec startx
 	fi

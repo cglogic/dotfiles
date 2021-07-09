@@ -188,7 +188,9 @@ alias sxiv='sxiv -abrf -s d'
 alias alarm='doas at -f ~/.bin/alarm.sh'
 alias atop='atop -af 1'
 alias nnn='nnn -edC'
-alias imv='imv -r -f'
+# alias imv='imv -r -f'
+alias imv='imv -r'
+# alias zathura='zathura --mode fullscreen'
 # alias tmux='if [[ ! $TMUX ]]; then tmux -2; fi'
 
 # Perform compinit only once a day.

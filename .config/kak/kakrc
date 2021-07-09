@@ -9,7 +9,7 @@ set-option global autocomplete prompt
 # colorscheme tomorrow-night
 colorscheme %sh{ case "$TERM" in *-256color) echo "tomorrow-night" ;;  *foot) echo "tomorrow-night" ;;  *kitty) echo "tomorrow-night" ;; *) echo "default" ;; esac }
 
-add-highlighter global/ number-lines -hlcursor -separator '│'
+add-highlighter global/ number-lines -hlcursor -separator ' '
 add-highlighter global/ show-matching
 # add-highlighter global/ show-whitespaces
 add-highlighter global/ dynregex '%reg{/}' 0:+u

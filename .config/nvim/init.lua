@@ -14,9 +14,8 @@ end
 cmd 'packadd paq-nvim'               -- load the package manager
 local paq = require('paq-nvim').paq  -- a convenient alias
 paq {'savq/paq-nvim', opt = true}    -- paq-nvim manages itself
-paq {'kyazdani42/nvim-web-devicons'}
+-- paq {'kyazdani42/nvim-web-devicons'}
 paq {'hoob3rt/lualine.nvim'}
-paq {'folke/tokyonight.nvim'}
 paq {'norcalli/nvim-base16.lua'}
 paq {'nvim-treesitter/nvim-treesitter'}
 paq {'neovim/nvim-lspconfig'}

@@ -20,7 +20,7 @@ if [[ $SSH_TTY ]]; then
 		fi
 	fi
 elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
-	read "?Choose (s)way, (x)org, (t)mux, (z)sh: " SESSION_TYPE
+	read "?Choose (s)way, (h)ikari, (x)org, (t)mux, (z)sh: " SESSION_TYPE
 	if [[ "$SESSION_TYPE" == "t" ]]; then
 		if [[ ! $TMUX ]]; then
 			exec tmux -2 -L pty new-session -A -s pty
@@ -29,7 +29,11 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 		export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.sock
 		export MESA_LOADER_DRIVER_OVERRIDE=crocus
 		exec &> /tmp/sway.log
-		exec sway
+		exec seatd-launch sway
+	elif [[ "$SESSION_TYPE" == "h" ]]; then
+		export MESA_LOADER_DRIVER_OVERRIDE=crocus
+		exec &> /tmp/hikari.log
+		exec seatd-launch hikari
 		# exec dbus-launch --sh-syntax --exit-with-session sway
 	elif [[ "$SESSION_TYPE" == "x" ]]; then
 		export MESA_LOADER_DRIVER_OVERRIDE=crocus

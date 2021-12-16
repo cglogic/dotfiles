@@ -7,7 +7,7 @@
 ### Variables
 #
 set $fname JetBrains Mono
-set $fsize 16
+set $fsize 21
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # set $mod Mod1
@@ -328,8 +328,8 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     mode hide
-    position top
-    height 30
+    position bottom
+    height 40
     gaps 0
     status_edge_padding 0
     status_padding 0

@@ -114,7 +114,7 @@ export FZF_DEFAULT_OPTS='--exact'
 export DEV_STACK=llvm
 
 if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
-	LLVM_VER=12
+	LLVM_VER=13
 	LLVM_PATH=/usr/local/llvm$LLVM_VER/bin
 	if [[ -d $LLVM_PATH ]]; then
 		export CC=$LLVM_PATH/clang
@@ -127,7 +127,7 @@ if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
 		export CT=$LLVM_PATH/clang-tidy
 	fi
 elif [[ -v DEV_STACK ]] && [[ $DEV_STACK = gnu ]]; then
-	GCC_VER=10
+	GCC_VER=11
 	BIN_PATH=/usr/local/bin
 	if [[ -d /usr/local/lib/gcc$GCC_VER ]]; then
 		export CC=$BIN_PATH/gcc$GCC_VER
@@ -180,11 +180,11 @@ alias ps='ps -ww'
 alias pstree='pstree -g 2'
 alias tree='tree -N'
 alias cbonsai='cbonsai -l -i'
-alias cmatrix='cmatrix -u 6 -C blue'
+alias cmatrix='cmatrix -u 6 -C green'
 alias mpvrt='mpv --no-cache --demuxer-readahead-secs 0'
 alias feh='feh -x -B black -N -.'
 alias mupdf='mupdf-gl'
-alias sxiv='sxiv -abrf -s d'
+alias sxiv='nsxiv -abrf -s d'
 alias alarm='doas at -f ~/.bin/alarm.sh'
 alias atop='atop -af 1'
 alias nnn='nnn -edC'

@@ -1,4 +1,4 @@
-set-option global ui_options 'ncurses_status_on_top=true' 'ncurses_assistant=none' 'ncurses_change_colors=false' 'ncurses_enable_mouse=false' 'ncurses_set_title=true'
+set-option global ui_options 'terminal_status_on_top=true' 'terminal_assistant=none' 'terminal_change_colors=false' 'terminal_enable_mouse=false' 'terminal_set_title=true'
 # set-option global autoinfo normal|command|onkey
 set-option global makecmd 'make'
 set-option global grepcmd 'ag --column'
@@ -28,10 +28,10 @@ hook global WinSetOption filetype=(c|cpp) %{
 	set-option global clang_options '-std=c++20'
 	set-option global tabstop 4
 	set-option window formatcmd '$CF -style=file'
-# 	clang-enable-autocomplete
-# 	clang-enable-diagnostics
-# 	alias window lint clang-parse
-# 	alias window lint-next-error clang-diagnostics-next
+	# clang-enable-autocomplete
+	# clang-enable-diagnostics
+	# alias window lint clang-parse
+	# alias window lint-next-error clang-diagnostics-next
 	set-option buffer matching_pairs '{' '}' '[' ']' '(' ')'
 
 	try %{

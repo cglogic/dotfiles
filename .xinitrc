@@ -23,7 +23,7 @@ export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/.
 export TERMINAL=kitty
 
 # To determine X11
-export FSIZE=10
+export FSIZE=12
 export FNAME="JetBrains Mono"
 
 # For fast run commands
@@ -67,7 +67,7 @@ fi
 # disable mouse
 #xinput set-prop 8 "Device Enabled" 0
 #unclutter -idle 3 -root &
-unclutter --fork --timeout 5
+unclutter --start-hidden --fork --timeout 5
 
 # Run xnotify
 # export XNOTIFY_FIFO="/tmp/xnotify-$DISPLAY.fifo"

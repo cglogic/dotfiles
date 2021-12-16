@@ -11,24 +11,27 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -------------------- PLUGINS -------------------------------
-cmd 'packadd paq-nvim'               -- load the package manager
-local paq = require('paq-nvim').paq  -- a convenient alias
-paq {'savq/paq-nvim', opt = true}    -- paq-nvim manages itself
--- paq {'kyazdani42/nvim-web-devicons'}
-paq {'hoob3rt/lualine.nvim'}
-paq {'norcalli/nvim-base16.lua'}
-paq {'nvim-treesitter/nvim-treesitter'}
-paq {'neovim/nvim-lspconfig'}
-paq {'hrsh7th/nvim-compe'}
--- paq {'junegunn/fzf', run = fn['fzf#install']}
--- paq {'junegunn/fzf.vim'}
--- paq {'ojroques/nvim-lspfuzzy'}
--- paq {'cloudhead/neovim-fuzzy'}
+require "paq" {
+  'savq/paq-nvim';  -- paq-nvim manages itself
+
+  -- 'kyazdani42/nvim-web-devicons';
+  'hoob3rt/lualine.nvim';
+  'norcalli/nvim-base16.lua';
+  'nvim-treesitter/nvim-treesitter';
+  'neovim/nvim-lspconfig';
+  'hrsh7th/cmp-nvim-lsp';
+  'hrsh7th/cmp-buffer';
+  'hrsh7th/nvim-cmp';
+  -- {'junegunn/fzf', run = fn['fzf#install']};
+  -- 'junegunn/fzf.vim';
+  -- 'ojroques/nvim-lspfuzzy';
+  -- 'cloudhead/neovim-fuzzy';
+}
 
 -------------------- OPTIONS -------------------------------
 vim.o.background = 'dark'           -- or "light" for light mode
 -- cmd 'colorscheme base16'           -- Put your favorite colorscheme here
--- opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options (for deoplete)
+-- opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options
 opt.completeopt = {'menuone', 'noselect'}  -- Completion options
 -- opt.expandtab = true                -- Use spaces instead of tabs
 opt.hidden = true                   -- Enable background buffers
@@ -64,6 +67,10 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 -- map('n', '<C-l>', '<cmd>noh<CR>')    -- Clear highlights
 -- map('n', '<leader>o', 'm`o<Esc>``')  -- Insert a newline in normal mode
 
+-- Shift + J/K moves selected lines down/up in visual mode
+-- map("i", "<C-h>", "<Esc>:m .+1<CR>==gi", cmd_options)
+-- map("i", "<C-j>", "<Esc>:m .-2<CR>==gi", cmd_options)
+
 ------------------------------------------------------------
 local base16 = require 'base16'
 base16(base16.themes['default-dark'], true)
@@ -81,7 +88,13 @@ require('lualine').setup {
 
 -------------------- TREE-SITTER ---------------------------
 local ts = require 'nvim-treesitter.configs'
-ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
+ts.setup {
+  -- ensure_installed = 'maintained',
+  ensure_installed = { "c", "cpp", "python" },
+  highlight = {
+    enable = true
+  }
+}
 
 -------------------- LSP -----------------------------------
 local lsp = require 'lspconfig'
@@ -105,38 +118,43 @@ lsp.pylsp.setup {}
 -- map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 
 ------------------------------------------------------------
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  resolve_timeout = 800;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = {
-    border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
-    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-    max_width = 120,
-    min_width = 60,
-    max_height = math.floor(vim.o.lines * 0.3),
-    min_height = 1,
-  };
+local cmp = require'cmp'
+cmp.setup({
+    -- completion = {
+    --     autocomplete = false
+    -- },
+    sources = {
+        { name = "buffer" },
+        { name = "nvim_lsp" },
+        -- { name = "luasnip" },
+        -- { name = "neorg" },
+    },
+    mapping = {
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ["<cr>"] = cmp.mapping.confirm({select = true}),
+        ["<s-tab>"] = cmp.mapping.select_prev_item(),
+        ["<tab>"] = cmp.mapping.select_next_item(),
+    },
+    formatting = {
+        format = function(entry, item)
+            -- item.kind = lsp_symbols[item.kind]
+            item.abbr = string.sub(item.abbr, 1, 20)
+            item.menu = ({
+                buffer = "[Buffer]",
+                nvim_lsp = "[LSP]",
+                -- luasnip = "[Snippet]",
+                -- neorg = "[Neorg]",
+            })[entry.source.name]
 
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = true;
-    ultisnips = true;
-    luasnip = true;
-  };
-}
+            return item
+        end,
+    },
+    -- snippet = {
+    --     expand = function(args)
+    --         luasnip.lsp_expand(args.body)
+    --     end,
+    -- },
+})
 -------------------- COMMANDS ------------------------------
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode

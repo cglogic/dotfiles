@@ -21,29 +21,29 @@ umask 77
 ZLS_COLORS="no=00:fi=00:di=34:ln=36:pi=33:so=35:bd=33:cd=33:ex=32:lc=\e[:rm=m:tc=00:sp=00:ma=07:hi=00:du=00:ow=34:tw=34:su=31:sg=31"
 
 if [[ -v WAYLAND_DISPLAY ]]; then
-	setup_colors() {
-		# colors 16-231
-		for (( red = 0; red < 6; red++ )); do
-			for (( green = 0; green < 6; green++ )); do
-				for (( blue = 0; blue < 6; blue++ )); do
-					(( i = 16 + ($red * 36) + ($green * 6) + $blue ))
-					(( r = $red ? ($red * 40 + 55) : 0 ))
-					(( g = $green ? ($green * 40 + 55) : 0 ))
-					(( b = $blue ? ($blue * 40 + 55) : 0 ))
-					printf "\x1b]4;%d;rgb:%02x/%02x/%02x\x1b\\" $i $r $g $b
-				done
-		    done
-		done
+	# setup_colors() {
+	# 	# colors 16-231
+	# 	for (( red = 0; red < 6; red++ )); do
+	# 		for (( green = 0; green < 6; green++ )); do
+	# 			for (( blue = 0; blue < 6; blue++ )); do
+	# 				(( i = 16 + ($red * 36) + ($green * 6) + $blue ))
+	# 				(( r = $red ? ($red * 40 + 55) : 0 ))
+	# 				(( g = $green ? ($green * 40 + 55) : 0 ))
+	# 				(( b = $blue ? ($blue * 40 + 55) : 0 ))
+	# 				printf "\x1b]4;%d;rgb:%02x/%02x/%02x\x1b\\" $i $r $g $b
+	# 			done
+	# 	    done
+	# 	done
 
-		# colors 232-255
-		for (( gray = 0; gray < 24; gray++ )); do
-			(( i = 232 + $gray ))
-			(( level = ($gray * 10) + 8 ))
-			printf "\x1b]4;%d;rgb:%02x/%02x/%02x\x1b\\" $i $level $level $level
-		done
-	}
+	# 	# colors 232-255
+	# 	for (( gray = 0; gray < 24; gray++ )); do
+	# 		(( i = 232 + $gray ))
+	# 		(( level = ($gray * 10) + 8 ))
+	# 		printf "\x1b]4;%d;rgb:%02x/%02x/%02x\x1b\\" $i $level $level $level
+	# 	done
+	# }
 
-	setup_colors
+	# setup_colors
 
 	# termcap for foot
 	export TERMCAP="${TERM}:bw:hs:ds=\E]2;\E\\:fs=\E\\:kb=\177:ts=\E]2;:vb=\E]555\E\\:tc=${TERM}:"

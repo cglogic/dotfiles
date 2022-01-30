@@ -1,8 +1,8 @@
-super + r
-	rofi -show run
+# super + r
+# 	rofi -show run
 
-super + w
-	rofi -show window
+# super + w
+# 	rofi -show window
 
 super + Tab
 	bspc node focused -f next.local.!hidden.window
@@ -153,8 +153,8 @@ super + h
 super + t
 	lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop ; test $? -ne 0 && wmctrl -x -a "TelegramDesktop"
 
-super + m
-	$TERMINAL -e cmatrix -C blue
+# super + m
+# 	$TERMINAL -e cmatrix -C blue
 
 super + z
 	lockf -s -t 0 /tmp/single-chromium.lock sichrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"

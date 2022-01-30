@@ -72,20 +72,6 @@ xnotify.leading: 2
 xnotify.padding: 2
 xnotify.alignment: center
 
-rofi.dpi: 0
-rofi.font: FNAME FSIZE
-rofi.scroll-method: false
-rofi.hide-scrollbar: true
-! Enable the extended coloring options
-rofi.color-enabled: true
-!                  bg       border   separator
-rofi.color-window: #131313, #268bd2, #268bd2
-!                  bg       fg       bg-alt   hl-bg    hl-fg
-rofi.color-normal: #292929, #e0e0e0, #191919, #268bd2, #ffffff
-rofi.color-active: #292929, #46abf2, #292929, #268bd2, #ffffff
-rofi.color-urgent: #292929, #f3843d, #292929, #268bd2, #ffffff
-rofi.separator-style: solid
-
 *.foreground:   #d0d0d0
 *.background:   #131313
 *.cursorColor:  #d0d0d0

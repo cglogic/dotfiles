@@ -6,11 +6,17 @@ if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
 	mkdir "$XDG_RUNTIME_DIR"
 	chmod 0700 "$XDG_RUNTIME_DIR"
 fi
-# if [[ ! -a /tmp/cache ]]; then
-# 	mkdir -p /tmp/cache
-# fi
+if [[ ! -a /tmp/cache ]]; then
+	mkdir -p /tmp/cache
+fi
 if [[ ! -a $HOME/.cache/chromium ]]; then
 	ln -s /dev/null $HOME/.cache/chromium
+fi
+if [[ ! -a /tmp/cache/mozilla ]]; then
+	mkdir -p /tmp/cache/mozilla
+fi
+if [[ ! -a $HOME/.cache/mozilla ]]; then
+	ln -s /tmp/cache/mozilla $HOME/.cache/mozilla
 fi
 if [[ $SSH_TTY ]]; then
 	if [[ ! $TMUX ]]; then

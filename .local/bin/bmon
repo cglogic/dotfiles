@@ -10,7 +10,7 @@ fi
 PCNT=100
 
 while [ true ]; do
-	sleep 10
+	sleep 60
 
 	if [ "$SESSION_TYPE" = "wayland" ]; then
 		if ( ! swaymsg > /dev/null ); then

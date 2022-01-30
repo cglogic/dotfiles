@@ -7,7 +7,7 @@
 ### Variables
 #
 set $fname JetBrains Mono
-set $fsize 21
+set $fsize 18
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # set $mod Mod1
@@ -22,14 +22,15 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-set $menu bemenu-run --fn="$fname $fsize" --prompt="❯" -b -n --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+# set $menu bemenu-run --fn="$fname $fsize" --prompt="❯" -b -n --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+set $menu rofi -no-config -no-plugins -theme "glue_pro_blue" -font "$fname $fsize" -dpi auto -theme-str "listview { scrollbar: false; }" -show run
 
 workspace_layout tabbed
 
 gaps inner 0
 gaps outer 0
 smart_borders on
-hide_edge_borders --i3 smart
+# hide_edge_borders --i3 smart
 default_border pixel 2
 default_floating_border pixel 2
 titlebar_border_thickness 1
@@ -327,17 +328,17 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    mode hide
+    # mode hide
     position bottom
-    height 40
+    height 34
     gaps 0
     status_edge_padding 0
     status_padding 0
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %H:%M:%S'; do sleep 1; done
-    status_command while ~/.config/sway/status.sh; do sleep 1; done
+    status_command while date +'%Y-%m-%d %H:%M:%S'; do sleep 1; done
+    # status_command while ~/.config/sway/status.sh; do sleep 1; done
 
     colors {
     #     statusline #ffffff

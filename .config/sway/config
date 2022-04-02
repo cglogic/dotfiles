@@ -352,6 +352,15 @@ bar {
 # exec dbus-launch --sh-syntax --exit-with-session sway
 # exec mako
 
+# set $gnome-schema org.gnome.desktop.interface
+
+# exec_always {
+#     gsettings set $gnome-schema gtk-theme 'Adwaita'
+#     gsettings set $gnome-schema icon-theme 'Faenza'
+#     gsettings set $gnome-schema cursor-theme 'OpenZone_Ice'
+#     gsettings set $gnome-schema font-name 'Clear Sans 14'
+# }
+
 exec ~/.local/bin/bmon
 
 include /usr/local/etc/sway/config.d/*

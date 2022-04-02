@@ -16,16 +16,12 @@ require "paq" {
 
   -- 'kyazdani42/nvim-web-devicons';
   'hoob3rt/lualine.nvim';
-  'norcalli/nvim-base16.lua';
+  'RRethy/nvim-base16';
   'nvim-treesitter/nvim-treesitter';
-  'neovim/nvim-lspconfig';
-  'hrsh7th/cmp-nvim-lsp';
-  'hrsh7th/cmp-buffer';
-  'hrsh7th/nvim-cmp';
-  -- {'junegunn/fzf', run = fn['fzf#install']};
-  -- 'junegunn/fzf.vim';
-  -- 'ojroques/nvim-lspfuzzy';
-  -- 'cloudhead/neovim-fuzzy';
+  -- 'neovim/nvim-lspconfig';
+  -- 'hrsh7th/cmp-nvim-lsp';
+  -- 'hrsh7th/cmp-buffer';
+  -- 'hrsh7th/nvim-cmp';
 }
 
 -------------------- OPTIONS -------------------------------
@@ -72,8 +68,7 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 -- map("i", "<C-j>", "<Esc>:m .-2<CR>==gi", cmd_options)
 
 ------------------------------------------------------------
-local base16 = require 'base16'
-base16(base16.themes['default-dark'], true)
+vim.cmd('colorscheme base16-tomorrow-night')
 
 require('lualine').setup {
   options = {
@@ -97,64 +92,64 @@ ts.setup {
 }
 
 -------------------- LSP -----------------------------------
-local lsp = require 'lspconfig'
--- local lspfuzzy = require 'lspfuzzy'
+-- local lsp = require 'lspconfig'
+-- -- local lspfuzzy = require 'lspfuzzy'
 
--- For ccls we use the default settings
-lsp.ccls.setup {}
--- root_dir is where the LSP server will start: here at the project root otherwise in current folder
--- lsp.pyls.setup {root_dir = lsp.util.root_pattern('.git', fn.getcwd())}
-lsp.pylsp.setup {}
--- lspfuzzy.setup {}  -- Make the LSP client use FZF instead of the quickfix list
+-- -- For ccls we use the default settings
+-- lsp.ccls.setup {}
+-- -- root_dir is where the LSP server will start: here at the project root otherwise in current folder
+-- -- lsp.pyls.setup {root_dir = lsp.util.root_pattern('.git', fn.getcwd())}
+-- lsp.pylsp.setup {}
+-- -- lspfuzzy.setup {}  -- Make the LSP client use FZF instead of the quickfix list
 
--- map('n', '<space>,', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
--- map('n', '<space>;', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
--- map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
--- map('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<CR>')
--- map('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
--- map('n', '<space>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
--- map('n', '<space>m', '<cmd>lua vim.lsp.buf.rename()<CR>')
--- map('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>')
--- map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+-- -- map('n', '<space>,', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+-- -- map('n', '<space>;', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+-- -- map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+-- -- map('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<CR>')
+-- -- map('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+-- -- map('n', '<space>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
+-- -- map('n', '<space>m', '<cmd>lua vim.lsp.buf.rename()<CR>')
+-- -- map('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>')
+-- -- map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 
 ------------------------------------------------------------
-local cmp = require'cmp'
-cmp.setup({
-    -- completion = {
-    --     autocomplete = false
-    -- },
-    sources = {
-        { name = "buffer" },
-        { name = "nvim_lsp" },
-        -- { name = "luasnip" },
-        -- { name = "neorg" },
-    },
-    mapping = {
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-        ["<cr>"] = cmp.mapping.confirm({select = true}),
-        ["<s-tab>"] = cmp.mapping.select_prev_item(),
-        ["<tab>"] = cmp.mapping.select_next_item(),
-    },
-    formatting = {
-        format = function(entry, item)
-            -- item.kind = lsp_symbols[item.kind]
-            item.abbr = string.sub(item.abbr, 1, 20)
-            item.menu = ({
-                buffer = "[Buffer]",
-                nvim_lsp = "[LSP]",
-                -- luasnip = "[Snippet]",
-                -- neorg = "[Neorg]",
-            })[entry.source.name]
+-- local cmp = require'cmp'
+-- cmp.setup({
+--     -- completion = {
+--     --     autocomplete = false
+--     -- },
+--     sources = {
+--         { name = "buffer" },
+--         { name = "nvim_lsp" },
+--         -- { name = "luasnip" },
+--         -- { name = "neorg" },
+--     },
+--     mapping = {
+--         ['<C-Space>'] = cmp.mapping.complete(),
+--         ['<C-e>'] = cmp.mapping.close(),
+--         ["<cr>"] = cmp.mapping.confirm({select = true}),
+--         ["<s-tab>"] = cmp.mapping.select_prev_item(),
+--         ["<tab>"] = cmp.mapping.select_next_item(),
+--     },
+--     formatting = {
+--         format = function(entry, item)
+--             -- item.kind = lsp_symbols[item.kind]
+--             item.abbr = string.sub(item.abbr, 1, 20)
+--             item.menu = ({
+--                 buffer = "[Buffer]",
+--                 nvim_lsp = "[LSP]",
+--                 -- luasnip = "[Snippet]",
+--                 -- neorg = "[Neorg]",
+--             })[entry.source.name]
 
-            return item
-        end,
-    },
-    -- snippet = {
-    --     expand = function(args)
-    --         luasnip.lsp_expand(args.body)
-    --     end,
-    -- },
-})
+--             return item
+--         end,
+--     },
+--     -- snippet = {
+--     --     expand = function(args)
+--     --         luasnip.lsp_expand(args.body)
+--     --     end,
+--     -- },
+-- })
 -------------------- COMMANDS ------------------------------
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode

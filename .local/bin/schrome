@@ -1,6 +1,6 @@
 #!/bin/sh
 
 # OPTIONS='--ignore-gpu-blocklist --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
-OPTIONS='--enable-features=VaapiVideoDecoder --ozone-platform-hint=auto --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
+OPTIONS='--enable-features=VaapiVideoDecoder --ozone-platform-hint=auto --use-gl=egl --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 
-exec chrome $OPTIONS --force-dark-mode --site-per-process --disk-cache-size=0 --disk-cache-dir=/dev/null --disable-features="WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" --js-flags="--noexpose-wasm" "$@"
+exec chrome $OPTIONS --force-dark-mode --site-per-process --disk-cache-size=0 --disk-cache-dir=/dev/null --disable-features="WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming,UseChromeOSDirectVideoDecoder" --js-flags="--noexpose-wasm" "$@"

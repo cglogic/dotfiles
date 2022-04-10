@@ -34,6 +34,7 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 	elif [[ "$SESSION_TYPE" == "s" ]]; then
 		export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.sock
 		export MESA_LOADER_DRIVER_OVERRIDE=crocus
+		export WLR_DRM_NO_ATOMIC=1
 		exec &> /tmp/sway.log
 		exec seatd-launch sway
 	elif [[ "$SESSION_TYPE" == "h" ]]; then

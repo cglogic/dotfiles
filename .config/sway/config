@@ -155,38 +155,41 @@ input type:keyboard {
 #
 # Basics:
 #
-    #
-    bindsym $mod+backslash exec ls ~/.local/bin | bemenu -b -n --fn="$fname $fsize" --prompt="❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
-    # bindsym $mod+backslash exec $term zsh -c 'tmux -2 -L gui new-session -A -s gui'
+    # bindsym --to-code --no-repeat Super_L fullscreen
+    # bindsym --release --to-code --no-repeat Super_L fullscreen
 
     #
-    bindsym $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
+    bindsym --to-code $mod+backslash exec ls ~/.local/bin | bemenu -b -n --fn="$fname $fsize" --prompt="❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+    # bindsym --to-code $mod+backslash exec $term zsh -c 'tmux -2 -L gui new-session -A -s gui'
+
+    #
+    bindsym --to-code $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
 
     # Disable touchpad
-    bindsym Print exec swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled
+    bindsym --to-code Print exec swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled
 
     # Chromium
-    bindsym $mod+g exec ~/.local/bin/schrome
+    bindsym --to-code $mod+g exec ~/.local/bin/schrome
 
     # Telegram
-    bindsym $mod+t exec telegram-desktop
+    bindsym --to-code $mod+t exec telegram-desktop
 
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym --to-code $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym --to-code $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+grave exec $menu
+    bindsym --to-code $mod+grave exec $menu
 
     # Make the current focus fullscreen
-    # bindsym Super_L fullscreen
-    # bindsym Super_R fullscreen
+    # bindsym --to-code Super_L fullscreen
+    # bindsym --to-code Super_R fullscreen
 
-    bindsym XF86WakeUp workspace next
-    # bindsym $mod+Tab focus right
-    bindsym $mod+Tab workspace next
+    bindsym --to-code XF86WakeUp workspace next
+    # bindsym --to-code $mod+Tab focus right
+    bindsym --to-code $mod+Tab workspace next
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -196,69 +199,69 @@ input type:keyboard {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym --to-code $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    # bindsym $mod+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-    bindsym $mod+Escape exec swaymsg exit
+    # bindsym --to-code $mod+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym --to-code $mod+Escape exec swaymsg exit
 
-    bindsym $mod+F1 exec mixer -S pcm 0
-    bindsym $mod+F2 exec mixer -S pcm -10
-    bindsym $mod+F3 exec mixer -S pcm +10
-    # bindsym $mod+F4 exec
-    bindsym $mod+F5 exec backlight decr
-    bindsym $mod+F6 exec backlight incr
-    # bindsym $mod+F7 exec
-    # bindsym $mod+F8 exec
+    bindsym --to-code $mod+F1 exec mixer -S pcm 0
+    bindsym --to-code $mod+F2 exec mixer -S pcm -10
+    bindsym --to-code $mod+F3 exec mixer -S pcm +10
+    # bindsym --to-code $mod+F4 exec
+    bindsym --to-code $mod+F5 exec backlight decr
+    bindsym --to-code $mod+F6 exec backlight incr
+    # bindsym --to-code $mod+F7 exec
+    # bindsym --to-code $mod+F8 exec
 #
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+    bindsym --to-code $mod+$left focus left
+    bindsym --to-code $mod+$down focus down
+    bindsym --to-code $mod+$up focus up
+    bindsym --to-code $mod+$right focus right
     # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+    bindsym --to-code $mod+Left focus left
+    bindsym --to-code $mod+Down focus down
+    bindsym --to-code $mod+Up focus up
+    bindsym --to-code $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    bindsym --to-code $mod+Shift+$left move left
+    bindsym --to-code $mod+Shift+$down move down
+    bindsym --to-code $mod+Shift+$up move up
+    bindsym --to-code $mod+Shift+$right move right
     # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+    bindsym --to-code $mod+Shift+Left move left
+    bindsym --to-code $mod+Shift+Down move down
+    bindsym --to-code $mod+Shift+Up move up
+    bindsym --to-code $mod+Shift+Right move right
 #
 # Workspaces:
 #
     # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
+    bindsym --to-code $mod+1 workspace number 1
+    bindsym --to-code $mod+2 workspace number 2
+    bindsym --to-code $mod+3 workspace number 3
+    bindsym --to-code $mod+4 workspace number 4
+    bindsym --to-code $mod+5 workspace number 5
+    bindsym --to-code $mod+6 workspace number 6
+    bindsym --to-code $mod+7 workspace number 7
+    bindsym --to-code $mod+8 workspace number 8
+    bindsym --to-code $mod+9 workspace number 9
+    bindsym --to-code $mod+0 workspace number 10
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
+    bindsym --to-code $mod+Shift+1 move container to workspace number 1
+    bindsym --to-code $mod+Shift+2 move container to workspace number 2
+    bindsym --to-code $mod+Shift+3 move container to workspace number 3
+    bindsym --to-code $mod+Shift+4 move container to workspace number 4
+    bindsym --to-code $mod+Shift+5 move container to workspace number 5
+    bindsym --to-code $mod+Shift+6 move container to workspace number 6
+    bindsym --to-code $mod+Shift+7 move container to workspace number 7
+    bindsym --to-code $mod+Shift+8 move container to workspace number 8
+    bindsym --to-code $mod+Shift+9 move container to workspace number 9
+    bindsym --to-code $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -267,25 +270,25 @@ input type:keyboard {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym --to-code $mod+b splith
+    bindsym --to-code $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym --to-code $mod+s layout stacking
+    bindsym --to-code $mod+w layout tabbed
+    bindsym --to-code $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym --to-code $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym --to-code $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym --to-code $mod+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    bindsym --to-code $mod+a focus parent
 #
 # Scratchpad:
 #
@@ -293,11 +296,11 @@ input type:keyboard {
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    bindsym --to-code $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym --to-code $mod+minus scratchpad show
 #
 # Resizing containers:
 #
@@ -306,22 +309,22 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym --to-code $left resize shrink width 10px
+    bindsym --to-code $down resize grow height 10px
+    bindsym --to-code $up resize shrink height 10px
+    bindsym --to-code $right resize grow width 10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym --to-code Left resize shrink width 10px
+    bindsym --to-code Down resize grow height 10px
+    bindsym --to-code Up resize shrink height 10px
+    bindsym --to-code Right resize grow width 10px
 
     # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+    bindsym --to-code Return mode "default"
+    bindsym --to-code Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym --to-code $mod+r mode "resize"
 
 #
 # Status Bar:

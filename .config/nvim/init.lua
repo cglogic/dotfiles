@@ -50,7 +50,7 @@ opt.termguicolors = true            -- True color support
 opt.wrap = false                    -- Disable line wrap
 
 -------------------- MAPPINGS ------------------------------
-map('n', ';', ':')
+map('n', ';', ':')  -- Map ; -> :
 
 -- map('', '<leader>c', '"+y')       -- Copy to clipboard in normal, visual, select and operator modes
 -- map('i', '<C-u>', '<C-g>u<C-u>')  -- Make <C-u> undo-friendly

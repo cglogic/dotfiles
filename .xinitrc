@@ -39,12 +39,6 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # Load xresouces
 xrdb -DFNAME="$FNAME" -DFSIZE="$FSIZE" ~/.Xdefaults
 
-# Set screen backlight
-# intel_backlight 51
-
-# Restart sndiod to fix clients connection
-# doas service sndiod restart
-
 # webcam power save
 CAM=`doas usbconfig list | grep "Camera" | cut -f 1 -d ":"`
 if [ -n $CAM ]; then

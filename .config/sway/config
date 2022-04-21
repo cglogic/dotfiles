@@ -22,8 +22,8 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-# set $menu bemenu-run --fn="$fname $fsize" --prompt="❯" -b -n --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
-set $menu rofi -no-config -no-plugins -theme "glue_pro_blue" -font "$fname $fsize" -dpi auto -theme-str "listview { scrollbar: false; }" -show run
+set $menu bemenu-run --fn="$fname $fsize" --prompt="❯" -n --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+# set $menu rofi -no-config -no-plugins -theme "glue_pro_blue" -font "$fname $fsize" -dpi auto -theme-str "listview { scrollbar: false; }" -show run
 
 workspace_layout tabbed
 
@@ -36,53 +36,16 @@ default_floating_border pixel 2
 titlebar_border_thickness 1
 titlebar_padding 5 1
 
-# set $black #1C1B19
-# set $bright_black #918175
+# include themes/base16-tomorrow-night.config
 
-# set $red #EF2F27
-# set $bright_red #F75341
-
-# set $green #519F50
-# set $bright_green #98BC37
-
-# set $yellow #FBB829
-# set $bright_yellow #FED06E
-
-# set $blue #2C78BF
-# set $bright_blue #68A8E4
-
-# set $magenta #E02C6D
-# set $bright_magenta #FF5C8F
-
-# set $cyan #0AAEB3
-# set $bright_cyan #53FDE9
-
-# set $white #D0BFA1
-# set $bright_white #FCE8C3
-
-# set $orange #D75F00
-# set $bright_orange #FF8700
-
-# set $xgray1 #262626
-# set $xgray2 #303030
-# set $xgray3 #3A3A3A
-# set $xgray4 #444444
-# set $xgray5 #4E4E4E
-
-# set $hard_black #121212
-
-# class                   border  bg      text    ind     child
-# client.background                 #161616
-# client.focused            #458588 #458588 #FFFFFF #458588 #458588
-# client.unfocused          #323440 #161616 #a89984 #323440 #323440
-# client.focused_inactive   #323440 #1b1c22 #458588 #323440 #323440
-# client.urgent             #ff5555 #ff5555 #ff5555 #ff5555 #ff5555
-# client.focused          $bright_black $xgray3     $yellow       $yellow   $bright_black
-# client.focused_inactive $xgray3       $xgray3     $bright_black $xgray3   $xgray3
-# client.unfocused        $xgray1       $xgray1     $bright_black $xgray1   $xgray1
-# client.urgent           $red          $xgray1     $red          $red      $red
-# client.placeholder      $xgray3       $hard_black $bright_black $xgray3   $xgray3
-# client.background       $black
+# # Basic color configuration using the Base16 variables for windows and borders.
+# # Property Name         Border  BG      Text    Indicator Child Border
+# client.focused          $base05 $base0D $base00 $base0D $base0D
+# client.focused_inactive $base01 $base01 $base05 $base03 $base01
+# client.unfocused        $base01 $base00 $base05 $base01 $base01
+# client.urgent           $base08 $base08 $base00 $base08 $base08
+# client.placeholder      $base00 $base00 $base05 $base00 $base00
+# client.background       $base07
 
 ###
 font "$fname $fsize"
@@ -333,7 +296,7 @@ bindsym --to-code $mod+r mode "resize"
 bar {
     # mode hide
     position bottom
-    height 34
+    height 37
     gaps 0
     status_edge_padding 0
     status_padding 0
@@ -344,10 +307,24 @@ bar {
     # status_command while ~/.config/sway/status.sh; do sleep 1; done
 
     colors {
-    #     statusline #ffffff
+        statusline #eeeeee
         background #323232
-    #     inactive_workspace #32323200 #32323200 #5c5c5c
+        # inactive_workspace #32323200 #32323200 #5c5c5c
     }
+
+    # colors {
+    #     background $base00
+    #     separator  $base01
+    #     statusline $base04
+
+    #     # State             Border  BG      Text
+    #     focused_workspace   $base05 $base0D $base00
+    #     active_workspace    $base05 $base03 $base00
+    #     inactive_workspace  $base03 $base01 $base05
+    #     urgent_workspace    $base08 $base08 $base00
+    #     binding_mode        $base00 $base0A $base00
+    # }
+
     font "$fname $fsize"
 }
 
@@ -364,6 +341,6 @@ bar {
 #     gsettings set $gnome-schema font-name 'Clear Sans 14'
 # }
 
-exec ~/.local/bin/bmon
+# exec ~/.local/bin/bmon
 
 include /usr/local/etc/sway/config.d/*

@@ -3,7 +3,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-bindkey -v
+# bindkey -v
 
 setopt APPEND_HISTORY
 # setopt EXTENDED_HISTORY

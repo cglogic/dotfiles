@@ -40,10 +40,10 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 xrdb -DFNAME="$FNAME" -DFSIZE="$FSIZE" ~/.Xdefaults
 
 # webcam power save
-CAM=`doas usbconfig list | grep "Camera" | cut -f 1 -d ":"`
-if [ -n $CAM ]; then
-	doas usbconfig -d $CAM suspend
-fi
+# CAM=`doas usbconfig list | grep "Camera" | cut -f 1 -d ":"`
+# if [ -n $CAM ]; then
+# 	doas usbconfig -d $CAM suspend
+# fi
 
 # disable mouse
 #xinput set-prop 8 "Device Enabled" 0

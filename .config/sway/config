@@ -22,8 +22,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-set $menu bemenu-run --fn="$fname $fsize" --prompt="❯" -n --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
-# set $menu rofi -no-config -no-plugins -theme "glue_pro_blue" -font "$fname $fsize" -dpi auto -theme-str "listview { scrollbar: false; }" -show run
+set $menu foot --app-id=Launcher ~/.local/bin/launch
 
 workspace_layout tabbed
 
@@ -43,6 +42,7 @@ titlebar_padding 5 1
 # focus_follows_mouse no
 
 # for_window [app_id="chrome"] resize set 1280 720
+for_window [app_id="Launcher"] floating enable, sticky enable, resize set 1284 724
 
 # include themes/base16-tomorrow-night.config
 
@@ -134,13 +134,15 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 
     #
     bindsym --to-code $mod+backslash exec ls ~/.local/bin | bemenu -b -n --fn="$fname $fsize" --prompt="❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
-    # bindsym --to-code $mod+backslash exec $term zsh -c 'tmux -2 -L gui new-session -A -s gui'
 
     #
     bindsym --to-code $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
 
     # Disable touchpad
     bindsym --to-code Print exec swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled
+
+    # Screenshot
+    bindsym --to-code $mod+p exec grim ~/.screenshots/screenshot-$(date +%Y.%m.%d-%H.%M.%S).png
 
     # Chromium
     bindsym --to-code $mod+g exec ~/.local/bin/schrome
@@ -359,6 +361,8 @@ bar {
 # exec ~/.local/bin/bmon
 
 exec "rm -f $WOBSOCK ; pkill -SIGINT -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob --border-color '#eeeeeeff' --background-color '#323232ff' --bar-color '#eeeeeeff'"
-# pkill -f 'tail -f /tmp/gor-runtime-dir/wob.sock'
+
+# Launch terminal
+exec $term
 
 include /usr/local/etc/sway/config.d/*

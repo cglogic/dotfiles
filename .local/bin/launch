@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# ls ~/.local/bin | fzy --prompt='❯ ' --lines=19 | xargs /bin/sh -c
+
+HISTORY="$HOME/.launch_history"
+CACHE="$HOME/.launch_cache"
+
+test -f "$HISTORY" || touch "$HISTORY"
+
+IFS=:
+if stest -dqr -n "$CACHE" $PATH; then
+	stest -flx $PATH | sort -u | tee "$CACHE"
+fi
+
+CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | fzy --prompt='' --lines=19 "$@" )
+
+# exit if null input
+test -z "$CMD" && exit 1
+
+# test if CMD exist in $PATH
+if hash $( echo "$CMD" | cut -f1 -d ' ' ) >/dev/null 2>&1; then
+	# write input to history
+	if ( ! grep -q "$CMD" "$HISTORY" ) && ( ! grep -q -x "$CMD" "$CACHE" ); then
+		echo "$CMD" >> "$HISTORY"
+		sort "$HISTORY" -o "$HISTORY" &
+	fi
+
+	exec /bin/sh -c "$CMD"
+fi

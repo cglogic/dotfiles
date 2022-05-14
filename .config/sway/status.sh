@@ -6,4 +6,8 @@ vl=$(mixer -s pcm | cut -f 1- -d " " | xargs echo "Mixer")
 bt=$(acpiconf -i 0 | grep "Remaining capacity" | paste -s -d " " - | xargs echo)
 dt=$(date +'%Y-%m-%d %H:%M:%S')
 
-echo "$tp | $bl | $vl | $bt | $dt"
+echo "$tp"
+echo "$bl"
+echo "$vl"
+echo "$bt"
+echo "$dt"

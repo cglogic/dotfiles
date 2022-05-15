@@ -25,5 +25,6 @@ if hash $( echo "$CMD" | cut -f1 -d ' ' ) >/dev/null 2>&1; then
 		sort "$HISTORY" -o "$HISTORY" &
 	fi
 
-	exec /bin/sh -c "$CMD"
+	swaymsg exec -- "$CMD"
+	# exec /bin/sh -c "$CMD"
 fi

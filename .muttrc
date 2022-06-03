@@ -47,5 +47,5 @@ unset imap_peek
 
 source ~/.mutt/account.gmail
 
-# macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.c<enter><change-folder>!<enter>'
-# macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/account.k<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.gmail<enter><change-folder>!<enter>'
+macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/account.work<enter><change-folder>!<enter>'

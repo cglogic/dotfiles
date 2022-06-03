@@ -5,23 +5,25 @@ local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
 local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = {noremap = true}
+	if opts then options = vim.tbl_extend('force', options, opts) end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -------------------- PLUGINS -------------------------------
 require "paq" {
-  'savq/paq-nvim';  -- paq-nvim manages itself
+	'savq/paq-nvim';  -- paq-nvim manages itself
 
-  -- 'kyazdani42/nvim-web-devicons';
-  'hoob3rt/lualine.nvim';
-  'RRethy/nvim-base16';
-  'nvim-treesitter/nvim-treesitter';
-  -- 'neovim/nvim-lspconfig';
-  -- 'hrsh7th/cmp-nvim-lsp';
-  -- 'hrsh7th/cmp-buffer';
-  -- 'hrsh7th/nvim-cmp';
+	-- 'kyazdani42/nvim-web-devicons';
+	'hoob3rt/lualine.nvim';
+	'RRethy/nvim-base16';
+	'nvim-treesitter/nvim-treesitter';
+	-- 'neovim/nvim-lspconfig';
+	-- 'hrsh7th/cmp-nvim-lsp';
+	-- 'hrsh7th/cmp-buffer';
+	-- 'hrsh7th/nvim-cmp';
+	'ibhagwan/fzf-lua';
+	'lewis6991/spaceless.nvim';
 }
 
 -------------------- OPTIONS -------------------------------
@@ -71,24 +73,24 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 vim.cmd('colorscheme base16-tomorrow-night')
 
 require('lualine').setup {
-  options = {
-    icons_enabled = false,
-    -- theme = 'tokyonight',
-    -- section_separators = {'', ''},
-    -- component_separators = {'', ''},
-    section_separators = '',
-    component_separators = ''
-  }
+	options = {
+		icons_enabled = false,
+		-- theme = 'tokyonight',
+		-- section_separators = {'', ''},
+		-- component_separators = {'', ''},
+		section_separators = '',
+		component_separators = ''
+	}
 }
 
 -------------------- TREE-SITTER ---------------------------
 local ts = require 'nvim-treesitter.configs'
 ts.setup {
-  -- ensure_installed = 'maintained',
-  ensure_installed = { "c", "cpp", "python" },
-  highlight = {
-    enable = true
-  }
+	-- ensure_installed = 'maintained',
+	ensure_installed = { "c", "cpp", "python" },
+	highlight = {
+		enable = true
+	}
 }
 
 -------------------- LSP -----------------------------------
@@ -153,3 +155,44 @@ ts.setup {
 -- })
 -------------------- COMMANDS ------------------------------
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode
+
+--------------------------------------------------------------------
+local actions = require "fzf-lua.actions"
+require'fzf-lua'.setup {
+	files = {
+		previewer         = false,
+		cmd               = "ag --nocolor -l -g ''",
+		find_opts         = "",
+		git_icons         = false,
+		file_icons        = false,
+	},
+	grep = {
+		previewer         = false,
+		prompt            = 'Ag❯ ',
+		cmd               = "ag --nocolor",
+		grep_opts         = "",
+	},
+	buffers = {
+		previewer         = false,
+	},
+	tabs = {
+		previewer         = false,
+	},
+	lines = {
+		previewer         = false,
+	},
+}
+
+--vim.cmd([[command! Ff lua require('fzf-lua').files() ]])
+
+vim.api.nvim_set_keymap('n', '<F2>',
+	"<cmd>lua require('fzf-lua').files()<CR>",
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<F3>',
+	"<cmd>lua require('fzf-lua').buffers()<CR>",
+	{ noremap = true, silent = true })
+--vim.api.nvim_set_keymap('n', '<F4>',
+--	"<cmd>lua require('fzf-lua').greep()<CR>",
+--	{ noremap = true, silent = true })
+------------------------------------------------------------
+require('spaceless').setup {}

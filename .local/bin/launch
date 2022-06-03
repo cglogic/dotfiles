@@ -12,7 +12,15 @@ if stest -dqr -n "$CACHE" $PATH; then
 	stest -flx $PATH | sort -u | tee "$CACHE"
 fi
 
-CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | fzy --prompt='' --lines=19 "$@" )
+if [ $# -gt 0 ]; then
+	cat "$HISTORY" >/dev/null 2>&1
+	cat "$CACHE" >/dev/null 2>&1
+	exit
+fi
+
+CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | fzf --layout=reverse --prompt='❯ ' --pointer='❯' --marker='❯' --no-bold --info=hidden )
+# CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | fzy --prompt='' --lines=19 )
+# CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | pick -S )
 
 # exit if null input
 test -z "$CMD" && exit 1

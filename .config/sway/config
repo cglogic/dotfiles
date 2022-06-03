@@ -192,7 +192,8 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     bindsym --to-code $mod+F8 exec test -p $WOBSOCK && backlight -q > $WOBSOCK
 
     bindsym --to-code $mod+F9 exec test -p $WOBSOCK && acpiconf -i 0 | grep 'Remaining capacity' | tr -s '[:blank:]' '%' | cut -f 3 -d '%' > $WOBSOCK
-    bindsym --to-code $mod+F10 exec ylight
+    bindsym --to-code $mod+F10 exec test -p $WOBSOCK && sysctl dev.cpu | grep temperature | tr -s '[:blank:]' '.' | cut -f 5 -d '.' | tr -s '\n' ' ' | cut -f 1 -d ' ' > $WOBSOCK
+    bindsym --to-code $mod+F12 exec ylight
 #
 # Moving around:
 #
@@ -360,9 +361,13 @@ bar {
 
 # exec ~/.local/bin/bmon
 
+# Start wob
 exec "rm -f $WOBSOCK ; pkill -SIGINT -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob --border-color '#eeeeeeff' --background-color '#323232ff' --bar-color '#eeeeeeff'"
 
 # Launch terminal
 exec $term
+
+# Update database
+exec ~/.local/bin/launch update
 
 include /usr/local/etc/sway/config.d/*

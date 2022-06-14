@@ -24,6 +24,8 @@ require "paq" {
 	-- 'hrsh7th/nvim-cmp';
 	'ibhagwan/fzf-lua';
 	'lewis6991/spaceless.nvim';
+	'terrortylor/nvim-comment';
+	'Everduin94/nvim-quick-switcher';
 }
 
 -------------------- OPTIONS -------------------------------
@@ -196,3 +198,11 @@ vim.api.nvim_set_keymap('n', '<F3>',
 --	{ noremap = true, silent = true })
 ------------------------------------------------------------
 require('spaceless').setup {}
+-------------------------------------------------------------
+vim.api.nvim_set_keymap("n", "<F4>",
+	"<cmd>:lua require('nvim-quick-switcher').toggle('cpp', 'h')<CR>",
+	{ noremap = true, silent = true })
+
+---------------------------------------------------------
+require('nvim_comment').setup({comment_empty = false})
+vim.api.nvim_command [[autocmd! FileType cpp :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")]]

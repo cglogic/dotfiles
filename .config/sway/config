@@ -368,6 +368,6 @@ exec "rm -f $WOBSOCK ; pkill -SIGINT -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $W
 exec $term
 
 # Update database
-exec ~/.local/bin/launch update
+# exec ~/.local/bin/launch update
 
 include /usr/local/etc/sway/config.d/*

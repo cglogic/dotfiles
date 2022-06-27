@@ -196,7 +196,7 @@ vim.api.nvim_command [[autocmd! FileType cpp :lua vim.api.nvim_buf_set_option(0,
 
 vim.keymap.set('n', '<Leader>f', '<cmd>lua require("fzf-lua").files()<CR>')
 vim.keymap.set('n', '<Leader>b', '<cmd>lua require("fzf-lua").buffers()<CR>')
-vim.keymap.set('n', '<Leader>g', '<cmd>FzfLua grep<CR>')
+vim.keymap.set('n', '<Leader>g', '<cmd>lua require("fzf-lua").grep()<CR>')
 vim.keymap.set('n', '<Leader>s', '<cmd>lua require("nvim-quick-switcher").toggle("cpp", "h")<CR>')
 
 --vim.api.nvim_set_keymap('n', '<F2>',

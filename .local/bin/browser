@@ -1,0 +1,19 @@
+#!/bin/sh
+
+CHROME=/home/browser/schrome
+
+if [ ! -f "$CHROME" ]; then
+	DATASET=zroot/home/browser
+
+	cat ~/.config/browser | base64 -d | doas zfs mount -l $DATASET
+
+	if [ ! -f "$CHROME" ]; then
+		exit
+	fi
+fi
+
+chmod 770 $SWAYSOCK
+chmod 770 $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY
+chmod 770 $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY.lock
+
+exec doas -u browser $CHROME

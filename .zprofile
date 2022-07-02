@@ -10,24 +10,22 @@ if [ -n $CAM ]; then
 	doas usbconfig -d $CAM suspend
 fi
 
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_RUNTIME_DIR=/tmp/$USER-runtime-dir
+export XDG_CONFIG_HOME="$HOME/.config"
+
+export XDG_RUNTIME_DIR="/tmp/$USER-runtime-dir"
 if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
 	mkdir "$XDG_RUNTIME_DIR"
-	chmod 0700 "$XDG_RUNTIME_DIR"
+	chmod 0770 "$XDG_RUNTIME_DIR"
 fi
-if [[ ! -a /tmp/cache ]]; then
-	mkdir -p /tmp/cache
+
+CACHE="$XDG_RUNTIME_DIR/cache"
+if [[ ! -a "$CACHE" ]]; then
+	mkdir -p "$CACHE"
+	chmod 0770 "$CACHE"
 fi
-if [[ ! -a $HOME/.cache/chromium ]]; then
-	ln -s /dev/null $HOME/.cache/chromium
+if [[ ! -a "$HOME/.cache/chromium" ]]; then
+	ln -s /dev/null "$HOME/.cache/chromium"
 fi
-# if [[ ! -a /tmp/cache/mozilla ]]; then
-# 	mkdir -p /tmp/cache/mozilla
-# fi
-# if [[ ! -a $HOME/.cache/mozilla ]]; then
-# 	ln -s /tmp/cache/mozilla $HOME/.cache/mozilla
-# fi
 
 if [[ $SSH_TTY ]]; then
 	if [[ ! $TMUX ]]; then

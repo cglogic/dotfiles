@@ -91,7 +91,7 @@ require('lualine').setup {
 local ts = require 'nvim-treesitter.configs'
 ts.setup {
 	-- ensure_installed = 'maintained',
-	ensure_installed = { "c", "cpp", "python" },
+	ensure_installed = { "c", "cpp", "python", "json", "lua", "markdown", "ninja", "regex", "vim" },
 	highlight = {
 		enable = true
 	}

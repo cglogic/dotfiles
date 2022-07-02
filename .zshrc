@@ -87,8 +87,7 @@ export NNN_RESTRICT_NAV_OPEN='1'
 export FZF_DEFAULT_COMMAND='ag --nocolor -l -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
-export DEV_STACK=llvm
-
+# export DEV_STACK=llvm
 if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
 	LLVM_VER=14
 	LLVM_PATH=/usr/local/llvm$LLVM_VER/bin
@@ -115,6 +114,13 @@ elif [[ -v DEV_STACK ]] && [[ $DEV_STACK = gnu ]]; then
 		export AR=$BIN_PATH/ar
 		export DB=$BIN_PATH/gdb
 	fi
+else
+	export CC=clang
+	export CXX=clang++
+	export CPP=clang-cpp
+	export LD=ld.lld
+	export AR=llvm-ar
+	export DB=lldb
 fi
 
 USER_LIB=$HOME/.local/lib
@@ -143,10 +149,11 @@ alias e='ag --nocolor -l -g "" | fzy -l 256 -p "❯ " | xargs $EDITOR -e "delete
 alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dotls='dot ls-tree -r master --name-only'
 alias fsl='fossil'
-alias tmx='tmux -2 -L x11 new-session -A -s x11'
-alias tmg='tmux -2 -L gui new-session -A -s gui'
-alias tms='tmux -2 -L ssh new-session -A -s ssh'
-alias tmp='tmux -2 -L pty new-session -A -s pty'
+alias tm='tmux -L local new-session -A -s local'
+alias tmx='tmux -L x11 new-session -A -s x11'
+alias tmg='tmux -L gui new-session -A -s gui'
+alias tms='tmux -L ssh new-session -A -s ssh'
+alias tmp='tmux -L pty new-session -A -s pty'
 # alias tmr='if [[ ! $TMUX ]]; then tmux -2 new-session -A -s $( if [[ $WAYLAND_DISPLAY || $DISPLAY ]]; then echo gui; else echo pty; fi ); fi'
 
 alias ssh='TERM=xterm-256color ssh'

@@ -136,7 +136,8 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     bindsym --to-code $mod+backslash exec ls ~/.local/bin | bemenu -b -n --fn="$fname $fsize" --prompt="❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
 
     #
-    bindsym --to-code $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
+    # bindsym --to-code $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
+    bindsym --to-code $mod+BackSpace exec swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
 
     # Disable touchpad
     bindsym --to-code Print exec swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled
@@ -145,7 +146,7 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     bindsym --to-code $mod+p exec grim ~/.screenshots/screenshot-$(date +%Y.%m.%d-%H.%M.%S).png
 
     # Chromium
-    bindsym --to-code $mod+g exec ~/.local/bin/schrome
+    bindsym --to-code $mod+g exec ~/.local/bin/browser
 
     # Telegram
     bindsym --to-code $mod+t exec telegram-desktop

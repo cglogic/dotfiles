@@ -2,7 +2,6 @@
 
 # OPTIONS='--ignore-gpu-blocklist --disable-partial-raster --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 
-#	--num-raster-threads=2 \
 
 exec chrome \
 	--enable-features=VaapiVideoDecoder \
@@ -11,6 +10,7 @@ exec chrome \
 	--ignore-gpu-blocklist \
 	--disable-gpu-driver-bug-workarounds \
 	--enable-gpu-rasterization \
+	--num-raster-threads=2 \
 	--enable-zero-copy \
 	--enable-accelerated-video-decode \
 	--force-dark-mode \

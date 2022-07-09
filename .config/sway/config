@@ -23,7 +23,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-set $menu foot --app-id=launcher ~/.local/bin/launch
+set $menu lockf -s -t 0 /tmp/single-menu.lock foot --app-id=launcher ~/.local/bin/launch
 
 workspace_layout tabbed
 
@@ -142,16 +142,16 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     bindsym --to-code $mod+BackSpace exec swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
 
     # Disable touchpad
-    bindsym --to-code Print exec swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled >/dev/null 2>&1
+    bindsym --to-code Print exec lockf -s -t 0 /tmp/single-touchpad.lock swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled >/dev/null 2>&1
 
     # Screenshot
     bindsym --to-code $mod+p exec grim ~/.screenshots/screenshot-$(date +%Y.%m.%d-%H.%M.%S).png
 
     # Chromium
-    bindsym --to-code $mod+g exec ~/.local/bin/browser
+    bindsym --to-code $mod+g exec lockf -s -t 0 /tmp/single-browser.lock ~/.local/bin/browser
 
     # Telegram
-    bindsym --to-code $mod+t exec telegram-desktop
+    bindsym --to-code $mod+t exec lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop
 
     # Start a terminal
     bindsym --to-code $mod+Return exec $term

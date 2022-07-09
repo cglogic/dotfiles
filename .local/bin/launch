@@ -9,7 +9,7 @@ test -f "$HISTORY" || touch "$HISTORY"
 
 IFS=:
 if stest -dqr -n "$CACHE" $PATH; then
-	stest -flx $PATH | sort -u | tee "$CACHE"
+	stest -flx $PATH | sort -u | tee "$CACHE" >/dev/null 2>&1
 fi
 
 if [ $# -gt 0 ]; then
@@ -18,7 +18,7 @@ if [ $# -gt 0 ]; then
 	exit
 fi
 
-CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | fzf --layout=reverse --prompt='❯ ' --pointer='❯' --marker='❯' --no-bold --info=hidden )
+CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | fzf --no-extended --print-query --layout=reverse --prompt='❯ ' --pointer='❯' --marker='❯' --no-bold --info=hidden | tail -1 )
 # CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | fzy --prompt='' --lines=19 )
 # CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | pick -S )
 

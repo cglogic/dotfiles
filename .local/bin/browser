@@ -20,21 +20,20 @@ fi
 
 if [ ! -S "$RUNTIME_DIR/sway-ipc.sock" ]; then
 	ln "$SWAYSOCK" "$RUNTIME_DIR/sway-ipc.sock"
+	# chown :user "$RUNTIME_DIR/sway-ipc.sock"
 	chmod 0770 "$RUNTIME_DIR/sway-ipc.sock"
 fi
 
 if [ ! -S "$RUNTIME_DIR/$WAYLAND_DISPLAY" ]; then
 	ln "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" "$RUNTIME_DIR/$WAYLAND_DISPLAY"
+	# chown :user "$RUNTIME_DIR/$WAYLAND_DISPLAY"
 	chmod 0770 "$RUNTIME_DIR/$WAYLAND_DISPLAY"
 fi
 
 if [ ! -f "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock" ]; then
 	ln "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY.lock" "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"
-	chmod 0770 "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"
+	# chown :user "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"
+	chmod 0660 "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"
 fi
-
-# chmod 770 $SWAYSOCK
-# chmod 770 $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY
-# chmod 770 $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY.lock
 
 exec doas -u browser $CHROME

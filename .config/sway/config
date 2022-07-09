@@ -8,6 +8,7 @@
 #
 set $fname JetBrains Mono
 set $fsize 18
+set $f2size `echo $fsize + 2 | bc`
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # set $mod Mod1
@@ -22,7 +23,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-set $menu foot --app-id=Launcher ~/.local/bin/launch
+set $menu foot --app-id=launcher ~/.local/bin/launch
 
 workspace_layout tabbed
 
@@ -42,7 +43,8 @@ titlebar_padding 5 1
 # focus_follows_mouse no
 
 # for_window [app_id="chrome"] resize set 1280 720
-for_window [app_id="Launcher"] floating enable, sticky enable, resize set 1284 724
+for_window [app_id="launcher"] floating enable, sticky enable, resize set 1284 724
+for_window [app_id="chromium-browser"] inhibit_idle fullscreen
 
 # include themes/base16-tomorrow-night.config
 
@@ -133,14 +135,14 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     # bindsym --release --to-code --no-repeat Super_L fullscreen
 
     #
-    bindsym --to-code $mod+backslash exec ls ~/.local/bin | bemenu -b -n --fn="$fname $fsize" --prompt="❯" --tb="#323232" --tf="#5885a7" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+    bindsym --to-code $mod+backslash exec ls ~/.local/bin | bemenu -n --fn="$fname $f2size" --prompt="❯" --tb="#323232" --tf="#4c7899" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
 
     #
     # bindsym --to-code $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
     bindsym --to-code $mod+BackSpace exec swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
 
     # Disable touchpad
-    bindsym --to-code Print exec swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled
+    bindsym --to-code Print exec swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled >/dev/null 2>&1
 
     # Screenshot
     bindsym --to-code $mod+p exec grim ~/.screenshots/screenshot-$(date +%Y.%m.%d-%H.%M.%S).png

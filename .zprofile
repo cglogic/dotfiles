@@ -15,14 +15,14 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_RUNTIME_DIR="/tmp/$USER-runtime-dir"
 if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
 	mkdir "$XDG_RUNTIME_DIR"
-	chmod 0770 "$XDG_RUNTIME_DIR"
+	chmod 0700 "$XDG_RUNTIME_DIR"
 fi
 
-CACHE="$XDG_RUNTIME_DIR/cache"
-if [[ ! -a "$CACHE" ]]; then
-	mkdir -p "$CACHE"
-	chmod 0770 "$CACHE"
-fi
+# CACHE="$XDG_RUNTIME_DIR/cache"
+# if [[ ! -a "$CACHE" ]]; then
+# 	mkdir -p "$CACHE"
+# 	chmod 0700 "$CACHE"
+# fi
 if [[ ! -a "$HOME/.cache/chromium" ]]; then
 	ln -s /dev/null "$HOME/.cache/chromium"
 fi

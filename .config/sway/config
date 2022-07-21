@@ -23,7 +23,7 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-set $menu lockf -s -t 0 /tmp/single-menu.lock /bin/sh -c "swaymsg -q fullscreen disable ; foot --window-size-pixels=1280x720 --title=launcher --app-id=launcher ~/.local/bin/launch"
+set $menu lockf -s -t 0 /tmp/single-menu.lock foot --window-size-pixels=1280x720 --title=launcher --app-id=launcher ~/.local/bin/launch
 
 workspace_layout tabbed
 
@@ -135,7 +135,7 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     # bindsym --release --to-code --no-repeat Super_L fullscreen
 
     #
-    bindsym --to-code $mod+backslash exec ls ~/.local/bin | bemenu -n --fn="$fname $f2size" --prompt="❯" --tb="#323232" --tf="#4c7899" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+    # bindsym --to-code $mod+backslash exec ls ~/.local/bin | bemenu -n --fn="$fname $f2size" --prompt="❯" --tb="#323232" --tf="#4c7899" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
 
     #
     # bindsym --to-code $mod+BackSpace exec 'grim /tmp/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% /tmp/screenshot.png /tmp/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i /tmp/screenshotblur.png -f ; rm /tmp/screenshot.png'
@@ -148,19 +148,20 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     bindsym --to-code $mod+p exec grim ~/.screenshots/screenshot-$(date +%Y.%m.%d-%H.%M.%S).png
 
     # Chromium
-    bindsym --to-code $mod+g exec lockf -s -t 0 /tmp/single-browser.lock ~/.local/bin/browser
+    bindsym --to-code $mod+g fullscreen disable, exec lockf -s -t 0 /tmp/single-browser.lock ~/.local/bin/browser
 
     # Telegram
-    bindsym --to-code $mod+t exec lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop
+    # bindsym --to-code $mod+t fullscreen disable, exec lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop
 
     # Start a terminal
-    bindsym --to-code $mod+Return exec $term
+    bindsym --to-code $mod+Return fullscreen disable, exec $term
 
     # Kill focused window
     bindsym --to-code $mod+Shift+q kill
 
     # Start your launcher
-    bindsym --to-code $mod+grave exec $menu
+    # bindsym --to-code $mod+grave exec swaymsg -q fullscreen disable, exec $menu
+    bindsym --to-code $mod+grave fullscreen disable, exec $menu
 
     # Make the current focus fullscreen
     # bindsym --to-code Super_L fullscreen

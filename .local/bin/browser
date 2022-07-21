@@ -13,24 +13,26 @@ if [ ! -f "$CHROME" ]; then
 fi
 
 RUNTIME_DIR="/tmp/browser-runtime-dir"
-if [ ! -d "$RUNTIME_DIR" ]; then
-	mkdir "$RUNTIME_DIR"
-	chmod 0770 "$RUNTIME_DIR"
+if [ -d "$RUNTIME_DIR" ]; then
+	rm -rf "$RUNTIME_DIR"
 fi
 
-if [ ! -S "$RUNTIME_DIR/sway-ipc.sock" ]; then
+mkdir "$RUNTIME_DIR"
+chmod 0770 "$RUNTIME_DIR"
+
+if [ -S "$SWAYSOCK" ]; then
 	ln "$SWAYSOCK" "$RUNTIME_DIR/sway-ipc.sock"
 	# chown :user "$RUNTIME_DIR/sway-ipc.sock"
 	chmod 0770 "$RUNTIME_DIR/sway-ipc.sock"
 fi
 
-if [ ! -S "$RUNTIME_DIR/$WAYLAND_DISPLAY" ]; then
+if [ -S "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" ]; then
 	ln "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" "$RUNTIME_DIR/$WAYLAND_DISPLAY"
 	# chown :user "$RUNTIME_DIR/$WAYLAND_DISPLAY"
 	chmod 0770 "$RUNTIME_DIR/$WAYLAND_DISPLAY"
 fi
 
-if [ ! -f "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock" ]; then
+if [ -f "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY.lock" ]; then
 	ln "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY.lock" "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"
 	# chown :user "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"
 	chmod 0660 "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"

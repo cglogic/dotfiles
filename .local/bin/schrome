@@ -19,6 +19,6 @@ exec chrome \
 	--disable-smooth-scrolling \
 	--disk-cache-size=0 \
 	--disk-cache-dir=/dev/null \
-	--disable-features="WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming,UseChromeOSDirectVideoDecoder" \
+	--disable-features="SharedArrayBuffer,WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming,UseChromeOSDirectVideoDecoder" \
 	--js-flags="--noexpose-wasm" \
 	"$@"

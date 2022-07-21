@@ -118,7 +118,7 @@ else
 	export CC=clang
 	export CXX=clang++
 	export CPP=clang-cpp
-	export LD=ld.lld
+	export LD=ld
 	export AR=llvm-ar
 	export DB=lldb
 fi

@@ -14,7 +14,7 @@ fi
 
 RUNTIME_DIR="/tmp/browser-runtime-dir"
 if [ -d "$RUNTIME_DIR" ]; then
-	rm -rf "$RUNTIME_DIR"
+	doas rm -rf "$RUNTIME_DIR"
 fi
 
 mkdir "$RUNTIME_DIR"

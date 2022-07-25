@@ -8,7 +8,7 @@
 #
 set $fname JetBrains Mono
 set $fsize 18
-set $f2size `echo $fsize + 2 | bc`
+# set $f2size `echo $fsize + 2 | bc`
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # set $mod Mod1

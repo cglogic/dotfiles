@@ -23,13 +23,15 @@ if [[ ! -a "$CACHE_DIR" ]]; then
 	mkdir -p "$CACHE_DIR"
 	chmod 0700 "$CACHE_DIR"
 fi
-if [[ -d "$HOME/.cache" ]]; then
-	rm -rf "$HOME/.cache"
-	ln -s "$CACHE_DIR" "$HOME/.cache"
+HOME_CACHE_DIR="$HOME/.cache"
+if [[ ! -L "$HOME_CACHE_DIR" ]]; then
+	rm -rf "$HOME_CACHE_DIR"
+	ln -s "$CACHE_DIR" "$HOME_CACHE_DIR"
 fi
-
-if [[ ! -a "$HOME/.cache/chromium" ]]; then
-	ln -s /dev/null "$HOME/.cache/chromium"
+CHROME_CACHE_DIR="$HOME_CACHE_DIR/chromium"
+if [[ ! -L "$CHROME_CACHE_DIR" ]]; then
+	rm -rf "$CHROME_CACHE_DIR"
+	ln -s /dev/null "$CHROME_CACHE_DIR"
 fi
 
 if [[ $SSH_TTY ]]; then

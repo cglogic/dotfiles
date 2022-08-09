@@ -18,11 +18,16 @@ if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
 	chmod 0700 "$XDG_RUNTIME_DIR"
 fi
 
-# CACHE="$XDG_RUNTIME_DIR/cache"
-# if [[ ! -a "$CACHE" ]]; then
-# 	mkdir -p "$CACHE"
-# 	chmod 0700 "$CACHE"
-# fi
+CACHE_DIR="$XDG_RUNTIME_DIR/cache"
+if [[ ! -a "$CACHE_DIR" ]]; then
+	mkdir -p "$CACHE_DIR"
+	chmod 0700 "$CACHE_DIR"
+fi
+if [[ -d "$HOME/.cache" ]]; then
+	rm -rf "$HOME/.cache"
+	ln -s "$CACHE_DIR" "$HOME/.cache"
+fi
+
 if [[ ! -a "$HOME/.cache/chromium" ]]; then
 	ln -s /dev/null "$HOME/.cache/chromium"
 fi

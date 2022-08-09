@@ -114,13 +114,13 @@ elif [[ -v DEV_STACK ]] && [[ $DEV_STACK = gnu ]]; then
 		export AR=$BIN_PATH/ar
 		export DB=$BIN_PATH/gdb
 	fi
-else
-	export CC=clang
-	export CXX=clang++
-	export CPP=clang-cpp
-	export LD=ld
-	export AR=llvm-ar
-	export DB=lldb
+# else
+# 	export CC=clang
+# 	export CXX=clang++
+# 	export CPP=clang-cpp
+# 	export LD=ld
+# 	export AR=llvm-ar
+# 	export DB=lldb
 fi
 
 USER_LIB=$HOME/.local/lib

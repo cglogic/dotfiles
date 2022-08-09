@@ -20,14 +20,16 @@ require "paq" {
 	'hoob3rt/lualine.nvim';
 	'RRethy/nvim-base16';
 	'nvim-treesitter/nvim-treesitter';
-	-- 'neovim/nvim-lspconfig';
-	-- 'hrsh7th/cmp-nvim-lsp';
+
+	'neovim/nvim-lspconfig';
+	'hrsh7th/cmp-nvim-lsp';
 	-- 'hrsh7th/cmp-buffer';
-	-- 'hrsh7th/nvim-cmp';
+	'hrsh7th/nvim-cmp';
+
 	'ibhagwan/fzf-lua';
-	'lewis6991/spaceless.nvim';
-	'terrortylor/nvim-comment';
-	'Everduin94/nvim-quick-switcher';
+	-- 'lewis6991/spaceless.nvim';
+	-- 'terrortylor/nvim-comment';
+	-- 'Everduin94/nvim-quick-switcher';
 }
 
 -------------------- OPTIONS -------------------------------
@@ -80,10 +82,8 @@ require('lualine').setup {
 	options = {
 		icons_enabled = false,
 		-- theme = 'tokyonight',
-		-- section_separators = {'', ''},
-		-- component_separators = {'', ''},
 		section_separators = '',
-		component_separators = ''
+		component_separators = '',
 	}
 }
 
@@ -99,64 +99,86 @@ ts.setup {
 
 -------------------- LSP -----------------------------------
 -- local lsp = require 'lspconfig'
--- -- local lspfuzzy = require 'lspfuzzy'
 
--- -- For ccls we use the default settings
--- lsp.ccls.setup {}
--- -- root_dir is where the LSP server will start: here at the project root otherwise in current folder
--- -- lsp.pyls.setup {root_dir = lsp.util.root_pattern('.git', fn.getcwd())}
--- lsp.pylsp.setup {}
--- -- lspfuzzy.setup {}  -- Make the LSP client use FZF instead of the quickfix list
+-- Setup lspconfig.
+local lsp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- -- map('n', '<space>,', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
--- -- map('n', '<space>;', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
--- -- map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
--- -- map('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<CR>')
--- -- map('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
--- -- map('n', '<space>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
--- -- map('n', '<space>m', '<cmd>lua vim.lsp.buf.rename()<CR>')
--- -- map('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>')
--- -- map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+require('lspconfig')['ccls'].setup {
+	init_options = {
+		cache = {
+			directory = "/tmp/ccls-cache";
+		};
+	},
+	autostart = true,
+	capabilities = lsp_capabilities,
+}
+
+-- require('lspconfig')['clangd'].setup {
+-- 	autostart = true,
+-- 	cmd = {
+-- 		"clangd14",
+-- 		"--background-index",
+-- 		"--suggest-missing-includes",
+-- 	},
+-- 	capabilities = lsp_capabilities,
+-- }
+
+map('n', '<space>,', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+map('n', '<space>;', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+map('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<CR>')
+map('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+map('n', '<space>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
+map('n', '<space>m', '<cmd>lua vim.lsp.buf.rename()<CR>')
+map('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>')
+map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+
+vim.diagnostic.config {
+	virtual_text = false,
+	signs = false,
+	underline = true,
+}
 
 ------------------------------------------------------------
--- local cmp = require'cmp'
--- cmp.setup({
---     -- completion = {
---     --     autocomplete = false
---     -- },
---     sources = {
---         { name = "buffer" },
---         { name = "nvim_lsp" },
---         -- { name = "luasnip" },
---         -- { name = "neorg" },
---     },
---     mapping = {
---         ['<C-Space>'] = cmp.mapping.complete(),
---         ['<C-e>'] = cmp.mapping.close(),
---         ["<cr>"] = cmp.mapping.confirm({select = true}),
---         ["<s-tab>"] = cmp.mapping.select_prev_item(),
---         ["<tab>"] = cmp.mapping.select_next_item(),
---     },
---     formatting = {
---         format = function(entry, item)
---             -- item.kind = lsp_symbols[item.kind]
---             item.abbr = string.sub(item.abbr, 1, 20)
---             item.menu = ({
---                 buffer = "[Buffer]",
---                 nvim_lsp = "[LSP]",
---                 -- luasnip = "[Snippet]",
---                 -- neorg = "[Neorg]",
---             })[entry.source.name]
+local cmp = require 'cmp'
+cmp.setup({
+	completion = {
+	    autocomplete = false
+	},
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp" },
+		-- { name = "luasnip" },
+	-- }, {
+		-- { name = "buffer" },
+	}),
+	mapping = cmp.mapping.preset.insert({
+		['<C-b>'] = cmp.mapping.scroll_docs(-4),
+		['<C-f>'] = cmp.mapping.scroll_docs(4),
+		['<C-Space>'] = cmp.mapping.complete(),
+		['<C-e>'] = cmp.mapping.abort(),
+		['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+	}),
+	formatting = {
+		format = function(entry, item)
+			-- item.kind = lsp_symbols[item.kind]
+			item.abbr = string.sub(item.abbr, 1, 20)
+			item.menu = ({
+				-- buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				-- luasnip = "[Snippet]",
+				-- neorg = "[Neorg]",
+			})[entry.source.name]
 
---             return item
---         end,
---     },
---     -- snippet = {
---     --     expand = function(args)
---     --         luasnip.lsp_expand(args.body)
---     --     end,
---     -- },
--- })
+			return item
+		end,
+	},
+	-- snippet = {
+	-- 	expand = function(args)
+	-- 		luasnip.lsp_expand(args.body)
+	-- 	end,
+	-- },
+})
+
 -------------------- COMMANDS ------------------------------
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode
 
@@ -187,28 +209,14 @@ require'fzf-lua'.setup {
 	},
 }
 ------------------------------------------------------------
-require('spaceless').setup {}
--------------------------------------------------------------
-require('nvim_comment').setup({comment_empty = false})
-vim.api.nvim_command [[autocmd! FileType cpp :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")]]
-------------------------------------------------------------
---vim.cmd([[command! Ff lua require('fzf-lua').files() ]])
+-- require('spaceless').setup {}
 
+-------------------------------------------------------------
+-- require('nvim_comment').setup({comment_empty = false})
+-- vim.api.nvim_command [[autocmd! FileType cpp :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")]]
+
+------------------------------------------------------------
 vim.keymap.set('n', '<Leader>f', '<cmd>lua require("fzf-lua").files()<CR>')
 vim.keymap.set('n', '<Leader>b', '<cmd>lua require("fzf-lua").buffers()<CR>')
 vim.keymap.set('n', '<Leader>g', '<cmd>lua require("fzf-lua").grep()<CR>')
-vim.keymap.set('n', '<Leader>s', '<cmd>lua require("nvim-quick-switcher").toggle("cpp", "h")<CR>')
-
---vim.api.nvim_set_keymap('n', '<F2>',
---	"<cmd>lua require('fzf-lua').files()<CR>",
---	{ noremap = true, silent = true })
---vim.api.nvim_set_keymap('n', '<F3>',
---	"<cmd>lua require('fzf-lua').buffers()<CR>",
---	{ noremap = true, silent = true })
---vim.api.nvim_set_keymap('n', '<F4>',
---	"<cmd>lua require('fzf-lua').greep()<CR>",
---	{ noremap = true, silent = true })
---vim.api.nvim_set_keymap("n", "<F4>",
---	"<cmd>:lua require('nvim-quick-switcher').toggle('cpp', 'h')<CR>",
---	{ noremap = true, silent = true })
----------------------------------------------------------
+-- vim.keymap.set('n', '<Leader>s', '<cmd>lua require("nvim-quick-switcher").toggle("cpp", "h")<CR>')

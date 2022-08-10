@@ -137,7 +137,22 @@ vim.diagnostic.config {
 	virtual_text = false,
 	signs = false,
 	underline = true,
+	float = {
+		show_header = true,
+		source = 'if_many',
+		border = 'rounded',
+		focusable = false,
+	},
 }
+
+local win = require('lspconfig.ui.windows')
+local _default_opts = win.default_opts
+
+win.default_opts = function(options)
+	local opts = _default_opts(options)
+	opts.border = 'rounded'
+	return opts
+end
 
 ------------------------------------------------------------
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(

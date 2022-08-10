@@ -19,7 +19,7 @@ if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
 fi
 
 CACHE_DIR="$XDG_RUNTIME_DIR/cache"
-if [[ ! -a "$CACHE_DIR" ]]; then
+if [[ ! -d "$CACHE_DIR" ]]; then
 	mkdir -p "$CACHE_DIR"
 	chmod 0700 "$CACHE_DIR"
 fi

@@ -179,7 +179,7 @@ cmp.setup({
 	formatting = {
 		format = function(entry, item)
 			-- item.kind = lsp_symbols[item.kind]
-			item.abbr = string.sub(item.abbr, 1, 20)
+			-- item.abbr = string.sub(item.abbr, 1, 20)
 			item.menu = ({
 				-- buffer = "[Buffer]",
 				nvim_lsp = "[LSP]",

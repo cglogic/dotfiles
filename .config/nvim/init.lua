@@ -89,8 +89,7 @@ require('lualine').setup {
 }
 
 -------------------- TREE-SITTER ---------------------------
-local ts = require 'nvim-treesitter.configs'
-ts.setup {
+require('nvim-treesitter.configs').setup {
 	-- ensure_installed = 'maintained',
 	ensure_installed = { "c", "cpp", "python", "json", "lua", "markdown", "ninja", "regex", "vim" },
 	highlight = {
@@ -168,11 +167,11 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 ------------------------------------------------------------
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 
-local luasnip = require("luasnip")
-local cmp = require 'cmp'
+local luasnip = require('luasnip')
+local cmp = require('cmp')
 cmp.setup({
 	window = {
 		documentation = {
@@ -186,9 +185,9 @@ cmp.setup({
 		autocomplete = false
 	},
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
+		{ name = 'nvim_lsp' },
 	}, {
-		{ name = "luasnip" },
+		{ name = 'luasnip' },
 	-- }, {
 		-- { name = "buffer" },
 	}),
@@ -199,7 +198,7 @@ cmp.setup({
 		['<C-e>'] = cmp.mapping.abort(),
 		['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 
-		["<Tab>"] = cmp.mapping(function(fallback)
+		['<C-Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
@@ -209,9 +208,9 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end, { 'i', 's' }),
 
-		["<S-Tab>"] = cmp.mapping(function(fallback)
+		['<C-S-Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
@@ -219,17 +218,17 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
+		end, { 'i', 's' }),
 	}),
 	formatting = {
 		format = function(entry, item)
 			-- item.kind = lsp_symbols[item.kind]
 			item.abbr = string.sub(item.abbr, 1, 50)
 			item.menu = ({
-				-- buffer = "[Buffer]",
-				nvim_lsp = "[LSP]",
-				luasnip = "[Snippet]",
-				-- neorg = "[Neorg]",
+				-- buffer = '[Buffer]',
+				nvim_lsp = '[LSP]',
+				luasnip = '[Snippet]',
+				-- neorg = '[Neorg]',
 			})[entry.source.name]
 
 			return item
@@ -246,20 +245,20 @@ cmp.setup({
 cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabled in visual mode
 
 --------------------------------------------------------------------
-local actions = require "fzf-lua.actions"
-require'fzf-lua'.setup {
+local actions = require 'fzf-lua.actions'
+require('fzf-lua').setup {
 	files = {
 		previewer         = false,
-		cmd               = "ag --nocolor -l -g ''",
-		find_opts         = "",
+		cmd               = 'ag --nocolor -l -g ""',
+		find_opts         = '',
 		git_icons         = false,
 		file_icons        = false,
 	},
 	grep = {
 		previewer         = false,
 		prompt            = 'Ag❯ ',
-		cmd               = "ag --nocolor",
-		grep_opts         = "",
+		cmd               = 'ag --nocolor',
+		grep_opts         = '',
 	},
 	buffers = {
 		previewer         = false,

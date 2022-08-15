@@ -281,4 +281,6 @@ else
 	PROMPT="%F{cyan}%1~%f %(?,%F{red}>,%F{green}>)%F{yellow}>%(?,%F{green}>,%F{red}>)%f "
 fi
 
+autoload -U zmv
+
 # zprof

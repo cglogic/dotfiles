@@ -106,7 +106,7 @@ local lsp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.pro
 require('lspconfig')['ccls'].setup {
 	init_options = {
 		cache = {
-			directory = "/tmp/ccls-cache";
+			directory = os.getenv('XDG_RUNTIME_DIR') .. '/ccls-cache';
 		};
 	},
 	autostart = true,
@@ -186,7 +186,6 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
-	}, {
 		{ name = 'luasnip' },
 	-- }, {
 		-- { name = "buffer" },
@@ -228,7 +227,6 @@ cmp.setup({
 				-- buffer = '[Buffer]',
 				nvim_lsp = '[LSP]',
 				luasnip = '[Snippet]',
-				-- neorg = '[Neorg]',
 			})[entry.source.name]
 
 			return item

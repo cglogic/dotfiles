@@ -10,10 +10,10 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.g.mapleader = ","
+vim.g.mapleader = ','
 
 -------------------- PLUGINS -------------------------------
-require "paq" {
+require('paq') {
 	'savq/paq-nvim';  -- paq-nvim manages itself
 
 	-- 'kyazdani42/nvim-web-devicons';
@@ -42,7 +42,8 @@ opt.completeopt = {'menuone', 'noselect'}  -- Completion options
 opt.hidden = true                   -- Enable background buffers
 -- opt.ignorecase = true               -- Ignore case
 -- opt.joinspaces = false              -- No double spaces with join
--- opt.list = true                     -- Show some invisible characters
+opt.list = true                     -- Show some invisible characters
+opt.listchars = { tab = '→ ', extends = '⟩', precedes = '⟨', trail = '•', nbsp = '␣' }
 opt.number = true                   -- Show line numbers
 -- opt.relativenumber = true           -- Relative line numbers
 -- opt.scrolloff = 4                   -- Lines of context
@@ -57,6 +58,8 @@ opt.tabstop = 4                     -- Number of spaces tabs count for
 opt.termguicolors = true            -- True color support
 -- opt.wildmode = {'list', 'longest'}  -- Command-line completion mode
 opt.wrap = false                    -- Disable line wrap
+
+vim.api.nvim_command [[match errorMsg /\s\+$/]]
 
 -------------------- MAPPINGS ------------------------------
 map('n', ';', ':')  -- Map ; -> :
@@ -91,7 +94,7 @@ require('lualine').setup {
 -------------------- TREE-SITTER ---------------------------
 require('nvim-treesitter.configs').setup {
 	-- ensure_installed = 'maintained',
-	ensure_installed = { "c", "cpp", "python", "json", "lua", "markdown", "ninja", "regex", "vim" },
+	ensure_installed = { 'c', 'cpp', 'python', 'json', 'lua', 'markdown', 'ninja', 'regex', 'vim' },
 	highlight = {
 		enable = true
 	}

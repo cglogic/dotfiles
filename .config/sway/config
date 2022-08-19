@@ -139,7 +139,7 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 
     #
     # bindsym --to-code $mod+BackSpace exec 'grim $XDG_RUNTIME_DIR/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% $XDG_RUNTIME_DIR/screenshot.png $XDG_RUNTIME_DIR/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i $XDG_RUNTIME_DIR/screenshotblur.png -f ; rm $XDG_RUNTIME_DIR/screenshot.png'
-    bindsym --to-code $mod+BackSpace exec swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
+    bindsym --to-code $mod+Delete exec swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
 
     # Disable touchpad
     bindsym --to-code Print exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-touchpad.lock swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled >/dev/null 2>&1
@@ -157,7 +157,8 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     bindsym --to-code $mod+Return fullscreen disable, exec $term
 
     # Kill focused window
-    bindsym --to-code $mod+Shift+q kill
+    # bindsym --to-code $mod+Shift+q kill
+    bindsym --to-code $mod+BackSpace kill
 
     # Start your launcher
     # bindsym --to-code $mod+grave exec swaymsg -q fullscreen disable, exec $menu

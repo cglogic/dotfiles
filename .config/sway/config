@@ -142,7 +142,7 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     bindsym --to-code $mod+Delete exec swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
 
     # Disable touchpad
-    bindsym --to-code Print exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-touchpad.lock swaymsg input 2:7:SynPS/2_Synaptics_TouchPad events toggle enabled disabled >/dev/null 2>&1
+    bindsym --to-code Print exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-touchpad.lock swaymsg input type:touchpad events toggle enabled disabled >/dev/null 2>&1
 
     # Screenshot
     bindsym --to-code $mod+p exec grim ~/.screenshots/screenshot-$(date +%Y.%m.%d-%H.%M.%S).png

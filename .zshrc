@@ -89,7 +89,7 @@ export FZF_DEFAULT_OPTS='--exact'
 
 # export DEV_STACK=llvm
 if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
-	LLVM_VER=14
+	LLVM_VER=15
 	LLVM_PATH=/usr/local/llvm$LLVM_VER/bin
 	if [[ -d $LLVM_PATH ]]; then
 		export CC=$LLVM_PATH/clang
@@ -176,6 +176,9 @@ alias nnn='nnn -edC'
 alias imv='imv -r'
 # alias zathura='zathura --mode fullscreen'
 # alias tmux='if [[ ! $TMUX ]]; then tmux -2; fi'
+alias swayimg='swayimg -r -f'
+
+alias ria='() { find $1 -type f -exec sed -i "" -e "s/$2/$3/g" {} \;}'
 
 # Perform compinit only once a day.
 autoload -Uz compinit

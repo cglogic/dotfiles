@@ -58,6 +58,7 @@ opt.tabstop = 4                     -- Number of spaces tabs count for
 opt.termguicolors = true            -- True color support
 -- opt.wildmode = {'list', 'longest'}  -- Command-line completion mode
 opt.wrap = false                    -- Disable line wrap
+opt.mouse = ''                      -- Disable mouse
 
 vim.api.nvim_command [[match errorMsg /\s\+$/]]
 
@@ -104,7 +105,7 @@ require('nvim-treesitter.configs').setup {
 -- local lsp = require 'lspconfig'
 
 -- Setup lspconfig.
-local lsp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require('lspconfig')['ccls'].setup {
 	init_options = {

@@ -69,13 +69,13 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 	fi
 	if [[ "$SESSION_TYPE" == "s" ]]; then
 		export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.sock
-		export MESA_LOADER_DRIVER_OVERRIDE=crocus
+		# export MESA_LOADER_DRIVER_OVERRIDE=crocus
 		export XDG_CURRENT_DESKTOP=sway
 		export WLR_DRM_NO_ATOMIC=1
 		exec &> $XDG_RUNTIME_DIR/sway.log
 		exec seatd-launch sway
 	elif [[ "$SESSION_TYPE" == "x" ]]; then
-		export MESA_LOADER_DRIVER_OVERRIDE=crocus
+		# export MESA_LOADER_DRIVER_OVERRIDE=crocus
 		exec &> $XDG_RUNTIME_DIR/xorg.log
 		exec startx
 	elif [[ "$SESSION_TYPE" == "t" ]]; then

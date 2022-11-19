@@ -21,6 +21,7 @@ fi
 CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | fzf --no-extended --print-query --layout=reverse --prompt='❯ ' --pointer='❯' --marker='❯' --no-bold --info=hidden | tail -1 )
 # CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | fzy --prompt='' --lines=19 )
 # CMD=$( ( cat "$HISTORY" ; cat "$CACHE" ) | pick -S )
+# CMD=tofi
 
 # exit if null input
 test -z "$CMD" && exit 1

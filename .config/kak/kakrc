@@ -1,9 +1,9 @@
-set-option global ui_options 'terminal_status_on_top=true' 'terminal_assistant=none' 'terminal_change_colors=false' 'terminal_enable_mouse=false' 'terminal_set_title=true' 'terminal_synchronized=true'
+set-option global ui_options 'terminal_status_on_top=false' 'terminal_assistant=none' 'terminal_change_colors=false' 'terminal_enable_mouse=false' 'terminal_set_title=false' 'terminal_synchronized=true'
 # set-option global autoinfo normal|command|onkey
 set-option global makecmd 'make'
 set-option global grepcmd 'ag --column'
 set-option global indentwidth 0
-set-option global tabstop 4
+set-option global tabstop 8
 set-option global autocomplete prompt
 
 # colorscheme tomorrow-night

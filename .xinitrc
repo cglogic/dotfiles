@@ -10,7 +10,7 @@ export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/.
 export TERMINAL=kitty
 
 # To determine X11
-export FSIZE=12
+export FSIZE=20
 export FNAME="JetBrains Mono"
 
 # For fast run commands
@@ -73,15 +73,8 @@ feh --no-fehbg --bg-fill $WALLPAPER_STATIC_PATH &
 # disable touchpad
 stouchpad &
 
-#
-bmon &
-
-# run xterm with no border, white text on a black background, maximized,
-# with large fonts.
-# xterm -borderwidth 0 -fg white -bg black -maximized -fn 10x20 &
-
 # Compositor --use-damage
-picom --config=/dev/null --experimental-backends --backend=xrender --vsync -b
+picom --config=/dev/null --backend=xrender --vsync -b
 
 sxhkd &
 exec bspwm

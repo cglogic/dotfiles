@@ -4,12 +4,6 @@
 export MPD_HOST=/var/mpd/socket
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-# webcam power save
-CAM=`doas usbconfig list | grep "Camera" | cut -f 1 -d ":"`
-if [ -n $CAM ]; then
-	doas usbconfig -d $CAM suspend
-fi
-
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export XDG_RUNTIME_DIR="/tmp/$USER-runtime-dir"
@@ -69,13 +63,17 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 	fi
 	if [[ "$SESSION_TYPE" == "s" ]]; then
 		export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.sock
-		# export MESA_LOADER_DRIVER_OVERRIDE=crocus
 		export XDG_CURRENT_DESKTOP=sway
-		export WLR_DRM_NO_ATOMIC=1
+		if [[ "$HOST" == "t440p" ]]; then
+			export WLR_DRM_NO_ATOMIC=1
+			# export MESA_LOADER_DRIVER_OVERRIDE=crocus
+		fi
 		exec &> $XDG_RUNTIME_DIR/sway.log
 		exec seatd-launch sway
 	elif [[ "$SESSION_TYPE" == "x" ]]; then
-		# export MESA_LOADER_DRIVER_OVERRIDE=crocus
+		if [[ "$HOST" == "t440p" ]]; then
+			# export MESA_LOADER_DRIVER_OVERRIDE=crocus
+		fi
 		exec &> $XDG_RUNTIME_DIR/xorg.log
 		exec startx
 	elif [[ "$SESSION_TYPE" == "t" ]]; then

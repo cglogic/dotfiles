@@ -86,7 +86,7 @@ super + Return
 # super + s
 # 	~/projects/kitty/kitty/launcher/kitty tmux new-session -A -s local
 
-super + b
+super + F9
 	lockf -s -t 0 /tmp/single-battery.lock /bin/sh -c 'acpiconf -i 0 | \
 	grep Remaining | cut -f 2 -d " " | paste -s -d " " - | \
 	xargs echo "Battery" | dzen2 -p 2'
@@ -96,10 +96,10 @@ super + f
 	test $? -ne 0 && wmctrl -x -a "Firefox"
 
 super + g
-	lockf -t 0 /tmp/single-chromium.lock schrome ; \
+	lockf -t 0 /tmp/single-chromium.lock browser ; \
 	test $? -ne 0 && wmctrl -x -a "Chromium-browser"
 
-super + F9
+super + F10
 	lockf -s -t 0 /tmp/single-monitors.lock /bin/sh -c 'smonitor ; echo "Detect monitors!" | dzen2 -p 1'
 
 Print
@@ -111,7 +111,7 @@ super + p
 super + n
 	lockf -s -t 0 /tmp/single-winname.lock /bin/sh -c 'xdotool getactivewindow | xargs xdotool getwindowname | dzen2 -p 2'
 
-super + a
+super + t
 	lockf -s -t 0 /tmp/single-date.lock /bin/sh -c 'date | dzen2 -p 2'
 
 super + e
@@ -121,7 +121,7 @@ super + i
 	lockf -s -t 0 /tmp/single-xclip.lock /bin/sh -c 'xclip -o | cut -f 1- -d " " | paste -s -d " " - | dzen2 -p 2'
 
 super + F4
-	lockf -s -t 0 /tmp/single-mixer.lock /bin/sh -c 'mixer -s | cut -f 1- -d " " | xargs echo "Mixer" | dzen2 -p 2'
+	lockf -s -t 0 /tmp/single-mixer.lock /bin/sh -c 'mixer -s pcm | cut -f 1- -d " " | xargs echo "Mixer" | dzen2 -p 2'
 
 super + F2
 	lockf -s -t 0 /tmp/single-voldec.lock /bin/sh -c 'test `mixer -S pcm | cut -f 3 -d ":"` -eq 0 && echo "Minimum" | dzen2 -p 1 && exit ; mixer -S pcm -10 ; mixer -S pcm | cut -f 3 -d ":" | xargs echo "Mixer" | dzen2 -p 1 &'
@@ -138,8 +138,8 @@ super + F5
 super + F6
 	lockf -s -t 0 /tmp/single-briginc.lock /bin/sh -c 'test `backlight -q` -eq 100 && echo "Maximum" | dzen2 -p 1 && exit ; backlight incr; backlight -q | xargs echo 'Brightness' | dzen2 -p 1 &'
 
-# super + F7
-# 	pkill webcamd
+super + F7
+	lockf -s -t 0 /tmp/single-briginc.lock /bin/sh -c 'backlight 50 ; echo "Brightness 50" | dzen2 -p 1 &'
 
 super + F8
 	lockf -s -t 0 /tmp/single-brightness.lock /bin/sh -c 'backlight -q | xargs echo "Brightness" | dzen2 -p 1'
@@ -150,8 +150,8 @@ super + u
 super + h
 	lockf -s -t 0 /tmp/single-wallpaper.lock /bin/sh -c 'swall && echo "Wallpaper changed" | dzen2 -p 1'
 
-super + t
-	lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop ; test $? -ne 0 && wmctrl -x -a "TelegramDesktop"
+# super + t
+# 	lockf -s -t 0 /tmp/single-telegram.lock telegram-desktop ; test $? -ne 0 && wmctrl -x -a "TelegramDesktop"
 
 # super + m
 # 	$TERMINAL -e cmatrix -C blue
@@ -159,7 +159,7 @@ super + t
 super + z
 	lockf -s -t 0 /tmp/single-chromium.lock sichrome ; test $? -ne 0 && wmctrl -x -a "Chromium-browser"
 
-super + v
+super + F12
 	ylight
 
 # super + ,

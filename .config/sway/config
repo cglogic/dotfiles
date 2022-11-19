@@ -368,7 +368,7 @@ bar {
 # exec ~/.local/bin/bmon
 
 # Start wob
-exec "rm -f $WOBSOCK ; pkill -SIGINT -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob --border-color '#eeeeeeff' --background-color '#323232ff' --bar-color '#eeeeeeff'"
+exec "rm -f $WOBSOCK ; pkill -SIGINT -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"
 
 # Launch terminal
 exec $term

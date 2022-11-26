@@ -93,7 +93,7 @@ output * bg ~/wallpapers/bg-orig.png fill
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-exec swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+exec swayidle -w timeout 600 'echo "true" > $XDG_RUNTIME_DIR/idle.stat ; swaymsg "output * dpms off"' resume 'echo "false" > $XDG_RUNTIME_DIR/idle.stat ; swaymsg "output * dpms on"'
 
 ### Input configuration
 #
@@ -148,7 +148,7 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     bindsym --to-code $mod+p exec grim ~/.screenshots/screenshot-$(date +%Y.%m.%d-%H.%M.%S).png
 
     # Chromium
-    bindsym --to-code $mod+g fullscreen disable, exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-browser.lock ~/.local/bin/browser
+    # bindsym --to-code $mod+g fullscreen disable, exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-browser.lock ~/.local/bin/browser
 
     # Telegram
     # bindsym --to-code $mod+t fullscreen disable, exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-telegram.lock telegram-desktop
@@ -365,7 +365,7 @@ bar {
 #     gsettings set $gnome-schema font-name 'Clear Sans 14'
 # }
 
-# exec ~/.local/bin/bmon
+exec 'echo "false" > $XDG_RUNTIME_DIR/idle.stat'
 
 # Start wob
 exec "rm -f $WOBSOCK ; pkill -SIGINT -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"

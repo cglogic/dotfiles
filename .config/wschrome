@@ -1,0 +1,57 @@
+#!/bin/sh
+
+export HOME="/home/$USER"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_RUNTIME_DIR="/tmp/$USER-runtime-dir"
+
+if [ ! -d "$XDG_RUNTIME_DIR" ]; then
+	exit
+fi
+
+export SEATD_SOCK="/var/run/seatd.sock"
+export XDG_SESSION_TYPE="wayland"
+# export MESA_LOADER_DRIVER_OVERRIDE="crocus"
+export XDG_CURRENT_DESKTOP="sway"
+export SWAYSOCK="/tmp/$USER-runtime-dir/sway-ipc.sock"
+export WAYLAND_DISPLAY="wayland-1"
+export WLR_DRM_NO_ATOMIC=1
+
+CACHE_DIR="$XDG_RUNTIME_DIR/cache"
+if [ ! -d "$CACHE_DIR" ]; then
+	mkdir -p "$CACHE_DIR"
+	chmod 0770 "$CACHE_DIR"
+fi
+HOME_CACHE_DIR="$HOME/.cache"
+if [ ! -L "$HOME_CACHE_DIR" ]; then
+	rm -rf "$HOME_CACHE_DIR"
+	ln -s "$CACHE_DIR" "$HOME_CACHE_DIR"
+fi
+CHROME_CACHE_DIR="$HOME_CACHE_DIR/chromium"
+if [ ! -L "$CHROME_CACHE_DIR" ]; then
+	rm -rf "$CHROME_CACHE_DIR"
+	ln -s /dev/null "$CHROME_CACHE_DIR"
+fi
+
+cd $HOME
+
+# OPTIONS='--ignore-gpu-blocklist --disable-partial-raster --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
+
+exec chrome \
+	--ozone-platform-hint=auto \
+	--use-gl=egl \
+	--ignore-gpu-blocklist \
+	--disable-gpu-driver-bug-workarounds \
+	--enable-gpu-rasterization \
+	--num-raster-threads=2 \
+	--enable-zero-copy \
+	--enable-accelerated-video-decode \
+	--force-dark-mode \
+	--site-per-process \
+	--enable-tcp-fastopen \
+	--disable-smooth-scrolling \
+	--disk-cache-size=0 \
+	--disk-cache-dir=/dev/null \
+	--enable-features="VaapiVideoDecoder" \
+	--disable-features="UseChromeOSDirectVideoDecoder,SharedArrayBuffer,WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" \
+	--js-flags="--noexpose-wasm" \
+	"$@"

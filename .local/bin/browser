@@ -1,19 +1,23 @@
 #!/bin/sh
 
-WCHROME=/home/browser/wschrome
-XCHROME=/home/browser/xschrome
+if [ ! "$1" ]; then
+	exit
+fi
+if [ "$USER" = "$1" ]; then
+	exit
+fi
+if [ ! -f "$HOME/.config/$1" ]; then
+	exit
+fi
 
-if [ ! -f "$WCHROME" ]; then
-	DATASET=zroot/home/browser
-
-	cat ~/.config/browser | base64 -d | doas zfs mount -l $DATASET
-
-	if [ ! -f "$WCHROME" ]; then
+if [ ! -f "/home/$1/.shrc" ]; then
+	cat "$HOME/.config/$1" | base64 -d | doas zfs mount -l "zroot/home/$1"
+	if [ ! -f "/home/$1/.shrc" ]; then
 		exit
 	fi
 fi
 
-RUNTIME_DIR="/tmp/browser-runtime-dir"
+RUNTIME_DIR="/tmp/$1-runtime-dir"
 if [ -d "$RUNTIME_DIR" ]; then
 	doas rm -rf "$RUNTIME_DIR"
 fi
@@ -22,28 +26,46 @@ mkdir "$RUNTIME_DIR"
 chmod 0770 "$RUNTIME_DIR"
 
 if [ "$WAYLAND_DISPLAY" ]; then
+	CHROME="/home/$1/wschrome"
+	ORIG="$HOME/.config/wschrome"
+
 	if [ -S "$SWAYSOCK" ]; then
 		ln "$SWAYSOCK" "$RUNTIME_DIR/sway-ipc.sock"
 		# chown :user "$RUNTIME_DIR/sway-ipc.sock"
 		chmod 0770 "$RUNTIME_DIR/sway-ipc.sock"
 	fi
-
 	if [ -S "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" ]; then
 		ln "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" "$RUNTIME_DIR/$WAYLAND_DISPLAY"
 		# chown :user "$RUNTIME_DIR/$WAYLAND_DISPLAY"
 		chmod 0770 "$RUNTIME_DIR/$WAYLAND_DISPLAY"
 	fi
-
 	if [ -f "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY.lock" ]; then
 		ln "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY.lock" "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"
 		# chown :user "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"
 		chmod 0660 "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"
 	fi
-	exec doas -u browser $WCHROME
 else
+	CHROME="/home/$1/xschrome"
+	ORIG="$HOME/.config/xschrome"
+
 	# if [ -f "$HOME/.Xauthority" ]; then
-	# 	cp "$HOME/.Xauthority" "/home/browser/.Xauthority"
-	# 	chmod 0770 "/home/browser/.Xauthority"
+	# 	cp "$HOME/.Xauthority" "/home/$1/.Xauthority"
+	# 	chmod 0770 "/home/$1/.Xauthority"
 	# fi
-	exec doas -u browser $XCHROME
 fi
+
+if [ -f "$CHROME" ]; then
+	SUM=`sha256 -q "$CHROME"`
+	ORIGSUM=`sha256 -q "$ORIG"`
+	if [ "$SUM" != "$ORIGSUM" ]; then
+		cp "$ORIG" "$CHROME"
+		doas chown "$1" "$CHROME"
+		doas chmod 770 "$CHROME"
+	fi
+else
+	cp "$ORIG" "$CHROME"
+	doas chown "$1" "$CHROME"
+	doas chmod 770 "$CHROME"
+fi
+
+exec doas -u $1 $CHROME

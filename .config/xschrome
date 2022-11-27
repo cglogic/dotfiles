@@ -4,6 +4,9 @@ export HOME="/home/$USER"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_RUNTIME_DIR="/tmp/$USER-runtime-dir"
 
+export LC_ALL="C.UTF-8"
+export LANG="C.UTF-8"
+
 if [ ! -d "$XDG_RUNTIME_DIR" ]; then
 	exit
 fi

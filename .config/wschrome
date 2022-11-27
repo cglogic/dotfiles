@@ -4,6 +4,9 @@ export HOME="/home/$USER"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_RUNTIME_DIR="/tmp/$USER-runtime-dir"
 
+export LC_ALL="C.UTF-8"
+export LANG="C.UTF-8"
+
 if [ ! -d "$XDG_RUNTIME_DIR" ]; then
 	exit
 fi
@@ -14,7 +17,6 @@ export XDG_SESSION_TYPE="wayland"
 export XDG_CURRENT_DESKTOP="sway"
 export SWAYSOCK="/tmp/$USER-runtime-dir/sway-ipc.sock"
 export WAYLAND_DISPLAY="wayland-1"
-export WLR_DRM_NO_ATOMIC=1
 
 CACHE_DIR="$XDG_RUNTIME_DIR/cache"
 if [ ! -d "$CACHE_DIR" ]; then

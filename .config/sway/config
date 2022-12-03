@@ -8,7 +8,7 @@
 #
 set $fname JetBrains Mono
 set $fsize 18
-# set $f2size `echo $fsize + 2 | bc`
+set $f2size `echo $fsize + 4 | bc`
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # set $mod Mod1
@@ -93,7 +93,7 @@ output * bg ~/wallpapers/bg-orig.png fill
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-exec swayidle -w timeout 600 'echo "true" > $XDG_RUNTIME_DIR/idle.stat ; swaymsg "output * power off"' resume 'echo "false" > $XDG_RUNTIME_DIR/idle.stat ; swaymsg "output * power on"'
+exec swayidle -w timeout 600 'swaymsg "output * power off"; doas /root/idleon' resume 'doas /root/idleoff; swaymsg "output * power on"'
 
 ### Input configuration
 #
@@ -139,7 +139,7 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 
     #
     # bindsym --to-code $mod+BackSpace exec 'grim $XDG_RUNTIME_DIR/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% $XDG_RUNTIME_DIR/screenshot.png $XDG_RUNTIME_DIR/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i $XDG_RUNTIME_DIR/screenshotblur.png -f ; rm $XDG_RUNTIME_DIR/screenshot.png'
-    bindsym --to-code $mod+Delete exec swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
+    bindsym --to-code $mod+Delete exec swaylock -c 131313 --font="$fname" --font-size=$f2size --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
 
     # Disable touchpad
     bindsym --to-code Print exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-touchpad.lock swaymsg input type:touchpad events toggle enabled disabled >/dev/null 2>&1
@@ -365,10 +365,8 @@ bar {
 #     gsettings set $gnome-schema font-name 'Clear Sans 14'
 # }
 
-exec 'echo "false" > $XDG_RUNTIME_DIR/idle.stat'
-
 # Start wob
-exec "rm -f $WOBSOCK ; pkill -SIGINT -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"
+exec "WOBPID=$(ps -x -o 'pgid' -p `pgrep -f $WOBSOCK` 2>/dev/null | tail +2) ; pkill -SIGINT -g $WOBPID 2>/dev/null ; rm -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"
 
 # Launch terminal
 exec $term

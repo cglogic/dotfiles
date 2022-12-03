@@ -74,7 +74,7 @@ feh --no-fehbg --bg-fill $WALLPAPER_STATIC_PATH &
 stouchpad &
 
 # Compositor --use-damage
-picom --config=/dev/null --backend=xrender --vsync -b
+# picom --config=/dev/null --backend=xrender --vsync -b
 
 sxhkd &
 exec bspwm

@@ -25,6 +25,8 @@ set $term foot
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
 set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock foot --window-size-pixels=1280x720 --title=launcher --app-id=launcher ~/.local/bin/launch
 
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+
 workspace_layout tabbed
 
 gaps inner 0
@@ -125,8 +127,6 @@ input type:keyboard {
     xkb_options "grp:alt_shift_toggle"
 }
 
-set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
-
 ### Key bindings
 #
 # Basics:
@@ -186,18 +186,18 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
     # bindsym --to-code $mod+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
     bindsym --to-code $mod+Escape exec swaymsg exit
 
-    bindsym --to-code $mod+F1 exec mixer -S pcm 0 && test -p $WOBSOCK && mixer -S pcm | cut -f 3 -d ':' > $WOBSOCK
-    bindsym --to-code $mod+F2 exec mixer -S pcm -10 && test -p $WOBSOCK && mixer -S pcm | cut -f 3 -d ':' > $WOBSOCK
-    bindsym --to-code $mod+F3 exec mixer -S pcm +10 && test -p $WOBSOCK && mixer -S pcm | cut -f 3 -d ':' > $WOBSOCK
-    bindsym --to-code $mod+F4 exec test -p $WOBSOCK && mixer -S pcm | cut -f 3 -d ':' > $WOBSOCK
+    bindsym --to-code $mod+F1 exec mixer -S pcm 0 && pgrep wob > /dev/null && test -p $WOBSOCK && mixer -S pcm | cut -f 3 -d ':' > $WOBSOCK
+    bindsym --to-code $mod+F2 exec mixer -S pcm -10 && pgrep wob > /dev/null && test -p $WOBSOCK && mixer -S pcm | cut -f 3 -d ':' > $WOBSOCK
+    bindsym --to-code $mod+F3 exec mixer -S pcm +10 && pgrep wob > /dev/null && test -p $WOBSOCK && mixer -S pcm | cut -f 3 -d ':' > $WOBSOCK
+    bindsym --to-code $mod+F4 exec pgrep wob > /dev/null && test -p $WOBSOCK && mixer -S pcm | cut -f 3 -d ':' > $WOBSOCK
 
-    bindsym --to-code $mod+F5 exec backlight decr && test -p $WOBSOCK && backlight -q > $WOBSOCK
-    bindsym --to-code $mod+F6 exec backlight incr && test -p $WOBSOCK && backlight -q > $WOBSOCK
-    bindsym --to-code $mod+F7 exec backlight 50 && test -p $WOBSOCK && backlight -q > $WOBSOCK
-    bindsym --to-code $mod+F8 exec test -p $WOBSOCK && backlight -q > $WOBSOCK
+    bindsym --to-code $mod+F5 exec backlight decr && pgrep wob > /dev/null && test -p $WOBSOCK && backlight -q > $WOBSOCK
+    bindsym --to-code $mod+F6 exec backlight incr && pgrep wob > /dev/null && test -p $WOBSOCK && backlight -q > $WOBSOCK
+    bindsym --to-code $mod+F7 exec backlight 50 && pgrep wob > /dev/null && test -p $WOBSOCK && backlight -q > $WOBSOCK
+    bindsym --to-code $mod+F8 exec pgrep wob > /dev/null && test -p $WOBSOCK && backlight -q > $WOBSOCK
 
-    bindsym --to-code $mod+F9 exec test -p $WOBSOCK && acpiconf -i 0 | grep 'Remaining capacity' | tr -s '[:blank:]' '%' | cut -f 3 -d '%' > $WOBSOCK
-    bindsym --to-code $mod+F10 exec test -p $WOBSOCK && sysctl dev.cpu | grep temperature | tr -s '[:blank:]' '.' | cut -f 5 -d '.' | tr -s '\n' ' ' | cut -f 1 -d ' ' > $WOBSOCK
+    bindsym --to-code $mod+F9 exec pgrep wob > /dev/null && test -p $WOBSOCK && acpiconf -i 0 | grep 'Remaining capacity' | tr -s '[:blank:]' '%' | cut -f 3 -d '%' > $WOBSOCK
+    bindsym --to-code $mod+F10 exec pgrep wob > /dev/null && test -p $WOBSOCK && sysctl dev.cpu | grep temperature | tr -s '[:blank:]' '.' | cut -f 5 -d '.' | tr -s '\n' ' ' | cut -f 1 -d ' ' > $WOBSOCK
     bindsym --to-code $mod+F12 exec ylight
 #
 # Moving around:

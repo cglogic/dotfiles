@@ -102,7 +102,7 @@ if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
 		export CT=$LLVM_PATH/clang-tidy
 	fi
 elif [[ -v DEV_STACK ]] && [[ $DEV_STACK = gnu ]]; then
-	GCC_VER=11
+	GCC_VER=12
 	BIN_PATH=/usr/local/bin
 	if [[ -d /usr/local/lib/gcc$GCC_VER ]]; then
 		export CC=$BIN_PATH/gcc$GCC_VER

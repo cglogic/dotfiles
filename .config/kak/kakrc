@@ -3,7 +3,7 @@ set-option global ui_options 'terminal_status_on_top=false' 'terminal_assistant=
 set-option global makecmd 'make'
 set-option global grepcmd 'ag --column'
 set-option global indentwidth 0
-set-option global tabstop 8
+set-option global tabstop 4
 set-option global autocomplete prompt
 
 # colorscheme tomorrow-night

@@ -113,7 +113,8 @@ require('lspconfig')['ccls'].setup {
 			directory = os.getenv('XDG_RUNTIME_DIR') .. '/ccls-cache';
 		};
 	},
-	autostart = true,
+	-- autostart = true,
+	autostart = false,
 	capabilities = lsp_capabilities,
 }
 

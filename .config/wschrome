@@ -15,6 +15,7 @@ export SEATD_SOCK="/var/run/seatd.sock"
 export XDG_SESSION_TYPE="wayland"
 # export MESA_LOADER_DRIVER_OVERRIDE="crocus"
 export XDG_CURRENT_DESKTOP="sway"
+export XDG_SESSION_DESKTOP="sway"
 export SWAYSOCK="/tmp/$USER-runtime-dir/sway-ipc.sock"
 export WAYLAND_DISPLAY="wayland-1"
 
@@ -37,6 +38,8 @@ fi
 cd $HOME
 
 # OPTIONS='--ignore-gpu-blocklist --disable-partial-raster --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
+	# --enable-accelerated-video-decode \
+	# --enable-features="VaapiVideoDecoder" \
 
 exec chrome \
 	--ozone-platform-hint=auto \
@@ -46,14 +49,12 @@ exec chrome \
 	--enable-gpu-rasterization \
 	--num-raster-threads=2 \
 	--enable-zero-copy \
-	--enable-accelerated-video-decode \
 	--force-dark-mode \
 	--site-per-process \
 	--enable-tcp-fastopen \
 	--disable-smooth-scrolling \
 	--disk-cache-size=0 \
 	--disk-cache-dir=/dev/null \
-	--enable-features="VaapiVideoDecoder" \
 	--disable-features="UseChromeOSDirectVideoDecoder,SharedArrayBuffer,WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" \
 	--js-flags="--noexpose-wasm" \
 	"$@"

@@ -64,6 +64,7 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 	if [[ "$SESSION_TYPE" == "s" ]]; then
 		export SWAYSOCK=$XDG_RUNTIME_DIR/sway-ipc.sock
 		export XDG_CURRENT_DESKTOP=sway
+		export XDG_SESSION_DESKTOP=sway
 		if [[ "$HOST" == "t440p" ]]; then
 			export WLR_DRM_NO_ATOMIC=1
 			# export MESA_LOADER_DRIVER_OVERRIDE=crocus

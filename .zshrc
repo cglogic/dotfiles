@@ -177,7 +177,7 @@ alias nnn='nnn -edC'
 alias imv='imv -r'
 # alias zathura='zathura --mode fullscreen'
 # alias tmux='if [[ ! $TMUX ]]; then tmux -2; fi'
-alias swayimg='swayimg -r -f'
+alias img='swayimg -r -f'
 
 alias ria='() { find $1 -type f -exec sed -i "" -e "s/$2/$3/g" {} \;}'
 

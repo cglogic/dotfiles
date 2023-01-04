@@ -13,25 +13,55 @@ end
 vim.g.mapleader = ','
 
 -------------------- PLUGINS -------------------------------
-require('paq') {
-	'savq/paq-nvim';  -- paq-nvim manages itself
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		'git',
+		'clone',
+		'--filter=blob:none',
+		'https://github.com/folke/lazy.nvim.git',
+		'--branch=stable', -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
 
-	-- 'kyazdani42/nvim-web-devicons';
-	'hoob3rt/lualine.nvim';
-	'RRethy/nvim-base16';
-	'nvim-treesitter/nvim-treesitter';
+require("lazy").setup({
+	'folke/lazy.nvim',
+	-- 'kyazdani42/nvim-web-devicons',
+	'hoob3rt/lualine.nvim',
+	'RRethy/nvim-base16',
+	'nvim-treesitter/nvim-treesitter',
 
-	'neovim/nvim-lspconfig';
-	'hrsh7th/cmp-nvim-lsp';
-	-- 'hrsh7th/cmp-buffer';
-	'L3MON4D3/LuaSnip';
-	'hrsh7th/nvim-cmp';
+	'neovim/nvim-lspconfig',
+	'hrsh7th/cmp-nvim-lsp',
+	-- 'hrsh7th/cmp-buffer',
+	'L3MON4D3/LuaSnip',
+	'hrsh7th/nvim-cmp',
 
-	'ibhagwan/fzf-lua';
-	-- 'lewis6991/spaceless.nvim';
-	-- 'terrortylor/nvim-comment';
-	-- 'Everduin94/nvim-quick-switcher';
-}
+	'ibhagwan/fzf-lua',
+	-- 'lewis6991/spaceless.nvim',
+	-- 'terrortylor/nvim-comment',
+	-- 'Everduin94/nvim-quick-switcher',
+}, {
+	ui = {
+		border = 'rounded',
+		icons = {
+			cmd = '',
+			config = '',
+			event = '',
+			ft = '',
+			init = '',
+			keys = '',
+			plugin = '',
+			runtime = '',
+			source = '',
+			start = '',
+			task = '',
+			lazy = '',
+		},
+	},
+})
 
 -------------------- OPTIONS -------------------------------
 vim.o.background = 'dark'           -- or "light" for light mode

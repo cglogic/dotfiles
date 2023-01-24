@@ -21,7 +21,8 @@ set include = yes
 set timeout = 15
 set mail_check = 90
 set abort_nosubject = no
-set sort = threads
+#set sort = threads
+set sort = reverse-date
 set sort_aux = reverse-last-date-received
 set mark_old = no
 #et editor = 'vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^"'

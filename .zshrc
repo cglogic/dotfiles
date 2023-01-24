@@ -78,7 +78,6 @@ fi
 
 # export GIT_PAGER=cat
 export MPD_HOST=/var/mpd/socket
-export LYNX_CFG=$HOME/.lynx.cfg
 #export PYTHONPATH=$HOME/lib/python
 
 export NNN_COLORS='4231'
@@ -150,8 +149,8 @@ alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dotls='dot ls-tree -r master --name-only'
 alias fsl='fossil'
 alias tm='tmux -L local new-session -A -s local'
-alias tmx='tmux -L x11 new-session -A -s x11'
-alias tmg='tmux -L gui new-session -A -s gui'
+# alias tmx='tmux -L x11 new-session -A -s x11'
+# alias tmg='tmux -L gui new-session -A -s gui'
 alias tms='tmux -L ssh new-session -A -s ssh'
 alias tmp='tmux -L pty new-session -A -s pty'
 # alias tmr='if [[ ! $TMUX ]]; then tmux -2 new-session -A -s $( if [[ $WAYLAND_DISPLAY || $DISPLAY ]]; then echo gui; else echo pty; fi ); fi'

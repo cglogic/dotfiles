@@ -171,6 +171,7 @@ input type:keyboard {
     bindsym --to-code XF86WakeUp workspace next
     # bindsym --to-code $mod+Tab focus right
     bindsym --to-code $mod+Tab workspace next
+    bindsym --to-code $mod+Shift+Tab workspace prev
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

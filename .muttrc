@@ -45,7 +45,11 @@ set imap_check_subscribed
 unset imap_passive
 unset imap_peek
 
-source ~/.mutt/account.gmail
+source ~/.mutt/account.home
+folder-hook $folder 'source ~/.mutt/account.home'
 
-macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.gmail<enter><change-folder>!<enter>'
+source ~/.mutt/account.work
+folder-hook $folder 'source ~/.mutt/account.work'
+
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.home<enter><change-folder>!<enter>'
 macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/account.work<enter><change-folder>!<enter>'

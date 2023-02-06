@@ -125,9 +125,23 @@ require('lualine').setup {
 -------------------- TREE-SITTER ---------------------------
 require('nvim-treesitter.configs').setup {
 	-- ensure_installed = 'maintained',
-	ensure_installed = { 'c', 'cpp', 'python', 'diff', 'json', 'lua', 'markdown', 'ninja', 'meson', 'regex', 'vim' },
+	ensure_installed = {
+		'c',
+		'cpp',
+		'python',
+		'diff',
+		'json',
+		'lua',
+		'markdown',
+		'ninja',
+		'meson',
+		'regex',
+		'vim'
+	},
+	auto_install = false,
 	highlight = {
-		enable = true
+		enable = true,
+		additional_vim_regex_highlighting = false,
 	}
 }
 

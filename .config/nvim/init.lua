@@ -31,7 +31,7 @@ require("lazy").setup({
 	-- 'kyazdani42/nvim-web-devicons',
 	'hoob3rt/lualine.nvim',
 	'RRethy/nvim-base16',
-	'nvim-treesitter/nvim-treesitter',
+	{ 'nvim-treesitter/nvim-treesitter', cmd = 'TSUpdate' },
 
 	'neovim/nvim-lspconfig',
 	'hrsh7th/cmp-nvim-lsp',
@@ -125,7 +125,7 @@ require('lualine').setup {
 -------------------- TREE-SITTER ---------------------------
 require('nvim-treesitter.configs').setup {
 	-- ensure_installed = 'maintained',
-	ensure_installed = { 'c', 'cpp', 'python', 'json', 'lua', 'markdown', 'ninja', 'meson', 'regex', 'vim' },
+	ensure_installed = { 'c', 'cpp', 'python', 'diff', 'json', 'lua', 'markdown', 'ninja', 'meson', 'regex', 'vim' },
 	highlight = {
 		enable = true
 	}
@@ -137,26 +137,25 @@ require('nvim-treesitter.configs').setup {
 -- Setup lspconfig.
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require('lspconfig')['ccls'].setup {
-	init_options = {
-		cache = {
-			directory = os.getenv('XDG_RUNTIME_DIR') .. '/ccls-cache';
-		};
+-- require('lspconfig')['ccls'].setup {
+-- 	init_options = {
+-- 		cache = {
+-- 			directory = os.getenv('XDG_RUNTIME_DIR') .. '/ccls-cache';
+-- 		};
+-- 	},
+-- 	autostart = false,
+-- 	capabilities = lsp_capabilities,
+-- }
+
+require('lspconfig')['clangd'].setup {
+	cmd = {
+		"clangd15",
+		"--background-index",
+		"--suggest-missing-includes",
 	},
-	-- autostart = true,
 	autostart = false,
 	capabilities = lsp_capabilities,
 }
-
--- require('lspconfig')['clangd'].setup {
--- 	autostart = true,
--- 	cmd = {
--- 		"clangd14",
--- 		"--background-index",
--- 		"--suggest-missing-includes",
--- 	},
--- 	capabilities = lsp_capabilities,
--- }
 
 map('n', '<space>,', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 map('n', '<space>;', '<cmd>lua vim.diagnostic.goto_next()<CR>')

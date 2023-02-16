@@ -31,13 +31,14 @@ require("lazy").setup({
 	-- 'kyazdani42/nvim-web-devicons',
 	'hoob3rt/lualine.nvim',
 	'RRethy/nvim-base16',
-	{ 'nvim-treesitter/nvim-treesitter', cmd = 'TSUpdate' },
+	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 
 	'neovim/nvim-lspconfig',
 	'hrsh7th/cmp-nvim-lsp',
 	-- 'hrsh7th/cmp-buffer',
 	'L3MON4D3/LuaSnip',
 	'hrsh7th/nvim-cmp',
+	-- 'glepnir/lspsaga.nvim',
 
 	'ibhagwan/fzf-lua',
 	-- 'lewis6991/spaceless.nvim',
@@ -136,7 +137,7 @@ require('nvim-treesitter.configs').setup {
 		'ninja',
 		'meson',
 		'regex',
-		'vim'
+		'vim',
 	},
 	auto_install = false,
 	highlight = {

@@ -68,4 +68,4 @@ else
 	doas chmod 770 "$CHROME"
 fi
 
-exec doas -u $1 $CHROME
+exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-browser-$1.lock doas -u $1 $CHROME

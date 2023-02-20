@@ -23,7 +23,8 @@ set $term foot
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
-set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock foot --window-size-pixels=1280x720 --title=launcher --app-id=launcher ~/.local/bin/launch
+# set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock foot --window-size-pixels=1280x720 --title=launcher --app-id=launcher ~/.local/bin/launch
+set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname $fsize"
 
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 
@@ -45,7 +46,7 @@ titlebar_padding 5 1
 # focus_follows_mouse no
 
 # for_window [app_id="chrome"] resize set 1280 720
-for_window [app_id="launcher"] floating enable, sticky enable
+# for_window [app_id="launcher"] floating enable, sticky enable
 for_window [app_id="chromium-browser"] inhibit_idle fullscreen
 
 # include themes/base16-tomorrow-night.config
@@ -371,8 +372,5 @@ exec "WOBPID=$(ps -x -o 'pgid' -p `pgrep -f $WOBSOCK` 2>/dev/null | tail +2) ; p
 
 # Launch terminal
 exec $term
-
-# Update database
-# exec ~/.local/bin/launch update
 
 include /usr/local/etc/sway/config.d/*

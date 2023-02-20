@@ -1,0 +1,20 @@
+#!/bin/sh
+
+HISTORY="$HOME/.launch_history"
+test -f "$HISTORY" || touch "$HISTORY"
+
+CMD=$( cat "$HISTORY" | wmenu -i -f "$1" )
+
+# exit if null input
+test -z "$CMD" && exit 1
+
+# test if CMD exist in $PATH
+if hash $( echo "$CMD" | cut -f1 -d ' ' ) >/dev/null 2>&1; then
+	# write input to history
+	if ( ! grep -q "$CMD" "$HISTORY" ); then
+		echo "$CMD" >> "$HISTORY"
+		sort "$HISTORY" -o "$HISTORY" &
+	fi
+
+	swaymsg -q exec -- "$CMD"
+fi

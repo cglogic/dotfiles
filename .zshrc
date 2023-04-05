@@ -88,7 +88,7 @@ export FZF_DEFAULT_OPTS='--exact'
 
 # export DEV_STACK=gnu
 if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
-	LLVM_VER=15
+	LLVM_VER=16
 	LLVM_PATH=/usr/local/llvm$LLVM_VER/bin
 	if [[ -d $LLVM_PATH ]]; then
 		export CC=$LLVM_PATH/clang
@@ -159,7 +159,7 @@ alias img='swayimg -r -n --window=131313'
 
 alias ssh='TERM=xterm-256color ssh'
 alias grep='grep --color=auto'
-alias df='df -h'
+alias df='df -hT'
 alias dfc='dfc -d'
 alias ps='ps -ww'
 alias pstree='pstree -g 2'

@@ -35,12 +35,12 @@ fi
 cd $HOME
 
 # OPTIONS='--ignore-gpu-blocklist --disable-partial-raster --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
+	# --use-gl=egl \
 
 exec chrome \
 	--ozone-platform-hint=auto \
 	--ignore-gpu-blocklist \
 	--disable-gpu-driver-bug-workarounds \
-	--use-gl=egl \
 	--enable-gpu-rasterization \
 	--num-raster-threads=2 \
 	--enable-zero-copy \
@@ -52,6 +52,6 @@ exec chrome \
 	--disk-cache-size=0 \
 	--disk-cache-dir=/dev/null \
 	--enable-features="VaapiVideoDecoder" \
-	--disable-features="UseChromeOSDirectVideoDecoder,SharedArrayBuffer,WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" \
+	--disable-features="Vulkan,UseChromeOSDirectVideoDecoder,SharedArrayBuffer,WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" \
 	--js-flags="--noexpose-wasm" \
 	"$@"

@@ -138,6 +138,7 @@ require('nvim-treesitter.configs').setup {
 		'meson',
 		'regex',
 		'vim',
+		'gitcommit',
 	},
 	auto_install = false,
 	highlight = {

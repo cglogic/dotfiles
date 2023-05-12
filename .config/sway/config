@@ -83,6 +83,9 @@ output * bg ~/wallpapers/bg-orig.png fill
 # output eDP-1 disable
 # output eDP-1 mode 1920x1080@60Hz
 
+# Disable subpixel filtering
+# output * subpixel none
+
 ### Idle configuration
 #
 # Example configuration:

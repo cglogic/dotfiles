@@ -46,7 +46,7 @@ require("lazy").setup({
 	-- 'Everduin94/nvim-quick-switcher',
 }, {
 	ui = {
-		border = 'rounded',
+		border = 'single',
 		icons = {
 			cmd = '',
 			config = '',
@@ -190,7 +190,7 @@ vim.diagnostic.config {
 	float = {
 		show_header = true,
 		source = 'if_many',
-		border = 'rounded',
+		border = 'single',
 		focusable = false,
 	},
 }
@@ -200,18 +200,18 @@ local _default_opts = win.default_opts
 
 win.default_opts = function(options)
 	local opts = _default_opts(options)
-	opts.border = 'rounded'
+	opts.border = 'single'
 	return opts
 end
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 	vim.lsp.handlers.hover,
-	{border = 'rounded'}
+	{border = 'single'}
 )
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 	vim.lsp.handlers.signature_help,
-	{border = 'rounded'}
+	{border = 'single'}
 )
 
 ------------------------------------------------------------
@@ -225,10 +225,10 @@ local cmp = require('cmp')
 cmp.setup({
 	window = {
 		documentation = {
-			border = 'rounded',
+			border = 'single',
 		},
 		completion = {
-			border = 'rounded',
+			border = 'single',
 		},
 	},
 	completion = {

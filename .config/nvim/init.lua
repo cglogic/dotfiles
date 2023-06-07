@@ -139,6 +139,7 @@ require('nvim-treesitter.configs').setup {
 		'regex',
 		'vim',
 		'gitcommit',
+		'sql',
 	},
 	auto_install = false,
 	highlight = {
@@ -296,27 +297,30 @@ cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'  -- disabl
 local actions = require 'fzf-lua.actions'
 require('fzf-lua').setup {
 	files = {
-		previewer         = false,
-		cmd               = 'ag --nocolor -l -g ""',
-		find_opts         = '',
-		git_icons         = false,
-		file_icons        = false,
+		previewer = false,
+		cmd = 'ag --nocolor -l -g ""',
+		find_opts = '',
+		git_icons = false,
+		file_icons = false,
 	},
 	grep = {
-		previewer         = false,
-		prompt            = 'Ag❯ ',
-		cmd               = 'ag --nocolor',
-		grep_opts         = '',
+		previewer = false,
+		prompt = 'Ag❯ ',
+		cmd = 'ag --nocolor',
+		grep_opts = '',
 	},
 	buffers = {
-		previewer         = false,
+		previewer = false,
 	},
 	tabs = {
-		previewer         = false,
+		previewer = false,
 	},
 	lines = {
-		previewer         = false,
+		previewer = false,
 	},
+	winopts = {
+		border = 'single',
+	}
 }
 ------------------------------------------------------------
 -- require('spaceless').setup {}

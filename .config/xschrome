@@ -36,13 +36,13 @@ cd $HOME
 
 # OPTIONS='--ignore-gpu-blocklist --disable-partial-raster --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 	# --use-gl=egl \
+	#--num-raster-threads=2 \
 
 exec chrome \
 	--ozone-platform-hint=auto \
 	--ignore-gpu-blocklist \
 	--disable-gpu-driver-bug-workarounds \
 	--enable-gpu-rasterization \
-	--num-raster-threads=2 \
 	--enable-zero-copy \
 	--enable-accelerated-video-decode \
 	--force-dark-mode \

@@ -7,7 +7,7 @@
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/.local/bin
 
 # Set default terminal
-export TERMINAL=kitty
+export TERMINAL=xterm
 
 # To determine X11
 export FSIZE=20

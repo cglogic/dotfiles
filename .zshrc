@@ -155,7 +155,7 @@ alias tms='tmux -L ssh new-session -A -s ssh'
 alias tmp='tmux -L pty new-session -A -s pty'
 # alias tmr='if [[ ! $TMUX ]]; then tmux -2 new-session -A -s $( if [[ $WAYLAND_DISPLAY || $DISPLAY ]]; then echo gui; else echo pty; fi ); fi'
 alias vim='nvim'
-alias img='swayimg -r -n --window=131313'
+alias img='swayimg -r -n -f --window=131313'
 
 alias ssh='TERM=xterm-256color ssh'
 alias grep='grep --color=auto'

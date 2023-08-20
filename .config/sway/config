@@ -7,7 +7,7 @@
 ### Variables
 #
 set $fname JetBrains Mono
-set $fsize 18
+set $fsize 20
 set $f2size `echo $fsize + 4 | bc`
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -324,7 +324,7 @@ bindsym --to-code $mod+r mode "resize"
 bar {
     # mode hide
     position bottom
-    height 37
+    height 40
     gaps 0
     status_edge_padding 0
     status_padding 0

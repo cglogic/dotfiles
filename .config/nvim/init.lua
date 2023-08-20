@@ -141,6 +141,7 @@ require('nvim-treesitter.configs').setup {
 		'gitcommit',
 		'sql',
 		'cmake',
+		'make',
 	},
 	auto_install = false,
 	highlight = {

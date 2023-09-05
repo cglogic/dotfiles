@@ -259,9 +259,11 @@ bindkey '^I' tcsh_autolist
 
 # Update window title
 if [[ -v SSH_CONNECTION ]]; then
-	title="\033]0;%n@%m:%~\007"
+	# title="\033]0;%n@%m:%~\007"
+	title="\033]0;%n@%m:%1~\007"
 else
-	title="\033]0;%~\007"
+	# title="\033]0;%~\007"
+	title="\033]0;%1~\007"
 fi
 if [[ -v WAYLAND_DISPLAY || -v DISPLAY || -v SSH_CONNECTION ]]; then
 	function precmd {

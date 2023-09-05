@@ -258,15 +258,15 @@ zle -N tcsh_autolist
 bindkey '^I' tcsh_autolist
 
 # Update window title
-# if [[ $(tty) =~ "pts*" ]]; then
+if [[ -v SSH_CONNECTION ]]; then
+	title="\033]0;%n@%m:%~\007"
+else
+	title="\033]0;%~\007"
+fi
 if [[ -v WAYLAND_DISPLAY || -v DISPLAY || -v SSH_CONNECTION ]]; then
-	function preexec {
-		title="\033]0;%n@%m:%~\007"
-	}
 	function precmd {
 		if [[ -v title ]]; then
 			print -Pn $title
-			unset title
 		fi
 	}
 fi

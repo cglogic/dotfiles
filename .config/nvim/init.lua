@@ -300,14 +300,14 @@ local actions = require 'fzf-lua.actions'
 require('fzf-lua').setup {
 	files = {
 		previewer = false,
-		cmd = 'ag --nocolor -l -g ""',
+		cmd = 'ag --nocolor -l -g "" | sort',
 		find_opts = '',
 		git_icons = false,
 		file_icons = false,
 	},
 	grep = {
 		previewer = false,
-		prompt = 'Ag❯ ',
+		prompt = '❯ ',
 		cmd = 'ag --nocolor',
 		grep_opts = '',
 	},

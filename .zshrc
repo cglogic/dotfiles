@@ -267,9 +267,10 @@ else
 fi
 if [[ -v WAYLAND_DISPLAY || -v DISPLAY || -v SSH_CONNECTION ]]; then
 	function precmd {
-		if [[ -v title ]]; then
-			print -Pn $title
-		fi
+		print -Pn $title
+		# if [[ -v title ]]; then
+		# 	print -Pn $title
+		# fi
 	}
 fi
 

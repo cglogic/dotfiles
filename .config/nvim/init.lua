@@ -12,6 +12,8 @@ end
 
 vim.g.mapleader = ','
 
+local border = 'single'
+
 -------------------- PLUGINS -------------------------------
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -46,7 +48,7 @@ require("lazy").setup({
 	-- 'Everduin94/nvim-quick-switcher',
 }, {
 	ui = {
-		border = 'single',
+		border = border,
 		icons = {
 			cmd = '',
 			config = '',
@@ -168,7 +170,7 @@ local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.pr
 
 require('lspconfig')['clangd'].setup {
 	cmd = {
-		"clangd15",
+		"clangd16",
 		"--background-index",
 		"--suggest-missing-includes",
 	},
@@ -193,7 +195,7 @@ vim.diagnostic.config {
 	float = {
 		show_header = true,
 		source = 'if_many',
-		border = 'single',
+		border = border,
 		focusable = false,
 	},
 }
@@ -203,18 +205,18 @@ local _default_opts = win.default_opts
 
 win.default_opts = function(options)
 	local opts = _default_opts(options)
-	opts.border = 'single'
+	opts.border = border
 	return opts
 end
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 	vim.lsp.handlers.hover,
-	{border = 'single'}
+	{border = border}
 )
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 	vim.lsp.handlers.signature_help,
-	{border = 'single'}
+	{border = border}
 )
 
 ------------------------------------------------------------
@@ -228,10 +230,10 @@ local cmp = require('cmp')
 cmp.setup({
 	window = {
 		documentation = {
-			border = 'single',
+			border = border,
 		},
 		completion = {
-			border = 'single',
+			border = border,
 		},
 	},
 	completion = {
@@ -321,7 +323,7 @@ require('fzf-lua').setup {
 		previewer = false,
 	},
 	winopts = {
-		border = 'single',
+		border = border,
 	}
 }
 ------------------------------------------------------------

@@ -20,10 +20,10 @@ umask 77
 # Colors for completion
 ZLS_COLORS="no=00:fi=00:di=34:ln=36:pi=33:so=35:bd=33:cd=33:ex=32:lc=\e[:rm=m:tc=00:sp=00:ma=07:hi=00:du=00:ow=34:tw=34:su=31:sg=31"
 
-if [[ -v WAYLAND_DISPLAY ]]; then
-	# termcap for foot
-	export TERMCAP="${TERM}:bw:hs:ds=\E]2;\E\\:fs=\E\\:kb=\177:ts=\E]2;:vb=\E]555\E\\:tc=${TERM}:"
-fi
+# if [[ -v WAYLAND_DISPLAY ]]; then
+# 	# termcap for foot
+# 	export TERMCAP="${TERM}:bw:hs:ds=\E]2;\E\\:fs=\E\\:kb=\177:ts=\E]2;:vb=\E]555\E\\:tc=${TERM}:"
+# fi
 
 zstyle ':completion:*' list-colors ${(s.:.)ZLS_COLORS}
 zstyle ':completion:*' list-prompt ''

@@ -354,6 +354,7 @@ mpd_host = "/var/mpd/socket"
 #volume_change_step = 2
 #
 #autocenter_mode = no
+autocenter_mode = yes
 #
 #centered_cursor = no
 #

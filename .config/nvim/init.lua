@@ -68,7 +68,7 @@ require("lazy").setup({
 
 -------------------- OPTIONS -------------------------------
 vim.o.background = 'dark'           -- or "light" for light mode
--- cmd 'colorscheme base16'           -- Put your favorite colorscheme here
+cmd 'colorscheme base16-tomorrow-night'-- Put your favorite colorscheme here
 -- opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options
 opt.completeopt = {'menuone', 'noselect'}  -- Completion options
 -- opt.expandtab = true                -- Use spaces instead of tabs
@@ -114,7 +114,6 @@ map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 -- map("i", "<C-j>", "<Esc>:m .-2<CR>==gi", cmd_options)
 
 ------------------------------------------------------------
-vim.cmd('colorscheme base16-tomorrow-night')
 
 require('lualine').setup {
 	options = {

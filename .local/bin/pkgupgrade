@@ -11,6 +11,11 @@ if [ $? -ne 0 ] ; then exit ; fi
 git pull
 if [ $? -ne 0 ] ; then exit ; fi
 
+cd
+
+printf "Perform upgrade? [y/n] "
+read PERFORM
+if [ "$PERFORM" != "y" ] ; then exit ; fi
+
 portmaster -BDa
 zpool sync
-cd

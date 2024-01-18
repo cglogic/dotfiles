@@ -13,9 +13,9 @@ if [ $? -ne 0 ] ; then exit ; fi
 git pull
 if [ $? -ne 0 ] ; then exit ; fi
 
-printf "Perform upgrade? [y/n] "
-read PERFORM
-if [ "$PERFORM" != "y" ] ; then
+printf "Perform upgrade? [y/N] "
+read CONFIRM
+if [ "$CONFIRM" != "y" ] ; then
 	cd
 	exit
 fi
@@ -60,3 +60,9 @@ cd
 
 rm -rf /usr/obj/usr
 zpool sync
+
+printf "Reboot? [y/N] "
+read CONFIRM
+if [ "$CONFIRM" != "y" ] ; then
+	shutdown -r now
+fi

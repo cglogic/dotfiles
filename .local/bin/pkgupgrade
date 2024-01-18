@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ "$(id -u)" != "0" ] ; then
+	echo "You should be root to run this command"
+	exit
+fi
+
+cd /usr/portss
+if [ $? -ne 0 ] ; then exit ; fi
+
+git pull
+if [ $? -ne 0 ] ; then exit ; fi
+
+portmaster -BDa
+zpool sync
+cd

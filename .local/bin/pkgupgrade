@@ -5,7 +5,7 @@ if [ "$(id -u)" != "0" ] ; then
 	exit
 fi
 
-cd /usr/portss
+cd /usr/ports
 if [ $? -ne 0 ] ; then exit ; fi
 
 git pull

@@ -13,9 +13,14 @@ if [ $? -ne 0 ] ; then exit ; fi
 
 cd
 
-printf "Perform upgrade? [y/N] "
+printf "Perform upgrade? [y/N]: "
 read CONFIRM
 if [ "$CONFIRM" != "y" ] ; then exit ; fi
-
 portmaster -BDa
+zpool sync
+
+printf "Clean distfiles? [y/N]: "
+read CONFIRM
+if [ "$CONFIRM" != "y" ] ; then exit ; fi
+portmaster -BDay --clean-distfiles
 zpool sync

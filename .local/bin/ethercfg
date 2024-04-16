@@ -1,0 +1,24 @@
+#!/bin/sh
+
+IFACE=`ifconfig -g ether | cut -f 1 -d ' '`
+ACTIVE=`ifconfig $IFACE | grep status | tr -d '\t:' | cut -f 2 -d ' '`
+
+case "$1" in
+"up")
+	service dhclient forcestart $IFACE
+	;;
+"down")
+	service dhclient forcestop $IFACE
+	ifconfig $IFACE delete
+	;;
+"status")
+	if [ "$ACTIVE" == "active" ]; then
+		echo 'up'
+	else
+		echo 'down'
+	fi
+	;;
+*)
+	echo "Usage: wificfg up|down|status"
+	;;
+esac

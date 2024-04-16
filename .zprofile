@@ -2,7 +2,7 @@
 
 # export LANG=en_US.UTF-8
 export MPD_HOST=/var/mpd/socket
-export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=qt6ct
 
 export XDG_CONFIG_HOME="$HOME/.config"
 

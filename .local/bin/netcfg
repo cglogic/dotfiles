@@ -1,0 +1,33 @@
+#!/bin/sh
+
+ETHERACTIVE=`ethercfg status`
+NCFILE=/tmp/netcfg
+
+case "$1" in
+"boot")
+	if [ "$ETHERACTIVE" == "up" ]; then
+		ethercfg up
+	else
+		wificfg up
+	fi
+	service ntpd forcestart
+	echo 'done' > $NCFILE
+	;;
+"auto")
+	;;
+"ether")
+	if [ -f $NCFILE ]; then
+		wificfg down
+		ethercfg up
+	fi
+	;;
+"wifi")
+	if [ -f $NCFILE ]; then
+		ethercfg down
+		wificfg up
+	fi
+	;;
+*)
+	echo "Usage: netcfg auto|ether|wifi"
+	;;
+esac

@@ -143,6 +143,7 @@ require('nvim-treesitter.configs').setup {
 		'sql',
 		'cmake',
 		'make',
+		'muttrc',
 	},
 	auto_install = false,
 	highlight = {

@@ -42,6 +42,8 @@ cd $HOME
 	# --enable-features="VaapiVideoDecoder" \
 	# --use-gl=egl \
 	#--num-raster-threads=2 \
+	#--enable-logging=stderr \
+	#--audio-backend=alsa \
 
 exec chrome \
 	--ozone-platform-hint=auto \

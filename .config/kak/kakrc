@@ -35,10 +35,8 @@ hook global WinSetOption filetype=(c|cpp) %{
 	set-option buffer matching_pairs '{' '}' '[' ']' '(' ')'
 
 	try %{
-		remove-highlighter buffer/operators
-		add-highlighter buffer/operators regex (\W) 0:operator
-		# remove-highlighter buffer/operators
-		# add-highlighter    buffer/operators regex (\+|-|\*|&|=|\\|\?|%|\|-|!|\||->|\.|,|<|>|:|\^|/|~|\[|\]) 0:operator
+		add-highlighter -override buffer/operators regex (\W) 0:operator
+		# add-highlighter -override buffer/operators regex (\+|-|\*|&|=|\\|\?|%|\|-|!|\||->|\.|,|<|>|:|\^|/|~|\[|\]) 0:operator
 	}
 }
 
@@ -47,8 +45,7 @@ hook global WinSetOption filetype=(python) %{
 	set-option global tabstop 4
 
 	try %{
-		remove-highlighter buffer/operators
-		add-highlighter buffer/operators regex (\W) 0:operator
+		add-highlighter -override buffer/operators regex (\W) 0:operator
 	}
 }
 

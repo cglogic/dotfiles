@@ -33,6 +33,7 @@ require("lazy").setup({
 	-- 'kyazdani42/nvim-web-devicons',
 	'hoob3rt/lualine.nvim',
 	'RRethy/nvim-base16',
+	'rebelot/kanagawa.nvim',
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 
 	'neovim/nvim-lspconfig',
@@ -164,25 +165,35 @@ require('nvim-treesitter.configs').setup {
 -- Setup lspconfig.
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require('lspconfig')['ccls'].setup {
-	init_options = {
-		cache = {
-			directory = os.getenv('XDG_RUNTIME_DIR') .. '/ccls-cache';
-		};
-	},
-	autostart = false,
-	capabilities = lsp_capabilities,
-}
-
--- require('lspconfig')['clangd'].setup {
--- 	cmd = {
--- 		"clangd16",
--- 		"--background-index",
--- 		"--suggest-missing-includes",
+-- require('lspconfig')['ccls'].setup {
+-- 	init_options = {
+-- 		cache = {
+-- 			directory = os.getenv('XDG_RUNTIME_DIR') .. '/ccls-cache';
+-- 		};
 -- 	},
 -- 	autostart = false,
 -- 	capabilities = lsp_capabilities,
 -- }
+
+local function on_attach()
+	-- Hide semantic highlights for functions
+	vim.api.nvim_set_hl(0, '@lsp.type.function', {})
+	-- Hide all semantic highlights
+	for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+		vim.api.nvim_set_hl(0, group, {})
+	end
+end
+
+require('lspconfig')['clangd'].setup {
+	on_attach = on_attach(),
+	cmd = {
+		"clangd18",
+		"--background-index",
+		"--suggest-missing-includes",
+	},
+	autostart = false,
+	capabilities = lsp_capabilities,
+}
 
 map('n', '<space>,', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 map('n', '<space>;', '<cmd>lua vim.diagnostic.goto_next()<CR>')

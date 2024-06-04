@@ -30,16 +30,19 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	'folke/lazy.nvim',
-	-- 'kyazdani42/nvim-web-devicons',
-	'hoob3rt/lualine.nvim',
+
 	'RRethy/nvim-base16',
 	'rebelot/kanagawa.nvim',
+	'folke/tokyonight.nvim',
+	'ellisonleao/gruvbox.nvim',
+
+	-- 'kyazdani42/nvim-web-devicons',
+	'hoob3rt/lualine.nvim',
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 
 	'neovim/nvim-lspconfig',
 	'hrsh7th/cmp-nvim-lsp',
 	-- 'hrsh7th/cmp-buffer',
-	'L3MON4D3/LuaSnip',
 	'hrsh7th/nvim-cmp',
 	-- 'glepnir/lspsaga.nvim',
 
@@ -242,7 +245,6 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 
-local luasnip = require('luasnip')
 local cmp = require('cmp')
 cmp.setup({
 	window = {
@@ -258,8 +260,6 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
-	-- }, {
 		-- { name = "buffer" },
 	}),
 	mapping = cmp.mapping.preset.insert({
@@ -272,8 +272,6 @@ cmp.setup({
 		['<C-Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
 			elseif has_words_before() then
 				cmp.complete()
 			else
@@ -284,8 +282,6 @@ cmp.setup({
 		['<C-S-Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
 			else
 				fallback()
 			end
@@ -298,15 +294,9 @@ cmp.setup({
 			item.menu = ({
 				-- buffer = '[Buffer]',
 				nvim_lsp = '[LSP]',
-				luasnip = '[Snippet]',
 			})[entry.source.name]
 
 			return item
-		end,
-	},
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
 		end,
 	},
 })
@@ -345,10 +335,6 @@ require('fzf-lua').setup {
 }
 ------------------------------------------------------------
 -- require('spaceless').setup {}
-
--------------------------------------------------------------
--- require('nvim_comment').setup({comment_empty = false})
--- vim.api.nvim_command [[autocmd! FileType cpp :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")]]
 
 ------------------------------------------------------------
 vim.keymap.set('n', '<Leader>f', '<cmd>lua require("fzf-lua").files()<CR>')

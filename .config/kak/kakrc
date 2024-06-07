@@ -11,10 +11,10 @@ colorscheme %sh{ case "$TERM" in xterm) echo "default" ;; *) echo "tomorrow-nigh
 
 add-highlighter global/ number-lines -hlcursor -separator ' '
 add-highlighter global/ show-matching
-# add-highlighter global/ show-whitespaces
+add-highlighter global/ show-whitespaces -tab '→' -spc '•' -lf ' ' -only-trailing
 add-highlighter global/ dynregex '%reg{/}' 0:+u
 # add-highlighter global/ wrap -word -indent
-add-highlighter global/trailing-whitespace regex '\h+$' 0:Error
+# add-highlighter global/trailing-whitespace regex '\h+$' 0:Error
 
 hook global ModeChange push:insert:.* %{ map window insert <a-space> <c-o> }
 hook global ModeChange pop:insert:.* %{ unmap window insert <a-space> <c-o> }

@@ -32,9 +32,9 @@ require("lazy").setup({
 	'folke/lazy.nvim',
 
 	'RRethy/nvim-base16',
-	'rebelot/kanagawa.nvim',
-	'folke/tokyonight.nvim',
-	'ellisonleao/gruvbox.nvim',
+	-- 'rebelot/kanagawa.nvim',
+	-- 'folke/tokyonight.nvim',
+	-- 'ellisonleao/gruvbox.nvim',
 
 	-- 'kyazdani42/nvim-web-devicons',
 	'hoob3rt/lualine.nvim',
@@ -195,6 +195,7 @@ require('lspconfig')['clangd'].setup {
 		"--suggest-missing-includes",
 	},
 	autostart = false,
+	-- autostart = true,
 	capabilities = lsp_capabilities,
 }
 

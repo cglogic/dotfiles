@@ -26,8 +26,8 @@ map global normal '#' :comment-line<ret>
 
 hook global WinSetOption filetype=(c|cpp) %{
 	set-option global clang_options '-std=c++20'
-	set-option global tabstop 4
 	set-option window formatcmd '$CF -style=file'
+	set-option global tabstop 4
 	# clang-enable-autocomplete
 	# clang-enable-diagnostics
 	# alias window lint clang-parse
@@ -62,8 +62,8 @@ hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 map global normal ';' :
 # map global normal '<ret>' :make<ret>
 
-# hook global BufCreate '^\*make\*$' %{
-# 	hook -once buffer NormalKey '<del>' %{ try %{
-# 		delete-buffer *make*
-# 	}}
-# }
+hook global BufCreate '^\*make\*$' %{
+	hook -once buffer NormalKey '<del>' %{ try %{
+		delete-buffer *make*
+	}}
+}

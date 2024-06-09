@@ -143,6 +143,7 @@ require('nvim-treesitter.configs').setup {
 		'meson',
 		'regex',
 		'vim',
+		'vimdoc',
 		'gitcommit',
 		'sql',
 		'cmake',

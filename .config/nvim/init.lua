@@ -170,7 +170,9 @@ require('nvim-treesitter.configs').setup {
 -- local lsp = require 'lspconfig'
 
 -- Setup lspconfig.
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(
+	vim.lsp.protocol.make_client_capabilities()
+)
 
 -- require('lspconfig')['ccls'].setup {
 -- 	init_options = {
@@ -236,12 +238,12 @@ end
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 	vim.lsp.handlers.hover,
-	{border = border}
+	{ border = border }
 )
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 	vim.lsp.handlers.signature_help,
-	{border = border}
+	{ border = border }
 )
 
 ------------------------------------------------------------

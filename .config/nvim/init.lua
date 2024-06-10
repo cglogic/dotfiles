@@ -196,7 +196,7 @@ require('lspconfig')['clangd'].setup {
 	cmd = {
 		"clangd18",
 		"--background-index",
-		"--suggest-missing-includes",
+		-- "--suggest-missing-includes",
 	},
 	autostart = false,
 	-- autostart = true,

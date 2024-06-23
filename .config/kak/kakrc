@@ -25,7 +25,7 @@ hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap wi
 map global normal '#' :comment-line<ret>
 
 hook global WinSetOption filetype=(c|cpp) %{
-	set-option global clang_options '-std=c++20'
+	set-option global clang_options '-std=c++23'
 	set-option window formatcmd '$CF -style=file'
 	set-option global tabstop 4
 	# clang-enable-autocomplete
@@ -46,6 +46,12 @@ hook global WinSetOption filetype=(python) %{
 
 	try %{
 		add-highlighter -override buffer/operators regex (\W) 0:operator
+	}
+}
+
+hook global WinSetOption filetype=(markdown) %{
+	try %{
+		add-highlighter global/ wrap -word -indent
 	}
 }
 

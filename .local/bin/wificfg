@@ -3,8 +3,8 @@
 WLAN=`sysctl net.wlan.devices | awk '{ print $2 }'`
 IFACE=wlan0
 ACTIVE=`ifconfig $IFACE >/dev/null 2>&1 && echo 'active'`
-WCFILE=/tmp/wificfg
-WSTATUS=`cat $WCFILE`
+# WCFILE=/tmp/wificfg
+# WSTATUS=`[ -f "$WCFILE" ] && cat $WCFILE`
 
 case "$1" in
 "up")

@@ -6,6 +6,9 @@ fi
 if [ "$USER" = "$1" ]; then
 	exit
 fi
+if [ ! -d "/home/$1" ]; then
+	exit
+fi
 if [ ! -f "$HOME/.config/$1" ]; then
 	exit
 fi

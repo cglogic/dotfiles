@@ -10,6 +10,11 @@ if [ ! -f "$HOME/.config/$1" ]; then
 	exit
 fi
 
+ARGS=""
+if [ "$2" ]; then
+	ARGS=$2
+fi
+
 if [ ! -f "/home/$1/.shrc" ]; then
 	cat "$HOME/.config/$1" | base64 -d | doas zfs mount -l "zroot/home/$1"
 	if [ ! -f "/home/$1/.shrc" ]; then
@@ -68,4 +73,4 @@ else
 	doas chmod 770 "$CHROME"
 fi
 
-exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-browser-$1.lock doas -u $1 $CHROME
+exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-browser-$1.lock doas -u $1 $CHROME $ARGS

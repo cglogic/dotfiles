@@ -49,6 +49,12 @@ hook global WinSetOption filetype=(python) %{
 	}
 }
 
+hook global WinSetOption filetype=(sql) %{
+	try %{
+		add-highlighter -override buffer/operators regex (\W) 0:operator
+	}
+}
+
 hook global WinSetOption filetype=(markdown) %{
 	try %{
 		add-highlighter global/ wrap -word -indent

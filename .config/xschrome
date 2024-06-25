@@ -37,11 +37,12 @@ cd $HOME
 # OPTIONS='--ignore-gpu-blocklist --disable-partial-raster --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 	# --use-gl=egl \
 	#--num-raster-threads=2 \
-	#--enable-logging=stderr \
-	#--audio-backend=alsa \
+	# --enable-logging=stderr \
+	# --audio-backend=alsa \
 
 exec chrome \
 	--ozone-platform-hint=auto \
+	--audio-backend=alsa \
 	--ignore-gpu-blocklist \
 	--disable-gpu-driver-bug-workarounds \
 	--enable-gpu-rasterization \

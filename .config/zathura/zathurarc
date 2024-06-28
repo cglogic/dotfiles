@@ -1,3 +1,4 @@
+set database sqlite
 # set adjust_open width
 set font "JetBrains Mono 18"
 # set window-height 1080

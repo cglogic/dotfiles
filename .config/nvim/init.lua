@@ -198,6 +198,7 @@ require('lspconfig')['ccls'].setup {
 -- 	cmd = {
 -- 		"clangd18",
 -- 		"--background-index",
+-- 		"--header-insertion=never",
 -- 		-- "--suggest-missing-includes",
 -- 	},
 -- 	autostart = false,

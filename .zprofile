@@ -5,6 +5,7 @@ export MPD_HOST=/var/mpd/socket
 export QT_QPA_PLATFORMTHEME=qt6ct
 
 export XDG_CONFIG_HOME="$HOME/.config"
+# export FREETYPE_PROPERTIES="cff:no-stem-darkening=0 autofitter:no-stem-darkening=0"
 
 export XDG_RUNTIME_DIR="/tmp/$USER-runtime-dir"
 if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then

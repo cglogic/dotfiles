@@ -42,7 +42,6 @@ cd $HOME
 
 exec chrome \
 	--ozone-platform-hint=auto \
-	--audio-backend=alsa \
 	--ignore-gpu-blocklist \
 	--disable-gpu-driver-bug-workarounds \
 	--enable-gpu-rasterization \

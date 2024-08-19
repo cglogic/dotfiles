@@ -25,7 +25,6 @@ set abort_nosubject = no
 set sort = reverse-date
 set sort_aux = reverse-last-date-received
 set mark_old = no
-#et editor = 'vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^"'
 set mime_forward = ask-yes
 #set nobeep
 set print_cmd = "lpr"

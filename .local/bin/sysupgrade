@@ -23,12 +23,6 @@ fi
 make -j$NCPU buildworld
 if [ $? -ne 0 ] ; then exit ; fi
 
-make -j$NCPU buildkernel
-if [ $? -ne 0 ] ; then exit ; fi
-
-make installkernel
-if [ $? -ne 0 ] ; then exit ; fi
-
 make installworld
 if [ $? -ne 0 ] ; then exit ; fi
 
@@ -54,6 +48,15 @@ cp /boot/loader.efi /boot/efi/efi/boot/bootx64.efi
 if [ $? -ne 0 ] ; then exit ; fi
 
 umount /boot/efi
+if [ $? -ne 0 ] ; then exit ; fi
+
+rm -rf /usr/obj/usr
+zpool sync
+
+make -j$NCPU buildkernel
+if [ $? -ne 0 ] ; then exit ; fi
+
+make installkernel
 if [ $? -ne 0 ] ; then exit ; fi
 
 cd

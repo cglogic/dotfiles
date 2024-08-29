@@ -15,7 +15,7 @@ BLOCKSIZE=K;	export BLOCKSIZE
 # serial line.
 # TERM=xterm; 	export TERM
 
-EDITOR=vim;   	export EDITOR
+EDITOR=kak;   	export EDITOR
 PAGER=less;  	export PAGER
 
 # set ENV to a file invoked each time sh is started for interactive use.

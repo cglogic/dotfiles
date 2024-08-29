@@ -1,0 +1,74 @@
+#
+# .shrc - bourne shell startup file
+#
+# This file will be used if the shell is invoked for interactive use and
+# the environment variable ENV is set to this file.
+#
+# see also sh(1), environ(7).
+#
+
+
+# file permissions: rwxr-xr-x
+#
+# umask	022
+
+# Uncomment this to enable the builtin vi(1) command line editor in sh(1),
+# e.g. ESC to go into visual mode.
+# set -o vi
+
+# # some useful aliases
+alias h='fc -l'
+alias j=jobs
+alias m="$PAGER"
+alias ll='ls -laFo'
+alias l='ls -l'
+alias g='egrep -i'
+
+# be paranoid
+# alias cp='cp -ip'
+# alias mv='mv -i'
+# alias rm='rm -i'
+
+export LESS_TERMCAP_xx=$'\033[0m'  # For stop coloring output of env
+export LESS_TERMCAP_mb=$'\033[35m' # begin blinking
+export LESS_TERMCAP_md=$'\033[33m' # begin bold
+export LESS_TERMCAP_me=$'\033[0m'  # end mode
+export LESS_TERMCAP_se=$'\033[0m'  # end standout-mode
+export LESS_TERMCAP_so=$'\033[31m' # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\033[0m'  # end underline
+export LESS_TERMCAP_us=$'\033[32m' # begin underline
+
+export MANPAGER=less
+export MANCOLOR=1
+export MANWIDTH=tty
+
+export LSCOLORS='exgxfxdxcxdxdxbxbxexex'
+export CLICOLOR=
+
+export NNN_COLORS='4231'
+alias nnn='nnn -edC'
+
+# csh like history on arrow up and down
+bind ^[[A ed-search-prev-history
+bind ^[[B ed-search-next-history
+
+# ctrl+arrow allow to jump from words to words
+bind "\\e[1;5C" em-next-word
+bind "\\e[1;5D" ed-prev-word
+alias history='fc -l'
+
+# Fix home/del for mobaxterm
+bind ^[[5~ ed-move-to-beg
+bind ^[[6~ ed-move-to-end
+
+# read(2) of directories may not be desirable by default, as this will provoke
+# EISDIR errors from each directory encountered.
+alias grep='grep --color=auto -d skip'
+
+# set prompt: ``username@hostname:directory $ ''
+# PS1="\u@\h:\w \\$ "
+# export PS1="\[\e[1;33m\]\u:\[\e[1;36m\]\w \[\e[0m\]\$ "
+export PS1="\[\e[33m\]\u\[\e[34m\]@\[\e[35m\]\h\[\e[32m\]:\[\e[1;36m\]\w \[\e[32m\]\\$\[\e[0m\] "
+
+# search path for cd(1)
+CDPATH=:$HOME

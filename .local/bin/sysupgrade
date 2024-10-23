@@ -61,6 +61,8 @@ if [ $? -ne 0 ] ; then exit ; fi
 
 cd
 
+chmod -R go+Xr /etc/ntp
+
 rm -rf /usr/obj/usr
 zpool sync
 

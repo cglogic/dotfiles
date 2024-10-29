@@ -47,13 +47,14 @@ exec chrome \
 	--enable-gpu-rasterization \
 	--enable-zero-copy \
 	--enable-accelerated-video-decode \
+	--enable-accelerated-video-encode \
+	--enable-features="VaapiVideoDecoder,VaapiVideoEncoder" \
 	--force-dark-mode \
 	--site-per-process \
 	--enable-tcp-fastopen \
 	--disable-smooth-scrolling \
 	--disk-cache-size=0 \
 	--disk-cache-dir=/dev/null \
-	--enable-features="VaapiVideoDecoder" \
 	--disable-features="Vulkan,UseChromeOSDirectVideoDecoder,SharedArrayBuffer,WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" \
 	--js-flags="--noexpose-wasm" \
 	"$@"

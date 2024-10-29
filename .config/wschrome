@@ -51,6 +51,9 @@ exec chrome \
 	--disable-gpu-driver-bug-workarounds \
 	--enable-gpu-rasterization \
 	--enable-zero-copy \
+	--enable-accelerated-video-decode \
+	--enable-accelerated-video-encode \
+	--enable-features="VaapiVideoDecoder,VaapiVideoEncoder" \
 	--force-dark-mode \
 	--site-per-process \
 	--enable-tcp-fastopen \

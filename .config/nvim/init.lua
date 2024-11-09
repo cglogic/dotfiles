@@ -174,7 +174,17 @@ local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(
 	vim.lsp.protocol.make_client_capabilities()
 )
 
+local function on_attach()
+	-- Hide semantic highlights for functions
+	vim.api.nvim_set_hl(0, '@lsp.type.function', {})
+	-- Hide all semantic highlights
+	for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+		vim.api.nvim_set_hl(0, group, {})
+	end
+end
+
 require('lspconfig')['ccls'].setup {
+	on_attach = on_attach(),
 	init_options = {
 		cache = {
 			directory = os.getenv('XDG_RUNTIME_DIR') .. '/ccls-cache';
@@ -184,15 +194,6 @@ require('lspconfig')['ccls'].setup {
 	capabilities = lsp_capabilities,
 }
 
--- local function on_attach()
--- 	-- Hide semantic highlights for functions
--- 	vim.api.nvim_set_hl(0, '@lsp.type.function', {})
--- 	-- Hide all semantic highlights
--- 	for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
--- 		vim.api.nvim_set_hl(0, group, {})
--- 	end
--- end
---
 -- require('lspconfig')['clangd'].setup {
 -- 	on_attach = on_attach(),
 -- 	cmd = {

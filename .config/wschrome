@@ -53,7 +53,7 @@ exec chrome \
 	--enable-zero-copy \
 	--enable-accelerated-video-decode \
 	--enable-accelerated-video-encode \
-	--enable-features="VaapiVideoDecoder,VaapiVideoEncoder" \
+	--enable-features="VaapiVideoDecoder,VaapiVideoEncoder,VaapiIgnoreDriverChecks" \
 	--force-dark-mode \
 	--site-per-process \
 	--enable-tcp-fastopen \

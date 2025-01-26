@@ -88,7 +88,7 @@ export FZF_DEFAULT_OPTS='--exact'
 
 # export DEV_STACK=gnu
 if [[ -v DEV_STACK ]] && [[ $DEV_STACK = llvm ]]; then
-	LLVM_VER=18
+	LLVM_VER=19
 	LLVM_PATH=/usr/local/llvm$LLVM_VER/bin
 	if [[ -d $LLVM_PATH ]]; then
 		export CC=$LLVM_PATH/clang

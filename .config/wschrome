@@ -61,5 +61,4 @@ exec chrome \
 	--disk-cache-size=0 \
 	--disk-cache-dir=/dev/null \
 	--disable-features="Vulkan,UseChromeOSDirectVideoDecoder,SharedArrayBuffer,WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" \
-	--js-flags="--noexpose-wasm" \
 	"$@"

@@ -32,6 +32,7 @@ require("lazy").setup({
 	'folke/lazy.nvim',
 
 	'RRethy/nvim-base16',
+	-- 'wincent/base16-nvim',
 	-- 'rebelot/kanagawa.nvim',
 	-- 'folke/tokyonight.nvim',
 	-- 'ellisonleao/gruvbox.nvim',
@@ -73,6 +74,7 @@ require("lazy").setup({
 -------------------- OPTIONS -------------------------------
 vim.o.background = 'dark'           -- or "light" for light mode
 cmd 'colorscheme base16-tomorrow-night'-- Put your favorite colorscheme here
+-- cmd 'colorscheme tomorrow-night'    -- Put your favorite colorscheme here
 -- opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options
 opt.completeopt = {'menuone', 'noselect'}  -- Completion options
 -- opt.expandtab = true                -- Use spaces instead of tabs
@@ -345,7 +347,7 @@ require('fzf-lua').setup {
 -- require('spaceless').setup {}
 
 ------------------------------------------------------------
-vim.keymap.set('n', '<Leader>f', '<cmd>lua require("fzf-lua").files()<CR>')
+vim.keymap.set('n', '<Leader>f', '<cmd>lua require("fzf-lua").files({hidden=false})<CR>')
 vim.keymap.set('n', '<Leader>b', '<cmd>lua require("fzf-lua").buffers()<CR>')
 vim.keymap.set('n', '<Leader>g', '<cmd>lua require("fzf-lua").grep()<CR>')
 -- vim.keymap.set('n', '<Leader>s', '<cmd>lua require("nvim-quick-switcher").toggle("cpp", "h")<CR>')

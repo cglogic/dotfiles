@@ -11,6 +11,9 @@ if [ $? -ne 0 ] ; then exit ; fi
 git pull
 if [ $? -ne 0 ] ; then exit ; fi
 
+git gc
+if [ $? -ne 0 ] ; then exit ; fi
+
 cd
 
 printf "Perform upgrade? [y/N]: "

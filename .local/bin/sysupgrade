@@ -6,12 +6,21 @@ if [ $(id -u) -ne 0 ] ; then
 fi
 
 NCPU=$(sysctl -n hw.ncpu)
-ZROOT=ada0
+
+BIOS=yes
+BDISK=ada0
+BPART=2
+
+EFI=yes
+EPATH=efi/boot/bootx64.efi
 
 cd /usr/src
 if [ $? -ne 0 ] ; then exit ; fi
 
 git pull
+if [ $? -ne 0 ] ; then exit ; fi
+
+git gc
 if [ $? -ne 0 ] ; then exit ; fi
 
 printf "Perform upgrade? [y/N]: "
@@ -39,17 +48,21 @@ if [ $? -ne 0 ] ; then exit ; fi
 make BATCH_DELETE_OLD_FILES=YES delete-old-libs
 if [ $? -ne 0 ] ; then exit ; fi
 
-gpart bootcode -b /boot/pmbr -p /boot/gptzfsboot -i 2 $ZROOT
-if [ $? -ne 0 ] ; then exit ; fi
+if [ "$BIOS" != "yes" ] ; then
+	gpart bootcode -b /boot/pmbr -p /boot/gptzfsboot -i $BPART $BDISK
+	if [ $? -ne 0 ] ; then exit ; fi
+fi
 
-mount_msdosfs /dev/gpt/efiboot0 /boot/efi
-if [ $? -ne 0 ] ; then exit ; fi
+if [ "$EFI" != "yes" ] ; then
+	mount_msdosfs /dev/gpt/efiboot0 /boot/efi
+	if [ $? -ne 0 ] ; then exit ; fi
 
-cp /boot/loader.efi /boot/efi/efi/boot/bootx64.efi
-if [ $? -ne 0 ] ; then exit ; fi
+	cp /boot/loader.efi /boot/efi/$EPATH
+	if [ $? -ne 0 ] ; then exit ; fi
 
-umount /boot/efi
-if [ $? -ne 0 ] ; then exit ; fi
+	umount /boot/efi
+	if [ $? -ne 0 ] ; then exit ; fi
+fi
 
 rm -rf /usr/obj/usr
 zpool sync

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ $# -eq 1 ]; then
+	for d in /usr/src /usr/ports; do
+		echo "Doing $1 in $d"
+		cd $d && git $1
+		if [ $? -ne 0 ]; then exit 1 ; fi
+	done
+	exit 0
+fi
+exit 1

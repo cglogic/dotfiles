@@ -16,9 +16,6 @@ export FNAME="JetBrains Mono"
 # For fast run commands
 export SXHKD_SHELL="/bin/sh"
 
-# For mpc
-export MPD_HOST=/var/mpd/socket
-
 # allow root user to run x11 programs
 xhost local:root
 
@@ -33,8 +30,6 @@ xsetroot -cursor_name left_ptr
 
 # Disable DPMS and prevent screen from blanking
 #xset s off -dpms
-
-export QT_QPA_PLATFORMTHEME=qt5ct
 
 # Load xresouces
 xrdb -DFNAME="$FNAME" -DFSIZE="$FSIZE" ~/.Xdefaults

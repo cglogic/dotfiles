@@ -1,0 +1,28 @@
+#!/bin/sh
+
+if [ ! -f "$1" ] && [ ! -d "$1" ]; then
+	echo "Wrong file or directory"
+	exit 1
+fi
+
+doas cp -R "$1" "$HOME/"
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+
+doas chown -R $USER:user "$HOME/$(basename $1)"
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+
+doas chmod -R u+rwX "$HOME/$(basename $1)"
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+
+doas chmod -R go-rwx "$HOME/$(basename $1)"
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+
+exit 0

@@ -7,7 +7,8 @@
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:$HOME/.local/bin
 
 # Set default terminal
-export TERMINAL=xterm
+# export TERMINAL=xterm
+export TERMINAL=zutty
 
 # To determine X11
 export FSIZE=20

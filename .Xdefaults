@@ -1,3 +1,15 @@
+Zutty.title: Zutty
+Zutty.geometry: 120x45
+Zutty.altScroll: true
+Zutty.boldColors: false
+!Zutty.font: FNAME
+!Zutty.fontsize: FSIZE
+Zutty.font: JetBrainsMono
+Zutty.fontsize: 29
+Zutty.fg: #d0d0d0
+Zutty.bg: #131313
+Zutty.cr: #d0d0d0
+
 URxvt*termName: rxvt-unicode-256color
 URxvt*internalBorder: 3
 URxvt*externalBorder: 0

@@ -148,6 +148,15 @@ alias f='ag --nocolor -l -g "" | fzy -l 256 -p "❯ "'
 alias e='ag --nocolor -l -g "" | fzy -l 256 -p "❯ " | xargs kak -e "delete-buffer *stdin*"'
 alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dotls='dot ls-tree -r master --name-only'
+
+if [ "$WAYLAND_DISPLAY" ]; then
+	alias img='swayimg'
+	alias pdf='zathura'
+elif [ "$DISPLAY" ]; then
+	alias img='nsxiv -abrf -s d'
+	alias pdf='mupdf'
+fi
+
 alias fsl='fossil'
 alias tm='tmux -L local new-session -A -s local'
 # alias tmx='tmux -L x11 new-session -A -s x11'
@@ -156,8 +165,6 @@ alias tms='tmux -L ssh new-session -A -s ssh'
 alias tmp='tmux -L pty new-session -A -s pty'
 # alias tmr='if [[ ! $TMUX ]]; then tmux -2 new-session -A -s $( if [[ $WAYLAND_DISPLAY || $DISPLAY ]]; then echo gui; else echo pty; fi ); fi'
 alias vim='nvim'
-alias img='swayimg'
-
 alias ssh='TERM=xterm-256color ssh'
 alias grep='grep --color=auto'
 alias df='df -hT'
@@ -168,7 +175,6 @@ alias tree='tree -N'
 alias cbonsai='cbonsai -l -i'
 alias cmatrix='cmatrix -u 6 -C green'
 alias mpvrt='mpv --no-cache --demuxer-readahead-secs 0'
-alias sxiv='nsxiv -abrf -s d'
 alias alarm='doas at -f ~/.bin/alarm.sh'
 alias atop='atop -af 1'
 alias nnn='nnn -xedC'

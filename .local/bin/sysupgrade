@@ -17,19 +17,6 @@ EPATH=efi/boot/bootx64.efi
 cd /usr/src
 if [ $? -ne 0 ] ; then exit ; fi
 
-git pull
-if [ $? -ne 0 ] ; then exit ; fi
-
-git gc
-if [ $? -ne 0 ] ; then exit ; fi
-
-printf "Perform upgrade? [y/N]: "
-read CONFIRM
-if [ "$CONFIRM" != "y" ] ; then
-	cd
-	exit
-fi
-
 make -j$NCPU buildworld
 if [ $? -ne 0 ] ; then exit ; fi
 

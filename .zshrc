@@ -179,10 +179,9 @@ alias alarm='doas at -f ~/.bin/alarm.sh'
 alias atop='atop -af 1'
 alias nnn='nnn -xedC'
 alias trafshow='trafshow -R 1'
-# alias zathura='zathura --mode fullscreen'
 # alias tmux='if [[ ! $TMUX ]]; then tmux -2; fi'
 
-alias ria='() { find $1 -type f -exec sed -i "" -e "s/$2/$3/g" {} \;}'
+alias replace='() { find $1 -type f -exec sed -i "" -e "s/$2/$3/g" {} \;}'
 
 # Perform compinit only once a day.
 autoload -Uz compinit

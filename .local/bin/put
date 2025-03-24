@@ -1,36 +1,35 @@
 #!/bin/sh
 
-if [ ! "$1" ] || [ ! "$2" ]; then
+if [ $# -lt 2 ]; then
+	echo "Not enough arguments"
 	exit 1
 fi
-if [ "$USER" = "$1" ] || [ ! -d "/home/$1" ]; then
+
+user_name="$1"
+shift
+
+if [ "$USER" = "$user_name" ] || [ ! -d "/home/$user_name" ]; then
 	echo "Wrong user or no home directory"
 	exit 1
 fi
 
-if [ ! -f "$2" ] && [ ! -d "$2" ]; then
-	echo "Wrong file or directory"
-	exit 1
-fi
+for p in "$@"; do
+	if [ ! -f "$p" ] && [ ! -d "$p" ]; then
+		echo "Wrong file or directory"
+		exit 1
+	fi
 
-doas cp -R "$2" "/home/$1/"
-if [ $? -ne 0 ]; then
-	exit 1
-fi
+	doas cp -R "$p" "/home/$user_name/"
+	if [ $? -ne 0 ]; then exit 1; fi
 
-doas chown -R $1:user "/home/$1/$(basename $2)"
-if [ $? -ne 0 ]; then
-	exit 1
-fi
+	doas chown -R $user_name:user "/home/$user_name/$(basename $p)"
+	if [ $? -ne 0 ]; then exit 1; fi
 
-doas chmod -R ug+rwX "/home/$1/$(basename $2)"
-if [ $? -ne 0 ]; then
-	exit 1
-fi
+	doas chmod -R ug+rwX "/home/$user_name/$(basename $p)"
+	if [ $? -ne 0 ]; then exit 1; fi
 
-doas chmod -R o-rwx "/home/$1/$(basename $2)"
-if [ $? -ne 0 ]; then
-	exit 1
-fi
+	doas chmod -R o-rwx "/home/$user_name/$(basename $p)"
+	if [ $? -ne 0 ]; then exit 1; fi
+done
 
 exit 0

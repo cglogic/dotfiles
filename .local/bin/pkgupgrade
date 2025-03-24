@@ -8,17 +8,8 @@ fi
 cd /usr/ports
 if [ $? -ne 0 ] ; then exit ; fi
 
-git pull
-if [ $? -ne 0 ] ; then exit ; fi
-
-git gc
-if [ $? -ne 0 ] ; then exit ; fi
-
 cd
 
-printf "Perform upgrade? [y/N]: "
-read CONFIRM
-if [ "$CONFIRM" != "y" ] ; then exit ; fi
 portmaster -BDa
 zpool sync
 

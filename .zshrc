@@ -142,8 +142,6 @@ alias la='ls -aF'
 alias lf='ls -FA'
 alias ll='ls -lAFh'
 alias sh='ENV=$HOME/.shrc; export ENV; sh'
-# alias c='xclip -i -f -selection primary | xclip -i -selection clipboard'
-# alias v='xclip -o'
 alias f='ag --nocolor -l -g "" | fzy -l 256 -p "❯ "'
 alias e='ag --nocolor -l -g "" | fzy -l 256 -p "❯ " | xargs kak -e "delete-buffer *stdin*"'
 alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -152,9 +150,13 @@ alias dotls='dot ls-tree -r master --name-only'
 if [ "$WAYLAND_DISPLAY" ]; then
 	alias img='swayimg'
 	alias pdf='zathura'
+	alias c='wl-copy'
+	alias p='wl-paste'
 elif [ "$DISPLAY" ]; then
 	alias img='nsxiv -abrf -s d'
 	alias pdf='mupdf'
+	alias c='xclip -i -f -selection primary | xclip -i -selection clipboard'
+	alias p='xclip -o'
 fi
 
 alias fsl='fossil'

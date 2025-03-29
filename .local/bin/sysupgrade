@@ -35,12 +35,12 @@ if [ $? -ne 0 ] ; then exit ; fi
 make BATCH_DELETE_OLD_FILES=YES delete-old-libs
 if [ $? -ne 0 ] ; then exit ; fi
 
-if [ "$BIOS" != "yes" ] ; then
+if [ "$BIOS" == "yes" ] ; then
 	gpart bootcode -b /boot/pmbr -p /boot/gptzfsboot -i $BPART $BDISK
 	if [ $? -ne 0 ] ; then exit ; fi
 fi
 
-if [ "$EFI" != "yes" ] ; then
+if [ "$EFI" == "yes" ] ; then
 	mount_msdosfs /dev/gpt/efiboot0 /boot/efi
 	if [ $? -ne 0 ] ; then exit ; fi
 

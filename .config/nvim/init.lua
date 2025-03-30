@@ -10,7 +10,7 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.g.mapleader = ','
+g.mapleader = ','
 
 local border = 'single'
 
@@ -26,7 +26,7 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
-vim.opt.rtp:prepend(lazypath)
+opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	'folke/lazy.nvim',
@@ -72,9 +72,10 @@ require("lazy").setup({
 })
 
 -------------------- OPTIONS -------------------------------
-vim.o.background = 'dark'           -- or "light" for light mode
+opt.background = 'dark'           -- or "light" for light mode
 cmd 'colorscheme base16-tomorrow-night'-- Put your favorite colorscheme here
 -- cmd 'colorscheme tomorrow-night'    -- Put your favorite colorscheme here
+opt.winborder = border
 -- opt.completeopt = {'menuone', 'noinsert', 'noselect'}  -- Completion options
 opt.completeopt = {'menuone', 'noselect'}  -- Completion options
 -- opt.expandtab = true                -- Use spaces instead of tabs
@@ -199,7 +200,7 @@ require('lspconfig')['ccls'].setup {
 -- require('lspconfig')['clangd'].setup {
 -- 	on_attach = on_attach(),
 -- 	cmd = {
--- 		"clangd18",
+-- 		"clangd19",
 -- 		"--background-index",
 -- 		"--header-insertion=never",
 -- 		-- "--suggest-missing-includes",

@@ -28,6 +28,8 @@ set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname $fsize"
 
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 
+# set $netswitch lockf -s -t 0 $XDG_RUNTIME_DIR/single-netswitch.lock foot --window-size-chars=80x20 --title=launcher --app-id=launcher ~/.local/bin/netswitch
+
 workspace_layout tabbed
 
 gaps inner 0
@@ -47,7 +49,7 @@ titlebar_padding 5 1
 
 # for_window [app_id="chrome"] resize set 1280 720
 # for_window [app_id="launcher"] floating enable, sticky enable
-for_window [app_id="chromium-browser"] inhibit_idle fullscreen
+# for_window [app_id="chromium-browser"] inhibit_idle fullscreen
 
 # include themes/base16-tomorrow-night.config
 
@@ -64,7 +66,8 @@ for_window [app_id="chromium-browser"] inhibit_idle fullscreen
 font "$fname $fsize"
 
 ###
-seat * xcursor_theme "OpenZone_Ice"
+# seat * xcursor_theme "OpenZone_Ice"
+seat * xcursor_theme "We10XOS-cursors" 36
 
 ###
 seat * hide_cursor 5000
@@ -72,7 +75,9 @@ seat * hide_cursor 5000
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
-output * bg ~/wallpapers/bg-orig.png fill
+# output * bg ~/wallpapers/bg-orig.png fill
+output * bg #181818 solid_color
+
 #
 # Example configuration:
 #
@@ -143,7 +148,8 @@ input type:keyboard {
 
     #
     # bindsym --to-code $mod+BackSpace exec 'grim $XDG_RUNTIME_DIR/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% $XDG_RUNTIME_DIR/screenshot.png $XDG_RUNTIME_DIR/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i $XDG_RUNTIME_DIR/screenshotblur.png -f ; rm $XDG_RUNTIME_DIR/screenshot.png'
-    bindsym --to-code $mod+Delete exec swaylock -c 131313 --font="$fname" --font-size=$f2size --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
+    # bindsym --to-code $mod+Delete exec swaylock -c 131313 --font="$fname" --font-size=$f2size --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
+    bindsym --to-code $mod+Delete exec swaylock -c 181818 --font="$fname" --font-size=$f2size --indicator-radius=100 --daemonize -f
 
     # Disable touchpad
     bindsym --to-code Print exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-touchpad.lock swaymsg input type:touchpad events toggle enabled disabled >/dev/null 2>&1
@@ -192,14 +198,14 @@ input type:keyboard {
     bindsym --to-code $mod+Escape exec swaymsg exit
 
     # Volume 0.00..1.00
-    set $mvol mixer -o pcm.volume | cut -f 2 -d ':'
+    set $mvol mixer -o vol.volume | cut -f 2 -d ':'
     # Mute 1..0
-    set $mmut mixer -o pcm.mute | cut -f 2 -d '='
+    set $mmut mixer -o vol.mute | cut -f 2 -d '='
     set $mix bc -e "`$mvol` * 100" | cut -f 1 -d '.'
     set $mux bc -e "(`$mmut` - 1) * -100 * `$mvol`" | cut -f 1 -d '.'
-    bindsym --to-code $mod+F1 exec mixer pcm.mute=^ && pgrep wob > /dev/null && test -p $WOBSOCK && $mux > $WOBSOCK
-    bindsym --to-code $mod+F2 exec mixer pcm.volume=-0.10 && pgrep wob > /dev/null && test -p $WOBSOCK && $mix > $WOBSOCK
-    bindsym --to-code $mod+F3 exec mixer pcm.volume=+0.10 && pgrep wob > /dev/null && test -p $WOBSOCK && $mix > $WOBSOCK
+    bindsym --to-code $mod+F1 exec mixer vol.mute=^ && pgrep wob > /dev/null && test -p $WOBSOCK && $mux > $WOBSOCK
+    bindsym --to-code $mod+F2 exec mixer vol.volume=-0.05 && pgrep wob > /dev/null && test -p $WOBSOCK && $mix > $WOBSOCK
+    bindsym --to-code $mod+F3 exec mixer vol.volume=+0.05 && pgrep wob > /dev/null && test -p $WOBSOCK && $mix > $WOBSOCK
     bindsym --to-code $mod+F4 exec pgrep wob > /dev/null && test -p $WOBSOCK && $mix > $WOBSOCK
 
     bindsym --to-code $mod+F5 exec backlight decr && pgrep wob > /dev/null && test -p $WOBSOCK && backlight -q > $WOBSOCK
@@ -207,9 +213,9 @@ input type:keyboard {
     bindsym --to-code $mod+F7 exec backlight 50 && pgrep wob > /dev/null && test -p $WOBSOCK && backlight -q > $WOBSOCK
     bindsym --to-code $mod+F8 exec pgrep wob > /dev/null && test -p $WOBSOCK && backlight -q > $WOBSOCK
 
-    bindsym --to-code $mod+F9 exec pgrep wob > /dev/null && test -p $WOBSOCK && acpiconf -i 0 | grep 'Remaining capacity' | tr -s '[:blank:]' '%' | cut -f 3 -d '%' > $WOBSOCK
-    bindsym --to-code $mod+F10 exec pgrep wob > /dev/null && test -p $WOBSOCK && sysctl dev.cpu | grep temperature | tr -s '[:blank:]' '.' | cut -f 5 -d '.' | tr -s '\n' ' ' | cut -f 1 -d ' ' > $WOBSOCK
-    bindsym --to-code $mod+F12 exec ylight
+    bindsym --to-code $mod+F9 exec $netswitch
+    bindsym --to-code $mod+F11 exec pgrep wob > /dev/null && test -p $WOBSOCK && acpiconf -i 0 | grep 'Remaining capacity' | tr -s '[:blank:]' '%' | cut -f 3 -d '%' > $WOBSOCK
+    bindsym --to-code $mod+F12 exec pgrep wob > /dev/null && test -p $WOBSOCK && sysctl dev.cpu | grep temperature | tr -s '[:blank:]' '.' | cut -f 5 -d '.' | tr -s '\n' ' ' | cut -f 1 -d ' ' > $WOBSOCK
 #
 # Moving around:
 #
@@ -375,6 +381,8 @@ bar {
 #     gsettings set $gnome-schema cursor-theme 'OpenZone_Ice'
 #     gsettings set $gnome-schema font-name 'Clear Sans 14'
 # }
+
+xwayland disable
 
 # Start wob
 exec "WOBPID=$(ps -x -o 'pgid' -p `pgrep -f $WOBSOCK` 2>/dev/null | tail +2) ; pkill -SIGINT -g $WOBPID 2>/dev/null ; rm -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"

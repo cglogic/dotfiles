@@ -41,15 +41,17 @@ cd $HOME
 	# --enable-accelerated-video-decode \
 	# --enable-features="VaapiVideoDecoder" \
 	# --use-gl=egl \
-	# --num-raster-threads=2 \
 	# --enable-logging=stderr \
 	# --audio-backend=alsa \
+	# --use-gl=angle \
+	# --use-angle=gles-egl \
 
 exec chrome \
 	--ozone-platform-hint=auto \
 	--ignore-gpu-blocklist \
 	--disable-gpu-driver-bug-workarounds \
 	--enable-gpu-rasterization \
+	--num-raster-threads=2 \
 	--enable-zero-copy \
 	--enable-accelerated-video-decode \
 	--enable-accelerated-video-encode \

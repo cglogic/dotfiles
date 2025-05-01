@@ -32,7 +32,7 @@ require("lazy").setup({
 	'folke/lazy.nvim',
 
 	'RRethy/nvim-base16',
-	-- 'wincent/base16-nvim',
+	'wincent/base16-nvim',
 	-- 'rebelot/kanagawa.nvim',
 	-- 'folke/tokyonight.nvim',
 	-- 'ellisonleao/gruvbox.nvim',

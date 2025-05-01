@@ -13,9 +13,9 @@ if [ ! -f "$HOME/.config/$1" ]; then
 	exit
 fi
 
-ARGS=""
+ARG=""
 if [ "$2" ]; then
-	ARGS=$2
+	ARG=$2
 fi
 
 if [ ! -f "/home/$1/.shrc" ]; then
@@ -34,7 +34,7 @@ mkdir "$RUNTIME_DIR"
 chmod 0770 "$RUNTIME_DIR"
 
 if [ "$WAYLAND_DISPLAY" ]; then
-	CHROME="/home/$1/wschrome"
+	LAUNCH="/home/$1/wschrome"
 	ORIG="$HOME/.config/wschrome"
 
 	if [ -S "$SWAYSOCK" ]; then
@@ -53,7 +53,7 @@ if [ "$WAYLAND_DISPLAY" ]; then
 		chmod 0660 "$RUNTIME_DIR/$WAYLAND_DISPLAY.lock"
 	fi
 else
-	CHROME="/home/$1/xschrome"
+	LAUNCH="/home/$1/xschrome"
 	ORIG="$HOME/.config/xschrome"
 
 	# if [ -f "$HOME/.Xauthority" ]; then
@@ -62,18 +62,18 @@ else
 	# fi
 fi
 
-if [ -f "$CHROME" ]; then
-	SUM=`sha256 -q "$CHROME"`
+if [ -f "$LAUNCH" ]; then
+	SUM=`sha256 -q "$LAUNCH"`
 	ORIGSUM=`sha256 -q "$ORIG"`
 	if [ "$SUM" != "$ORIGSUM" ]; then
-		cp "$ORIG" "$CHROME"
-		doas chown "$1" "$CHROME"
-		doas chmod 770 "$CHROME"
+		cp "$ORIG" "$LAUNCH"
+		doas chown "$1" "$LAUNCH"
+		doas chmod 770 "$LAUNCH"
 	fi
 else
-	cp "$ORIG" "$CHROME"
-	doas chown "$1" "$CHROME"
-	doas chmod 770 "$CHROME"
+	cp "$ORIG" "$LAUNCH"
+	doas chown "$1" "$LAUNCH"
+	doas chmod 770 "$LAUNCH"
 fi
 
-exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-browser-$1.lock doas -u $1 $CHROME $ARGS
+exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-browser-$1.lock doas -u $1 $LAUNCH $ARG

@@ -173,8 +173,7 @@ input type:keyboard {
 
     # Start your launcher
     # bindsym --to-code $mod+grave exec swaymsg -q fullscreen disable, exec $menu
-    # bindsym --to-code $mod+grave fullscreen disable, exec $menu
-    bindsym --to-code $mod+grave exec $menu
+    bindsym --to-code $mod+grave fullscreen disable, exec $menu
 
     # Make the current focus fullscreen
     # bindsym --to-code Super_L fullscreen

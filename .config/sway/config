@@ -48,7 +48,7 @@ titlebar_padding 5 1
 # focus_follows_mouse no
 
 # for_window [app_id="chrome"] resize set 1280 720
-# for_window [app_id="launcher"] floating enable, sticky enable
+for_window [app_id="launcher"] floating enable, sticky enable
 # for_window [app_id="chromium-browser"] inhibit_idle fullscreen
 
 # include themes/base16-tomorrow-night.config
@@ -164,7 +164,8 @@ input type:keyboard {
     # bindsym --to-code $mod+t fullscreen disable, exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-telegram.lock telegram-desktop
 
     # Start a terminal
-    bindsym --to-code $mod+Return fullscreen disable, exec $term
+    # bindsym --to-code $mod+Return fullscreen disable, exec $term
+    bindsym --to-code $mod+Return exec $term
 
     # Kill focused window
     # bindsym --to-code $mod+Shift+q kill
@@ -172,7 +173,8 @@ input type:keyboard {
 
     # Start your launcher
     # bindsym --to-code $mod+grave exec swaymsg -q fullscreen disable, exec $menu
-    bindsym --to-code $mod+grave fullscreen disable, exec $menu
+    # bindsym --to-code $mod+grave fullscreen disable, exec $menu
+    bindsym --to-code $mod+grave exec $menu
 
     # Make the current focus fullscreen
     # bindsym --to-code Super_L fullscreen
@@ -386,6 +388,9 @@ xwayland disable
 
 # Start wob
 exec "WOBPID=$(ps -x -o 'pgid' -p `pgrep -f $WOBSOCK` 2>/dev/null | tail +2) ; pkill -SIGINT -g $WOBPID 2>/dev/null ; rm -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"
+
+# Exit fullscreen on app run
+exec "~/.config/sway/auto_exit_fullscreen.sh"
 
 # Launch terminal
 exec $term

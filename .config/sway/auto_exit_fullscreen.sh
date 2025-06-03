@@ -1,7 +1,6 @@
 #!/bin/sh
 
-swaymsg -t subscribe -m '[ "window" ]' | while read line
-do
+swaymsg -t subscribe -m '[ "window" ]' | while read line; do
     if [ "$(echo "$line" | jq -r '.change')" = "new" ]; then
         if [ "$(swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true).fullscreen_mode')" -eq 1 ]; then
             # swaymsg fullscreen disable

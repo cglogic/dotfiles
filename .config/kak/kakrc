@@ -16,6 +16,9 @@ add-highlighter global/ dynregex '%reg{/}' 0:+u
 # add-highlighter global/ wrap -word -indent
 # add-highlighter global/trailing-whitespace regex '\h+$' 0:Error
 
+hook global -always BufOpenFifo '\*grep\*' %{ map global normal <minus> ': grep-next-match<ret>' }
+hook global -always BufOpenFifo '\*make\*' %{ map global normal <minus> ': make-next-error<ret>' }
+
 hook global ModeChange push:insert:.* %{ map window insert <a-space> <c-o> }
 hook global ModeChange pop:insert:.* %{ unmap window insert <a-space> <c-o> }
 
@@ -25,7 +28,7 @@ hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap wi
 map global normal '#' :comment-line<ret>
 
 hook global WinSetOption filetype=(c|cpp) %{
-	set-option global clang_options '-std=c++23'
+	set-option global clang_options '-std=c++26'
 	set-option window formatcmd '$CF -style=file'
 	set-option global tabstop 4
 	# clang-enable-autocomplete
@@ -70,12 +73,21 @@ hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 	done
 }}}
 
-# map global normal '<del>' :db<ret>
-map global normal ';' :
-# map global normal '<ret>' :make<ret>
-
-hook global BufCreate '^\*make\*$' %{
-	hook -once buffer NormalKey '<del>' %{ try %{
+hook global BufCreate '\*make\*' %{
+	hook -once buffer NormalKey '<esc>' %{ try %{
 		delete-buffer *make*
 	}}
+}
+
+hook global BufCreate '\*grep\*' %{
+	hook -once buffer NormalKey '<esc>' %{ try %{
+		delete-buffer *grep*
+	}}
+}
+
+define-command -docstring 'Open a file' -params 0 open-file %{
+evaluate-commands %sh{
+		CMD="kak-fzf-open $kak_command_fifo"
+		foot --title=file-open ${CMD} 2> /dev/null
+	}
 }

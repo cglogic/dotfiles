@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ ! -p "$1" ]; then
+	exit 0
+fi
+
+# --reverse
+FILE=$(ag --nocolor -l -g "" | sort | fzf)
+
+if [ ! -n "$FILE" ]; then
+	exit 0
+fi
+
+echo "edit $FILE" > $1

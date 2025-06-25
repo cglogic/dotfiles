@@ -68,6 +68,8 @@ font "$fname $fsize"
 ###
 # seat * xcursor_theme "OpenZone_Ice"
 seat * xcursor_theme "We10XOS-cursors" 36
+# seat * xcursor_theme "Future-dark-cursors" 36
+# seat * xcursor_theme "WinSur-white-cursors" 36
 
 ###
 seat * hide_cursor 5000

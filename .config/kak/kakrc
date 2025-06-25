@@ -91,3 +91,5 @@ evaluate-commands %sh{
 		foot --title=file-open ${CMD} 2> /dev/null
 	}
 }
+
+map global normal '<backspace>' :open-file<ret>

@@ -87,8 +87,14 @@ hook global BufCreate '\*grep\*' %{
 
 define-command -docstring 'Open a file' -params 0 open-file %{
 evaluate-commands %sh{
+		FS=$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true) | .fullscreen_mode')
 		CMD="kak-fzf-open $kak_command_fifo"
-		foot --title=file-open ${CMD} 2> /dev/null
+		if [ $FS -eq 1 ]; then
+			foot --fullscreen --title=file-open ${CMD} >/dev/null 2>&1
+			swaymsg fullscreen enable >/dev/null 2>&1
+		else
+			foot --title=file-open ${CMD} >/dev/null 2>&1
+		fi
 	}
 }
 

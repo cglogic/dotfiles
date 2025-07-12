@@ -12,9 +12,9 @@ size = fullscreen
 # Sway/Hyprland only: Window position (auto or absolute coordinates, e.g. 10,20)
 position = auto
 # Sway/Hyprland only: create floating window above the currently focused one
-overlay = yes
+overlay = no
 # Use window decoration (yes/no)
-decoration = yes
+decoration = no
 # Action performed by SIGUSR1 signal (same format as for key bindings)
 sigusr1 = reload
 # Action performed by SIGUSR2 signal (same format as for key bindings)

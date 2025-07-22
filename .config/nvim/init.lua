@@ -36,6 +36,8 @@ require("lazy").setup({
 	-- 'rebelot/kanagawa.nvim',
 	-- 'folke/tokyonight.nvim',
 	-- 'ellisonleao/gruvbox.nvim',
+	-- 'sainnhe/gruvbox-material',
+	-- 'AlexvZyl/nordic.nvim',
 
 	-- 'kyazdani42/nvim-web-devicons',
 	'hoob3rt/lualine.nvim',

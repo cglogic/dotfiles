@@ -103,7 +103,7 @@ evaluate-commands %sh{
 		# if [ $? -nq 0 ]; then
 		# 	exit
 		# fi
-		CMD="kak-fzf-open $kak_command_fifo"
+		CMD="kak-fzy-open $kak_command_fifo"
 		if [ $FS -eq 1 ]; then
 			foot --fullscreen --title=file-open ${CMD} >/dev/null 2>&1
 			swaymsg fullscreen enable >/dev/null 2>&1

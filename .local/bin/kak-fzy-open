@@ -5,7 +5,7 @@ if [ ! -p "$1" ]; then
 fi
 
 # --reverse
-FILE=$(ag --nocolor -l -g "" | sort | fzf)
+FILE=$(ag --nocolor -l -g "" | sort | fzy -l max -p "❯❯❯ ")
 
 if [ ! -n "$FILE" ]; then
 	exit 0

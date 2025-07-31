@@ -99,11 +99,9 @@ hook global BufCreate '\*scratch\*' %{
 
 define-command -docstring 'Open a file' -params 0 open-file %{
 evaluate-commands %sh{
-		FS=$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true) | .fullscreen_mode')
-		# if [ $? -nq 0 ]; then
-		# 	exit
-		# fi
-		CMD="kak-fzy-open $kak_command_fifo"
+		# FS=$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true) | .fullscreen_mode')
+		FS=0
+		CMD="kak-open $kak_command_fifo"
 		if [ $FS -eq 1 ]; then
 			foot --fullscreen --title=file-open ${CMD} >/dev/null 2>&1
 			swaymsg fullscreen enable >/dev/null 2>&1

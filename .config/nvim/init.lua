@@ -354,3 +354,8 @@ vim.keymap.set('n', '<Leader>f', '<cmd>lua require("fzf-lua").files({hidden=fals
 vim.keymap.set('n', '<Leader>b', '<cmd>lua require("fzf-lua").buffers()<CR>')
 vim.keymap.set('n', '<Leader>g', '<cmd>lua require("fzf-lua").grep()<CR>')
 -- vim.keymap.set('n', '<Leader>s', '<cmd>lua require("nvim-quick-switcher").toggle("cpp", "h")<CR>')
+
+vim.keymap.set("n", "<leader>o", ":copen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>c", ":cclose<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>n", ":cnext<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>p", ":cprev<CR>", { noremap = true, silent = true })

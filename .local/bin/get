@@ -14,13 +14,15 @@ for p in "$@"; do
 	doas cp -R "$p" "$HOME/"
 	if [ $? -ne 0 ]; then exit 1; fi
 
-	doas chown -R $USER:user "$HOME/$(basename $p)"
+	f=$(basename "$p")
+
+	doas chown -R $USER:user "$HOME/$f"
 	if [ $? -ne 0 ]; then exit 1; fi
 
-	doas chmod -R u+rwX "$HOME/$(basename $p)"
+	doas chmod -R u+rwX "$HOME/$f"
 	if [ $? -ne 0 ]; then exit 1; fi
 
-	doas chmod -R go-rwx "$HOME/$(basename $p)"
+	doas chmod -R go-rwx "$HOME/$f"
 	if [ $? -ne 0 ]; then exit 1; fi
 done
 

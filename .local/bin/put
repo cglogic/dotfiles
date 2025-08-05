@@ -22,13 +22,15 @@ for p in "$@"; do
 	doas cp -R "$p" "/home/$user_name/"
 	if [ $? -ne 0 ]; then exit 1; fi
 
-	doas chown -R $user_name:user "/home/$user_name/$(basename $p)"
+	f=$(basename "$p")
+
+	doas chown -R $user_name:user "/home/$user_name/$f"
 	if [ $? -ne 0 ]; then exit 1; fi
 
-	doas chmod -R ug+rwX "/home/$user_name/$(basename $p)"
+	doas chmod -R ug+rwX "/home/$user_name/$f"
 	if [ $? -ne 0 ]; then exit 1; fi
 
-	doas chmod -R o-rwx "/home/$user_name/$(basename $p)"
+	doas chmod -R o-rwx "/home/$user_name/$f"
 	if [ $? -ne 0 ]; then exit 1; fi
 done
 

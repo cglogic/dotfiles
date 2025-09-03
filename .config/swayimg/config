@@ -67,7 +67,7 @@ antialiasing = mks13
 # Height and width of each thumbnail (pixels)
 size = 200
 # Max number of invisible thumbnails stored in memory cache
-cache = 1000
+cache = 10000
 # Load not only visible but also adjacent thumbnails
 preload = yes
 # Enable/disable storing thumbnails in persistent storage (yes/no)

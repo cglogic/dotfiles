@@ -1,0 +1,6 @@
+#!/bin/sh
+
+lockf -s -t 0 $XDG_RUNTIME_DIR/display.lock sedenable
+if [ $? -ne 0 ]; then
+	seddisable
+fi

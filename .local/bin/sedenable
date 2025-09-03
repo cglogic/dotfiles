@@ -1,0 +1,15 @@
+#!/bin/sh
+
+aw=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused==true).name')
+swaymsg output DP-1 enable
+swaymsg workspace number 10
+/bin/sh -c "sleep 0.1 ; swaymsg workspace number $aw" &
+wl-mirror --no-show-cursor --fullscreen eDP-1
+
+aw=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused==true).name')
+swaymsg output DP-1 disable
+sleep 0.1
+swaymsg workspace number 10
+swaymsg workspace number $aw
+
+true

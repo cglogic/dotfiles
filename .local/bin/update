@@ -6,5 +6,5 @@ fi
 for dir in /usr/src /usr/ports; do
 	echo "Doing $1 in $dir"
 	cd $dir && git $1
-	if [ $? -ne 0 ]; then exit 1 ; fi
+	# if [ $? -ne 0 ]; then exit 1 ; fi
 done

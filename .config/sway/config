@@ -39,7 +39,7 @@ smart_borders on
 default_border pixel 2
 default_floating_border pixel 2
 titlebar_border_thickness 1
-titlebar_padding 5 1
+titlebar_padding 10 1
 
 # for_window [app_id="[.]*"] floating disable
 

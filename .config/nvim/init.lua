@@ -188,7 +188,7 @@ local function on_attach()
 	end
 end
 
-require('lspconfig')['ccls'].setup {
+vim.lsp.config('ccls', {
 	on_attach = on_attach(),
 	init_options = {
 		cache = {
@@ -197,9 +197,10 @@ require('lspconfig')['ccls'].setup {
 	},
 	autostart = false,
 	capabilities = lsp_capabilities,
-}
+})
+-- vim.lsp.enable({'ccls'})
 
--- require('lspconfig')['clangd'].setup {
+-- vim.lsp.config('clangd', {
 -- 	on_attach = on_attach(),
 -- 	cmd = {
 -- 		"clangd19",
@@ -210,6 +211,7 @@ require('lspconfig')['ccls'].setup {
 -- 	autostart = false,
 -- 	capabilities = lsp_capabilities,
 -- }
+-- vim.lsp.enable({'clangd'})
 
 map('n', '<space>,', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 map('n', '<space>;', '<cmd>lua vim.diagnostic.goto_next()<CR>')

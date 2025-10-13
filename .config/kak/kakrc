@@ -111,4 +111,4 @@ evaluate-commands %sh{
 	}
 }
 
-map global normal '<backspace>' :open-file<ret>
+# map global normal '<backspace>' :open-file<ret>

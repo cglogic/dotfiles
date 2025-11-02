@@ -162,7 +162,7 @@ input type:keyboard {
     # bindsym --release --to-code --no-repeat Super_L fullscreen
 
     #
-    # bindsym --to-code $mod+backslash exec ls ~/.local/bin | bemenu -n --fn="$fname $f2size" --prompt="❯" --tb="#323232" --tf="#4c7899" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
+    # bindsym --to-code $mod+BackSlash exec ls ~/.local/bin | bemenu -n --fn="$fname $f2size" --prompt="❯" --tb="#323232" --tf="#4c7899" --nb="#323232" --nf="#dddddd" --fb="#323232" --ff="#dddddd" --sb="#323232" --sf="#dddddd" --hb="#285577" --hf="#dddddd" | xargs swaymsg exec --
 
     #
     # bindsym --to-code $mod+BackSpace exec 'grim $XDG_RUNTIME_DIR/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% $XDG_RUNTIME_DIR/screenshot.png $XDG_RUNTIME_DIR/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i $XDG_RUNTIME_DIR/screenshotblur.png -f ; rm $XDG_RUNTIME_DIR/screenshot.png'
@@ -181,8 +181,8 @@ input type:keyboard {
     # Telegram
     # bindsym --to-code $mod+t fullscreen disable, exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-telegram.lock telegram-desktop
 
-    # Start a terminal
-    bindsym --to-code $mod+BackSlash exec sedisplay
+    # Enable external screen
+    bindsym --to-code $mod+Print exec sedisplay
 
     # Start a terminal
     # bindsym --to-code $mod+Return fullscreen disable, exec $term
@@ -201,6 +201,7 @@ input type:keyboard {
     # bindsym --to-code Super_R fullscreen
 
     bindsym --to-code XF86WakeUp workspace next_on_output
+    bindsym --to-code $mod+XF86WakeUp workspace prev_on_output
     # bindsym --to-code $mod+Tab focus right
     bindsym --to-code $mod+Tab workspace next_on_output
     bindsym --to-code $mod+Shift+Tab workspace prev_on_output

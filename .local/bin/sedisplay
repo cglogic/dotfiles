@@ -1,6 +1,10 @@
 #!/bin/sh
 
-lockf -s -t 0 $XDG_RUNTIME_DIR/display.lock sedenable
-if [ $? -ne 0 ]; then
-	seddisable
-fi
+aw=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused==true).name')
+swaymsg output DP-1 toggle
+swaymsg workspace number $aw
+
+# lockf -s -t 0 $XDG_RUNTIME_DIR/display.lock sedenable
+# if [ $? -ne 0 ]; then
+# 	seddisable
+# fi

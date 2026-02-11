@@ -3,7 +3,8 @@
 HISTORY="$HOME/.launch_history"
 test -f "$HISTORY" || touch "$HISTORY"
 
-CMD=$( cat "$HISTORY" | wmenu -i -f "$1" )
+# CMD=$( cat "$HISTORY" | wmenu -i -f "$1" )
+CMD=$( cat "$HISTORY" | mew -f "$1" )
 
 # exit if null input
 test -z "$CMD" && exit 1

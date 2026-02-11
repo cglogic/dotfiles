@@ -24,7 +24,9 @@ set $term foot
 # on the original workspace that the command was run on.
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
 # set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock foot --window-size-pixels=1280x720 --title=launcher --app-id=launcher ~/.local/bin/launch
-set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname $fsize"
+
+# set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname $fsize"
+set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname:size=$fsize.5"
 
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 

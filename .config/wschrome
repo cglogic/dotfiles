@@ -45,22 +45,23 @@ cd $HOME
 	# --audio-backend=alsa \
 	# --use-gl=angle \
 	# --use-angle=gles-egl \
+	# --disable-features="Vulkan,UseChromeOSDirectVideoDecoder,SharedArrayBuffer,WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" \
+	# --ignore-gpu-blocklist \
+	# --disable-gpu-driver-bug-workarounds \
 
 exec chrome \
 	--ozone-platform-hint=auto \
-	--ignore-gpu-blocklist \
-	--disable-gpu-driver-bug-workarounds \
 	--enable-gpu-rasterization \
 	--num-raster-threads=2 \
 	--enable-zero-copy \
 	--enable-accelerated-video-decode \
 	--enable-accelerated-video-encode \
-	--enable-features="VaapiVideoDecoder,VaapiVideoEncoder,VaapiIgnoreDriverChecks" \
 	--force-dark-mode \
 	--site-per-process \
 	--enable-tcp-fastopen \
 	--disable-smooth-scrolling \
 	--disk-cache-size=0 \
 	--disk-cache-dir=/dev/null \
+	--enable-features="VaapiVideoDecoder,VaapiVideoEncoder,VaapiIgnoreDriverChecks" \
 	--disable-features="Vulkan,UseChromeOSDirectVideoDecoder,SharedArrayBuffer,WebAssembly,AsmJsToWebAssembly,WebAssemblyStreaming" \
 	"$@"

@@ -3,6 +3,7 @@ local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
+local env = vim.env  -- to work with env vars
 
 local function map(mode, lhs, rhs, opts)
 	local options = {noremap = true}
@@ -101,7 +102,10 @@ opt.termguicolors = true            -- True color support
 -- opt.wildmode = {'list', 'longest'}  -- Command-line completion mode
 opt.wrap = false                    -- Disable line wrap
 opt.mouse = ''                      -- Disable mouse
-opt.clipboard = 'unnamedplus'       -- Use wayland clipboard
+
+if env.WAYLAND_DISPLAY ~= nil then
+	opt.clipboard = 'unnamedplus'       -- Use wayland clipboard
+end
 
 vim.api.nvim_command [[match errorMsg /\s\+$/]]
 

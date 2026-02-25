@@ -27,6 +27,16 @@ hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap wi
 
 map global normal '#' :comment-line<ret>
 
+evaluate-commands %sh{
+	if [ -n "$WAYLAND_DISPLAY" ]; then
+		echo "map global normal p '<a-!>wl-paste -n<ret>'"
+		echo "map global normal P '!wl-paste -n<ret>'"
+		echo "map global normal R '|wl-paste -n<ret>'"
+		echo "map global normal y '<a-|>wl-copy<ret><y>'"
+		echo "map global normal d '<a-|>wl-copy<ret><d>'"
+	fi
+}
+
 hook global WinSetOption filetype=(c|cpp) %{
 	set-option global clang_options '-std=c++26'
 	set-option window formatcmd '$CF -style=file'
@@ -110,10 +120,5 @@ evaluate-commands %sh{
 		fi
 	}
 }
-
-map global normal p '<a-!>wl-paste -n<ret>'
-map global normal P '!wl-paste -n<ret>'
-map global normal R '|wl-paste -n<ret>'
-map global normal y '<a-|>wl-copy<ret><y>'
 
 # map global normal '<backspace>' :open-file<ret>

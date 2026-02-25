@@ -101,6 +101,7 @@ opt.termguicolors = true            -- True color support
 -- opt.wildmode = {'list', 'longest'}  -- Command-line completion mode
 opt.wrap = false                    -- Disable line wrap
 opt.mouse = ''                      -- Disable mouse
+opt.clipboard = 'unnamedplus'       -- Use wayland clipboard
 
 vim.api.nvim_command [[match errorMsg /\s\+$/]]
 

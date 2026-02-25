@@ -111,4 +111,9 @@ evaluate-commands %sh{
 	}
 }
 
+map global normal p '<a-!>wl-paste -n<ret><p>'
+map global normal P '!wl-paste -n<ret><P>'
+map global normal R '|wl-paste -n<ret><R>'
+map global normal y '<a-|>wl-copy<ret><y>'
+
 # map global normal '<backspace>' :open-file<ret>

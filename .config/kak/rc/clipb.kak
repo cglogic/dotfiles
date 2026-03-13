@@ -49,7 +49,7 @@ define-command clipb-detect -docstring 'detect clipboard command' %{
 			fi
 		elif [ -n "$DISPLAY" ]; then
 			if [ -x "$(command -v xclip)" ]; then
-				copy_command='xclip -in  -selection clipboard'
+				copy_command='xclip -in -selection clipboard'
 				paste_command='xclip -out -selection clipboard'
 			elif [ -x "$(command -v xsel)" ]; then
 				copy_command='xsel --input  --clipboard'

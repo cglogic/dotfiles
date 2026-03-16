@@ -4,6 +4,14 @@ aw=$(swaymsg -t get_workspaces | jq -r '.[] | select(.focused==true).name')
 swaymsg output DP-1 toggle
 swaymsg workspace number $aw
 
+ao=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused==true).name')
+if [ "$ao" = "eDP-1" ]; then
+	au=1
+else
+	au=0
+fi
+doas sysctl hw.snd.default_unit=$au
+
 # lockf -s -t 0 $XDG_RUNTIME_DIR/display.lock sedenable
 # if [ $? -ne 0 ]; then
 # 	seddisable

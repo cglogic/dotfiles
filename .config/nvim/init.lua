@@ -85,6 +85,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -------------------- OPTIONS -------------------------------
+opt.modeline = false                   -- Disable modeline
 opt.background = 'dark'           -- or "light" for light mode
 cmd 'colorscheme base16-tomorrow-night'-- Put your favorite colorscheme here
 -- cmd 'colorscheme tomorrow-night'    -- Put your favorite colorscheme here

@@ -74,6 +74,16 @@ require("lazy").setup({
 	},
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+	desc = 'User: fix backdrop for lazy window',
+	pattern = 'lazy_backdrop',
+	group = vim.api.nvim_create_augroup('lazynvim-fix', { clear = true }),
+	callback = function(ctx)
+		local win = vim.fn.win_findbuf(ctx.buf)[1]
+		vim.api.nvim_win_set_config(win, { border = 'none' })
+	end,
+})
+
 -------------------- OPTIONS -------------------------------
 opt.background = 'dark'           -- or "light" for light mode
 cmd 'colorscheme base16-tomorrow-night'-- Put your favorite colorscheme here
@@ -218,8 +228,16 @@ vim.lsp.config('ccls', {
 -- }
 -- vim.lsp.enable({'clangd'})
 
-map('n', '<space>,', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-map('n', '<space>;', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+vim.keymap.set('n', '<space>,', function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end)
+
+vim.keymap.set('n', '<space>;', function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end)
+
+-- map('n', '<space>,', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+-- map('n', '<space>;', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 map('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 map('n', '<space>d', '<cmd>lua vim.lsp.buf.definition()<CR>')
 map('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
@@ -249,15 +267,7 @@ win.default_opts = function(options)
 	return opts
 end
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-	vim.lsp.handlers.hover,
-	{ border = border }
-)
-
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-	vim.lsp.handlers.signature_help,
-	{ border = border }
-)
+vim.lsp.buf.hover({ border = border })
 
 ------------------------------------------------------------
 local has_words_before = function()

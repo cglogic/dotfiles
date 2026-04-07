@@ -175,7 +175,7 @@ input type:keyboard {
     bindsym --to-code Print exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-touchpad.lock swaymsg input type:touchpad events toggle enabled disabled >/dev/null 2>&1
 
     # Screenshot
-    bindsym --to-code $mod+p exec grim ~/.screenshots/screenshot-$(date +%Y.%m.%d-%H.%M.%S).png
+    bindsym --to-code $mod+Print exec grim ~/screenshots/$(date +%Y.%m.%d-%H.%M.%S).png
 
     # Chromium
     # bindsym --to-code $mod+g fullscreen disable, exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-browser.lock ~/.local/bin/browser
@@ -184,7 +184,7 @@ input type:keyboard {
     # bindsym --to-code $mod+t fullscreen disable, exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-telegram.lock telegram-desktop
 
     # Enable external screen
-    bindsym --to-code $mod+Print exec sedisplay
+    # bindsym --to-code $mod+Print exec sedisplay
 
     # Start a terminal
     # bindsym --to-code $mod+Return fullscreen disable, exec $term

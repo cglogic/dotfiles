@@ -32,7 +32,7 @@ swayimg.viewer.set_drag_button("MouseLeft")      -- mouse button to drag image
 swayimg.viewer.set_window_background(0xff000000) -- window background color
 swayimg.viewer.set_image_chessboard(20, 0xff333333, 0xff4c4c4c) -- chessboard
 swayimg.viewer.enable_centering(true)            -- enable automatic centering
-swayimg.viewer.enable_loop(true)                 -- enable image list loop mode
+swayimg.viewer.enable_loop(false)                -- disable image list loop mode
 swayimg.viewer.limit_preload(1)                  -- number of images to preload
 swayimg.viewer.limit_history(1)                  -- number of the history cache
 swayimg.viewer.set_mark_color(0xff808080)        -- mark icon color

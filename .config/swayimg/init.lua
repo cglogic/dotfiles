@@ -5,6 +5,7 @@ swayimg.enable_decoration(true)           -- window title/buttons/borders
 swayimg.enable_overlay(false)             -- window overlay mode
 swayimg.enable_exif_orientation(true)     -- image orientation by EXIF
 swayimg.set_dnd_button("MouseRight")      -- drag-and-drop mouse button
+swayimg.set_fullscreen(true)              -- enable fullscreen mode
 
 -- Image list configuration
 swayimg.imagelist.set_order("numeric")    -- list order

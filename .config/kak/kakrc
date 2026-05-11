@@ -1,4 +1,5 @@
 set-option global ui_options 'terminal_status_on_top=false' 'terminal_assistant=none' 'terminal_change_colors=false' 'terminal_enable_mouse=false' 'terminal_set_title=true' 'terminal_synchronized=true'
+set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} of %val{buf_line_count} {{context_info}} {{mode_info}} - %val{client}@[%val{session}]'
 # set-option global autoinfo normal|command|onkey
 set-option global makecmd 'make'
 set-option global grepcmd 'ag --nocolor --column'
@@ -101,11 +102,11 @@ hook global BufCreate '\*debug\*' %{
 	}}
 }
 
-hook global BufCreate '\*scratch\*' %{
-	hook -once buffer NormalKey '<esc>' %{ try %{
-		delete-buffer *scratch*
-	}}
-}
+# hook global BufCreate '\*scratch\*' %{
+# 	hook -once buffer NormalKey '<esc>' %{ try %{
+# 		delete-buffer *scratch*
+# 	}}
+# }
 
 define-command -docstring 'Open a file' -params 0 open-file %{
 evaluate-commands %sh{
@@ -121,6 +122,8 @@ evaluate-commands %sh{
 	}
 }
 
-# map global normal '<backspace>' :open-file<ret>
+map global user 'o' ':open-file<ret>' -docstring 'Fuzzy open a file'
+map global user 'c' ':db<ret>' -docstring 'Close a file'
+map global user '/' ':set-register / ""<ret><c-l><ret>' -docstring 'Reset search matches'
 
 source ~/.config/kak/rc/clipb.kak

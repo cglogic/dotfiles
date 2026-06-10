@@ -13,7 +13,7 @@ colorscheme %sh{ case "$TERM" in xterm) echo "default" ;; *) echo "tomorrow-nigh
 add-highlighter global/ number-lines -hlcursor -separator ' '
 add-highlighter global/ show-matching
 add-highlighter global/ show-whitespaces -tab '→' -spc '•' -lf ' ' -only-trailing
-add-highlighter global/ dynregex '%reg{/}' 0:+u
+# add-highlighter global/ dynregex '%reg{/}' 0:+u
 # add-highlighter global/ wrap -word -indent
 # add-highlighter global/trailing-whitespace regex '\h+$' 0:Error
 
@@ -124,6 +124,6 @@ evaluate-commands %sh{
 
 map global user 'o' ':open-file<ret>' -docstring 'Fuzzy open a file'
 map global user 'c' ':db<ret>' -docstring 'Close a file'
-map global user '/' ':set-register / ""<ret><c-l><ret>' -docstring 'Reset search matches'
+# map global user '/' ':set-register / ""<ret><c-l><ret>' -docstring 'Reset search matches'
 
 source ~/.config/kak/rc/clipb.kak

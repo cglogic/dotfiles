@@ -129,4 +129,4 @@ map global user 'c' ':db<ret>' -docstring 'Close a file'
 # }
 # map global user '/' ':remove-highlighter global/search<ret>' -docstring 'Reset search matches'
 
-# source ~/.config/kak/rc/clipb.kak
+source ~/.config/kak/rc/clipb.kak

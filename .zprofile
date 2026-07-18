@@ -70,6 +70,7 @@ elif [[ ! $TMUX && ! $DISPLAY && ! $WAYLAND_DISPLAY ]]; then
 			export WLR_DRM_NO_ATOMIC=1
 			# export MESA_LOADER_DRIVER_OVERRIDE=crocus
 		fi
+		# export WLR_RENDERER=vulkan
 		exec &> $XDG_RUNTIME_DIR/sway.log
 		exec seatd-launch sway
 	elif [[ "$SESSION_TYPE" == "x" ]]; then

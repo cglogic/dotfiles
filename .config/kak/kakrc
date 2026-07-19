@@ -1,4 +1,4 @@
-set-option global ui_options 'terminal_status_on_top=false' 'terminal_assistant=none' 'terminal_change_colors=false' 'terminal_enable_mouse=false' 'terminal_set_title=true' 'terminal_synchronized=true'
+set-option global ui_options "terminal_status_on_top=%sh{ case $TERM in tmux*) echo true ;; *) echo false ;; esac }" 'terminal_assistant=none' 'terminal_change_colors=false' 'terminal_enable_mouse=false' 'terminal_set_title=true' "terminal_synchronized=%sh{ case $TERM in foot*) echo true ;; *) echo false ;; esac }"
 set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} of %val{buf_line_count}:? {{context_info}} {{mode_info}} - %val{client}@[%val{session}]'
 # set-option global autoinfo normal|command|onkey
 set-option global makecmd 'make'
@@ -124,7 +124,7 @@ evaluate-commands %sh{
 }
 
 map global user 'o' ':open-file<ret>' -docstring 'Fuzzy open a file'
-map global user 'c' ':db<ret>' -docstring 'Close a file'
+map global user 'x' ':db<ret>' -docstring 'Close a file'
 
 # hook global RegisterModified '/' %{
 # 	add-highlighter -override global/search dynregex '%reg{/}' 0:+u

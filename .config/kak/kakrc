@@ -89,7 +89,7 @@ evaluate-commands %sh{
 		if [ -n "${TMUX+x}" ]; then
 			tmux display-popup -d '#{pane_current_path}' -w 60% -h 50% -E ${CMD} >/dev/null 2>&1
 		elif [ -n "${WAYLAND_DISPLAY+x}" ]; then
-			foot --title=file-open ${CMD} >/dev/null 2>&1
+			foot --app-id=file-open --title=file-open ${CMD} >/dev/null 2>&1
 		elif [ -n "${DISPLAY+x}" ]; then
 			zutty -e ${CMD} >/dev/null 2>&1
 		fi

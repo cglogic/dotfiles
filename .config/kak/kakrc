@@ -38,9 +38,9 @@ map global normal '#' :comment-line<ret>
 # }
 
 hook global WinSetOption filetype=(c|cpp) %{
-	set-option global clang_options '-std=c++26'
+	set-option window clang_options '-std=c++26'
 	set-option window formatcmd '$CF -style=file'
-	set-option global tabstop 4
+	set-option window tabstop 4
 	# clang-enable-autocomplete
 	# clang-enable-diagnostics
 	# alias window lint clang-parse
@@ -54,8 +54,8 @@ hook global WinSetOption filetype=(c|cpp) %{
 }
 
 hook global WinSetOption filetype=(python) %{
-	set-option global indentwidth 4
-	set-option global tabstop 4
+	set-option window indentwidth 4
+	set-option window tabstop 4
 
 	try %{
 		add-highlighter -override buffer/operators regex (\W) 0:operator
@@ -70,7 +70,7 @@ hook global WinSetOption filetype=(sql) %{
 
 hook global WinSetOption filetype=(markdown) %{
 	try %{
-		add-highlighter global/ wrap -word -indent
+		add-highlighter window/ wrap -word -indent
 	}
 }
 
@@ -109,14 +109,16 @@ hook global BufCreate '\*debug\*' %{
 
 define-command -docstring 'Open a file' -params 0 open-file %{
 evaluate-commands %sh{
-		# FS=$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true) | .fullscreen_mode')
-		FS=0
 		CMD="kak-open $kak_command_fifo"
-		if [ $FS -eq 1 ]; then
-			foot --fullscreen --title=file-open ${CMD} >/dev/null 2>&1
-			swaymsg fullscreen enable >/dev/null 2>&1
-		else
+		if [ -n "${TMUX+x}" ]; then
+			tmux split-window -v "${CMD} >/dev/null 2>&1; tmux wait-for -S kak-open"
+			tmux wait-for kak-open
+		elif [ -n "${WAYLAND_DISPLAY+x}" ]; then
 			foot --title=file-open ${CMD} >/dev/null 2>&1
+		elif [ -n "${DISPLAY+x}" ]; then
+			zutty -e ${CMD} >/dev/null 2>&1
+		else
+			printf '%s' "echo -debug \"Can't detect environment\""
 		fi
 	}
 }

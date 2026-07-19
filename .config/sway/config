@@ -359,7 +359,7 @@ bindsym --to-code $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    # mode hide
+    mode hide
     position bottom
     height 40
     gaps 0

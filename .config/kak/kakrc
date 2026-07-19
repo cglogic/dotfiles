@@ -83,42 +83,15 @@ hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 	done
 }}}
 
-# hook global BufCreate '\*make\*' %{
-# 	hook -once buffer NormalKey '<esc>' %{ try %{
-# 		delete-buffer *make*
-# 	}}
-# }
-
-# hook global BufCreate '\*grep\*' %{
-# 	hook -once buffer NormalKey '<esc>' %{ try %{
-# 		delete-buffer *grep*
-# 	}}
-# }
-
-# hook global BufCreate '\*debug\*' %{
-# 	hook -once buffer NormalKey '<esc>' %{ try %{
-# 		delete-buffer *debug*
-# 	}}
-# }
-
-# hook global BufCreate '\*scratch\*' %{
-# 	hook -once buffer NormalKey '<esc>' %{ try %{
-# 		delete-buffer *scratch*
-# 	}}
-# }
-
 define-command -docstring 'Open a file' -params 0 open-file %{
 evaluate-commands %sh{
 		CMD="kak-open $kak_command_fifo"
 		if [ -n "${TMUX+x}" ]; then
-			tmux split-window -v "${CMD} >/dev/null 2>&1; tmux wait-for -S kak-open"
-			tmux wait-for kak-open
+			tmux display-popup -w 70% -h 70% -E ${CMD} >/dev/null 2>&1
 		elif [ -n "${WAYLAND_DISPLAY+x}" ]; then
 			foot --title=file-open ${CMD} >/dev/null 2>&1
 		elif [ -n "${DISPLAY+x}" ]; then
 			zutty -e ${CMD} >/dev/null 2>&1
-		# else
-		# 	printf '%s' "echo -debug \"Can't detect environment\""
 		fi
 	}
 }
@@ -127,10 +100,5 @@ map global user 'o' ':open-file<ret>' -docstring 'Fuzzy open a file'
 map global user 'x' ':db<ret>' -docstring 'Close buffer'
 map global user 'n' ':bn<ret>' -docstring 'Next buffer'
 map global user 'p' ':bp<ret>' -docstring 'Prev buffer'
-
-# hook global RegisterModified '/' %{
-# 	add-highlighter -override global/search dynregex '%reg{/}' 0:+u
-# }
-# map global user '/' ':remove-highlighter global/search<ret>' -docstring 'Reset search matches'
 
 source ~/.config/kak/rc/clipb.kak

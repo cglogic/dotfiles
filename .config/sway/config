@@ -37,7 +37,7 @@ workspace_layout tabbed
 gaps inner 0
 gaps outer 0
 smart_borders on
-# hide_edge_borders --i3 smart
+hide_edge_borders --i3 smart
 default_border pixel 2
 default_floating_border pixel 2
 titlebar_border_thickness 1

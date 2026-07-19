@@ -125,6 +125,8 @@ evaluate-commands %sh{
 
 map global user 'o' ':open-file<ret>' -docstring 'Fuzzy open a file'
 map global user 'x' ':db<ret>' -docstring 'Close a file'
+map global user 'n' ':bn<ret>' -docstring 'Next buffet'
+map global user 'p' ':bp<ret>' -docstring 'Prev buffet'
 
 # hook global RegisterModified '/' %{
 # 	add-highlighter -override global/search dynregex '%reg{/}' 0:+u

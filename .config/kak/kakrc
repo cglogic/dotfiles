@@ -83,23 +83,23 @@ hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 	done
 }}}
 
-hook global BufCreate '\*make\*' %{
-	hook -once buffer NormalKey '<esc>' %{ try %{
-		delete-buffer *make*
-	}}
-}
+# hook global BufCreate '\*make\*' %{
+# 	hook -once buffer NormalKey '<esc>' %{ try %{
+# 		delete-buffer *make*
+# 	}}
+# }
 
-hook global BufCreate '\*grep\*' %{
-	hook -once buffer NormalKey '<esc>' %{ try %{
-		delete-buffer *grep*
-	}}
-}
+# hook global BufCreate '\*grep\*' %{
+# 	hook -once buffer NormalKey '<esc>' %{ try %{
+# 		delete-buffer *grep*
+# 	}}
+# }
 
-hook global BufCreate '\*debug\*' %{
-	hook -once buffer NormalKey '<esc>' %{ try %{
-		delete-buffer *debug*
-	}}
-}
+# hook global BufCreate '\*debug\*' %{
+# 	hook -once buffer NormalKey '<esc>' %{ try %{
+# 		delete-buffer *debug*
+# 	}}
+# }
 
 # hook global BufCreate '\*scratch\*' %{
 # 	hook -once buffer NormalKey '<esc>' %{ try %{
@@ -117,16 +117,16 @@ evaluate-commands %sh{
 			foot --title=file-open ${CMD} >/dev/null 2>&1
 		elif [ -n "${DISPLAY+x}" ]; then
 			zutty -e ${CMD} >/dev/null 2>&1
-		else
-			printf '%s' "echo -debug \"Can't detect environment\""
+		# else
+		# 	printf '%s' "echo -debug \"Can't detect environment\""
 		fi
 	}
 }
 
 map global user 'o' ':open-file<ret>' -docstring 'Fuzzy open a file'
-map global user 'x' ':db<ret>' -docstring 'Close a file'
-map global user 'n' ':bn<ret>' -docstring 'Next buffet'
-map global user 'p' ':bp<ret>' -docstring 'Prev buffet'
+map global user 'x' ':db<ret>' -docstring 'Close buffer'
+map global user 'n' ':bn<ret>' -docstring 'Next buffer'
+map global user 'p' ':bp<ret>' -docstring 'Prev buffer'
 
 # hook global RegisterModified '/' %{
 # 	add-highlighter -override global/search dynregex '%reg{/}' 0:+u

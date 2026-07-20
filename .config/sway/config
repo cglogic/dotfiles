@@ -26,6 +26,7 @@ set $term foot
 # set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock foot --window-size-pixels=1280x720 --title=launcher --app-id=launcher ~/.local/bin/launch
 
 set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname $fsize"
+set $wlist lockf -s -t 0 $XDG_RUNTIME_DIR/single-wlist.lock swlist "$fname $fsize"
 # set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname:size=$fsize.5"
 
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
@@ -47,7 +48,7 @@ titlebar_padding 10 1
 
 # floating_maximum_size 1280 x 720
 # floating_minimum_size 1280 x 720
-# focus_follows_mouse no
+focus_follows_mouse no
 
 # for_window [app_id="chrome"] resize set 1280 720
 for_window [app_id="launcher"] floating enable, sticky enable
@@ -197,7 +198,10 @@ input type:keyboard {
 
     # Start your launcher
     # bindsym --to-code $mod+grave exec swaymsg -q fullscreen disable, exec $menu
-    bindsym --to-code $mod+grave exec $menu
+    bindsym --to-code $mod+Grave exec $menu
+
+    # Start your window switcher
+    bindsym --to-code $mod+Slash exec $wlist
 
     # Make the current focus fullscreen
     # bindsym --to-code Super_L fullscreen

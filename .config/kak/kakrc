@@ -96,8 +96,8 @@ evaluate-commands %sh{
 	}
 }
 
-map global user 'o' ':open-file<ret>' -docstring 'Fuzzy open a file'
-map global user 'x' ':db<ret>' -docstring 'Close buffer'
+map global user 'e' ':open-file<ret>' -docstring 'Edit a file'
+map global user 'd' ':db<ret>' -docstring 'Close buffer'
 map global user 'n' ':bn<ret>' -docstring 'Next buffer'
 map global user 'p' ':bp<ret>' -docstring 'Prev buffer'
 

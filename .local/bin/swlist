@@ -6,7 +6,8 @@
 MAX_CN="10"
 
 # WIN_LS=$( swaymsg -t get_tree | jq -r 'recurse(.nodes[]; .nodes != null) | select(.type == "con" and (.nodes | length == 0)) | "\(.id)\t│ \(.app_id): \(.name)"' )
-WIN_LS=$( swaymsg -t get_tree | jq -r 'recurse(.nodes[]; .nodes != null) | select(.type == "con" and (.nodes | length == 0)) | "\(.id | ("      " + tostring)[-6:]) │ \(.app_id | ("                    " + tostring)[-20:]) │ \(.name)"' )
+WIN_LS=$( swaymsg -t get_tree | jq -r 'recurse(.nodes[]; .nodes != null) | select(.type == "con" and (.nodes | length == 0)) | "\(.id | ("          " + tostring)[-10:]) │ \(.app_id | ("                    " + tostring)[-20:]) │ \(.name)"' )
+# WIN_LS=$( swaymsg -t get_tree | jq -r 'recurse(.nodes[]; .nodes != null) | select(.type == "con" and (.nodes | length == 0)) | "\(.app_id | ("                    " + tostring)[-20:]) │ \(.name)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t│\(.id)"' )
 if [ ! "$WIN_LS" ]; then
 	exit 0
 fi
@@ -17,6 +18,8 @@ if [ "$WIN_CN" -gt "$MAX_CN" ]; then
 fi
 
 WIN_ID=$( echo "$WIN_LS" | wmenu -i -l $WIN_CN -f "$1" | cut -d'│' -f1 | tr -d ' \t')
+# WIN_ID=$( echo "$WIN_LS" | wmenu -i -l $WIN_CN -f "$1")
+# WIN_ID=$( echo "${WIN_ID##*│}" )
 
 # exit if null input
 test -z "$WIN_ID" && exit 1

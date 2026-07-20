@@ -1,8 +1,16 @@
 #!/bin/sh
 
+MAX_CN="10"
+
 # WIN=$( wlrctl toplevel list | wmenu -i -l 5 -f "$1" )
 WIN_LS=$( swaymsg -t get_tree | jq -r 'recurse(.nodes[]; .nodes != null) | select(.type == "con" and (.nodes | length == 0)) | "\(.id):\t\(.app_id): \(.name)"' )
+if [ ! "$WIN_LS" ]; then
+	exit 0
+fi
 WIN_CN=$( echo "$WIN_LS" | wc -l )
+if [ "$WIN_CN" -gt "$MAX_CN" ]; then
+	WIN_CN="$MAX_CN"
+fi
 WIN_ID=$( echo "$WIN_LS" | wmenu -i -l $WIN_CN -f "$1" | cut -d':' -f1)
 
 # exit if null input

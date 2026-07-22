@@ -83,20 +83,33 @@ hook global ModuleLoaded c-family %{ try %{ evaluate-commands %sh{
 	done
 }}}
 
-define-command -docstring 'Open a file' -params 0 open-file %{
+define-command -docstring 'Open shell' -params 0 open-shell %{
+evaluate-commands %sh{
+		if [ -n "${TMUX+x}" ]; then
+			tmux display-popup -d '#{pane_current_path}' -w 60% -h 50% -E >/dev/null 2>&1
+		elif [ -n "${WAYLAND_DISPLAY+x}" ]; then
+			foot --app-id=floating-popup --title=kak-shell >/dev/null 2>&1
+		elif [ -n "${DISPLAY+x}" ]; then
+			zutty >/dev/null 2>&1
+		fi
+	}
+}
+
+define-command -docstring 'Open file' -params 0 open-file %{
 evaluate-commands %sh{
 		CMD="kak-open $kak_command_fifo"
 		if [ -n "${TMUX+x}" ]; then
 			tmux display-popup -d '#{pane_current_path}' -w 60% -h 50% -E ${CMD} >/dev/null 2>&1
 		elif [ -n "${WAYLAND_DISPLAY+x}" ]; then
-			foot --app-id=file-open --title=file-open ${CMD} >/dev/null 2>&1
+			foot --app-id=floating-popup --title=kak-open ${CMD} >/dev/null 2>&1
 		elif [ -n "${DISPLAY+x}" ]; then
 			zutty -e ${CMD} >/dev/null 2>&1
 		fi
 	}
 }
 
-map global user 'e' ':open-file<ret>' -docstring 'Edit a file'
+map global user 's' ':open-shell<ret>' -docstring 'Open shell'
+map global user 'e' ':open-file<ret>' -docstring 'Edit file'
 map global user 'd' ':db<ret>' -docstring 'Close buffer'
 map global user 'n' ':bn<ret>' -docstring 'Next buffer'
 map global user 'p' ':bp<ret>' -docstring 'Prev buffer'

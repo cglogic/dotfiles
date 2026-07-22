@@ -173,7 +173,8 @@ input type:keyboard {
     # bindsym --to-code $mod+Delete exec swaylock -c 131313 --font="$fname" --font-size=$f2size --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
     bindsym --to-code $mod+Delete exec swaylock -c 181818 --font="$fname" --font-size=$f2size --indicator-radius=100 --daemonize -f
 
-    # Disable touchpad
+    # Toggle touchpad
+    bindsym --to-code $mod+Print exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-touchpad.lock swaymsg input type:touchpad events toggle enabled disabled >/dev/null 2>&1
     bindsym --to-code Print exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-touchpad.lock swaymsg input type:touchpad events toggle enabled disabled >/dev/null 2>&1
 
     # Screenshot

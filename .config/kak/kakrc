@@ -100,5 +100,6 @@ map global user 'e' ':open-file<ret>' -docstring 'Edit a file'
 map global user 'd' ':db<ret>' -docstring 'Close buffer'
 map global user 'n' ':bn<ret>' -docstring 'Next buffer'
 map global user 'p' ':bp<ret>' -docstring 'Prev buffer'
+map global user 'g' ':grep ' -docstring 'Grep the project'
 
 source ~/.config/kak/rc/clipb.kak

@@ -12,7 +12,7 @@ fi
 FILE=$(ag --nocolor -l -g "" | sort | fzy -l max -p "❯❯❯ ")
 # FILE=$(ag --nocolor -l -g "" | sort | waitwinch fzy -l max -p "❯❯❯ " 2> /dev/null)
 
-if [ ! -n "$FILE" ]; then
+if [ ! -n "$FILE" ] || [ ! -f "$FILE" ]; then
 	exit 0
 fi
 

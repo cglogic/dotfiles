@@ -82,7 +82,8 @@ seat * hide_cursor 5000
 #
 # Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
 # output * bg ~/wallpapers/bg-orig.png fill
-output * bg #181818 solid_color
+# output * bg #181818 solid_color
+output * bg ~/wallpapers/wp7795859-4k-laptop-black-wallpapers.jpg fill
 
 #
 # Example configuration:

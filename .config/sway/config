@@ -28,6 +28,7 @@ set $term foot
 set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname $fsize"
 set $wlist lockf -s -t 0 $XDG_RUNTIME_DIR/single-wlist.lock swlist "$fname $fsize"
 # set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname:size=$fsize.5"
+set $wallpaper "~/wallpapers/wp7795859-4k-laptop-black-wallpapers.jpg"
 
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 
@@ -81,9 +82,8 @@ seat * hide_cursor 5000
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
-# output * bg ~/wallpapers/bg-orig.png fill
 # output * bg #181818 solid_color
-output * bg ~/wallpapers/wp7795859-4k-laptop-black-wallpapers.jpg fill
+output * bg $wallpaper fill
 
 #
 # Example configuration:
@@ -172,7 +172,7 @@ input type:keyboard {
     #
     # bindsym --to-code $mod+BackSpace exec 'grim $XDG_RUNTIME_DIR/screenshot.png ; convert -scale 10% -blur 0x2.5 -resize 1000% $XDG_RUNTIME_DIR/screenshot.png $XDG_RUNTIME_DIR/screenshotblur.png ; swaylock -c 131313 --font="$fname" --font-size=$fsize --indicator-radius=100 --daemonize -i $XDG_RUNTIME_DIR/screenshotblur.png -f ; rm $XDG_RUNTIME_DIR/screenshot.png'
     # bindsym --to-code $mod+Delete exec swaylock -c 131313 --font="$fname" --font-size=$f2size --indicator-radius=100 --daemonize -i "~/wallpapers/bg-orig.png" -f
-    bindsym --to-code $mod+Delete exec swaylock -c 181818 --font="$fname" --font-size=$f2size --indicator-radius=100 --daemonize -f
+    bindsym --to-code $mod+Delete exec swaylock --color=181818 --image=$wallpaper --font="$fname" --font-size=$f2size --indicator-radius=100 --daemonize -f
 
     # Toggle touchpad
     bindsym --to-code $mod+Print exec lockf -s -t 0 $XDG_RUNTIME_DIR/single-touchpad.lock swaymsg input type:touchpad events toggle enabled disabled >/dev/null 2>&1

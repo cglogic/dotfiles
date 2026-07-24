@@ -4,13 +4,13 @@ if [ ! -p "$1" ]; then
 	exit 0
 fi
 
-if [ ! -n "${TMUX+x}" ]; then
-	sleep 0.05
+if [ -n "${WAYLAND_DISPLAY+x}" ]; then
+	WW="waitwinch"
+else
+	WW=""
 fi
 
-# FILE=$(fzf)
-FILE=$(ag --nocolor -l -g "" | sort | fzy -l max -p "❯❯❯ ")
-# FILE=$(ag --nocolor -l -g "" | sort | waitwinch fzy -l max -p "❯❯❯ " 2> /dev/null)
+FILE=$(ag --nocolor -l -g "" | sort | $WW fzy -l max -p "❯❯❯ ")
 
 if [ ! -n "$FILE" ] || [ ! -f "$FILE" ]; then
 	exit 0

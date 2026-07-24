@@ -2,17 +2,13 @@
 
 # OPTIONS='--ignore-gpu-blocklist --disable-partial-raster --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 
-
 exec chrome \
-	--enable-features=VaapiVideoDecoder \
 	--ozone-platform-hint=auto \
-	--use-gl=egl \
-	--ignore-gpu-blocklist \
-	--disable-gpu-driver-bug-workarounds \
 	--enable-gpu-rasterization \
-	--num-raster-threads=2 \
+	--num-raster-threads=$( nproc ) \
 	--enable-zero-copy \
 	--enable-accelerated-video-decode \
+	--enable-accelerated-video-encode \
 	--force-dark-mode \
 	--site-per-process \
 	--enable-tcp-fastopen \

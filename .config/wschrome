@@ -52,7 +52,7 @@ cd $HOME
 exec chrome \
 	--ozone-platform-hint=auto \
 	--enable-gpu-rasterization \
-	--num-raster-threads=2 \
+	--num-raster-threads=$( nproc ) \
 	--enable-zero-copy \
 	--enable-accelerated-video-decode \
 	--enable-accelerated-video-encode \

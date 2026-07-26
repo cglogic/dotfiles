@@ -6,8 +6,8 @@
 MAX_CN="10"
 
 # WIN_LS=$( swaymsg -t get_tree | jq -r 'recurse(.nodes[]; .nodes != null) | select(.type == "con" and (.nodes | length == 0)) | "\(.id)\t│ \(.app_id): \(.name)"' )
-WIN_LS=$( swaymsg -t get_tree | jq -r 'recurse(.nodes[]; .nodes != null) | select(.type == "con" and (.nodes | length == 0)) | "\(.id | ("          " + tostring)[-10:]) │ \(.app_id | ("                    " + tostring)[-20:]) │ \(.name)"' )
-# WIN_LS=$( swaymsg -t get_tree | jq -r 'recurse(.nodes[]; .nodes != null) | select(.type == "con" and (.nodes | length == 0)) | "\(.app_id | ("                    " + tostring)[-20:]) │ \(.name)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t│\(.id)"' )
+# WIN_LS=$( swaymsg -t get_tree | jq -r 'recurse(.nodes[]; .nodes != null) | select(.type == "con" and (.nodes | length == 0)) | "\(.id | ("          " + tostring)[-10:]) │ \(.app_id | ("                    " + tostring)[-20:]) │ \(.name)"' )
+WIN_LS=$( swaymsg -t get_tree | jq -r 'recurse(.nodes[]) | select(.type == "workspace") | .name as $ws | recurse(.nodes[]) | select(.pid?) | "\(.id | ("          " + tostring)[-10:]) │ \($ws | ("  " + tostring)[-2:]) │ \(.app_id | ("                    " + tostring)[-20:]) │ \(.name)"' )
 if [ ! "$WIN_LS" ]; then
 	exit 0
 fi

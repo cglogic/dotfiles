@@ -98,20 +98,20 @@ output * bg $wallpaper fill
 # Disable subpixel filtering
 # output * subpixel none
 
-workspace 1 output eDP-1
-workspace 2 output eDP-1
-workspace 3 output eDP-1
-workspace 4 output eDP-1
-workspace 5 output eDP-1
-workspace 6 output eDP-1
-workspace 7 output eDP-1
-workspace 8 output eDP-1
-workspace 9 output eDP-1
-workspace 10 output DP-1
+# workspace 1 output eDP-1
+# workspace 2 output eDP-1
+# workspace 3 output eDP-1
+# workspace 4 output eDP-1
+# workspace 5 output eDP-1
+# workspace 6 output eDP-1
+# workspace 7 output eDP-1
+# workspace 8 output eDP-1
+# workspace 9 output eDP-1
+# workspace 10 output DP-1
 
-output eDP-1 pos 0 0
-output DP-1 pos 0 -1300
-output DP-1 disable
+# output eDP-1 pos 0 0
+# output DP-1 pos 0 -1300
+# output DP-1 disable
 
 ### Idle configuration
 #
@@ -416,6 +416,9 @@ bar {
 # }
 
 xwayland disable
+
+# Start display configurator
+exec kanshi
 
 # Start wob
 exec "WOBPID=$(ps -x -o 'pgid' -p `pgrep -f $WOBSOCK` 2>/dev/null | tail +2) ; pkill -SIGINT -g $WOBPID 2>/dev/null ; rm -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"

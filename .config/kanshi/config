@@ -1,8 +1,8 @@
-profile {
+profile external {
 	output eDP-1 disable
 	output DP-1 enable
 }
 
-profile {
+profile internal {
 	output eDP-1 enable
 }

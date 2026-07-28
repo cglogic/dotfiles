@@ -148,6 +148,7 @@ input type:touchpad {
     # natural_scroll enabled
     middle_emulation enabled
     drag_lock disabled
+    send_events disabled
 }
 
 input type:keyboard {
@@ -419,6 +420,9 @@ xwayland disable
 
 # Start display configurator
 exec kanshi
+
+# Move pointer to right bottom corner
+exec wlrctl pointer move 9999 9999
 
 # Start wob
 exec "WOBPID=$(ps -x -o 'pgid' -p `pgrep -f $WOBSOCK` 2>/dev/null | tail +2) ; pkill -SIGINT -g $WOBPID 2>/dev/null ; rm -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"

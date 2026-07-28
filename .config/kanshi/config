@@ -1,6 +1,6 @@
 profile external {
 	output eDP-1 disable
-	output DP-1 enable
+	output * enable
 }
 
 profile internal {

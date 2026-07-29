@@ -255,6 +255,11 @@ zle -N down-line-or-beginning-search
 [[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  down-line-or-history
 [[ -n "${key[ShiftTab]}"  ]] && bindkey -- "${key[ShiftTab]}"  reverse-menu-complete
 
+bindkey "\ek" up-line-or-beginning-search
+bindkey "\ej" down-line-or-beginning-search
+bindkey "\eh" backward-char
+bindkey "\el" forward-char
+
 # tcsh like auto completion
 tcsh_autolist() {
 	if [[ -z ${LBUFFER// } ]]; then

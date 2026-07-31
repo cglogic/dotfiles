@@ -15,15 +15,15 @@ swayimg.imagelist.adjacent = false  -- add adjacent files from same dir
 swayimg.imagelist.fsmon = true      -- enable file system monitoring
 
 -- Text overlay configuration
-swayimg.text.visible = true            -- overlay visible state
-swayimg.text.font = "monospace"        -- font name
-swayimg.text.size = 24                 -- font size in pixels
-swayimg.text.spacing = 0               -- line spacing
-swayimg.text.padding = 10              -- padding from window edge
-swayimg.text.background = 0x00000000   -- text background color
-swayimg.text.shadow = 0x0d000000       -- text shadow color
-swayimg.text.timeout = 1               -- layer hide timeout
-swayimg.text.status_timeout = 1        -- status message hide timeout
+swayimg.text.visible = false         -- overlay visible state
+swayimg.text.font = "monospace"      -- font name
+swayimg.text.size = 24               -- font size in pixels
+swayimg.text.spacing = 0             -- line spacing
+swayimg.text.padding = 10            -- padding from window edge
+swayimg.text.background = 0x00000000 -- text background color
+swayimg.text.shadow = 0x0d000000     -- text shadow color
+swayimg.text.timeout = 0             -- layer hide timeout
+swayimg.text.status_timeout = 1      -- status message hide timeout
 
 -- Image viewer mode
 swayimg.viewer.default_scale = "optimal"      -- default image scale
@@ -52,7 +52,10 @@ swayimg.viewer.set_text("bottomleft", {          -- bottom left text block schem
   "Scale: {scale}"
 })
 
--- Key and mouse bindings in viewer mode (example only, not all):
+-- bind i key for info
+swayimg.viewer.on_key("i", function()
+  swayimg.text.visible = !swayimg.text.visible
+end)
 
 -- bind Escape key for exit
 swayimg.viewer.on_key("Escape", function()

@@ -115,3 +115,15 @@ vim.keymap.set("n", "<leader>o", ":copen<CR>", { noremap = true, silent = true }
 vim.keymap.set("n", "<leader>c", ":cclose<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>n", ":cnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>p", ":cprev<CR>", { noremap = true, silent = true })
+
+--------------------------------------------------------------
+
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function(args)
+		local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype) or vim.bo[args.buf].filetype
+		local has_parser, _ = pcall(vim.treesitter.language.inspect, lang)
+		if has_parser then
+			pcall(vim.treesitter.start, args.buf, lang)
+		end
+	end,
+})

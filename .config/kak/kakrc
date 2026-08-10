@@ -108,6 +108,8 @@ evaluate-commands %sh{
 	}
 }
 
+alias global bd delete-buffer
+
 map global user 's' ':open-shell<ret>' -docstring 'Open shell'
 map global user 'e' ':open-file<ret>' -docstring 'Edit file'
 map global user 'd' ':db<ret>' -docstring 'Close buffer'

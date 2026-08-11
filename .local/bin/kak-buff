@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ "$#" -lt 3 ] || [ ! -p "$1" ]; then
+	exit 0
+fi
+
+if [ -n "${WAYLAND_DISPLAY+x}" ]; then
+	WW="waitwinch"
+else
+	WW=""
+fi
+
+PIPE="$1"
+shift
+eval "set -- $@"
+
+BUFFER=$(printf '%s\n' "$@" | sort | $WW fzy -l max -p "❯❯❯ ")
+
+echo "buffer \"$BUFFER\"" > $PIPE

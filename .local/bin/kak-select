@@ -1,0 +1,35 @@
+#!/bin/sh
+
+if [ "$#" -lt 2 ] || [ ! -p "$1" ]; then
+	exit 0
+fi
+
+if [ -n "${WAYLAND_DISPLAY+x}" ]; then
+	WW="waitwinch"
+else
+	WW=""
+fi
+
+PIPE="$1"
+shift
+CMD="$1"
+shift
+
+if [ "$CMD" = 'edit' ]; then
+	SEL=$(ag --nocolor -l -g "" | sort | $WW fzy -l max -p "❯❯❯ ")
+	if [ ! -n "$SEL" ] || [ ! -f "$SEL" ]; then
+		exit 0
+	fi
+elif [ "$CMD" = 'buffer' ]; then
+	eval "set -- $@"
+	SEL=$(printf '%s\n' "$@" | sort | $WW fzy -l max -p "❯❯❯ ")
+	if [ ! -n "$SEL" ]; then
+		exit 0
+	fi
+elif [ "$CMD" = 'shell' ]; then
+else
+	exit 0
+fi
+
+
+echo "$CMD \"$SEL\"" > $PIPE

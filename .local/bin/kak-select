@@ -26,10 +26,8 @@ elif [ "$CMD" = 'buffer' ]; then
 	if [ ! -n "$SEL" ]; then
 		exit 0
 	fi
-elif [ "$CMD" = 'shell' ]; then
 else
 	exit 0
 fi
-
 
 echo "$CMD \"$SEL\"" > $PIPE

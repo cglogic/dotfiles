@@ -236,7 +236,7 @@ input type:keyboard {
     set $mmut mixer -o vol.mute | cut -f 2 -d '='
     set $mix bc -e "`$mvol` * 100" | cut -f 1 -d '.'
     set $mux bc -e "(`$mmut` - 1) * -100 * `$mvol`" | cut -f 1 -d '.'
-    bindsym --to-code $mod+F1 exec mixer vol.mute=^ && pgrep wob > /dev/null && test -p $WOBSOCK && $mux > $WOBSOCK
+    bindsym --to-code $mod+F1 exec mixer vol.mute=toggle && pgrep wob > /dev/null && test -p $WOBSOCK && $mux > $WOBSOCK
     bindsym --to-code $mod+F2 exec mixer vol.volume=-0.05 && pgrep wob > /dev/null && test -p $WOBSOCK && $mix > $WOBSOCK
     bindsym --to-code $mod+F3 exec mixer vol.volume=+0.05 && pgrep wob > /dev/null && test -p $WOBSOCK && $mix > $WOBSOCK
     bindsym --to-code $mod+F4 exec pgrep wob > /dev/null && test -p $WOBSOCK && $mix > $WOBSOCK

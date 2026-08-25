@@ -427,7 +427,7 @@ exec wlrctl pointer move 9999 9999
 exec swaymsg input type:touchpad events disabled
 
 # Start wob
-exec "WOBPID=$(ps -x -o 'pgid' -p `pgrep -f $WOBSOCK` 2>/dev/null | tail +2) ; pkill -SIGINT -g $WOBPID 2>/dev/null ; rm -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"
+exec "WOBPID=$(ps -x -o 'pgid' -p `pgrep -f $WOBSOCK` 2>/dev/null | tail -n +2 | head -n 1) ; pkill -SIGINT -g $WOBPID 2>/dev/null ; rm -f $WOBSOCK ; mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"
 
 # Exit fullscreen on app run
 exec "~/.config/sway/auto_exit_fullscreen.sh"

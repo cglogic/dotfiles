@@ -3,6 +3,7 @@
 # OPTIONS='--ignore-gpu-blocklist --disable-partial-raster --use-gl=angle --enable-gpu-rasterization --enable-oop-rasterization --enable-zero-copy --num-raster-threads=2 --enable-accelerated-video-decode'
 
 exec chrome \
+	# --gtk-version=4
 	--ozone-platform-hint=auto \
 	--enable-gpu-rasterization \
 	--num-raster-threads=$( nproc ) \

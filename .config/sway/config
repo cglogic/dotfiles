@@ -25,8 +25,8 @@ set $term foot
 # set $menu FNAME="$fname:size=$fsize" sdmenu | xargs swaymsg exec --
 # set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock foot --window-size-pixels=1280x720 --title=launcher --app-id=launcher ~/.local/bin/launch
 
-set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname $fsize"
-set $wlist lockf -s -t 0 $XDG_RUNTIME_DIR/single-wlist.lock swlist "$fname $fsize"
+set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/menu.lock swmenu "$fname $fsize"
+set $wlist lockf -s -t 0 $XDG_RUNTIME_DIR/menu.lock swlist "$fname $fsize"
 # set $menu lockf -s -t 0 $XDG_RUNTIME_DIR/single-menu.lock swmenu "$fname:size=$fsize.5"
 set $wallpaper "~/wallpapers/wp7795859-4k-laptop-black-wallpapers.jpg"
 
@@ -205,6 +205,9 @@ input type:keyboard {
 
     # Start your window switcher
     bindsym --to-code $mod+Slash exec $wlist
+
+    # Start your window switcher
+    bindsym --to-code $mod+BackSlash exec rofi -show window
 
     # Make the current focus fullscreen
     # bindsym --to-code Super_L fullscreen

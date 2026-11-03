@@ -26,18 +26,16 @@ swayimg.text.timeout = 0             -- layer hide timeout
 swayimg.text.status_timeout = 1      -- status message hide timeout
 
 -- Image viewer mode
-swayimg.viewer.default_scale = "optimal"      -- default image scale
-swayimg.viewer.default_position = "center"    -- default image position
-swayimg.viewer.drag_button = "MouseLeft"      -- mouse button to drag image
-swayimg.viewer.autocenter = true              -- enable automatic centering
-swayimg.viewer.loop = false                   -- disable image list loop mode
-swayimg.viewer.preload = 1                    -- number of images to preload
-swayimg.viewer.history = 1                    -- number of the history cache
-swayimg.viewer.mark_color = 0xff808080        -- mark icon color
-swayimg.viewer.pinch_factor = 1.0             -- pinch gesture factor
-swayimg.viewer.set_window_background(0xff000000) -- window background color
-swayimg.viewer.set_image_chessboard(20, 0xff333333, 0xff4c4c4c) -- chessboard
-swayimg.viewer.text = {                       -- text layer scheme
+swayimg.viewer.default_scale = "optimal"   -- default image scale
+swayimg.viewer.default_position = "center" -- default image position
+swayimg.viewer.drag_button = "MouseLeft"   -- mouse button to drag image
+swayimg.viewer.autopos = "center"          -- automatic image positioning
+swayimg.viewer.loop = false                -- disable image list loop mode
+swayimg.viewer.preload = 1                 -- number of images to preload
+swayimg.viewer.history = 1                 -- number of the history cache
+swayimg.viewer.mark_color = 0xff808080     -- mark icon color
+swayimg.viewer.pinch_factor = 1.0          -- pinch gesture factor
+swayimg.viewer.text = {                    -- text layer scheme
   topleft = {
     "File:\t{name}",
     "Format:\t{format}",
@@ -55,13 +53,11 @@ swayimg.viewer.text = {                       -- text layer scheme
     "Scale:\t{scale}"
   }
 }
+swayimg.viewer.set_window_background(0xff000000) -- window background color
+swayimg.viewer.set_image_chessboard(20, 0xff333333, 0xff4c4c4c) -- chessboard
 
--- bind i key for info
-swayimg.viewer.on_key("i", function()
-  swayimg.text.visible = !swayimg.text.visible
-end)
 
--- bind Escape key for exit
+-- exit from application
 swayimg.viewer.on_key("Escape", function()
   swayimg.exit()
 end)
@@ -70,6 +66,101 @@ swayimg.viewer.on_key("q", function()
   swayimg.exit()
 end)
 
+-- switch to gallery mode
+swayimg.viewer.on_key("Return", function()
+  swayimg.mode = "gallery"
+end)
+-- switch to slide show mode
+swayimg.viewer.on_key("s", function()
+  swayimg.mode = "slideshow"
+end)
+
+-- show/hide text overlay
+swayimg.viewer.on_key("t", function()
+  swayimg.text.visible = not swayimg.text.visible
+end)
+-- bind i key for info
+swayimg.viewer.on_key("i", function()
+  swayimg.text.visible = !swayimg.text.visible
+end)
+
+-- mark/unmark current image
+swayimg.viewer.on_key("Insert", function()
+  swayimg.viewer.mark_image()
+end)
+
+-- remove current image from the image list
+swayimg.viewer.on_key("Delete", function()
+  local img = swayimg.viewer.get_image()
+  if img then
+    swayimg.imagelist.remove(img.path)
+  end
+end)
+
+-- toggle fullscreen
+swayimg.viewer.on_key("f", function()
+  swayimg.fullscreen = not swayimg.fullscreen
+end)
+
+-- toggle anti-aliasing
+swayimg.viewer.on_key("a", function()
+  swayimg.antialiasing = not swayimg.antialiasing
+end)
+
+-- rotate image
+swayimg.viewer.on_key("]", function()
+  swayimg.viewer.rotate(90)
+end)
+swayimg.viewer.on_key("[", function()
+  swayimg.viewer.rotate(270)
+end)
+
+-- flip image
+swayimg.viewer.on_key("m", function()
+  swayimg.viewer.flip_vertical()
+end)
+swayimg.viewer.on_key("Shift+m", function()
+  swayimg.viewer.flip_horizontal()
+end)
+
+-- zoom in/out
+swayimg.viewer.on_key("equal", function()
+  swayimg.viewer.scale = swayimg.viewer.scale + swayimg.viewer.scale / 10
+end)
+swayimg.viewer.on_key("minus", function()
+  swayimg.viewer.scale = swayimg.viewer.scale - swayimg.viewer.scale / 10
+end)
+
+-- reset scale/position
+swayimg.viewer.on_key("backspace", function()
+  swayimg.viewer.reset()
+end)
+
+-- move image across the window
+swayimg.viewer.on_key("left", function()
+  local pos = swayimg.viewer.get_position()
+  swayimg.viewer.set_abs_position(pos.x + 10, pos.y)
+end)
+swayimg.viewer.on_key("right", function()
+  local pos = swayimg.viewer.get_position()
+  swayimg.viewer.set_abs_position(pos.x - 10, pos.y)
+end)
+swayimg.viewer.on_key("up", function()
+  local pos = swayimg.viewer.get_position()
+  swayimg.viewer.set_abs_position(pos.x, pos.y + 10)
+end)
+swayimg.viewer.on_key("down", function()
+  local pos = swayimg.viewer.get_position()
+  swayimg.viewer.set_abs_position(pos.x, pos.y - 10)
+end)
+
+-- open next/previous image
+swayimg.viewer.on_key("next", function()
+  swayimg.viewer.open("next")
+end)
+swayimg.viewer.on_key("prior", function()
+  swayimg.viewer.open("prev")
+end)
 swayimg.viewer.on_key("n", function()
   swayimg.viewer.open("next")
 end)
@@ -77,20 +168,33 @@ swayimg.viewer.on_key("p", function()
   swayimg.viewer.open("prev")
 end)
 
--- bind the left arrow key to move the image to the left by 1/10 of the application window size
-swayimg.viewer.on_key("Left", function()
-  local wnd = swayimg.get_window_size()
-  local pos = swayimg.viewer.get_position()
-  swayimg.viewer.set_abs_position(math.floor(pos.x + wnd.width / 10), pos.y);
+-- stop animation and show next/previous frame
+swayimg.viewer.on_key("Shift+next", function()
+  swayimg.viewer.frame = swayimg.viewer.frame + 1
 end)
--- bind mouse vertical scroll button with pressed Ctrl to zoom in the image at mouse pointer coordinates
-swayimg.viewer.on_mouse("Ctrl-ScrollUp", function()
-  local pos = swayimg.get_mouse_pos()
-  local scale = swayimg.viewer.get_scale()
-  scale = scale + scale / 10
-  swayimg.viewer.set_abs_scale(scale, pos.x, pos.y);
+swayimg.viewer.on_key("Shift+prior", function()
+  local frame = swayimg.viewer.frame
+  if frame > 0 then
+    swayimg.viewer.frame = frame - 1
+  end
 end)
 
+-- scroll handling
+swayimg.viewer.on_scroll(function(kmods, horizontal, vertical)
+  if kmods == "Ctrl" then
+    -- zoom in/out
+    if vertical then
+      local mouse = swayimg.get_mouse_pos()
+      local scale = swayimg.viewer.scale
+      swayimg.viewer.set_abs_scale(scale - scale * vertical / 10.0, mouse.x, mouse.y)
+    end
+  else
+    -- move image across the window
+    local pos = swayimg.viewer.get_position()
+    swayimg.viewer.set_abs_position(pos.x + math.floor(horizontal * 50),
+                                    pos.y + math.floor(vertical * 50))
+  end
+end)
 
 -- Slide show mode, same config as for viewer mode with the following defaults:
 swayimg.slideshow.timeout = 5                       -- timeout to switch image
@@ -122,15 +226,15 @@ swayimg.gallery.text = {                         -- text layer scheme
   }
 }
 
+-- exit from application
+swayimg.gallery.on_key("Escape", function()
+  swayimg.exit()
+end)
 -- bind q key for exit
 swayimg.gallery.on_key("q", function()
   swayimg.exit()
 end)
 
--- exit from application
-swayimg.gallery.on_key("Escape", function()
-  swayimg.exit()
-end)
 
 -- switch to viewer mode
 swayimg.gallery.on_key("Return", function()
@@ -143,6 +247,10 @@ end)
 
 -- show/hide text overlay
 swayimg.gallery.on_key("t", function()
+  swayimg.text.visible = not swayimg.text.visible
+end)
+-- show/hide text overlay
+swayimg.gallery.on_key("i", function()
   swayimg.text.visible = not swayimg.text.visible
 end)
 
@@ -203,24 +311,21 @@ swayimg.gallery.on_key("prior", function()
   swayimg.gallery.select("pgup")
 end)
 
--- select another thumbnail (mouse/touchpad)
-swayimg.gallery.on_mouse("ScrollUp", function()
-  swayimg.gallery.select("up")
-end)
-swayimg.gallery.on_mouse("ScrollDown", function()
-  swayimg.gallery.select("down")
-end)
-swayimg.gallery.on_mouse("ScrollLeft", function()
-  swayimg.gallery.select("left")
-end)
-swayimg.gallery.on_mouse("ScrollRight", function()
-  swayimg.gallery.select("right")
-end)
-
--- thumbnail zoom in/out (mouse/touchpad)
-swayimg.gallery.on_mouse("Ctrl+ScrollUp", function()
-  swayimg.gallery.thumb_size = swayimg.gallery.thumb_size + 10
-end)
-swayimg.gallery.on_mouse("Ctrl+ScrollDown", function()
-  swayimg.gallery.thumb_size = swayimg.gallery.thumb_size - 10
+-- scroll handling
+swayimg.gallery.on_scroll(function(kmods, horizontal, vertical)
+  if kmods == "Ctrl" then
+    -- zoom in/out
+    if vertical then
+      swayimg.gallery.thumb_size = math.max(
+        swayimg.gallery.thumb_size + math.floor(-vertical / 2), 0)
+    end
+  else
+    -- select nearest thumbnail
+    if horizontal then
+      swayimg.gallery.select(horizontal > 0 and "left" or "right")
+    end
+    if vertical then
+      swayimg.gallery.select(vertical > 0 and "up" or "down")
+    end
+  end
 end)

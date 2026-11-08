@@ -1,0 +1,37 @@
+#!/bin/sh
+
+WLAN=`sysctl net.wlan.devices | awk '{ print $2 }'`
+IFACE=wlan0
+ACTIVE=`ifconfig wlan0 >/dev/null 2>&1 && echo 'active'`
+
+case "$1" in
+"up")
+	if [ "$ACTIVE" = "active" ]; then
+		exit
+	fi
+	ifconfig $IFACE create wlandev $WLAN
+#	ifconfig $IFACE powersave
+	ifconfig $IFACE up
+	service wpa_supplicant forcestart $IFACE
+	service dhclient forcestart $IFACE
+	;;
+"down")
+	if [ "$ACTIVE" != "active" ]; then
+		exit
+	fi
+	service dhclient forcestop $IFACE
+	service wpa_supplicant forcestop $IFACE
+	ifconfig $IFACE down
+	ifconfig $IFACE destroy
+	;;
+"status")
+	if [ "$ACTIVE" = "active" ]; then
+		echo "up"
+	else
+		echo "down"
+	fi
+	;;
+*)
+	echo "Usage: wificfg up|down|status"
+	;;
+esac

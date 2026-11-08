@@ -1,0 +1,104 @@
+#!/bin/sh
+
+export PATH=$PATH:/root/bin
+
+ESTATUS=`ethercfg status`
+if [ $? -ne 0 ]; then exit 1; fi
+WSTATUS=`wificfg status`
+if [ $? -ne 0 ]; then exit 1; fi
+
+NCONF="/root/netcfg.conf"
+if [ -f $NCONF ]; then
+	SEL=`cat $NCONF`
+fi
+if [ "$SEL" != "ether" ] && [ "$SEL" != "wifi" ]; then
+	SEL="auto"
+fi
+
+boot_up() {
+	if [ "$SEL" = "ether" ]; then
+		ethercfg up
+	elif [ "$SEL" = "wifi" ]; then
+		wificfg up
+	else
+		if [ "$ESTATUS" = "up" ]; then
+			ethercfg up
+		else
+			wificfg up
+		fi
+	fi
+	service ntpd forcestart
+}
+
+ether_up() {
+	# ethercfg down
+	wificfg down
+	ethercfg up
+}
+
+wifi_up() {
+	# wificfg down
+	ethercfg down
+	wificfg up
+}
+
+auto_up() {
+	if [ "$ESTATUS" = "up" ]; then
+		ether_up
+	else
+		wifi_up
+	fi
+}
+
+detect_up() {
+	if [ "$ESTATUS" = "up" ]; then
+		if [ "$SEL" = "ether" ] || [ "$SEL" = "auto" ]; then
+			ether_up
+		fi
+	else
+		if [ "$SEL" = "auto" ]; then
+			wifi_up
+		else
+			ethercfg down
+		fi
+	fi
+}
+
+status() {
+	if [ "$SEL" = "auto" ]; then
+		AUTO="auto: "
+	fi
+	if [ "$SEL" = "ether" ] || [ "$ESTATUS" = "up" ]; then
+		echo "$AUTO$SEL: $ESTATUS"
+	fi
+	if [ "$SEL" = "wifi" ] || [ "$WSTATUS" = "up" ]; then
+		echo "$AUTO$SEL: $WSTATUS"
+	fi
+}
+
+case "$1" in
+"boot")
+	boot_up
+	;;
+"ether")
+	ether_up
+	echo 'ether' > $NCONF
+	;;
+"wifi")
+	wifi_up
+	echo 'wifi' > $NCONF
+	;;
+"auto")
+	auto_up
+	echo 'auto' > $NCONF
+	;;
+"detect")
+	detect_up
+	;;
+"status")
+	status
+	;;
+*)
+	echo "Usage: netcfg auto|ether|wifi|detect|status"
+	;;
+esac
